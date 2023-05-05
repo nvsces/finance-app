@@ -1,43 +1,38 @@
-import 'package:finance_app/ui/mobile/pages/expenses_page.dart';
+import 'package:finance_app/router/web_routes.dart';
 import 'package:finance_app/ui/mobile/pages/home_page.dart';
-import 'package:finance_app/ui/mobile/pages/income__page.dart';
-import 'package:finance_app/ui/mobile/widgets/bottom_nav_scaffold.dart';
+import 'package:finance_app/ui/web/widgets/top_nav_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../ui/web/pages/expenses_web_page.dart';
+import '../ui/web/pages/income_web_page.dart';
 import 'abstract_routes_info.dart';
-import 'mobile_routes.dart';
 
-class MobileRoutesInfo implements AbstractRoutesInfo {
+class WebRoutesInfo implements AbstractRoutesInfo {
   final GlobalKey<NavigatorState> _shellNavigatorKey =
       GlobalKey<NavigatorState>();
 
   @override
-  String get initialRoute => MobileRoutes.expenses.path;
+  String get initialRoute => WebRoutes.expenses.path;
 
   @override
   List<RouteBase> get routes => <RouteBase>[
-        GoRoute(
-          path: MobileRoutes.home.path,
-          name: MobileRoutes.home.name,
-          builder: (context, state) => const HomePage(),
-        ),
         ShellRoute(
           navigatorKey: _shellNavigatorKey,
           builder: (context, state, child) {
-            return BottomNavScaffold(
+            return TopNavScaffold(
               child: child,
             ); //base scaffold for tabbed page
           },
           routes: [
-            _addTabRoute(MobileRoutes.income, const IncomePage()),
-            _addTabRoute(MobileRoutes.expenses, const ExpensesPage()),
+            _addTabRoute(WebRoutes.income, const IncomeWebPage()),
+            _addTabRoute(WebRoutes.expenses, const ExpensesWebPage()),
           ],
         ),
       ];
 
   GoRoute _addTabRoute(
-    MobileRoutes route,
+    WebRoutes route,
     Widget page, {
     List<RouteBase> routes = const <RouteBase>[],
   }) {
