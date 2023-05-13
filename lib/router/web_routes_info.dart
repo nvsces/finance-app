@@ -1,5 +1,4 @@
 import 'package:finance_app/router/web_routes.dart';
-import 'package:finance_app/ui/mobile/pages/home_page.dart';
 import 'package:finance_app/ui/web/widgets/top_nav_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

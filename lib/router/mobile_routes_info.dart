@@ -1,6 +1,7 @@
 import 'package:finance_app/ui/mobile/pages/expenses_page.dart';
 import 'package:finance_app/ui/mobile/pages/home_page.dart';
 import 'package:finance_app/ui/mobile/pages/income__page.dart';
+import 'package:finance_app/ui/mobile/pages/login_page.dart';
 import 'package:finance_app/ui/mobile/widgets/bottom_nav_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +14,7 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
       GlobalKey<NavigatorState>();
 
   @override
-  String get initialRoute => MobileRoutes.expenses.path;
+  String get initialRoute => MobileRoutes.login.path;
 
   @override
   List<RouteBase> get routes => <RouteBase>[
@@ -21,6 +22,11 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           path: MobileRoutes.home.path,
           name: MobileRoutes.home.name,
           builder: (context, state) => const HomePage(),
+        ),
+        GoRoute(
+          path: MobileRoutes.login.path,
+          name: MobileRoutes.login.name,
+          builder: (context, state) => const LoginPage(),
         ),
         ShellRoute(
           navigatorKey: _shellNavigatorKey,
