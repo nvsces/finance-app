@@ -1,4 +1,9 @@
+import 'package:finance_app/data/repositiries/auth/auth_repository.dart';
+import 'package:finance_app/domain/state/auth/auth_bloc.dart';
+import 'package:finance_app/domain/state/auth/auth_state.dart';
+import 'package:finance_app/router/mobile_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import 'router/app_router.dart';
@@ -21,11 +26,27 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      key: _appKey,
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
-      routerConfig: router,
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthBloc>(
+              create: (context) => AuthBloc(AuthRepository()))
+        ],
+        child: BlocListener<AuthBloc, AuthState>(
+          child: MaterialApp.router(
+            key: _appKey,
+            debugShowCheckedModeBanner: false,
+            themeMode: ThemeMode.dark,
+            routerConfig: router,
+          ),
+          listener: ((context, state) {
+            if (state is AuthAuthedState) {
+              AppRouter.rootNavigatorKey.currentContext
+                  ?.goNamed(MobileRoutes.expenses.name);
+            } else {
+              AppRouter.rootNavigatorKey.currentContext
+                  ?.goNamed(MobileRoutes.login.name);
+            }
+          }),
+        ));
   }
 }

@@ -38,6 +38,7 @@ dependencies:
   go_router: ^7.0.0
   flutter_svg: ^1.1.6
   url_launcher: ^6.1.11
+  flutter_bloc: ^8.1.2
 
 dev_dependencies:
   flutter_test:
