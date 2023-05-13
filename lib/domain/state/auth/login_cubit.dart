@@ -12,6 +12,7 @@ class LoginCubit extends Cubit<LoginState> {
 // обновление текстового поля
   void updateCode(String value) {
     print(value);
+    print('test');
     emit(state.copyWith(code: value));
   }
 
