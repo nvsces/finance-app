@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 List<BlocProvider> _globalBlocs() {
   return [
     BlocProvider<AuthBloc>(
-      create: (context) => injector.get(),
+      create: (context) => injector.get()..add(const AuthEvent.init()),
     ),
   ];
 }

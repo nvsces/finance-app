@@ -1,14 +1,25 @@
 import 'package:dio/dio.dart';
+import 'package:finance_app/app/config.dart';
 import 'package:finance_app/data/models/auth/auth_invalid_credentials_exception.dart';
+import 'package:finance_app/data/models/transaction.dart';
 
 class ApiHandler {
   final Dio dio;
 
   ApiHandler(this.dio);
 
+  Future<List<Transaction>> getExpenses() async {
+    final response = await dio.get(
+      '$hostUrl/transaction?start=1680011659000&end=1682872073000',
+    );
+
+    final data = response.data['transactions'];
+    return (data as List).map((e) => Transaction.fromMap(e)).toList();
+  }
+
   Future<String> login({required String code}) async {
     final response = await dio.post(
-      'http://178.250.157.195:6200/login',
+      '$hostUrl/login',
       data: {"code": code},
     );
     final token = response.data['token'];

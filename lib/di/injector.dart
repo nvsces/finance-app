@@ -2,8 +2,11 @@ import 'package:finance_app/data/api/api_handler.dart';
 import 'package:finance_app/data/api/dio_helper.dart';
 import 'package:finance_app/data/repositiries/auth/abstract_auth_repository.dart';
 import 'package:finance_app/data/repositiries/auth/auth_repository_impl.dart';
+import 'package:finance_app/data/repositiries/finance/finance_repositiry.dart';
+import 'package:finance_app/data/repositiries/finance/finance_repository_impl.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
+import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -34,6 +37,9 @@ Future<void> _registerRepositories() async {
   injector.registerSingleton<AbstractAuthRepository>(
     AuthRepositoryImpl(injector.get(), injector.get()),
   );
+  injector.registerSingleton<AbstractFinanceRepository>(
+    FinanceRepository(injector.get()),
+  );
 }
 
 Future<void> registerBloc() async {
@@ -41,6 +47,8 @@ Future<void> registerBloc() async {
   injector.registerSingleton(
     AuthBloc(injector.get(), dioHelper: injector.get()),
   );
+
+  injector.registerFactory(() => ExpensesBloc(injector.get()));
 
   injector.registerFactory(() => LoginCubit(injector.get()));
 }

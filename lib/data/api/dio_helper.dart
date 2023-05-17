@@ -51,14 +51,13 @@ class DioHelper {
     error: true,
     showProcessingTime: false,
     //set to true to see https requests logs
-    canShowLog: false,
+    canShowLog: true,
   );
 
   RequestOptions _requestInterceptor(RequestOptions options) {
     final token = dioAuthActions?.token;
     if (token != null) {
-      options.headers
-          .addAll(<String, String>{'Authorization': 'Bearer $token'});
+      options.headers.addAll(<String, String>{'Authorization': token});
     } else {
       options.headers.remove('Authorization');
     }
