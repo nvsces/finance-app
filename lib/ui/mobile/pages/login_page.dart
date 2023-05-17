@@ -1,4 +1,5 @@
 import 'package:finance_app/data/repositiries/auth/auth_repository.dart';
+import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/auth_event.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
@@ -18,7 +19,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LoginCubit>(
-      create: (context) => LoginCubit(AuthRepository()),
+      create: (context) => injector.get<LoginCubit>(),
       child: _LoginContent(),
     );
   }
@@ -83,7 +84,9 @@ class _LoginContent extends StatelessWidget {
                   height: 15,
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _launchUrl();
+                    },
                     child: const AppText(
                       text: 'Получить код',
                       size: 16,
@@ -110,5 +113,14 @@ class _LoginContent extends StatelessWidget {
       ),
     );
     ;
+  }
+}
+
+// tgBot: tg:resolve?domain=finance_auth_bot
+// tgDownload: https://play.google.com/store/apps/details?id=org.telegram.messenger
+final Uri _url = Uri.parse('tg:resolve?domain=finance_auth_bot');
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url, mode: LaunchMode.externalApplication)) {
+    throw Exception('Could not launch $_url');
   }
 }

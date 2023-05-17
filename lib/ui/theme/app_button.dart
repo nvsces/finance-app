@@ -25,6 +25,7 @@ class AppButton extends StatelessWidget {
       child: child,
       style: ButtonStyle(
         minimumSize: MaterialStateProperty.all(const Size(130, 50)),
+        maximumSize: MaterialStateProperty.all(const Size(130, 50)),
         backgroundColor: MaterialStateProperty.all(backgroundColor),
         side: MaterialStateProperty.all(
           BorderSide(

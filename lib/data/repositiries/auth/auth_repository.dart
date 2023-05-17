@@ -1,19 +1,28 @@
+import 'package:finance_app/data/api/api_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'abstract_auth_repository.dart';
 
+const tokenKey = 'tokenKey';
+
 class AuthRepository implements AbstractAuthRepository {
+  final ApiHandler apiHandler;
+  final SharedPreferences sharedPreferences;
+  AuthRepository(this.apiHandler, this.sharedPreferences);
   @override
   Future<String> login(String code) async {
-    await Future.delayed(Duration(seconds: 3));
-    return 'хуй';
+    final token = await apiHandler.login(code);
+    sharedPreferences.setString(tokenKey, token);
+    return token;
   }
 
   @override
   Future<String> checkAuth() async {
-    return 'токен';
+    return sharedPreferences.getString(tokenKey) ?? '';
   }
 
   @override
-  Future<void> logout() {
-    throw UnimplementedError();
+  Future<void> logout() async {
+    sharedPreferences.remove(tokenKey);
   }
 }
