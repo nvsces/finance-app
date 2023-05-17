@@ -1,4 +1,3 @@
-import 'package:finance_app/data/repositiries/auth/auth_repository.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/auth_state.dart';
 import 'package:finance_app/router/mobile_routes.dart';
@@ -6,9 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import 'di/injector.dart';
+import 'domain/state/auth/auth_event.dart';
 import 'router/app_router.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initIjector();
   runApp(const MyApp());
 }
 
@@ -29,7 +32,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return MultiBlocProvider(
         providers: [
           BlocProvider<AuthBloc>(
-              create: (context) => AuthBloc(AuthRepository()))
+              create: (context) =>
+                  injector.get<AuthBloc>()..add(AuthInitEvent()))
         ],
         child: BlocListener<AuthBloc, AuthState>(
           child: MaterialApp.router(
