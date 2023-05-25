@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:finance_app/app/config.dart';
 import 'package:finance_app/data/models/auth/auth_invalid_credentials_exception.dart';
@@ -10,7 +12,7 @@ class ApiHandler {
 
   Future<List<Transaction>> getExpenses() async {
     final response = await dio.get(
-      '$hostUrl/transaction?start=1680011659000&end=1682872073000',
+      '$hostUrl/transaction?start=1680011659000&end=1682872073000&enabled=true',
     );
 
     final data = response.data['transactions'];
@@ -31,5 +33,19 @@ class ApiHandler {
     }
 
     throw Exception();
+  }
+
+  Future<bool> uploadFile(File file) async {
+    try {
+      const url = 'http://178.250.157.195:8060/upload_file_pdf/';
+      final formData = FormData.fromMap({
+        'file': MultipartFile.fromBytes(file.readAsBytesSync()),
+      });
+      final respons = await dio.post(url, data: formData);
+      return respons.statusCode == 200;
+    } catch (e) {
+      print(e);
+      return false;
+    }
   }
 }

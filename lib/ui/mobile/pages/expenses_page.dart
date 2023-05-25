@@ -1,7 +1,7 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
+import 'package:finance_app/ui/mobile/pages/upload_file_page.dart';
 import 'package:finance_app/ui/mobile/widgets/chart.dart';
-import 'package:finance_app/ui/mobile/widgets/expenses_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,6 +25,10 @@ class _ExpensesContent extends StatelessWidget {
     return BlocBuilder<ExpensesBloc, ExpensesState>(
       builder: (context, state) {
         return Scaffold(
+            floatingActionButton: FloatingActionButton(onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => UploadFilePage()));
+            }),
             body: state.isLoading
                 ? const Center(
                     child: CircularProgressIndicator(),
