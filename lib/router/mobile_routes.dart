@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 
 enum MobileRoutes {
+  upload,
   login,
   expenses,
   income,
