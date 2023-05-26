@@ -37,14 +37,21 @@ class ApiHandler {
 
   Future<bool> uploadFile(File file) async {
     try {
-      const url = 'http://178.250.157.195:8060/upload_file_pdf/';
-      final formData = FormData.fromMap({
-        'file': MultipartFile.fromBytes(file.readAsBytesSync()),
-      });
-      final respons = await dio.post(url, data: formData);
+      const url = '$uploadHostUrl/upload_file_pdf/';
+      final formData = FormData.fromMap(
+        {
+          'file': MultipartFile.fromBytes(
+            file.readAsBytesSync(),
+            filename: file.path.split('/').last,
+          ),
+        },
+      );
+      final respons = await dio.post(
+        url,
+        data: formData,
+      );
       return respons.statusCode == 200;
     } catch (e) {
-      print(e);
       return false;
     }
   }
