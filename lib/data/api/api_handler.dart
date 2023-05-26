@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:finance_app/app/config.dart';
@@ -35,14 +35,14 @@ class ApiHandler {
     throw Exception();
   }
 
-  Future<bool> uploadFile(File file) async {
+  Future<bool> uploadFile(Uint8List fileBytes) async {
     try {
       const url = '$uploadHostUrl/upload_file_pdf/';
       final formData = FormData.fromMap(
         {
           'file': MultipartFile.fromBytes(
-            file.readAsBytesSync(),
-            filename: file.path.split('/').last,
+            fileBytes,
+            filename: 'file.pdf',
           ),
         },
       );

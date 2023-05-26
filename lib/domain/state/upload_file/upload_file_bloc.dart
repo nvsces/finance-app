@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:finance_app/data/api/api_handler.dart';
@@ -16,13 +16,13 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
   }
   Future<void> _create(
       CreateUploadFileEvent event, Emitter<UploadFileState> emit) async {
-    final file = await selectFile();
-    if (file == null) {
+    final fileBytes = await selectFile();
+    if (fileBytes == null) {
       emit(const UploadFileState.failure());
       return;
     }
     emit(const UploadFileState.loading());
-    final result = await apiHandler.uploadFile(file);
+    final result = await apiHandler.uploadFile(fileBytes);
     if (result == true) {
       emit(const UploadFileState.success());
     } else {
@@ -30,13 +30,12 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
     }
   }
 
-  Future<File?> selectFile() async {
+  Future<Uint8List?> selectFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
-      final path = result.files.single.path;
-      if (path == null) return null;
-      return File(path);
+      final file = result.files.single;
+      return file.bytes;
     } else {
       return null;
     }
