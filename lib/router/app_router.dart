@@ -11,8 +11,8 @@ class AppRouter {
       GlobalKey<NavigatorState>();
 
   GoRouter router() {
-    final AbstractRoutesInfo routesInfo =
-        kIsWeb ? WebRoutesInfo() : MobileRoutesInfo();
+    final AbstractRoutesInfo routesInfo = MobileRoutesInfo();
+    // kIsWeb ? WebRoutesInfo() : MobileRoutesInfo();
     return GoRouter(
       navigatorKey: rootNavigatorKey,
       routes: routesInfo.routes,

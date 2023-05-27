@@ -13,6 +13,7 @@ class AuthRepositoryImpl implements AbstractAuthRepository {
   @override
   Future<String> login({required String code}) async {
     final token = await apiHandler.login(code: code);
+    print(token);
     await preferences.setString(tokenKey, token);
     return token;
   }

@@ -46,7 +46,7 @@ Future<void> _registerRepositories() async {
 Future<void> registerBloc() async {
   //Singleton blocs
   injector.registerSingleton(
-    AuthBloc(injector.get(), dioHelper: injector.get()),
+    AuthBloc(injector.get(), dioHelper: injector.get<DioHelper>()),
   );
 
   injector.registerFactory(() => ExpensesBloc(injector.get()));

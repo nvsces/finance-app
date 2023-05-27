@@ -1,3 +1,4 @@
+import 'package:finance_app/ui/mobile/pages/auth_page.dart';
 import 'package:finance_app/ui/mobile/pages/expenses_page.dart';
 import 'package:finance_app/ui/mobile/pages/home_page.dart';
 import 'package:finance_app/ui/mobile/pages/income__page.dart';
@@ -29,10 +30,16 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           builder: (context, state) => const LoginPage(),
         ),
         GoRoute(
-          path: '${MobileRoutes.auth.path}/:code',
-          name: MobileRoutes.auth.name,
-          builder: (context, state) => const LoginPage(),
-        ),
+            path: '${MobileRoutes.auth.path}/:code',
+            name: MobileRoutes.auth.name,
+            builder: (context, state) {
+              print('GoRoute AuthPage');
+              final code = state.pathParameters['code'];
+              print(code);
+              return AuthPage(
+                code: state.pathParameters['code'] as String,
+              );
+            }),
         ShellRoute(
           navigatorKey: _shellNavigatorKey,
           builder: (context, state, child) {

@@ -28,6 +28,7 @@ class DioHelper {
           handler.next(signedOptions);
         },
         onError: (DioError error, handler) async {
+          print(error);
           if (error.response?.statusCode == 401 ||
               error.response?.statusCode == 403) {
             dioAuthActions?.onUnAuthedError();

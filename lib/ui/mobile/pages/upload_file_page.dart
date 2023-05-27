@@ -11,6 +11,7 @@ class UploadFilePage extends StatelessWidget {
     return BlocProvider(
         create: (context) => injector.get<UploadFileBloc>(),
         child: Scaffold(
+          appBar: AppBar(),
           body: _UploadFileContent(),
         ));
   }
