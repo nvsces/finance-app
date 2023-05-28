@@ -30,11 +30,7 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           name: MobileRoutes.home.name,
           builder: (context, state) => const HomePage(),
         ),
-        GoRoute(
-          path: MobileRoutes.login.path,
-          name: MobileRoutes.login.name,
-          builder: (context, state) => const LoginPage(),
-        ),
+
         GoRoute(
             path: '${MobileRoutes.auth.path}/:code',
             name: MobileRoutes.auth.name,

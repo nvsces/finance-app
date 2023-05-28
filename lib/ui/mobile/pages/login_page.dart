@@ -1,11 +1,11 @@
 import 'package:finance_app/data/repositiries/auth/auth_repository.dart';
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
-import 'package:finance_app/domain/state/auth/auth_event.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
-import 'package:finance_app/domain/state/auth/login_state.dart';
+
 import 'package:finance_app/ui/theme/app_button.dart';
 import 'package:finance_app/ui/theme/app_text.dart';
+import 'package:finance_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,8 +32,8 @@ class _LoginContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state.loginResult == LoginResult.success) {
-          context.read<AuthBloc>().add(AuthInitEvent());
+        if (state.loginResult is LoginSuccess) {
+          context.read<AuthBloc>().add(const AuthInitEvent());
         }
       },
       builder: (context, state) => Scaffold(
@@ -85,7 +85,7 @@ class _LoginContent extends StatelessWidget {
                 ),
                 TextButton(
                     onPressed: () {
-                      _launchUrl();
+                      UrlUtils.openBot();
                     },
                     child: const AppText(
                       text: 'Получить код',
@@ -103,7 +103,7 @@ class _LoginContent extends StatelessWidget {
                           size: 20,
                         ),
                   func: () {
-                    context.read<LoginCubit>().login();
+                    context.read<LoginCubit>().signInWithCredentials();
                   },
                 )
               ],
@@ -116,11 +116,4 @@ class _LoginContent extends StatelessWidget {
   }
 }
 
-// tgBot: tg:resolve?domain=finance_auth_bot
-// tgDownload: https://play.google.com/store/apps/details?id=org.telegram.messenger
-final Uri _url = Uri.parse('tg:resolve?domain=finance_auth_bot');
-Future<void> _launchUrl() async {
-  if (!await launchUrl(_url, mode: LaunchMode.externalApplication)) {
-    throw Exception('Could not launch $_url');
-  }
-}
+

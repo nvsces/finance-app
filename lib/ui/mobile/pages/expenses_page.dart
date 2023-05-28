@@ -1,4 +1,5 @@
 import 'package:finance_app/di/injector.dart';
+import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
 import 'package:finance_app/ui/mobile/pages/upload_file_page.dart';
 import 'package:finance_app/ui/mobile/widgets/chart.dart';
@@ -25,6 +26,7 @@ class _ExpensesContent extends StatelessWidget {
     return BlocBuilder<ExpensesBloc, ExpensesState>(
       builder: (context, state) {
         return Scaffold(
+          appBar: AppBar(actions: [IconButton(onPressed: (){context.read<AuthBloc>().add(AuthEvent.logout());}, icon: Icon(Icons.logout))],),
             floatingActionButton: FloatingActionButton(onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => UploadFilePage()));

@@ -10,8 +10,8 @@ class AuthRepository implements AbstractAuthRepository {
   final SharedPreferences sharedPreferences;
   AuthRepository(this.apiHandler, this.sharedPreferences);
   @override
-  Future<String> login(String code) async {
-    final token = await apiHandler.login(code);
+  Future<String> login({required String code}) async {
+    final token = await apiHandler.login(code: code);
     sharedPreferences.setString(tokenKey, token);
     return token;
   }
