@@ -5,6 +5,7 @@ import 'package:finance_app/ui/mobile/pages/upload_file_page.dart';
 import 'package:finance_app/ui/mobile/widgets/chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ExpensesPage extends StatelessWidget {
   const ExpensesPage({super.key});
@@ -31,6 +32,19 @@ class _ExpensesContent extends StatelessWidget {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => UploadFilePage()));
             }),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+            floatingActionButton: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: FloatingActionButton(
+                  onPressed: () {
+                    context.go('/upload');
+                  },
+                  child: Icon(
+                    Icons.add,
+                    color: Colors.black,
+                  ),
+                  backgroundColor: Colors.white,
+                )),
             body: state.isLoading
                 ? const Center(
                     child: CircularProgressIndicator(),

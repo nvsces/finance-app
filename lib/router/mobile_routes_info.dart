@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../ui/mobile/pages/login_page.dart';
+import '../ui/mobile/pages/upload_file_page.dart';
 import 'abstract_routes_info.dart';
 import 'mobile_routes.dart';
 
@@ -30,7 +31,11 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           name: MobileRoutes.home.name,
           builder: (context, state) => const HomePage(),
         ),
-
+        GoRoute(
+          path: MobileRoutes.upload.path,
+          name: MobileRoutes.upload.name,
+          builder: (context, state) => const UploadFilePage(),
+        ),
         GoRoute(
             path: '${MobileRoutes.auth.path}/:code',
             name: MobileRoutes.auth.name,
