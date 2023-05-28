@@ -7,6 +7,7 @@ import 'package:finance_app/ui/mobile/widgets/bottom_nav_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../ui/mobile/pages/login_page.dart';
 import 'abstract_routes_info.dart';
 import 'mobile_routes.dart';
 
@@ -19,6 +20,11 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
 
   @override
   List<RouteBase> get routes => <RouteBase>[
+        GoRoute(
+          path: MobileRoutes.login.path,
+          name: MobileRoutes.login.name,
+          builder: (context, state) => LoginPage(),
+        ),
         GoRoute(
           path: MobileRoutes.home.path,
           name: MobileRoutes.home.name,

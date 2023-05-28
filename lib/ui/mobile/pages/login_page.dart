@@ -1,17 +1,26 @@
+import 'package:finance_app/data/repositiries/auth/auth_repository.dart';
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
+import 'package:finance_app/domain/state/auth/auth_event.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
+import 'package:finance_app/domain/state/auth/login_state.dart';
+import 'package:finance_app/ui/theme/app_button.dart';
+import 'package:finance_app/ui/theme/app_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../theme/app_colors.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LoginCubit>(
-      create: (context) => injector.get(),
-      child: const _LoginContent(),
+      create: (context) => injector.get<LoginCubit>(),
+      child: _LoginContent(),
     );
   }
 }
@@ -23,40 +32,95 @@ class _LoginContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-        final loginSuccess = context
-            .read<LoginCubit>()
-            .state
-            .loginResult
-            .whenOrNull(success: () => true);
-
-        if (loginSuccess ?? false) {
-          context.read<AuthBloc>().add(const AuthEvent.init());
-          // context.goNamed(MobileRoutes.expenses.name);
+        if (state.loginResult == LoginResult.success) {
+          context.read<AuthBloc>().add(AuthInitEvent());
         }
       },
       builder: (context, state) => Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                onChanged: (s) {
-                  context.read<LoginCubit>().updateCode(s);
-                },
-              ),
-              const SizedBox(
-                height: 30.0,
-              ),
-              TextButton(
-                onPressed: () {
-                  context.read<LoginCubit>().signInWithCredentials();
-                },
-                child: const Text('Login'),
-              )
-            ],
+        body: Container(
+          margin: const EdgeInsets.only(right: 30, left: 30),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const AppText(
+                  text: 'Finance',
+                  size: 36,
+                  weight: 8,
+                ),
+                const SizedBox(
+                  height: 75,
+                ),
+                const AppText(
+                  text: 'Для входа необходимо ввести код:',
+                  size: 16,
+                ),
+                const SizedBox(
+                  height: 13,
+                ),
+                TextFormField(
+                  onChanged: (value) {
+                    context.read<LoginCubit>().updateCode(value);
+                  },
+                  keyboardType: TextInputType.text,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.singleLineFormatter
+                  ],
+                  decoration: const InputDecoration(
+                      labelText: 'Код',
+                      labelStyle: TextStyle(color: AppColors.grey),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
+                          borderSide: BorderSide(color: AppColors.black)),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(6)),
+                        borderSide: BorderSide(color: AppColors.red),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
+                          borderSide: BorderSide(color: AppColors.purple))),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextButton(
+                    onPressed: () {
+                      _launchUrl();
+                    },
+                    child: const AppText(
+                      text: 'Получить код',
+                      size: 16,
+                      color: AppColors.purple,
+                    )),
+                const SizedBox(
+                  height: 15,
+                ),
+                AppButton(
+                  child: state.isSubmitting
+                      ? Center(child: CircularProgressIndicator())
+                      : const AppText(
+                          text: 'Войти',
+                          size: 20,
+                        ),
+                  func: () {
+                    context.read<LoginCubit>().login();
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
+    ;
+  }
+}
+
+// tgBot: tg:resolve?domain=finance_auth_bot
+// tgDownload: https://play.google.com/store/apps/details?id=org.telegram.messenger
+final Uri _url = Uri.parse('tg:resolve?domain=finance_auth_bot');
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url, mode: LaunchMode.externalApplication)) {
+    throw Exception('Could not launch $_url');
   }
 }
