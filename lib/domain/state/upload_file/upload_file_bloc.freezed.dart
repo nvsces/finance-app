@@ -19,32 +19,44 @@ mixin _$UploadFileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() create,
+    required TResult Function() init,
+    required TResult Function(int index) select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? create,
+    TResult? Function()? init,
+    TResult? Function(int index)? select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? create,
+    TResult Function()? init,
+    TResult Function(int index)? select,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CreateUploadFileEvent value) create,
+    required TResult Function(InitUploadFileEvent value) init,
+    required TResult Function(SelectUploadFileEvent value) select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CreateUploadFileEvent value)? create,
+    TResult? Function(InitUploadFileEvent value)? init,
+    TResult? Function(SelectUploadFileEvent value)? select,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CreateUploadFileEvent value)? create,
+    TResult Function(InitUploadFileEvent value)? init,
+    TResult Function(SelectUploadFileEvent value)? select,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +119,8 @@ class _$CreateUploadFileEvent extends CreateUploadFileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() create,
+    required TResult Function() init,
+    required TResult Function(int index) select,
   }) {
     return create();
   }
@@ -115,6 +129,8 @@ class _$CreateUploadFileEvent extends CreateUploadFileEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? create,
+    TResult? Function()? init,
+    TResult? Function(int index)? select,
   }) {
     return create?.call();
   }
@@ -123,6 +139,8 @@ class _$CreateUploadFileEvent extends CreateUploadFileEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? create,
+    TResult Function()? init,
+    TResult Function(int index)? select,
     required TResult orElse(),
   }) {
     if (create != null) {
@@ -135,6 +153,8 @@ class _$CreateUploadFileEvent extends CreateUploadFileEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(CreateUploadFileEvent value) create,
+    required TResult Function(InitUploadFileEvent value) init,
+    required TResult Function(SelectUploadFileEvent value) select,
   }) {
     return create(this);
   }
@@ -143,6 +163,8 @@ class _$CreateUploadFileEvent extends CreateUploadFileEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(CreateUploadFileEvent value)? create,
+    TResult? Function(InitUploadFileEvent value)? init,
+    TResult? Function(SelectUploadFileEvent value)? select,
   }) {
     return create?.call(this);
   }
@@ -151,6 +173,8 @@ class _$CreateUploadFileEvent extends CreateUploadFileEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(CreateUploadFileEvent value)? create,
+    TResult Function(InitUploadFileEvent value)? init,
+    TResult Function(SelectUploadFileEvent value)? select,
     required TResult orElse(),
   }) {
     if (create != null) {
@@ -166,56 +190,265 @@ abstract class CreateUploadFileEvent extends UploadFileEvent {
 }
 
 /// @nodoc
-mixin _$UploadFileState {
+abstract class _$$InitUploadFileEventCopyWith<$Res> {
+  factory _$$InitUploadFileEventCopyWith(_$InitUploadFileEvent value,
+          $Res Function(_$InitUploadFileEvent) then) =
+      __$$InitUploadFileEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitUploadFileEventCopyWithImpl<$Res>
+    extends _$UploadFileEventCopyWithImpl<$Res, _$InitUploadFileEvent>
+    implements _$$InitUploadFileEventCopyWith<$Res> {
+  __$$InitUploadFileEventCopyWithImpl(
+      _$InitUploadFileEvent _value, $Res Function(_$InitUploadFileEvent) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitUploadFileEvent extends InitUploadFileEvent {
+  const _$InitUploadFileEvent() : super._();
+
+  @override
+  String toString() {
+    return 'UploadFileEvent.init()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitUploadFileEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() failure,
-  }) =>
-      throw _privateConstructorUsedError;
+    required TResult Function() create,
+    required TResult Function() init,
+    required TResult Function(int index) select,
+  }) {
+    return init();
+  }
+
+  @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function()? failure,
-  }) =>
-      throw _privateConstructorUsedError;
+    TResult? Function()? create,
+    TResult? Function()? init,
+    TResult? Function(int index)? select,
+  }) {
+    return init?.call();
+  }
+
+  @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? failure,
+    TResult Function()? create,
+    TResult Function()? init,
+    TResult Function(int index)? select,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) {
+    if (init != null) {
+      return init();
+    }
+    return orElse();
+  }
+
+  @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitialUploadFileState value) initial,
-    required TResult Function(LoadingUploadFileState value) loading,
-    required TResult Function(SuccessUploadFileState value) success,
-    required TResult Function(FailureUploadFileState value) failure,
-  }) =>
-      throw _privateConstructorUsedError;
+    required TResult Function(CreateUploadFileEvent value) create,
+    required TResult Function(InitUploadFileEvent value) init,
+    required TResult Function(SelectUploadFileEvent value) select,
+  }) {
+    return init(this);
+  }
+
+  @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitialUploadFileState value)? initial,
-    TResult? Function(LoadingUploadFileState value)? loading,
-    TResult? Function(SuccessUploadFileState value)? success,
-    TResult? Function(FailureUploadFileState value)? failure,
-  }) =>
-      throw _privateConstructorUsedError;
+    TResult? Function(CreateUploadFileEvent value)? create,
+    TResult? Function(InitUploadFileEvent value)? init,
+    TResult? Function(SelectUploadFileEvent value)? select,
+  }) {
+    return init?.call(this);
+  }
+
+  @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialUploadFileState value)? initial,
-    TResult Function(LoadingUploadFileState value)? loading,
-    TResult Function(SuccessUploadFileState value)? success,
-    TResult Function(FailureUploadFileState value)? failure,
+    TResult Function(CreateUploadFileEvent value)? create,
+    TResult Function(InitUploadFileEvent value)? init,
+    TResult Function(SelectUploadFileEvent value)? select,
     required TResult orElse(),
-  }) =>
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitUploadFileEvent extends UploadFileEvent {
+  const factory InitUploadFileEvent() = _$InitUploadFileEvent;
+  const InitUploadFileEvent._() : super._();
+}
+
+/// @nodoc
+abstract class _$$SelectUploadFileEventCopyWith<$Res> {
+  factory _$$SelectUploadFileEventCopyWith(_$SelectUploadFileEvent value,
+          $Res Function(_$SelectUploadFileEvent) then) =
+      __$$SelectUploadFileEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$SelectUploadFileEventCopyWithImpl<$Res>
+    extends _$UploadFileEventCopyWithImpl<$Res, _$SelectUploadFileEvent>
+    implements _$$SelectUploadFileEventCopyWith<$Res> {
+  __$$SelectUploadFileEventCopyWithImpl(_$SelectUploadFileEvent _value,
+      $Res Function(_$SelectUploadFileEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$SelectUploadFileEvent(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectUploadFileEvent extends SelectUploadFileEvent {
+  const _$SelectUploadFileEvent({required this.index}) : super._();
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'UploadFileEvent.select(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectUploadFileEvent &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectUploadFileEventCopyWith<_$SelectUploadFileEvent> get copyWith =>
+      __$$SelectUploadFileEventCopyWithImpl<_$SelectUploadFileEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() create,
+    required TResult Function() init,
+    required TResult Function(int index) select,
+  }) {
+    return select(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? create,
+    TResult? Function()? init,
+    TResult? Function(int index)? select,
+  }) {
+    return select?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? create,
+    TResult Function()? init,
+    TResult Function(int index)? select,
+    required TResult orElse(),
+  }) {
+    if (select != null) {
+      return select(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreateUploadFileEvent value) create,
+    required TResult Function(InitUploadFileEvent value) init,
+    required TResult Function(SelectUploadFileEvent value) select,
+  }) {
+    return select(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CreateUploadFileEvent value)? create,
+    TResult? Function(InitUploadFileEvent value)? init,
+    TResult? Function(SelectUploadFileEvent value)? select,
+  }) {
+    return select?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreateUploadFileEvent value)? create,
+    TResult Function(InitUploadFileEvent value)? init,
+    TResult Function(SelectUploadFileEvent value)? select,
+    required TResult orElse(),
+  }) {
+    if (select != null) {
+      return select(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectUploadFileEvent extends UploadFileEvent {
+  const factory SelectUploadFileEvent({required final int index}) =
+      _$SelectUploadFileEvent;
+  const SelectUploadFileEvent._() : super._();
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$SelectUploadFileEventCopyWith<_$SelectUploadFileEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$UploadFileState {
+  bool get isLoading => throw _privateConstructorUsedError;
+  UploadFileResult get result => throw _privateConstructorUsedError;
+  List<Banks> get bankList => throw _privateConstructorUsedError;
+  int get currentBank => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $UploadFileStateCopyWith<UploadFileState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -224,6 +457,14 @@ abstract class $UploadFileStateCopyWith<$Res> {
   factory $UploadFileStateCopyWith(
           UploadFileState value, $Res Function(UploadFileState) then) =
       _$UploadFileStateCopyWithImpl<$Res, UploadFileState>;
+  @useResult
+  $Res call(
+      {bool isLoading,
+      UploadFileResult result,
+      List<Banks> bankList,
+      int currentBank});
+
+  $UploadFileResultCopyWith<$Res> get result;
 }
 
 /// @nodoc
@@ -235,38 +476,270 @@ class _$UploadFileStateCopyWithImpl<$Res, $Val extends UploadFileState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? result = null,
+    Object? bankList = null,
+    Object? currentBank = null,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      result: null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as UploadFileResult,
+      bankList: null == bankList
+          ? _value.bankList
+          : bankList // ignore: cast_nullable_to_non_nullable
+              as List<Banks>,
+      currentBank: null == currentBank
+          ? _value.currentBank
+          : currentBank // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UploadFileResultCopyWith<$Res> get result {
+    return $UploadFileResultCopyWith<$Res>(_value.result, (value) {
+      return _then(_value.copyWith(result: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialUploadFileStateCopyWith<$Res> {
-  factory _$$InitialUploadFileStateCopyWith(_$InitialUploadFileState value,
-          $Res Function(_$InitialUploadFileState) then) =
-      __$$InitialUploadFileStateCopyWithImpl<$Res>;
+abstract class _$$_UploadFileStateCopyWith<$Res>
+    implements $UploadFileStateCopyWith<$Res> {
+  factory _$$_UploadFileStateCopyWith(
+          _$_UploadFileState value, $Res Function(_$_UploadFileState) then) =
+      __$$_UploadFileStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool isLoading,
+      UploadFileResult result,
+      List<Banks> bankList,
+      int currentBank});
+
+  @override
+  $UploadFileResultCopyWith<$Res> get result;
 }
 
 /// @nodoc
-class __$$InitialUploadFileStateCopyWithImpl<$Res>
-    extends _$UploadFileStateCopyWithImpl<$Res, _$InitialUploadFileState>
-    implements _$$InitialUploadFileStateCopyWith<$Res> {
-  __$$InitialUploadFileStateCopyWithImpl(_$InitialUploadFileState _value,
-      $Res Function(_$InitialUploadFileState) _then)
+class __$$_UploadFileStateCopyWithImpl<$Res>
+    extends _$UploadFileStateCopyWithImpl<$Res, _$_UploadFileState>
+    implements _$$_UploadFileStateCopyWith<$Res> {
+  __$$_UploadFileStateCopyWithImpl(
+      _$_UploadFileState _value, $Res Function(_$_UploadFileState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? result = null,
+    Object? bankList = null,
+    Object? currentBank = null,
+  }) {
+    return _then(_$_UploadFileState(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      result: null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as UploadFileResult,
+      bankList: null == bankList
+          ? _value._bankList
+          : bankList // ignore: cast_nullable_to_non_nullable
+              as List<Banks>,
+      currentBank: null == currentBank
+          ? _value.currentBank
+          : currentBank // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$InitialUploadFileState extends InitialUploadFileState {
-  const _$InitialUploadFileState() : super._();
+class _$_UploadFileState implements _UploadFileState {
+  const _$_UploadFileState(
+      {required this.isLoading,
+      required this.result,
+      required final List<Banks> bankList,
+      required this.currentBank})
+      : _bankList = bankList;
+
+  @override
+  final bool isLoading;
+  @override
+  final UploadFileResult result;
+  final List<Banks> _bankList;
+  @override
+  List<Banks> get bankList {
+    if (_bankList is EqualUnmodifiableListView) return _bankList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bankList);
+  }
+
+  @override
+  final int currentBank;
 
   @override
   String toString() {
-    return 'UploadFileState.initial()';
+    return 'UploadFileState(isLoading: $isLoading, result: $result, bankList: $bankList, currentBank: $currentBank)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialUploadFileState);
+        (other.runtimeType == runtimeType &&
+            other is _$_UploadFileState &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.result, result) || other.result == result) &&
+            const DeepCollectionEquality().equals(other._bankList, _bankList) &&
+            (identical(other.currentBank, currentBank) ||
+                other.currentBank == currentBank));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isLoading, result,
+      const DeepCollectionEquality().hash(_bankList), currentBank);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UploadFileStateCopyWith<_$_UploadFileState> get copyWith =>
+      __$$_UploadFileStateCopyWithImpl<_$_UploadFileState>(this, _$identity);
+}
+
+abstract class _UploadFileState implements UploadFileState {
+  const factory _UploadFileState(
+      {required final bool isLoading,
+      required final UploadFileResult result,
+      required final List<Banks> bankList,
+      required final int currentBank}) = _$_UploadFileState;
+
+  @override
+  bool get isLoading;
+  @override
+  UploadFileResult get result;
+  @override
+  List<Banks> get bankList;
+  @override
+  int get currentBank;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UploadFileStateCopyWith<_$_UploadFileState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$UploadFileResult {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function() success,
+    required TResult Function() failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function()? success,
+    TResult? Function()? failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? success,
+    TResult Function()? failure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyUploadFileState value) empty,
+    required TResult Function(SuccessUploadFileState value) success,
+    required TResult Function(FailureUploadFileState value) failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmptyUploadFileState value)? empty,
+    TResult? Function(SuccessUploadFileState value)? success,
+    TResult? Function(FailureUploadFileState value)? failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyUploadFileState value)? empty,
+    TResult Function(SuccessUploadFileState value)? success,
+    TResult Function(FailureUploadFileState value)? failure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UploadFileResultCopyWith<$Res> {
+  factory $UploadFileResultCopyWith(
+          UploadFileResult value, $Res Function(UploadFileResult) then) =
+      _$UploadFileResultCopyWithImpl<$Res, UploadFileResult>;
+}
+
+/// @nodoc
+class _$UploadFileResultCopyWithImpl<$Res, $Val extends UploadFileResult>
+    implements $UploadFileResultCopyWith<$Res> {
+  _$UploadFileResultCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$EmptyUploadFileStateCopyWith<$Res> {
+  factory _$$EmptyUploadFileStateCopyWith(_$EmptyUploadFileState value,
+          $Res Function(_$EmptyUploadFileState) then) =
+      __$$EmptyUploadFileStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EmptyUploadFileStateCopyWithImpl<$Res>
+    extends _$UploadFileResultCopyWithImpl<$Res, _$EmptyUploadFileState>
+    implements _$$EmptyUploadFileStateCopyWith<$Res> {
+  __$$EmptyUploadFileStateCopyWithImpl(_$EmptyUploadFileState _value,
+      $Res Function(_$EmptyUploadFileState) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$EmptyUploadFileState extends EmptyUploadFileState {
+  const _$EmptyUploadFileState() : super._();
+
+  @override
+  String toString() {
+    return 'UploadFileResult.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EmptyUploadFileState);
   }
 
   @override
@@ -275,36 +748,33 @@ class _$InitialUploadFileState extends InitialUploadFileState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() empty,
     required TResult Function() success,
     required TResult Function() failure,
   }) {
-    return initial();
+    return empty();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? empty,
     TResult? Function()? success,
     TResult? Function()? failure,
   }) {
-    return initial?.call();
+    return empty?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? empty,
     TResult Function()? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial();
+    if (empty != null) {
+      return empty();
     }
     return orElse();
   }
@@ -312,159 +782,41 @@ class _$InitialUploadFileState extends InitialUploadFileState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitialUploadFileState value) initial,
-    required TResult Function(LoadingUploadFileState value) loading,
+    required TResult Function(EmptyUploadFileState value) empty,
     required TResult Function(SuccessUploadFileState value) success,
     required TResult Function(FailureUploadFileState value) failure,
   }) {
-    return initial(this);
+    return empty(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitialUploadFileState value)? initial,
-    TResult? Function(LoadingUploadFileState value)? loading,
+    TResult? Function(EmptyUploadFileState value)? empty,
     TResult? Function(SuccessUploadFileState value)? success,
     TResult? Function(FailureUploadFileState value)? failure,
   }) {
-    return initial?.call(this);
+    return empty?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialUploadFileState value)? initial,
-    TResult Function(LoadingUploadFileState value)? loading,
+    TResult Function(EmptyUploadFileState value)? empty,
     TResult Function(SuccessUploadFileState value)? success,
     TResult Function(FailureUploadFileState value)? failure,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(this);
+    if (empty != null) {
+      return empty(this);
     }
     return orElse();
   }
 }
 
-abstract class InitialUploadFileState extends UploadFileState {
-  const factory InitialUploadFileState() = _$InitialUploadFileState;
-  const InitialUploadFileState._() : super._();
-}
-
-/// @nodoc
-abstract class _$$LoadingUploadFileStateCopyWith<$Res> {
-  factory _$$LoadingUploadFileStateCopyWith(_$LoadingUploadFileState value,
-          $Res Function(_$LoadingUploadFileState) then) =
-      __$$LoadingUploadFileStateCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadingUploadFileStateCopyWithImpl<$Res>
-    extends _$UploadFileStateCopyWithImpl<$Res, _$LoadingUploadFileState>
-    implements _$$LoadingUploadFileStateCopyWith<$Res> {
-  __$$LoadingUploadFileStateCopyWithImpl(_$LoadingUploadFileState _value,
-      $Res Function(_$LoadingUploadFileState) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$LoadingUploadFileState extends LoadingUploadFileState {
-  const _$LoadingUploadFileState() : super._();
-
-  @override
-  String toString() {
-    return 'UploadFileState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingUploadFileState);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() failure,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function()? failure,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitialUploadFileState value) initial,
-    required TResult Function(LoadingUploadFileState value) loading,
-    required TResult Function(SuccessUploadFileState value) success,
-    required TResult Function(FailureUploadFileState value) failure,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitialUploadFileState value)? initial,
-    TResult? Function(LoadingUploadFileState value)? loading,
-    TResult? Function(SuccessUploadFileState value)? success,
-    TResult? Function(FailureUploadFileState value)? failure,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialUploadFileState value)? initial,
-    TResult Function(LoadingUploadFileState value)? loading,
-    TResult Function(SuccessUploadFileState value)? success,
-    TResult Function(FailureUploadFileState value)? failure,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoadingUploadFileState extends UploadFileState {
-  const factory LoadingUploadFileState() = _$LoadingUploadFileState;
-  const LoadingUploadFileState._() : super._();
+abstract class EmptyUploadFileState extends UploadFileResult {
+  const factory EmptyUploadFileState() = _$EmptyUploadFileState;
+  const EmptyUploadFileState._() : super._();
 }
 
 /// @nodoc
@@ -476,7 +828,7 @@ abstract class _$$SuccessUploadFileStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$SuccessUploadFileStateCopyWithImpl<$Res>
-    extends _$UploadFileStateCopyWithImpl<$Res, _$SuccessUploadFileState>
+    extends _$UploadFileResultCopyWithImpl<$Res, _$SuccessUploadFileState>
     implements _$$SuccessUploadFileStateCopyWith<$Res> {
   __$$SuccessUploadFileStateCopyWithImpl(_$SuccessUploadFileState _value,
       $Res Function(_$SuccessUploadFileState) _then)
@@ -490,7 +842,7 @@ class _$SuccessUploadFileState extends SuccessUploadFileState {
 
   @override
   String toString() {
-    return 'UploadFileState.success()';
+    return 'UploadFileResult.success()';
   }
 
   @override
@@ -505,8 +857,7 @@ class _$SuccessUploadFileState extends SuccessUploadFileState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() empty,
     required TResult Function() success,
     required TResult Function() failure,
   }) {
@@ -516,8 +867,7 @@ class _$SuccessUploadFileState extends SuccessUploadFileState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? empty,
     TResult? Function()? success,
     TResult? Function()? failure,
   }) {
@@ -527,8 +877,7 @@ class _$SuccessUploadFileState extends SuccessUploadFileState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? empty,
     TResult Function()? success,
     TResult Function()? failure,
     required TResult orElse(),
@@ -542,8 +891,7 @@ class _$SuccessUploadFileState extends SuccessUploadFileState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitialUploadFileState value) initial,
-    required TResult Function(LoadingUploadFileState value) loading,
+    required TResult Function(EmptyUploadFileState value) empty,
     required TResult Function(SuccessUploadFileState value) success,
     required TResult Function(FailureUploadFileState value) failure,
   }) {
@@ -553,8 +901,7 @@ class _$SuccessUploadFileState extends SuccessUploadFileState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitialUploadFileState value)? initial,
-    TResult? Function(LoadingUploadFileState value)? loading,
+    TResult? Function(EmptyUploadFileState value)? empty,
     TResult? Function(SuccessUploadFileState value)? success,
     TResult? Function(FailureUploadFileState value)? failure,
   }) {
@@ -564,8 +911,7 @@ class _$SuccessUploadFileState extends SuccessUploadFileState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialUploadFileState value)? initial,
-    TResult Function(LoadingUploadFileState value)? loading,
+    TResult Function(EmptyUploadFileState value)? empty,
     TResult Function(SuccessUploadFileState value)? success,
     TResult Function(FailureUploadFileState value)? failure,
     required TResult orElse(),
@@ -577,7 +923,7 @@ class _$SuccessUploadFileState extends SuccessUploadFileState {
   }
 }
 
-abstract class SuccessUploadFileState extends UploadFileState {
+abstract class SuccessUploadFileState extends UploadFileResult {
   const factory SuccessUploadFileState() = _$SuccessUploadFileState;
   const SuccessUploadFileState._() : super._();
 }
@@ -591,7 +937,7 @@ abstract class _$$FailureUploadFileStateCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailureUploadFileStateCopyWithImpl<$Res>
-    extends _$UploadFileStateCopyWithImpl<$Res, _$FailureUploadFileState>
+    extends _$UploadFileResultCopyWithImpl<$Res, _$FailureUploadFileState>
     implements _$$FailureUploadFileStateCopyWith<$Res> {
   __$$FailureUploadFileStateCopyWithImpl(_$FailureUploadFileState _value,
       $Res Function(_$FailureUploadFileState) _then)
@@ -605,7 +951,7 @@ class _$FailureUploadFileState extends FailureUploadFileState {
 
   @override
   String toString() {
-    return 'UploadFileState.failure()';
+    return 'UploadFileResult.failure()';
   }
 
   @override
@@ -620,8 +966,7 @@ class _$FailureUploadFileState extends FailureUploadFileState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
+    required TResult Function() empty,
     required TResult Function() success,
     required TResult Function() failure,
   }) {
@@ -631,8 +976,7 @@ class _$FailureUploadFileState extends FailureUploadFileState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
+    TResult? Function()? empty,
     TResult? Function()? success,
     TResult? Function()? failure,
   }) {
@@ -642,8 +986,7 @@ class _$FailureUploadFileState extends FailureUploadFileState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
+    TResult Function()? empty,
     TResult Function()? success,
     TResult Function()? failure,
     required TResult orElse(),
@@ -657,8 +1000,7 @@ class _$FailureUploadFileState extends FailureUploadFileState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitialUploadFileState value) initial,
-    required TResult Function(LoadingUploadFileState value) loading,
+    required TResult Function(EmptyUploadFileState value) empty,
     required TResult Function(SuccessUploadFileState value) success,
     required TResult Function(FailureUploadFileState value) failure,
   }) {
@@ -668,8 +1010,7 @@ class _$FailureUploadFileState extends FailureUploadFileState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitialUploadFileState value)? initial,
-    TResult? Function(LoadingUploadFileState value)? loading,
+    TResult? Function(EmptyUploadFileState value)? empty,
     TResult? Function(SuccessUploadFileState value)? success,
     TResult? Function(FailureUploadFileState value)? failure,
   }) {
@@ -679,8 +1020,7 @@ class _$FailureUploadFileState extends FailureUploadFileState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialUploadFileState value)? initial,
-    TResult Function(LoadingUploadFileState value)? loading,
+    TResult Function(EmptyUploadFileState value)? empty,
     TResult Function(SuccessUploadFileState value)? success,
     TResult Function(FailureUploadFileState value)? failure,
     required TResult orElse(),
@@ -692,7 +1032,7 @@ class _$FailureUploadFileState extends FailureUploadFileState {
   }
 }
 
-abstract class FailureUploadFileState extends UploadFileState {
+abstract class FailureUploadFileState extends UploadFileResult {
   const factory FailureUploadFileState() = _$FailureUploadFileState;
   const FailureUploadFileState._() : super._();
 }

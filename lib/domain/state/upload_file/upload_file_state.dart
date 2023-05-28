@@ -2,13 +2,22 @@ part of 'upload_file_bloc.dart';
 
 @freezed
 class UploadFileState with _$UploadFileState {
-  const UploadFileState._();
+  const factory UploadFileState({required bool isLoading, required UploadFileResult result,
+   required List<Banks> bankList, required int currentBank,
+  }) = _UploadFileState;
 
-  const factory UploadFileState.initial() = InitialUploadFileState;
-
-  const factory UploadFileState.loading() = LoadingUploadFileState;
-
-  const factory UploadFileState.success() = SuccessUploadFileState;
-
-  const factory UploadFileState.failure() = FailureUploadFileState;
+   factory UploadFileState.initial() => const UploadFileState(isLoading: false, result: UploadFileResult.empty(), bankList: [], currentBank: 0);
 }
+
+
+@freezed
+class UploadFileResult with _$UploadFileResult {
+  const UploadFileResult._();
+
+  const factory UploadFileResult.empty() = EmptyUploadFileState;
+
+  const factory UploadFileResult.success() = SuccessUploadFileState;
+
+  const factory UploadFileResult.failure() = FailureUploadFileState;
+}
+
