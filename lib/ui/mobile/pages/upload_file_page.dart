@@ -15,106 +15,106 @@ class UploadFilePage extends StatelessWidget {
     return BlocProvider(
         create: (context) => injector.get<UploadFileBloc>(),
         child: Scaffold(
-          body: _UploadFileContent(),
-        ));
+            // body: _UploadFileContent(),
+            ));
   }
 }
 
-class _UploadFileContent extends StatelessWidget {
-  const _UploadFileContent({super.key});
+// class _UploadFileContent extends StatelessWidget {
+//   const _UploadFileContent({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
     
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
-          child: AppButton(
-                    child: const AppText(text: 'Назад', size: 20),
-                    func: () {
-                      context.pop();
-                    }),
-        ),
+//         Padding(
+//           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
+//           child: AppButton(
+//                     child: const AppText(text: 'Назад', size: 20),
+//                     func: () {
+//                       context.pop();
+//                     }),
+//         ),
 
-        BlocBuilder<UploadFileBloc, UploadFileState>(
-            builder: (context, state) {
-          return state.when(
-            initial: () => Container(
+//         BlocBuilder<UploadFileBloc, UploadFileState>(
+//             builder: (context, state) {
+//           return state.when(
+//             initial: () => Container(
               
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
                   
-                  Column(
-                    children: [
-                      Container(
-                        width: 250,
-                        child: const AppText(
-                          text:
-                              'Для загрузки информации из банка выберите банк из списка:',
-                          size: 24,
-                          weight: 3,
-                          color: Colors.black,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      const Divider(
-                        thickness: 1.5,
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      ListTile(
-                        leading: const CircleAvatar(
-                          backgroundImage: AssetImage('assets/jpg/сбер.jpg'),
-                          radius: 20,
-                        ),
-                        title: const Text('Сбербанк'),
-                        trailing: IconButton(
-                            onPressed: () {}, icon: Icon(Icons.adjust_rounded)),
-                      ),
-                      ListTile(
-                        leading: const CircleAvatar(
-                          backgroundImage: AssetImage('assets/jpg/тинькофф.jpg'),
-                          radius: 20,
-                        ),
-                        title: const Text('Тинькофф'),
-                        trailing: IconButton(
-                            onPressed: () {}, icon: Icon(Icons.adjust_rounded)),
-                      ),
-                    ],
-                  ),
-                  Center(
-                    child: AppButton(
-                      child: AppText(
-                        text: 'Готово',
-                        size: 20,
-                        weight: 4,
-                      ),
-                      func: () {
-                        context
-                            .read<UploadFileBloc>()
-                            .add(UploadFileEvent.create());
-                      },
-                      backgroundColor: AppColors.green,
-                      borderColor: AppColors.greenBorder,
-                      overlayColor: AppColors.greenBorder,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            loading: () => Center(child: CircularProgressIndicator()),
-            success: () => Center(child: Text('Файл успешно загружен')),
-            failure: () => Center(child: Text('Ошибка загрузки файла :(')),
-          );
-        }),
-      ],
-    );
-  }
-}
+//                   Column(
+//                     children: [
+//                       Container(
+//                         width: 250,
+//                         child: const AppText(
+//                           text:
+//                               'Для загрузки информации из банка выберите банк из списка:',
+//                           size: 24,
+//                           weight: 3,
+//                           color: Colors.black,
+//                         ),
+//                       ),
+//                       const SizedBox(
+//                         height: 25,
+//                       ),
+//                       const Divider(
+//                         thickness: 1.5,
+//                       ),
+//                       const SizedBox(
+//                         height: 25,
+//                       ),
+//                       ListTile(
+//                         leading: const CircleAvatar(
+//                           backgroundImage: AssetImage('assets/jpg/сбер.jpg'),
+//                           radius: 20,
+//                         ),
+//                         title: const Text('Сбербанк'),
+//                         trailing: IconButton(
+//                             onPressed: () {}, icon: Icon(Icons.adjust_rounded)),
+//                       ),
+//                       ListTile(
+//                         leading: const CircleAvatar(
+//                           backgroundImage: AssetImage('assets/jpg/тинькофф.jpg'),
+//                           radius: 20,
+//                         ),
+//                         title: const Text('Тинькофф'),
+//                         trailing: IconButton(
+//                             onPressed: () {}, icon: Icon(Icons.adjust_rounded)),
+//                       ),
+//                     ],
+//                   ),
+//                   Center(
+//                     child: AppButton(
+//                       child: AppText(
+//                         text: 'Готово',
+//                         size: 20,
+//                         weight: 4,
+//                       ),
+//                       func: () {
+//                         context
+//                             .read<UploadFileBloc>()
+//                             .add(UploadFileEvent.create());
+//                       },
+//                       backgroundColor: AppColors.green,
+//                       borderColor: AppColors.greenBorder,
+//                       overlayColor: AppColors.greenBorder,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             loading: () => Center(child: CircularProgressIndicator()),
+//             success: () => Center(child: Text('Файл успешно загружен')),
+//             failure: () => Center(child: Text('Ошибка загрузки файла :(')),
+//           );
+//         }),
+//       ],
+//     );
+//   }
+// }

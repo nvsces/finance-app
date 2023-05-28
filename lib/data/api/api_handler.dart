@@ -19,6 +19,20 @@ class ApiHandler {
     return (data as List).map((e) => Transaction.fromMap(e)).toList();
   }
 
+  Future<bool> editTransaction(Transaction transaction) async {
+    try {
+      final response = await dio.put(
+        '$hostUrl/transaction',
+        data: transaction.toMap(),
+      );
+
+      return response.statusCode == 200;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   Future<String> login({required String code}) async {
     final response = await dio.post(
       '$hostUrl/login',

@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:finance_app/data/models/transaction.dart';
+import 'package:go_router/go_router.dart';
 
 class ChartWidget extends StatelessWidget {
   ChartWidget({super.key, required this.transactions});
@@ -16,7 +18,6 @@ class ChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return Text('hello');
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -53,13 +54,12 @@ class ChartWidget extends StatelessWidget {
           Column(
               children: List.generate(categort.length, (index) {
             return InkWell(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailCategoryPage(
-                      transactions: categort[index].transactions),
-                ),
-              ),
+              onTap: () {
+                context.push(
+                  MobileRoutes.detailCategory.path,
+                  extra: categort[index].transactions,
+                );
+              },
               child: Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10, top: 4.0),
                 child: Row(
@@ -108,6 +108,7 @@ class ChartWidget extends StatelessWidget {
   List<PieChartSectionData> showingSections(
     Map<String, List<Transaction>> groups,
   ) {
+    categort.clear();
     const fontSize = 16.0;
     const radius = 50.0;
     final summ = summValue(transactions);

@@ -21,20 +21,24 @@ class BottomNavScaffold extends StatelessWidget {
 
     return Scaffold(
       body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        currentIndex: currentIndex < 0 ? 0 : currentIndex,
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: currentTabItems
-            .map((item) => buildTab(context, item))
-            .toList(growable: false),
-        onTap: (index) => _onTabTapped(
-          context: context,
-          item: currentTabItems[index],
-          currentLocation: currentLocation,
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+            border: Border(top: BorderSide(color: Colors.grey))),
+        child: BottomNavigationBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          currentIndex: currentIndex < 0 ? 0 : currentIndex,
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          items: currentTabItems
+              .map((item) => buildTab(context, item))
+              .toList(growable: false),
+          onTap: (index) => _onTabTapped(
+            context: context,
+            item: currentTabItems[index],
+            currentLocation: currentLocation,
+          ),
         ),
       ),
     );
