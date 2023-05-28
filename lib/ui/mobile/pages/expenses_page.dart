@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../router/mobile_routes.dart';
+
 class ExpensesPage extends StatelessWidget {
   const ExpensesPage({super.key});
 
@@ -28,16 +30,13 @@ class _ExpensesContent extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(actions: [IconButton(onPressed: (){context.read<AuthBloc>().add(AuthEvent.logout());}, icon: Icon(Icons.logout))],),
-            floatingActionButton: FloatingActionButton(onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => UploadFilePage()));
-            }),
+          
             floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
             floatingActionButton: Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: FloatingActionButton(
                   onPressed: () {
-                    context.go('/upload');
+                    context.push(MobileRoutes.upload.path);
                   },
                   child: Icon(
                     Icons.add,
