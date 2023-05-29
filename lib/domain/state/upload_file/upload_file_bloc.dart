@@ -17,36 +17,39 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
     on<CreateUploadFileEvent>(_create);
     on<InitUploadFileEvent>(_init);
     on<SelectUploadFileEvent>(_select);
-    
   }
-Future<void> _init(
+  Future<void> _init(
       InitUploadFileEvent event, Emitter<UploadFileState> emit) async {
-        emit(state.copyWith(bankList: supportedBanks));
-      }
+    emit(state.copyWith(bankList: supportedBanks));
+  }
 
-      Future<void> _select(
+  Future<void> _select(
       SelectUploadFileEvent event, Emitter<UploadFileState> emit) async {
-        emit(state.copyWith(currentBank: event.index));
-      }
+    emit(state.copyWith(currentBank: event.index));
+  }
 
   Future<void> _create(
       CreateUploadFileEvent event, Emitter<UploadFileState> emit) async {
-    final fileBytes = await selectFile();
+    final bank = state.bankList[state.currentBank];
+    final fileBytes = await selectFile(bank);
     if (fileBytes == null) {
       emit(state.copyWith(result: UploadFileResult.failure()));
       return;
     }
     emit(state.copyWith(isLoading: true));
-    final result = await apiHandler.uploadFile(fileBytes);
+    final result = await apiHandler.uploadFile(fileBytes, bank);
     if (result == true) {
-      emit(state.copyWith(result: UploadFileResult.success(), isLoading: false));
+      emit(
+          state.copyWith(result: UploadFileResult.success(), isLoading: false));
     } else {
-      emit(state.copyWith(result: UploadFileResult.failure(), isLoading: false));
+      emit(
+          state.copyWith(result: UploadFileResult.failure(), isLoading: false));
     }
   }
 
-  Future<Uint8List?> selectFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+  Future<Uint8List?> selectFile(Bank bank) async {
+    FilePickerResult? result = await FilePicker.platform
+        .pickFiles(allowedExtensions: [bank.ext], type: FileType.custom);
 
     if (result != null) {
       final file = result.files.single;
@@ -57,5 +60,4 @@ Future<void> _init(
   }
 }
 
-
-final supportedBanks = <Banks>[Banks.sber, Banks.tinkoff];
+final supportedBanks = <Bank>[Bank.sber, Bank.tinkoff];

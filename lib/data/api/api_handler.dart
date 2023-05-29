@@ -5,6 +5,8 @@ import 'package:finance_app/app/config.dart';
 import 'package:finance_app/data/models/auth/auth_invalid_credentials_exception.dart';
 import 'package:finance_app/data/models/transaction.dart';
 
+import '../../domain/entity/bank_enum.dart';
+
 class ApiHandler {
   final Dio dio;
 
@@ -35,14 +37,14 @@ class ApiHandler {
     throw Exception();
   }
 
-  Future<bool> uploadFile(Uint8List fileBytes) async {
+  Future<bool> uploadFile(Uint8List fileBytes, Bank bank) async {
     try {
-      const url = '$uploadHostUrl/upload_file_pdf/';
+      final url = '$uploadHostUrl${bank.uploadUrl}';
       final formData = FormData.fromMap(
         {
           'file': MultipartFile.fromBytes(
             fileBytes,
-            filename: 'file.pdf',
+            filename: 'file.${bank.ext}',
           ),
         },
       );

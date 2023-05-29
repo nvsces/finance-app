@@ -444,7 +444,7 @@ abstract class SelectUploadFileEvent extends UploadFileEvent {
 mixin _$UploadFileState {
   bool get isLoading => throw _privateConstructorUsedError;
   UploadFileResult get result => throw _privateConstructorUsedError;
-  List<Banks> get bankList => throw _privateConstructorUsedError;
+  List<Bank> get bankList => throw _privateConstructorUsedError;
   int get currentBank => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -461,7 +461,7 @@ abstract class $UploadFileStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       UploadFileResult result,
-      List<Banks> bankList,
+      List<Bank> bankList,
       int currentBank});
 
   $UploadFileResultCopyWith<$Res> get result;
@@ -497,7 +497,7 @@ class _$UploadFileStateCopyWithImpl<$Res, $Val extends UploadFileState>
       bankList: null == bankList
           ? _value.bankList
           : bankList // ignore: cast_nullable_to_non_nullable
-              as List<Banks>,
+              as List<Bank>,
       currentBank: null == currentBank
           ? _value.currentBank
           : currentBank // ignore: cast_nullable_to_non_nullable
@@ -525,7 +525,7 @@ abstract class _$$_UploadFileStateCopyWith<$Res>
   $Res call(
       {bool isLoading,
       UploadFileResult result,
-      List<Banks> bankList,
+      List<Bank> bankList,
       int currentBank});
 
   @override
@@ -560,7 +560,7 @@ class __$$_UploadFileStateCopyWithImpl<$Res>
       bankList: null == bankList
           ? _value._bankList
           : bankList // ignore: cast_nullable_to_non_nullable
-              as List<Banks>,
+              as List<Bank>,
       currentBank: null == currentBank
           ? _value.currentBank
           : currentBank // ignore: cast_nullable_to_non_nullable
@@ -575,7 +575,7 @@ class _$_UploadFileState implements _UploadFileState {
   const _$_UploadFileState(
       {required this.isLoading,
       required this.result,
-      required final List<Banks> bankList,
+      required final List<Bank> bankList,
       required this.currentBank})
       : _bankList = bankList;
 
@@ -583,9 +583,9 @@ class _$_UploadFileState implements _UploadFileState {
   final bool isLoading;
   @override
   final UploadFileResult result;
-  final List<Banks> _bankList;
+  final List<Bank> _bankList;
   @override
-  List<Banks> get bankList {
+  List<Bank> get bankList {
     if (_bankList is EqualUnmodifiableListView) return _bankList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_bankList);
@@ -627,7 +627,7 @@ abstract class _UploadFileState implements UploadFileState {
   const factory _UploadFileState(
       {required final bool isLoading,
       required final UploadFileResult result,
-      required final List<Banks> bankList,
+      required final List<Bank> bankList,
       required final int currentBank}) = _$_UploadFileState;
 
   @override
@@ -635,7 +635,7 @@ abstract class _UploadFileState implements UploadFileState {
   @override
   UploadFileResult get result;
   @override
-  List<Banks> get bankList;
+  List<Bank> get bankList;
   @override
   int get currentBank;
   @override

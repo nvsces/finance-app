@@ -2,13 +2,19 @@ part of 'upload_file_bloc.dart';
 
 @freezed
 class UploadFileState with _$UploadFileState {
-  const factory UploadFileState({required bool isLoading, required UploadFileResult result,
-   required List<Banks> bankList, required int currentBank,
+  const factory UploadFileState({
+    required bool isLoading,
+    required UploadFileResult result,
+    required List<Bank> bankList,
+    required int currentBank,
   }) = _UploadFileState;
 
-   factory UploadFileState.initial() => const UploadFileState(isLoading: false, result: UploadFileResult.empty(), bankList: [], currentBank: 0);
+  factory UploadFileState.initial() => const UploadFileState(
+      isLoading: false,
+      result: UploadFileResult.empty(),
+      bankList: [],
+      currentBank: -1);
 }
-
 
 @freezed
 class UploadFileResult with _$UploadFileResult {
@@ -20,4 +26,3 @@ class UploadFileResult with _$UploadFileResult {
 
   const factory UploadFileResult.failure() = FailureUploadFileState;
 }
-
