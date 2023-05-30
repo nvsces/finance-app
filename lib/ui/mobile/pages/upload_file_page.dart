@@ -50,6 +50,7 @@ class _UploadFileContent extends StatelessWidget {
                 if (state.result is SuccessUploadFileState) {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(content: Text('Все ок')));
+                  context.pop();
                 }
               },
               child: Container(

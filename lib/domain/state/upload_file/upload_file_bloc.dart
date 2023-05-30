@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:finance_app/data/api/api_handler.dart';
+import 'package:finance_app/utils/app_file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -33,7 +35,7 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
   Future<void> _create(
       CreateUploadFileEvent event, Emitter<UploadFileState> emit) async {
     final bank = state.bankList[state.currentBank];
-    final fileBytes = await selectFile(bank);
+    final fileBytes = await AppFilePicker.selectFile(bank);
     if (fileBytes == null) {
       emit(state.copyWith(result: UploadFileResult.failure()));
       return;
@@ -46,21 +48,6 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
     } else {
       emit(
           state.copyWith(result: UploadFileResult.failure(), isLoading: false));
-    }
-  }
-
-  Future<Uint8List?> selectFile(Bank bank) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-
-        // allowedExtensions: [bank.ext], type: FileType.custom
-        );
-
-    if (result != null) {
-      final file = result.files.single;
-      print(file);
-      return file.bytes;
-    } else {
-      return null;
     }
   }
 }
