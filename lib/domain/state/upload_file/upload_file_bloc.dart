@@ -25,7 +25,9 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
 
   Future<void> _select(
       SelectUploadFileEvent event, Emitter<UploadFileState> emit) async {
-    emit(state.copyWith(currentBank: event.index));
+    emit(state.copyWith(
+      currentBank: event.index,
+    ));
   }
 
   Future<void> _create(
@@ -48,11 +50,14 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
   }
 
   Future<Uint8List?> selectFile(Bank bank) async {
-    FilePickerResult? result = await FilePicker.platform
-        .pickFiles(allowedExtensions: [bank.ext], type: FileType.custom);
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+
+        // allowedExtensions: [bank.ext], type: FileType.custom
+        );
 
     if (result != null) {
       final file = result.files.single;
+      print(file);
       return file.bytes;
     } else {
       return null;

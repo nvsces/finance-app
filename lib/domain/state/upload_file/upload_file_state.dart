@@ -26,3 +26,7 @@ class UploadFileResult with _$UploadFileResult {
 
   const factory UploadFileResult.failure() = FailureUploadFileState;
 }
+
+extension UploadFileStateExt on UploadFileState {
+  bool get isSelected => currentBank != -1;
+}

@@ -41,60 +41,75 @@ class _UploadFileContent extends StatelessWidget {
               }),
         ),
         Expanded(
-          child: BlocBuilder<UploadFileBloc, UploadFileState>(
-              builder: (context, state) {
-            return Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 250,
-                          child: const AppText(
-                            text:
-                                'Для загрузки информации из банка выберите банк из списка:',
-                            size: 24,
-                            weight: 3,
-                            color: Colors.black,
+          child: BlocListener<UploadFileBloc, UploadFileState>(
+              listener: (context, state) {
+                if (state.result is FailureUploadFileState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Произошла ошибка')));
+                }
+                if (state.result is SuccessUploadFileState) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text('Все ок')));
+                }
+              },
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 250,
+                            child: const AppText(
+                              text:
+                                  'Для загрузки информации из банка выберите банк из списка:',
+                              size: 24,
+                              weight: 3,
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        const Divider(
-                          thickness: 1.5,
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        Expanded(child: SelectBankWidget()),
-                      ],
-                    ),
-                  ),
-                  Center(
-                    child: AppButton(
-                      child: AppText(
-                        text: 'Готово',
-                        size: 20,
-                        weight: 4,
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          const Divider(
+                            thickness: 1.5,
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Expanded(child: SelectBankWidget()),
+                        ],
                       ),
-                      func: () {
-                        context
-                            .read<UploadFileBloc>()
-                            .add(UploadFileEvent.create());
-                      },
-                      backgroundColor: AppColors.green,
-                      borderColor: AppColors.greenBorder,
-                      overlayColor: AppColors.greenBorder,
                     ),
-                  ),
-                ],
-              ),
-            );
-          }),
+                    Center(
+                      child: BlocBuilder<UploadFileBloc, UploadFileState>(
+                        builder: (context, state) => AppButton(
+                          child: AppText(
+                            text: 'Готово',
+                            size: 20,
+                            weight: 4,
+                          ),
+                          func: () {
+                            if (!state.isSelected) {
+                              return;
+                            }
+                            context
+                                .read<UploadFileBloc>()
+                                .add(UploadFileEvent.create());
+                          },
+                          backgroundColor: state.isSelected
+                              ? AppColors.green
+                              : AppColors.grey,
+                          borderColor: AppColors.greenBorder,
+                          overlayColor: AppColors.greenBorder,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
         ),
       ],
     );
@@ -117,9 +132,8 @@ class SelectBankWidget extends StatelessWidget {
                 image: items[index].image,
                 isSelected: index == state.currentBank,
                 onTap: () {
-                  context
-                      .read<UploadFileBloc>()
-                      .add(UploadFileEvent.select(index: index));
+                  context.read<UploadFileBloc>().add(UploadFileEvent.select(
+                      index: index == state.currentBank ? -1 : index));
                 });
           });
     });
