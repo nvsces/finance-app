@@ -1,4 +1,8 @@
+import 'package:finance_app/data/models/transaction.dart';
+import 'package:finance_app/main.dart';
+import 'package:finance_app/router/app_router.dart';
 import 'package:finance_app/ui/mobile/pages/auth_page.dart';
+import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
 import 'package:finance_app/ui/mobile/pages/expenses_page.dart';
 import 'package:finance_app/ui/mobile/pages/home_page.dart';
 import 'package:finance_app/ui/mobile/pages/income__page.dart';
@@ -35,6 +39,14 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           path: MobileRoutes.upload.path,
           name: MobileRoutes.upload.name,
           builder: (context, state) => const UploadFilePage(),
+        ),
+        GoRoute(
+          parentNavigatorKey: AppRouter.rootNavigatorKey,
+          path: MobileRoutes.detailCategory.path,
+          name: MobileRoutes.detailCategory.name,
+          builder: (context, state) => DetailCategoryPage(
+            transactions: state.extra as List<Transaction>,
+          ),
         ),
         GoRoute(
             path: '${MobileRoutes.auth.path}/:code',

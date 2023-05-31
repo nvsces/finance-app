@@ -4,6 +4,8 @@ import 'package:finance_app/data/repositiries/auth/abstract_auth_repository.dart
 import 'package:finance_app/data/repositiries/auth/auth_repository_impl.dart';
 import 'package:finance_app/data/repositiries/finance/finance_repositiry.dart';
 import 'package:finance_app/data/repositiries/finance/finance_repository_impl.dart';
+import 'package:finance_app/data/repositiries/transaction/transaction_repository.dart';
+import 'package:finance_app/data/repositiries/transaction/transaction_repository_impl.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
@@ -40,6 +42,9 @@ Future<void> _registerRepositories() async {
   );
   injector.registerSingleton<AbstractFinanceRepository>(
     FinanceRepository(injector.get()),
+  );
+  injector.registerSingleton<TransactionRepository>(
+    TransactionRepositoryImpl(injector.get()),
   );
 }
 
