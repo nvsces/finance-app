@@ -4,10 +4,8 @@ class AppColors {
   AppColors._();
 
   //Common colors
-  static const textSelected = Colors.black87;
-  static const textUnselected = Colors.black38;
-  static const defaultColor1 = Colors.white;
-  static const defaultColor2 = Color.fromARGB(255, 190, 190, 190);
+
+  static const textunselect = Color.fromARGB(255, 190, 190, 190);
   static const defaultColor3 = Colors.blue;
   static const transparent = Color(0x00ffffff);
   static const white = Color(0xffffffff);

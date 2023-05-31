@@ -36,6 +36,7 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           builder: (context, state) => const HomePage(),
         ),
         GoRoute(
+          parentNavigatorKey: AppRouter.rootNavigatorKey,
           path: MobileRoutes.upload.path,
           name: MobileRoutes.upload.name,
           builder: (context, state) => const UploadFilePage(),

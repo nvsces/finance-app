@@ -14,7 +14,7 @@ class ApiHandler {
 
   Future<List<Transaction>> getExpenses() async {
     final response = await dio.get(
-      '$hostUrl/transaction?start=1680011659000&end=1682872073000&enabled=true',
+      '$hostUrl/transaction?start=0&end=16828720730000&enabled=true',
     );
 
     final data = response.data['transactions'];

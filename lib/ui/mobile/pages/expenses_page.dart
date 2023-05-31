@@ -3,6 +3,7 @@ import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
 import 'package:finance_app/ui/mobile/pages/upload_file_page.dart';
 import 'package:finance_app/ui/mobile/widgets/chart.dart';
+import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -29,21 +30,30 @@ class _ExpensesContent extends StatelessWidget {
     return BlocBuilder<ExpensesBloc, ExpensesState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(actions: [IconButton(onPressed: (){context.read<AuthBloc>().add(AuthEvent.logout());}, icon: Icon(Icons.logout))],),
-          
             floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
             floatingActionButton: Padding(
                 padding: const EdgeInsets.only(top: 20),
-                child: FloatingActionButton(
-                  onPressed: () {
-                    context.push(MobileRoutes.upload.path);
-                  },
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.black,
-                  ),
-                  backgroundColor: Colors.white,
-                )),
+                child: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: AppColors.textunselect,
+                            width: 3,
+                            style: BorderStyle.solid)),
+                    width: 55,
+                    height: 55,
+                    child: FloatingActionButton(
+                      elevation: 0,
+                      onPressed: () {
+                        context.pushReplacement((MobileRoutes.upload.path));
+                      },
+                      backgroundColor: Colors.white,
+                      child: Icon(
+                        Icons.add,
+                        color: AppColors.textunselect,
+                        size: 40,
+                      ),
+                    ))),
             body: state.isLoading
                 ? const Center(
                     child: CircularProgressIndicator(),

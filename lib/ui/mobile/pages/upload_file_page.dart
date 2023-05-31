@@ -1,6 +1,8 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/entity/bank_enum.dart';
 import 'package:finance_app/domain/state/upload_file/upload_file_bloc.dart';
+import 'package:finance_app/router/mobile_routes.dart';
+import 'package:finance_app/router/mobile_routes_info.dart';
 import 'package:finance_app/ui/theme/app_button.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/app_text.dart';
@@ -37,7 +39,7 @@ class _UploadFileContent extends StatelessWidget {
           child: AppButton(
               child: const AppText(text: 'Назад', size: 20),
               func: () {
-                context.pop();
+                context.go(MobileRoutes.expenses.path);
               }),
         ),
         Expanded(
@@ -48,8 +50,8 @@ class _UploadFileContent extends StatelessWidget {
                       SnackBar(content: Text('Произошла ошибка')));
                 }
                 if (state.result is SuccessUploadFileState) {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text('Все ок')));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Файл успешно загружен')));
                   context.pop();
                 }
               },
@@ -61,6 +63,9 @@ class _UploadFileContent extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
+                          const SizedBox(
+                            height: 100,
+                          ),
                           Container(
                             width: 250,
                             child: const AppText(
@@ -91,6 +96,9 @@ class _UploadFileContent extends StatelessWidget {
                             text: 'Готово',
                             size: 20,
                             weight: 4,
+                            color: state.isSelected
+                                ? AppColors.black
+                                : AppColors.textunselect,
                           ),
                           func: () {
                             if (!state.isSelected) {
@@ -102,12 +110,17 @@ class _UploadFileContent extends StatelessWidget {
                           },
                           backgroundColor: state.isSelected
                               ? AppColors.green
+                              : AppColors.white,
+                          borderColor: state.isSelected
+                              ? AppColors.greenBorder
                               : AppColors.grey,
-                          borderColor: AppColors.greenBorder,
                           overlayColor: AppColors.greenBorder,
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 60,
+                    )
                   ],
                 ),
               )),

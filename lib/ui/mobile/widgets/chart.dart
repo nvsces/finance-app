@@ -3,12 +3,17 @@ import 'dart:math';
 
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
+import 'package:finance_app/ui/theme/app_text.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:finance_app/data/models/transaction.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../domain/state/auth/auth_bloc.dart';
+import '../../theme/app_button.dart';
 
 class ChartWidget extends StatelessWidget {
   ChartWidget({super.key, required this.transactions});
@@ -21,6 +26,14 @@ class ChartWidget extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
+          Container(
+            margin: const EdgeInsets.only(top: 45, right: 250),
+            child: AppButton(
+                child: const AppText(text: 'Выйти', size: 20),
+                func: () {
+                  context.read<AuthBloc>().add(AuthEvent.logout());
+                }),
+          ),
           AspectRatio(
             aspectRatio: 1.3,
             child: Row(
