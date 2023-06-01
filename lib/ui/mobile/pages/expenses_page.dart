@@ -30,30 +30,6 @@ class _ExpensesContent extends StatelessWidget {
     return BlocBuilder<ExpensesBloc, ExpensesState>(
       builder: (context, state) {
         return Scaffold(
-            floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-            floatingActionButton: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Container(
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                            color: AppColors.textunselect,
-                            width: 3,
-                            style: BorderStyle.solid)),
-                    width: 55,
-                    height: 55,
-                    child: FloatingActionButton(
-                      elevation: 0,
-                      onPressed: () {
-                        context.pushReplacement((MobileRoutes.upload.path));
-                      },
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        Icons.add,
-                        color: AppColors.textunselect,
-                        size: 40,
-                      ),
-                    ))),
             body: state.isLoading
                 ? const Center(
                     child: CircularProgressIndicator(),

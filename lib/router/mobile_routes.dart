@@ -1,13 +1,14 @@
 import 'package:collection/collection.dart';
 
 enum MobileRoutes {
+  editSub,
   detailCategory,
   auth,
   upload,
   login,
   expenses,
   income,
-  home;
+  subscription;
 
   static MobileRoutes? fromName(String? name) {
     return MobileRoutes.values.firstWhereOrNull(

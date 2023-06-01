@@ -1,8 +1,15 @@
 import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../domain/state/auth/auth_bloc.dart';
+import '../../theme/app_button.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_text.dart';
+import 'drawer.dart';
 
 class BottomNavScaffold extends StatelessWidget {
   final Widget child;
@@ -20,10 +27,27 @@ class BottomNavScaffold extends StatelessWidget {
         .indexWhere((element) => element.route.path == currentLocation);
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.grey,
+        elevation: 0,
+      ),
+      drawer: DrawerWidget(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.pushReplacement((MobileRoutes.upload.path));
+        },
+        backgroundColor: Colors.grey,
+        child: const Icon(
+          Icons.add,
+          color: AppColors.white,
+          size: 40,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: child,
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-            border: Border(top: BorderSide(color: Colors.grey))),
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(), //shape of notch
+        notchMargin: 5,
         child: BottomNavigationBar(
           elevation: 0,
           backgroundColor: Colors.transparent,

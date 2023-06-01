@@ -26,14 +26,6 @@ class ChartWidget extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.only(top: 45, right: 250),
-            child: AppButton(
-                child: const AppText(text: 'Выйти', size: 20),
-                func: () {
-                  context.read<AuthBloc>().add(AuthEvent.logout());
-                }),
-          ),
           AspectRatio(
             aspectRatio: 1.3,
             child: Row(

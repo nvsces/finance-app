@@ -3,8 +3,9 @@ import 'package:finance_app/main.dart';
 import 'package:finance_app/router/app_router.dart';
 import 'package:finance_app/ui/mobile/pages/auth_page.dart';
 import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
+import 'package:finance_app/ui/mobile/pages/edit_sub_page.dart';
 import 'package:finance_app/ui/mobile/pages/expenses_page.dart';
-import 'package:finance_app/ui/mobile/pages/home_page.dart';
+import 'package:finance_app/ui/mobile/pages/subscriptions_page.dart';
 import 'package:finance_app/ui/mobile/pages/income__page.dart';
 import 'package:finance_app/ui/mobile/pages/login_page.dart';
 import 'package:finance_app/ui/mobile/widgets/bottom_nav_scaffold.dart';
@@ -31,9 +32,15 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           builder: (context, state) => LoginPage(),
         ),
         GoRoute(
-          path: MobileRoutes.home.path,
-          name: MobileRoutes.home.name,
-          builder: (context, state) => const HomePage(),
+          path: MobileRoutes.subscription.path,
+          name: MobileRoutes.subscription.name,
+          builder: (context, state) => const SubscriptionsPage(),
+        ),
+        GoRoute(
+          parentNavigatorKey: AppRouter.rootNavigatorKey,
+          path: MobileRoutes.editSub.path,
+          name: MobileRoutes.editSub.name,
+          builder: (context, state) => EditSubPage(),
         ),
         GoRoute(
           parentNavigatorKey: AppRouter.rootNavigatorKey,
