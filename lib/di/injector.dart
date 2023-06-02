@@ -9,6 +9,7 @@ import 'package:finance_app/data/repositiries/transaction/transaction_repository
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
+import 'package:finance_app/domain/state/subscription/subscription_bloc.dart';
 import 'package:finance_app/domain/state/upload_file/upload_file_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -59,4 +60,6 @@ Future<void> registerBloc() async {
   injector.registerFactory(() => LoginCubit(injector.get()));
 
   injector.registerFactory(() => UploadFileBloc(injector.get()));
+
+  // injector.registerFactory(() => SubscriptionBloc(injector.get()));
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import 'domain/state/subscription/subscription_bloc.dart';
 import 'router/app_router.dart';
 
 void main() async {
@@ -46,6 +47,12 @@ List<BlocProvider> _globalBlocs() {
   return [
     BlocProvider<AuthBloc>(
       create: (context) => injector.get()..add(const AuthEvent.init()),
+    ),
+    // BlocProvider<SubscriptionBloc>(
+    //   create: (context) => injector.get(),
+    // ),
+    BlocProvider<SubscriptionBloc>(
+      create: (context) => SubscriptionBloc(),
     ),
   ];
 }
