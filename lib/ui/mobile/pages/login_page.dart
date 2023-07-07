@@ -106,6 +106,7 @@ class _LoginContent extends StatelessWidget {
                           .copyWith(color: AppColors.white, fontSize: 12),
                       enabledBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: BorderSide.none
                       ),
                     ),
                   ),
