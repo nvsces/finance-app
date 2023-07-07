@@ -2,7 +2,6 @@ import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/entity/bank_enum.dart';
 import 'package:finance_app/domain/state/upload_file/upload_file_bloc.dart';
 import 'package:finance_app/router/mobile_routes.dart';
-import 'package:finance_app/router/mobile_routes_info.dart';
 import 'package:finance_app/ui/theme/app_button.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/app_text.dart';
@@ -38,7 +37,7 @@ class _UploadFileContent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
           child: AppButton(
               child: const AppText(text: 'Назад', size: 20),
-              func: () {
+              onPressed: () {
                 context.go(MobileRoutes.expenses.path);
               }),
         ),
@@ -100,7 +99,7 @@ class _UploadFileContent extends StatelessWidget {
                                 ? AppColors.black
                                 : AppColors.textunselect,
                           ),
-                          func: () {
+                          onPressed: () {
                             if (!state.isSelected) {
                               return;
                             }
@@ -111,9 +110,6 @@ class _UploadFileContent extends StatelessWidget {
                           backgroundColor: state.isSelected
                               ? AppColors.green
                               : AppColors.white,
-                          borderColor: state.isSelected
-                              ? AppColors.greenBorder
-                              : AppColors.grey,
                           overlayColor: AppColors.greenBorder,
                         ),
                       ),

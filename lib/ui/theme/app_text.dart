@@ -6,7 +6,7 @@ class AppText extends StatelessWidget {
   const AppText(
       {super.key,
       required this.text,
-      this.color = AppColors.black,
+      this.color = AppColors.white,
       this.weight = 6,
       required this.size});
 

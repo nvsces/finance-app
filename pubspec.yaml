@@ -48,6 +48,8 @@ dependencies:
   fl_chart: ^0.62.0
   file_picker: ^5.3.1
   getwidget: ^2.0.4
+  google_fonts: ^5.1.0
+
 
 
 dev_dependencies:
