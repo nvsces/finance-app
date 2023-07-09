@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'app_colors.dart';
 
+//От этого тоже постепенно избавлюсь!..........
 class AppText extends StatelessWidget {
   const AppText(
       {super.key,
