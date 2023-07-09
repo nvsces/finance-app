@@ -2,7 +2,7 @@ import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
 
-import 'package:finance_app/ui/theme/app_button.dart';
+import 'package:finance_app/ui/theme/button/app_button.dart';
 import 'package:finance_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,19 +18,15 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppTextTheme appTextTheme = AppTextTheme();
     return BlocProvider<LoginCubit>(
       create: (context) => injector.get<LoginCubit>(),
-      child: _LoginContent(
-        appTextTheme: appTextTheme,
-      ),
+      child: _LoginContent(),
     );
   }
 }
 
 class _LoginContent extends StatelessWidget {
-  const _LoginContent({super.key, required this.appTextTheme});
-  final AppTextTheme appTextTheme;
+  const _LoginContent({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
@@ -65,7 +61,7 @@ class _LoginContent extends StatelessWidget {
                       child: Center(
                           child: Text(
                     'hi',
-                    style: appTextTheme.appButton1
+                    style: AppTextStyle.appButton1
                         .copyWith(fontSize: 80, color: AppColors.white),
                   ))),
                 ]),
@@ -74,7 +70,7 @@ class _LoginContent extends StatelessWidget {
                 ),
                 Text(
                   'Enter the code to log in',
-                  style: appTextTheme.appButton1.copyWith(
+                  style: AppTextStyle.appButton1.copyWith(
                       color: AppColors.mainText, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
@@ -84,7 +80,7 @@ class _LoginContent extends StatelessWidget {
                   height: 40,
                   width: 240,
                   child: TextFormField(
-                    style: appTextTheme.appButton1
+                    style: AppTextStyle.appButton1
                         .copyWith(color: AppColors.white, fontSize: 12),
                     onChanged: (value) {
                       context.read<LoginCubit>().updateCode(value);
@@ -102,12 +98,11 @@ class _LoginContent extends StatelessWidget {
                       contentPadding:
                           const EdgeInsets.only(left: 15, right: 15),
                       hintText: 'code',
-                      hintStyle: appTextTheme.appButton1
+                      hintStyle: AppTextStyle.appButton1
                           .copyWith(color: AppColors.white, fontSize: 12),
                       enabledBorder: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        borderSide: BorderSide.none
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          borderSide: BorderSide.none),
                     ),
                   ),
                 ),
@@ -124,7 +119,7 @@ class _LoginContent extends StatelessWidget {
                     },
                     child: Text(
                       'Get the code',
-                      style: appTextTheme.appButton2
+                      style: AppTextStyle.appButton2
                           .copyWith(color: AppColors.mainText),
                     )),
                 const SizedBox(
@@ -137,7 +132,7 @@ class _LoginContent extends StatelessWidget {
                       ? const Center(child: CircularProgressIndicator())
                       : Text(
                           'Log in',
-                          style: appTextTheme.appButton1,
+                          style: AppTextStyle.appButton1,
                         ),
                   onPressed: () {
                     context.read<LoginCubit>().signInWithCredentials();

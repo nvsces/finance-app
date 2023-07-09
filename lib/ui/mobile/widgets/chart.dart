@@ -13,7 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../domain/state/auth/auth_bloc.dart';
-import '../../theme/app_button.dart';
+import '../../theme/button/app_button.dart';
 
 class ChartWidget extends StatelessWidget {
   ChartWidget({super.key, required this.transactions});

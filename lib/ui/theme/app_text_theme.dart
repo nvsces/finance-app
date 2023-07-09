@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+class AppTextStyle {
+  static TextStyle get _baseFonts => GoogleFonts.poppins();
 
-
-class AppTextTheme {
-  TextStyle get appButton1 => GoogleFonts.poppins(
+  static TextStyle get appButton1 => _baseFonts.copyWith(
         fontWeight: FontWeight.w400,
         fontSize: 20,
       );
 
-  TextStyle get appButton2 => GoogleFonts.poppins(
+  static TextStyle get appButton2 => _baseFonts.copyWith(
         fontWeight: FontWeight.w400,
         fontSize: 10,
       );
