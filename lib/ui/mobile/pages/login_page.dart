@@ -1,6 +1,7 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
+import 'package:finance_app/domain/state/language/language_bloc.dart';
 
 import 'package:finance_app/ui/theme/button/app_button.dart';
 import 'package:finance_app/utils/url_utils.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../theme/app_colors.dart';
 import '../../theme/app_text_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({
@@ -69,7 +71,7 @@ class _LoginContent extends StatelessWidget {
                   height: 40,
                 ),
                 Text(
-                  'Enter the code to log in',
+                  AppLocalizations.of(context)!.loginTitle,
                   style: AppTextStyle.appButton1.copyWith(
                       color: AppColors.mainText, fontWeight: FontWeight.w600),
                 ),
@@ -97,7 +99,7 @@ class _LoginContent extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20)),
                       contentPadding:
                           const EdgeInsets.only(left: 15, right: 15),
-                      hintText: 'code',
+                      hintText: AppLocalizations.of(context)!.loginField,
                       hintStyle: AppTextStyle.appButton1
                           .copyWith(color: AppColors.white, fontSize: 12),
                       enabledBorder: const OutlineInputBorder(
@@ -118,7 +120,7 @@ class _LoginContent extends StatelessWidget {
                       UrlUtils.openBot();
                     },
                     child: Text(
-                      'Get the code',
+                      AppLocalizations.of(context)!.loginGetCode,
                       style: AppTextStyle.appButton2
                           .copyWith(color: AppColors.mainText),
                     )),
@@ -131,11 +133,29 @@ class _LoginContent extends StatelessWidget {
                   child: state.isSubmitting
                       ? const Center(child: CircularProgressIndicator())
                       : Text(
-                          'Log in',
+                          AppLocalizations.of(context)!.loginButton,
                           style: AppTextStyle.appButton1,
                         ),
                   onPressed: () {
                     context.read<LoginCubit>().signInWithCredentials();
+                  },
+                ),
+                BlocBuilder<LanguageBloc, LanguageState>(
+                  builder: (context, state) {
+                    return IconButton(
+                        onPressed: () {
+                          state.selectedLocale == state.supportedLocale.first
+                              ? context.read<LanguageBloc>().add(
+                                  LanguageEvent.selectedLocale(
+                                      AppLocalizations.supportedLocales.last))
+                              : context.read<LanguageBloc>().add(
+                                  LanguageEvent.selectedLocale(
+                                      AppLocalizations.supportedLocales.first));
+                        },
+                        icon: const Icon(
+                          Icons.language,
+                          color: AppColors.mainElement,
+                        ));
                   },
                 )
               ],
