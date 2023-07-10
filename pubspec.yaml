@@ -49,6 +49,9 @@ dependencies:
   file_picker: ^5.3.1
   getwidget: ^2.0.4
   google_fonts: ^5.1.0
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 
 
@@ -70,6 +73,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   uses-material-design: true
+  generate: true
   assets:
     - assets/svg/
     - assets/jpg/

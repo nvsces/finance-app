@@ -1,0 +1,6 @@
+{
+    "loginTitle": "Enter the code to log in",
+    "loginField": "code",
+    "loginGetCode": "Get the code",
+    "loginButton": "Log in"
+}

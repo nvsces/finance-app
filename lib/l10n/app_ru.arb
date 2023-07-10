@@ -1,0 +1,6 @@
+{
+    "loginTitle": "Введите код для регистрации",
+    "loginField": "код",
+    "loginGetCode": "Получить код",
+    "loginButton": "Войти"
+}
