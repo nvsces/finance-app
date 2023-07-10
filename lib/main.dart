@@ -1,5 +1,6 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
+import 'package:finance_app/domain/state/language/language_bloc.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:go_router/go_router.dart';
 
 import 'domain/state/subscription/subscription_bloc.dart';
 import 'router/app_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,11 +34,19 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       providers: _globalBlocs(),
       child: MultiBlocListener(
         listeners: _globalListeners(),
-        child: MaterialApp.router(
-          key: _appKey,
-          debugShowCheckedModeBanner: false,
-          themeMode: ThemeMode.dark,
-          routerConfig: router,
+        child: BlocBuilder<LanguageBloc, LanguageState>(builder: (context, state){
+          print(state.selectedLocale);
+          return MaterialApp.router(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            locale: state.selectedLocale,
+            supportedLocales: AppLocalizations.supportedLocales,
+            key: _appKey,
+            debugShowCheckedModeBanner: false,
+            themeMode: ThemeMode.dark,
+            routerConfig: router,
+          );
+        },
+         
         ),
       ),
     );
@@ -54,6 +64,7 @@ List<BlocProvider> _globalBlocs() {
     BlocProvider<SubscriptionBloc>(
       create: (context) => SubscriptionBloc(),
     ),
+     BlocProvider<LanguageBloc>(create: (context) => LanguageBloc(),)
   ];
 }
 
