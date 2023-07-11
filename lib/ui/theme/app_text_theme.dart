@@ -5,12 +5,7 @@ class AppTextStyle {
   static TextStyle get _baseFonts => GoogleFonts.poppins();
 
   static TextStyle get appButton1 => _baseFonts.copyWith(
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w500,
         fontSize: 20,
-      );
-
-  static TextStyle get appButton2 => _baseFonts.copyWith(
-        fontWeight: FontWeight.w400,
-        fontSize: 10,
       );
 }

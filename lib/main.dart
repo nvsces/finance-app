@@ -35,7 +35,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       child: MultiBlocListener(
         listeners: _globalListeners(),
         child: BlocBuilder<LanguageBloc, LanguageState>(builder: (context, state){
-          print(state.selectedLocale);
           return MaterialApp.router(
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             locale: state.selectedLocale,

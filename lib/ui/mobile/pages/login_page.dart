@@ -3,7 +3,8 @@ import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
 import 'package:finance_app/domain/state/language/language_bloc.dart';
 
-import 'package:finance_app/ui/theme/button/app_button.dart';
+import 'package:finance_app/ui/theme/button/main_button.dart';
+import 'package:finance_app/ui/theme/button/secondary_button.dart';
 import 'package:finance_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,7 +23,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<LoginCubit>(
       create: (context) => injector.get<LoginCubit>(),
-      child: _LoginContent(),
+      child: const _LoginContent(),
     );
   }
 }
@@ -68,7 +69,7 @@ class _LoginContent extends StatelessWidget {
                   ))),
                 ]),
                 const SizedBox(
-                  height: 40,
+                  height: 76,
                 ),
                 Text(
                   AppLocalizations.of(context)!.loginTitle,
@@ -83,7 +84,7 @@ class _LoginContent extends StatelessWidget {
                   width: 240,
                   child: TextFormField(
                     style: AppTextStyle.appButton1
-                        .copyWith(color: AppColors.white, fontSize: 12),
+                        .copyWith(color: AppColors.white, fontSize: 15),
                     onChanged: (value) {
                       context.read<LoginCubit>().updateCode(value);
                     },
@@ -101,7 +102,7 @@ class _LoginContent extends StatelessWidget {
                           const EdgeInsets.only(left: 15, right: 15),
                       hintText: AppLocalizations.of(context)!.loginField,
                       hintStyle: AppTextStyle.appButton1
-                          .copyWith(color: AppColors.white, fontSize: 12),
+                          .copyWith(color: AppColors.white, fontSize: 15),
                       enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           borderSide: BorderSide.none),
@@ -109,36 +110,32 @@ class _LoginContent extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 15,
+                  height: 16,
                 ),
-                AppButton(
-                    backgroundColor: AppColors.secondaryElement,
-                    borderColor: AppColors.mainElement,
-                    height: 32,
-                    width: 120,
-                    onPressed: () {
+                SizedBox(
+                  height: 32,
+                  width: 120,
+                  child: SecondaryButton.normal(
+                    label: AppLocalizations.of(context)!.loginGetCode,
+                    fontSize: 12,
+                    onTap: () {
                       UrlUtils.openBot();
                     },
-                    child: Text(
-                      AppLocalizations.of(context)!.loginGetCode,
-                      style: AppTextStyle.appButton2
-                          .copyWith(color: AppColors.mainText),
-                    )),
-                const SizedBox(
-                  height: 100,
+                  ),
                 ),
-                AppButton(
+                const SizedBox(
+                  height: 108,
+                ),
+                SizedBox(
                   height: 40,
                   width: 208,
-                  child: state.isSubmitting
-                      ? const Center(child: CircularProgressIndicator())
-                      : Text(
-                          AppLocalizations.of(context)!.loginButton,
-                          style: AppTextStyle.appButton1,
-                        ),
-                  onPressed: () {
-                    context.read<LoginCubit>().signInWithCredentials();
-                  },
+                  child: MainButton.normal(
+                    label: AppLocalizations.of(context)!.loginButton,
+                    hasProgress: state.isSubmitting,
+                    onTap: () {
+                      context.read<LoginCubit>().signInWithCredentials();
+                    },
+                  ),
                 ),
                 BlocBuilder<LanguageBloc, LanguageState>(
                   builder: (context, state) {
@@ -157,7 +154,7 @@ class _LoginContent extends StatelessWidget {
                           color: AppColors.mainElement,
                         ));
                   },
-                )
+                ),
               ],
             ),
           ),
