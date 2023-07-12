@@ -47,7 +47,7 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void onTapButton() {}
+    void onTapButton() {onTap?.call();}
 
     return InkWell(
       onTap: enabled

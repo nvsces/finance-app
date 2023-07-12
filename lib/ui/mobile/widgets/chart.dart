@@ -3,8 +3,11 @@ import 'dart:math';
 
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
+import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/app_text.dart';
 import 'package:fl_chart/fl_chart.dart';
+
+// import 'package:pie_chart/pie_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +43,7 @@ class ChartWidget extends StatelessWidget {
                           show: false,
                         ),
                         sectionsSpace: 0,
-                        centerSpaceRadius: 40,
+                        centerSpaceRadius: 130,
                         sections: showingSections(groupBy(transactions)),
                       ),
                     ),
@@ -58,6 +61,14 @@ class ChartWidget extends StatelessWidget {
           ),
           Column(
               children: List.generate(categort.length, (index) {
+            final String categortValueStr =
+                categort[index].value.ceil().toString();
+            final String categortValueCeil =
+                (categort[index].value ~/ 1000).toString();
+            const double widthChartBar = 150;
+            final int proc =
+                (categort[index].value / (summValue(transactions) / 100))
+                    .round();
             return InkWell(
               onTap: () {
                 context.push(
@@ -69,18 +80,45 @@ class ChartWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 10, right: 10, top: 4.0),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.circle,
-                      color: categort[index].color,
-                    ),
-                    const SizedBox(
-                      width: 10.0,
-                    ),
                     Text(categort[index].name),
                     const SizedBox(
                       width: 15.0,
                     ),
-                    Text(categort[index].value.toString()),
+                    Spacer(),
+                    Column(
+                      children: [
+                        Text(categort[index].value.ceil() >= 1000
+                            ? '$categortValueCeil ${categortValueStr.substring(categortValueStr.length - 3)} ₽'
+                            : '${categort[index].value.ceil()} ₽'),
+                        Stack(children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: AppColors.secondaryElement,
+                            ),
+                            height: 10,
+                            width: widthChartBar,
+                            // color: AppColors.secondaryElement,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: categort[index].color),
+                            height: 10,
+                            width: widthChartBar *
+                                (categort[index].value /
+                                    summValue(transactions)),
+                          ),
+                        ]),
+                        const SizedBox(
+                          height: 12,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(proc < 1 ? '<1 %' : '$proc %'),
                   ],
                 ),
               ),
@@ -115,7 +153,7 @@ class ChartWidget extends StatelessWidget {
   ) {
     categort.clear();
     const fontSize = 16.0;
-    const radius = 50.0;
+    const radius = 17.0;
     final summ = summValue(transactions);
     const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
