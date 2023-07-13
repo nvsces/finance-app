@@ -36,7 +36,7 @@ class ChartWidget extends StatelessWidget {
                             show: false,
                           ),
                           sectionsSpace: 0,
-                          centerSpaceRadius: 130,
+                          centerSpaceRadius: 120,
                           sections: showingSections(groupBy(transactions)),
                         ),
                       ),
@@ -62,7 +62,7 @@ class ChartWidget extends StatelessWidget {
             padding: const EdgeInsets.all(15),
             child: Column(
                 children: List.generate(categort.length, (index) {
-              const double widthChartBar = 120;
+              const double widthChartBar = 95;
               const double heightChartBar = 10;
               return InkWell(
                 onTap: () {

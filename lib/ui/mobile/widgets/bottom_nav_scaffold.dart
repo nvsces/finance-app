@@ -101,7 +101,7 @@ Container(
           selectedIcon: Svgs.icMenuHomeSolid,
         ),
         _BottomNavBarItem(
-          route: MobileRoutes.income,
+          route: MobileRoutes.account,
           defaultIcon: Svgs.icMenuIncomeDefault,
           selectedIcon: Svgs.icMenuIncomeSolid,
         ),

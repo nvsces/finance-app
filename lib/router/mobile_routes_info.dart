@@ -1,6 +1,7 @@
 import 'package:finance_app/data/models/transaction.dart';
 import 'package:finance_app/main.dart';
 import 'package:finance_app/router/app_router.dart';
+import 'package:finance_app/ui/mobile/pages/account_page.dart';
 import 'package:finance_app/ui/mobile/pages/auth_page.dart';
 import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
 import 'package:finance_app/ui/mobile/pages/edit_sub_page.dart';
@@ -35,6 +36,11 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           path: MobileRoutes.subscription.path,
           name: MobileRoutes.subscription.name,
           builder: (context, state) => const SubscriptionsPage(),
+        ),
+         GoRoute(
+          path: MobileRoutes.account.path,
+          name: MobileRoutes.account.name,
+          builder: (context, state) => AccountPage(),
         ),
         GoRoute(
           parentNavigatorKey: AppRouter.rootNavigatorKey,

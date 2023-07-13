@@ -8,7 +8,8 @@ enum MobileRoutes {
   login,
   home,
   income,
-  subscription;
+  subscription,
+  account,;
 
   static MobileRoutes? fromName(String? name) {
     return MobileRoutes.values.firstWhereOrNull(
