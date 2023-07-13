@@ -73,7 +73,7 @@ List<BlocListener> _globalListeners() {
       listener: (context, state) {
         if (state is AuthAuthedState) {
           AppRouter.rootNavigatorKey.currentContext
-              ?.goNamed(MobileRoutes.expenses.name);
+              ?.goNamed(MobileRoutes.home.name);
         } else {
           AppRouter.rootNavigatorKey.currentContext
               ?.goNamed(MobileRoutes.login.name);

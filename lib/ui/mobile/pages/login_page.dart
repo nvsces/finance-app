@@ -42,120 +42,122 @@ class _LoginContent extends StatelessWidget {
         body: Container(
           margin: const EdgeInsets.only(right: 30, left: 30),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Stack(children: [
-                  Center(
-                      child: Transform(
-                          alignment: Alignment.center,
-                          transform: Matrix4.rotationZ(
-                            1.8,
-                          ),
-                          child: Container(
-                            width: 150,
-                            height: 150,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: AppColors.mainElement,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Stack(children: [
+                    Center(
+                        child: Transform(
+                            alignment: Alignment.center,
+                            transform: Matrix4.rotationZ(
+                              1.8,
                             ),
-                          ))),
-                  Positioned.fill(
-                      child: Center(
-                          child: Text(
-                    'hi',
-                    style: AppTextStyle.appButton1
-                        .copyWith(fontSize: 80, color: AppColors.white),
-                  ))),
-                ]),
-                const SizedBox(
-                  height: 76,
-                ),
-                Text(
-                  AppLocalizations.of(context)!.loginTitle,
-                  style: AppTextStyle.appButton1.copyWith(
-                      color: AppColors.mainText, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                SizedBox(
-                  height: 40,
-                  width: 240,
-                  child: TextFormField(
-                    style: AppTextStyle.appButton1
-                        .copyWith(color: AppColors.white, fontSize: 15),
-                    onChanged: (value) {
-                      context.read<LoginCubit>().updateCode(value);
-                    },
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.singleLineFormatter
-                    ],
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: AppColors.secondaryElement,
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(20)),
-                      contentPadding:
-                          const EdgeInsets.only(left: 15, right: 15),
-                      hintText: AppLocalizations.of(context)!.loginField,
-                      hintStyle: AppTextStyle.appButton1
+                            child: Container(
+                              width: 150,
+                              height: 150,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: AppColors.mainElement,
+                              ),
+                            ))),
+                    Positioned.fill(
+                        child: Center(
+                            child: Text(
+                      'hi',
+                      style: AppTextStyle.appButton1
+                          .copyWith(fontSize: 80, color: AppColors.white),
+                    ))),
+                  ]),
+                  const SizedBox(
+                    height: 76,
+                  ),
+                  Text(
+                    AppLocalizations.of(context)!.loginTitle,
+                    style: AppTextStyle.appButton1.copyWith(
+                        color: AppColors.mainText, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  SizedBox(
+                    height: 40,
+                    width: 240,
+                    child: TextFormField(
+                      style: AppTextStyle.appButton1
                           .copyWith(color: AppColors.white, fontSize: 15),
-                      enabledBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          borderSide: BorderSide.none),
+                      onChanged: (value) {
+                        context.read<LoginCubit>().updateCode(value);
+                      },
+                      keyboardType: TextInputType.text,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.singleLineFormatter
+                      ],
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: AppColors.secondaryElement,
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(20)),
+                        contentPadding:
+                            const EdgeInsets.only(left: 15, right: 15),
+                        hintText: AppLocalizations.of(context)!.loginField,
+                        hintStyle: AppTextStyle.appButton1
+                            .copyWith(color: AppColors.white, fontSize: 15),
+                        enabledBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            borderSide: BorderSide.none),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                SizedBox(
-                  height: 32,
-                  width: 120,
-                  child: SecondaryButton.normal(
-                    label: AppLocalizations.of(context)!.loginGetCode,
-                    fontSize: 12,
-                    onTap: () {
-                      UrlUtils.openBot();
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  SizedBox(
+                    height: 32,
+                    width: 120,
+                    child: SecondaryButton.normal(
+                      label: AppLocalizations.of(context)!.loginGetCode,
+                      fontSize: 12,
+                      onTap: () {
+                        UrlUtils.openBot();
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 108,
+                  ),
+                  SizedBox(
+                    height: 40,
+                    width: 208,
+                    child: MainButton.normal(
+                      label: AppLocalizations.of(context)!.loginButton,
+                      hasProgress: state.isSubmitting,
+                      onTap: () {
+                        context.read<LoginCubit>().signInWithCredentials();
+                      },
+                    ),
+                  ),
+                  BlocBuilder<LanguageBloc, LanguageState>(
+                    builder: (context, state) {
+                      return IconButton(
+                          onPressed: () {
+                            state.selectedLocale == state.supportedLocale.first
+                                ? context.read<LanguageBloc>().add(
+                                    LanguageEvent.selectedLocale(
+                                        AppLocalizations.supportedLocales.last))
+                                : context.read<LanguageBloc>().add(
+                                    LanguageEvent.selectedLocale(
+                                        AppLocalizations.supportedLocales.first));
+                          },
+                          icon: const Icon(
+                            Icons.language,
+                            color: AppColors.mainElement,
+                          ));
                     },
                   ),
-                ),
-                const SizedBox(
-                  height: 108,
-                ),
-                SizedBox(
-                  height: 40,
-                  width: 208,
-                  child: MainButton.normal(
-                    label: AppLocalizations.of(context)!.loginButton,
-                    hasProgress: state.isSubmitting,
-                    onTap: () {
-                      context.read<LoginCubit>().signInWithCredentials();
-                    },
-                  ),
-                ),
-                BlocBuilder<LanguageBloc, LanguageState>(
-                  builder: (context, state) {
-                    return IconButton(
-                        onPressed: () {
-                          state.selectedLocale == state.supportedLocale.first
-                              ? context.read<LanguageBloc>().add(
-                                  LanguageEvent.selectedLocale(
-                                      AppLocalizations.supportedLocales.last))
-                              : context.read<LanguageBloc>().add(
-                                  LanguageEvent.selectedLocale(
-                                      AppLocalizations.supportedLocales.first));
-                        },
-                        icon: const Icon(
-                          Icons.language,
-                          color: AppColors.mainElement,
-                        ));
-                  },
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

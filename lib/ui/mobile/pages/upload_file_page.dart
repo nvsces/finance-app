@@ -38,7 +38,7 @@ class _UploadFileContent extends StatelessWidget {
           child: AppButton(
               child: const AppText(text: 'Назад', size: 20),
               onPressed: () {
-                context.go(MobileRoutes.expenses.path);
+                context.go(MobileRoutes.home.path);
               }),
         ),
         Expanded(

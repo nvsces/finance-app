@@ -77,7 +77,7 @@ class AppButton extends StatelessWidget {
                   if (hasIcon && positionIcon == PositionIcon.left)
                     SizedBox(
                       child: SvgPicture.asset(
-                        icon ?? Svgs.icMenuExpensesDefault,
+                        icon ?? Svgs.icMenuHomeSolid,
                         // colorFilter: getColor(activeLabelColor),
                       ),
                     ),
@@ -106,7 +106,7 @@ class AppButton extends StatelessWidget {
                   if (hasIcon && positionIcon == PositionIcon.right)
                     SizedBox(
                       child: SvgPicture.asset(
-                        icon ?? Svgs.icMenuExpensesDefault,
+                        icon ?? Svgs.icMenuHomeSolid,
                         // colorFilter: getColor(activeLabelColor),
                       ),
                     ),

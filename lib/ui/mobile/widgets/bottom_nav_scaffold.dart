@@ -27,16 +27,12 @@ class BottomNavScaffold extends StatelessWidget {
         .indexWhere((element) => element.route.path == currentLocation);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.grey,
-        elevation: 0,
-      ),
-      drawer: DrawerWidget(),
+       
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           context.pushReplacement((MobileRoutes.upload.path));
         },
-        backgroundColor: Colors.grey,
+        backgroundColor: AppColors.mainElement,
         child: const Icon(
           Icons.add,
           color: AppColors.white,
@@ -84,18 +80,25 @@ class BottomNavScaffold extends StatelessWidget {
       icon: SvgPicture.asset(
         item.defaultIcon,
       ),
-      activeIcon: SvgPicture.asset(
+      activeIcon: Stack(alignment: AlignmentDirectional.center,
+        children: [
+Container(
+  height: 56,
+  width: 56,
+  decoration: BoxDecoration(borderRadius: BorderRadius.circular(14.5), color: AppColors.mainElement),),
+        SvgPicture.asset(
         item.selectedIcon,
-      ),
+      ),],),
+      
       label: '', //cannot be null
     );
   }
 
   List<_BottomNavBarItem> tabItems() => [
         _BottomNavBarItem(
-          route: MobileRoutes.expenses,
-          defaultIcon: Svgs.icMenuExpensesDefault,
-          selectedIcon: Svgs.icMenuExpensesSolid,
+          route: MobileRoutes.home,
+          defaultIcon: Svgs.icMenuHomeDefault,
+          selectedIcon: Svgs.icMenuHomeSolid,
         ),
         _BottomNavBarItem(
           route: MobileRoutes.income,

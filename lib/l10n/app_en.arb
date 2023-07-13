@@ -2,5 +2,10 @@
     "loginTitle": "Enter the code to log in",
     "loginField": "code",
     "loginGetCode": "Get the code",
-    "loginButton": "Log in"
+    "loginButton": "Log in",
+    "peiChartSources":"Sources:",
+    "homeTitleExpenses":"Expenses",
+    "homeTitleIncome":"Income",
+    "homePeriod":"Period"
 }
+

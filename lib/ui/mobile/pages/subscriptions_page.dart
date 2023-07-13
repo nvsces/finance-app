@@ -21,7 +21,7 @@ class SubscriptionsPage extends StatelessWidget {
             title: const AppText(text: 'Подписки', size: 20),
             leading: IconButton(
                 onPressed: () {
-                  context.go(MobileRoutes.expenses.path);
+                  context.go(MobileRoutes.home.path);
                 },
                 icon: Icon(Icons.arrow_back)),
             centerTitle: true,

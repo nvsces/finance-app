@@ -2,5 +2,9 @@
     "loginTitle": "Введите код для регистрации",
     "loginField": "код",
     "loginGetCode": "Получить код",
-    "loginButton": "Войти"
+    "loginButton": "Войти",
+    "peiChartSources":"Источников:",
+    "homeTitleExpenses":"Расходы",
+    "homeTitleIncome":"Доходы",
+    "homePeriod":"Период"
 }

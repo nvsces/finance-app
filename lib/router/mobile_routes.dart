@@ -6,7 +6,7 @@ enum MobileRoutes {
   auth,
   upload,
   login,
-  expenses,
+  home,
   income,
   subscription;
 

@@ -4,7 +4,7 @@ import 'package:finance_app/router/app_router.dart';
 import 'package:finance_app/ui/mobile/pages/auth_page.dart';
 import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
 import 'package:finance_app/ui/mobile/pages/edit_sub_page.dart';
-import 'package:finance_app/ui/mobile/pages/expenses_page.dart';
+import 'package:finance_app/ui/mobile/pages/home_page.dart';
 import 'package:finance_app/ui/mobile/pages/subscriptions_page.dart';
 import 'package:finance_app/ui/mobile/pages/income__page.dart';
 import 'package:finance_app/ui/mobile/pages/login_page.dart';
@@ -76,7 +76,7 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           },
           routes: [
             _addTabRoute(MobileRoutes.income, const IncomePage()),
-            _addTabRoute(MobileRoutes.expenses, const ExpensesPage()),
+            _addTabRoute(MobileRoutes.home, const HomePage()),
           ],
         ),
       ];
