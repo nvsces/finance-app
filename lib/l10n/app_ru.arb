@@ -6,5 +6,12 @@
     "peiChartSources":"Источников:",
     "homeTitleExpenses":"Расходы",
     "homeTitleIncome":"Доходы",
-    "homePeriod":"Период"
+    "homePeriod":"Период",
+    "uploadTitle":"Загрузить",
+    "uploadInfo":"Выберите свой банк для загрузки выписки по счету",
+    "uploadSber":"Сбер Банк",
+    "uploadTink":"Тинькофф Банк",
+    "uploadSnackBarComplit":"Файл успешно загружен",
+    "uploadSnackBarFailur":"Произошла ошибка",
+    "uploadButton":"Готово"
 }

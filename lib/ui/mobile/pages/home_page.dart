@@ -1,17 +1,15 @@
 import 'package:finance_app/di/injector.dart';
-import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
-import 'package:finance_app/resources/svgs.dart';
-import 'package:finance_app/ui/mobile/pages/upload_file_page.dart';
 import 'package:finance_app/ui/mobile/widgets/chart.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
+
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'income__page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -25,9 +23,16 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _ExpensesContent extends StatelessWidget {
+class _ExpensesContent extends StatefulWidget {
   const _ExpensesContent();
 
+  @override
+  State<_ExpensesContent> createState() => _ExpensesContentState();
+}
+
+
+bool expenses = true;
+class _ExpensesContentState extends State<_ExpensesContent> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ExpensesBloc, ExpensesState>(
@@ -40,7 +45,7 @@ class _ExpensesContent extends StatelessWidget {
                 margin: const EdgeInsets.only(
                   left: 20,
                   right: 20,
-                  top: 20
+                  top: 30
                 ),
                 child: SizedBox(
                   height: 70,
@@ -50,26 +55,32 @@ class _ExpensesContent extends StatelessWidget {
                       SizedBox(
                         height: 70,
                         width: 150,
-                        child: Stack(
-                          // crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Stack(         
                           children: [
                             TextButton(
                               child: Text(
                                 AppLocalizations.of(context)!.homeTitleExpenses,
-                                style: AppTextStyle.appButton1.copyWith(
+                                style: expenses?  AppTextStyle.appButton1.copyWith(
                                       color: AppColors.mainText,
-                                      fontWeight: FontWeight.w600),
+                                      fontWeight: FontWeight.w600): AppTextStyle.secondaryText,
                               ),
-                              onPressed: () {},
+                              onPressed: () {setState(() {
+                                expenses = true;
+                              });},
                             ),
                             Positioned(
                              top: 25,
                               child: TextButton(
                                 child: Text(
                                   AppLocalizations.of(context)!.homeTitleIncome,
-                                  style: AppTextStyle.secondaryText,
+                                  style: expenses?  AppTextStyle.secondaryText : AppTextStyle.appButton1.copyWith(
+                                      color: AppColors.mainText,
+                                      fontWeight: FontWeight.w600),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {setState(() {
+                                    expenses = false;
+                                });
+                                },
                               ),
                             )
                           ],
@@ -91,7 +102,7 @@ class _ExpensesContent extends StatelessWidget {
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  : ChartWidget(transactions: state.transactions),
+                  : expenses ? ChartWidget(transactions: state.transactions) : const IncomeChart(),
             ],
           ),
         )

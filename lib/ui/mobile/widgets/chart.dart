@@ -130,7 +130,7 @@ class ChartWidget extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Container(
+                      SizedBox(
                         width: 40,
                         child: Text(percentValue(categort[index].value),
                             style: AppTextStyle.mainLigthText),
@@ -186,10 +186,10 @@ class ChartWidget extends StatelessWidget {
     Map<String, List<Transaction>> groups,
   ) {
     categort.clear();
-    const fontSize = 16.0;
+    // const fontSize = 16.0;
     const radius = 17.0;
-    final summ = summValue(transactions);
-    const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+    // final summ = summValue(transactions);
+    // const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
     final result = <PieChartSectionData>[];
 
@@ -208,15 +208,7 @@ class ChartWidget extends StatelessWidget {
         showTitle: false,
         color: color,
         value: currentSumm.abs(),
-        // title: '${100 * currentSumm / summ}%',
-        // title: key,
         radius: radius,
-        // titleStyle: const TextStyle(
-        //   fontSize: fontSize,
-        //   fontWeight: FontWeight.bold,
-        //   color: Colors.black,
-        //   shadows: shadows,
-        // ),
       );
       result.add(data);
     });

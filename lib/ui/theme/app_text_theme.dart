@@ -9,6 +9,13 @@ class AppTextStyle {
         fontWeight: FontWeight.w500,
         fontSize: 20,
       );
+
+    static TextStyle get mainNormalText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w500,
+        color: AppColors.mainText,
+        fontSize: 20,
+      );
+
   static TextStyle get mainBoldText => _baseFonts.copyWith(
         fontWeight: FontWeight.w900,
         fontSize: 24,

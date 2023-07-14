@@ -6,6 +6,13 @@
     "peiChartSources":"Sources:",
     "homeTitleExpenses":"Expenses",
     "homeTitleIncome":"Income",
-    "homePeriod":"Period"
+    "homePeriod":"Period",
+    "uploadTitle":"Upload",
+    "uploadInfo":"Select your bank to upload a bank statement",
+    "uploadSber":"Sber Bank",
+    "uploadTink":"Tinkoff Bank",
+    "uploadSnackBarComplit":"File successfully uploaded",
+    "uploadSnackBarFailur":"An error occurred",
+    "uploadButton":"Done"
 }
 

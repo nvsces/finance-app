@@ -1,7 +1,3 @@
-import 'dart:io';
-import 'dart:typed_data';
-
-import 'package:file_picker/file_picker.dart';
 import 'package:finance_app/data/api/api_handler.dart';
 import 'package:finance_app/utils/app_file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,17 +33,17 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
     final bank = state.bankList[state.currentBank];
     final fileBytes = await AppFilePicker.selectFile(bank);
     if (fileBytes == null) {
-      emit(state.copyWith(result: UploadFileResult.failure()));
+      emit(state.copyWith(result: const UploadFileResult.failure()));
       return;
     }
     emit(state.copyWith(isLoading: true));
     final result = await apiHandler.uploadFile(fileBytes, bank);
     if (result == true) {
       emit(
-          state.copyWith(result: UploadFileResult.success(), isLoading: false));
+          state.copyWith(result: const UploadFileResult.success(), isLoading: false));
     } else {
       emit(
-          state.copyWith(result: UploadFileResult.failure(), isLoading: false));
+          state.copyWith(result: const UploadFileResult.failure(), isLoading: false));
     }
   }
 }

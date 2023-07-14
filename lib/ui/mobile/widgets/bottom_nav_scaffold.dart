@@ -1,15 +1,10 @@
 import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../domain/state/auth/auth_bloc.dart';
-import '../../theme/button/app_button.dart';
 import '../../theme/app_colors.dart';
-import '../../theme/app_text.dart';
-import 'drawer.dart';
+
 
 class BottomNavScaffold extends StatelessWidget {
   final Widget child;
@@ -42,7 +37,7 @@ class BottomNavScaffold extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: child,
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(), //shape of notch
+        shape: const CircularNotchedRectangle(), //shape of notch
         notchMargin: 5,
         child: BottomNavigationBar(
           elevation: 0,
@@ -102,8 +97,8 @@ Container(
         ),
         _BottomNavBarItem(
           route: MobileRoutes.account,
-          defaultIcon: Svgs.icMenuIncomeDefault,
-          selectedIcon: Svgs.icMenuIncomeSolid,
+          defaultIcon: Svgs.icMenuAccountDefault,
+          selectedIcon: Svgs.icMenuAccountSolid,
         ),
       ];
 }

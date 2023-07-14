@@ -1,5 +1,4 @@
 import 'package:finance_app/data/models/transaction.dart';
-import 'package:finance_app/main.dart';
 import 'package:finance_app/router/app_router.dart';
 import 'package:finance_app/ui/mobile/pages/account_page.dart';
 import 'package:finance_app/ui/mobile/pages/auth_page.dart';
@@ -7,13 +6,10 @@ import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
 import 'package:finance_app/ui/mobile/pages/edit_sub_page.dart';
 import 'package:finance_app/ui/mobile/pages/home_page.dart';
 import 'package:finance_app/ui/mobile/pages/subscriptions_page.dart';
-import 'package:finance_app/ui/mobile/pages/income__page.dart';
 import 'package:finance_app/ui/mobile/pages/login_page.dart';
 import 'package:finance_app/ui/mobile/widgets/bottom_nav_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import '../ui/mobile/pages/login_page.dart';
 import '../ui/mobile/pages/upload_file_page.dart';
 import 'abstract_routes_info.dart';
 import 'mobile_routes.dart';
@@ -30,18 +26,14 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
         GoRoute(
           path: MobileRoutes.login.path,
           name: MobileRoutes.login.name,
-          builder: (context, state) => LoginPage(),
+          builder: (context, state) => const LoginPage(),
         ),
         GoRoute(
           path: MobileRoutes.subscription.path,
           name: MobileRoutes.subscription.name,
           builder: (context, state) => const SubscriptionsPage(),
         ),
-         GoRoute(
-          path: MobileRoutes.account.path,
-          name: MobileRoutes.account.name,
-          builder: (context, state) => AccountPage(),
-        ),
+         
         GoRoute(
           parentNavigatorKey: AppRouter.rootNavigatorKey,
           path: MobileRoutes.editSub.path,
@@ -81,7 +73,7 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
             ); //base scaffold for tabbed page
           },
           routes: [
-            _addTabRoute(MobileRoutes.income, const IncomePage()),
+            _addTabRoute(MobileRoutes.account, const AccountPage()),
             _addTabRoute(MobileRoutes.home, const HomePage()),
           ],
         ),
