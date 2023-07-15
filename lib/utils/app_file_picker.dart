@@ -9,7 +9,7 @@ import 'package:finance_app/utils/app_file_picker_web.dart';
 import 'package:flutter/foundation.dart';
 
 class AppFilePicker {
-  static Future<Uint8List?> selectFile(Bank bank) {
+  static selectFile(Bank bank) {
     if (kIsWeb) return AppFilePickerWeb().selectFile(bank);
 
     return AppFilePickerMobile().selectFile(bank);

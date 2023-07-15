@@ -4,9 +4,7 @@ import 'package:finance_app/domain/state/upload_file/upload_file_bloc.dart';
 import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
-import 'package:finance_app/ui/theme/button/app_button.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
-import 'package:finance_app/ui/theme/app_text.dart';
 import 'package:finance_app/ui/theme/button/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,12 +45,15 @@ class _UploadFileContent extends StatelessWidget {
                   context.go(MobileRoutes.home.path);
                 },
               ),
-              const SizedBox(
-                width: 115,
-              ), //
-              Text(
-                AppLocalizations.of(context)!.uploadTitle,
-                style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
+              //
+              SizedBox(
+                width: 300,
+                child: Center(
+                  child: Text(
+                    AppLocalizations.of(context)!.uploadTitle,
+                    style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
+                  ),
+                ),
               ),
             ],
           ),
@@ -76,7 +77,9 @@ class _UploadFileContent extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          SizedBox(height: 20,),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -92,10 +95,20 @@ class _UploadFileContent extends StatelessWidget {
                                   )),
                             ],
                           ),
+                          const SizedBox(
+                              height: 150, child: const SelectBankWidget()),
                           const Divider(
-                            thickness: 1.5,
+                            color: AppColors.mainElement,
+                            thickness: 2,
                           ),
-                          const Expanded(child: SelectBankWidget()),
+                          BlocBuilder<UploadFileBloc, UploadFileState>(
+                              builder: (context, state) {
+                            if (state.result is FailureUploadFileState) {}
+                            if (state.result is SuccessUploadFileState) {
+                              return Text(state.fileName);
+                            }
+                            return const SizedBox.shrink();
+                          })
                         ],
                       ),
                     ),
