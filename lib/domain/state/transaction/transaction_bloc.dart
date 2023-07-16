@@ -1,6 +1,8 @@
-import 'package:bloc/bloc.dart';
+
 import 'package:finance_app/data/models/transaction.dart';
 import 'package:finance_app/data/repositiries/transaction/transaction_repository.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'transaction_bloc.freezed.dart';
@@ -45,7 +47,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
   @override
   Future<void> close() async {
-    print('close bloc');
+    debugPrint('close bloc');
     super.close();
   }
 }

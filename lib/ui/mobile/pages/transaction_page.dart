@@ -1,11 +1,9 @@
 
 import 'package:finance_app/di/injector.dart';
-
+import 'package:finance_app/domain/transaction_list/transaction_list_bloc.dart';
+import 'package:finance_app/ui/mobile/widgets/transaction_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../domain/state/transaction/transaction_bloc.dart';
-import '../../../domain/transaction_list/transaction_list_bloc.dart';
-import '../widgets/transaction_widget.dart';
 
 
 class TransactionPage extends StatelessWidget {
@@ -13,7 +11,7 @@ class TransactionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<TransactionListBloc>(create: (context)=> injector.get<TransactionListBloc>()..add(TransactionListEvent.read()), child: TransactionContent(),);
+    return BlocProvider<TransactionListBloc>(create: (context)=> injector.get<TransactionListBloc>()..add(const TransactionListEvent.read()), child: const TransactionContent(),);
   }
 }
 
@@ -34,15 +32,15 @@ class TransactionContent extends StatelessWidget {
             itemCount: state.transactions.length,
             itemBuilder: (context, index) {
               return  TransactionWidget(
-                    transaction: state.transactions[index]
+                    transaction: state.transactions[index],
                   );
                 },
          
-      );});}}
+      );},);
+      }
+}
       
       
           
   
   
-
-

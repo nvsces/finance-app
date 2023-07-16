@@ -1,13 +1,10 @@
+import 'package:finance_app/data/models/subscription/subscription.dart';
+import 'package:finance_app/domain/state/subscription/subscription_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
-import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:finance_app/extensions/build_context_ext.dart';
-
-import '../../../data/models/subscription/subscription.dart';
-import '../../../domain/state/subscription/subscription_bloc.dart';
 
 class EditSubPage extends StatelessWidget {
   EditSubPage({
@@ -22,9 +19,9 @@ class EditSubPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SubscriptionBloc, SubscriptionState>(
         builder: (context, state) {
-      TextEditingController name = TextEditingController();
-      TextEditingController cost = TextEditingController();
-      TextEditingController date = TextEditingController();
+      final TextEditingController name = TextEditingController();
+     final  TextEditingController cost = TextEditingController();
+     final  TextEditingController date = TextEditingController();
       return Scaffold(
           appBar: AppBar(
             elevation: 0,
@@ -32,7 +29,7 @@ class EditSubPage extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () {
-                  var subscriptions = SubscriptionModel(
+                 final  subscriptions = SubscriptionModel(
                     name: name.text,
                     cost: cost.text,
                     currency: itemsVal[0], // хз как
@@ -41,7 +38,7 @@ class EditSubPage extends StatelessWidget {
                     reminder: itemsNap[0], // хз как
                   );
                   context.read<SubscriptionBloc>().add(
-                      SubscriptionEvent.create(subscriptions: subscriptions));
+                      SubscriptionEvent.create(subscriptions: subscriptions),);
                   context.pop(context);
                 },
                 child: AppText(
@@ -63,7 +60,7 @@ class EditSubPage extends StatelessWidget {
                   size: 16,
                   color: context.colors.red,
                   weight: 3,
-                )),
+                ),),
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -75,7 +72,7 @@ class EditSubPage extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
-                    top: 10, right: 20, left: 20, bottom: 10),
+                    top: 10, right: 20, left: 20, bottom: 10,),
                 child: Column(
                   children: [
                     SizedBox(
@@ -88,9 +85,9 @@ class EditSubPage extends StatelessWidget {
                               child: TextField(
                             controller: name,
                             decoration: const InputDecoration.collapsed(
-                                hintText: 'Название платежа'),
+                                hintText: 'Название платежа',),
                             textAlign: TextAlign.right,
-                          ))
+                          ),),
                         ],
                       ),
                     ),
@@ -107,9 +104,9 @@ class EditSubPage extends StatelessWidget {
                               child: TextField(
                             controller: cost,
                             decoration: const InputDecoration.collapsed(
-                                hintText: 'Введите стоимость'),
+                                hintText: 'Введите стоимость',),
                             textAlign: TextAlign.right,
-                          ))
+                          ),),
                         ],
                       ),
                     ),
@@ -122,9 +119,7 @@ class EditSubPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const AppText(text: 'Валюта', size: 15),
-                          Container(
-                              margin: const EdgeInsets.only(right: 0),
-                              child: DropdownDemo(itemsVal: itemsVal))
+                          DropdownDemo(itemsVal: itemsVal)
                         ],
                       ),
                     ),
@@ -141,9 +136,9 @@ class EditSubPage extends StatelessWidget {
                               child: TextField(
                             controller: date,
                             decoration: const InputDecoration.collapsed(
-                                hintText: 'Введите дату'),
+                                hintText: 'Введите дату',),
                             textAlign: TextAlign.right,
-                          ))
+                          ),),
                         ],
                       ),
                     ),
@@ -156,11 +151,9 @@ class EditSubPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const AppText(text: 'Периодичность', size: 15),
-                          Container(
-                              margin: const EdgeInsets.only(right: 0),
-                              child: DropdownDemo(
-                                itemsVal: itemsPer,
-                              ))
+                          DropdownDemo(
+                            itemsVal: itemsPer,
+                          )
                         ],
                       ),
                     ),
@@ -173,11 +166,9 @@ class EditSubPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const AppText(text: 'Напоминание', size: 15),
-                          Container(
-                              margin: const EdgeInsets.only(right: 0),
-                              child: DropdownDemo(
-                                itemsVal: itemsNap,
-                              ))
+                          DropdownDemo(
+                            itemsVal: itemsNap,
+                          )
                         ],
                       ),
                     ),
@@ -185,13 +176,13 @@ class EditSubPage extends StatelessWidget {
                 ),
               ),
             ),
-          ));
-    });
+          ),);
+    },);
   }
 }
 
 class DropdownDemo extends StatefulWidget {
-  const DropdownDemo({Key? key, required this.itemsVal}) : super(key: key);
+  const DropdownDemo({super.key, required this.itemsVal});
   final List<String> itemsVal;
   @override
   State<DropdownDemo> createState() => _DropdownDemoState();

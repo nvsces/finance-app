@@ -3,15 +3,13 @@ import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
 import 'package:finance_app/domain/state/language/language_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
-
+import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:finance_app/ui/theme/button/main_button.dart';
 import 'package:finance_app/ui/theme/button/secondary_button.dart';
 import 'package:finance_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../theme/app_text_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatelessWidget {
@@ -29,7 +27,7 @@ class LoginPage extends StatelessWidget {
 }
 
 class _LoginContent extends StatelessWidget {
-  const _LoginContent({super.key});
+  const _LoginContent();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
@@ -60,15 +58,15 @@ class _LoginContent extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20),
                                 color: context.colors.mainElement,
                               ),
-                            ))),
+                            ),),),
                     Positioned.fill(
                         child: Center(
                             child: Text(
                       'hi',
                       style: AppTextStyle.appButton1
                           .copyWith(fontSize: 80, color: context.colors.white),
-                    ))),
-                  ]),
+                    ),),),
+                  ],),
                   const SizedBox(
                     height: 76,
                   ),
@@ -76,7 +74,7 @@ class _LoginContent extends StatelessWidget {
                     context.localization.loginTitle,
                     style: AppTextStyle.appButton1.copyWith(
                         color: context.colors.mainText,
-                        fontWeight: FontWeight.w600),
+                        fontWeight: FontWeight.w600,),
                   ),
                   const SizedBox(
                     height: 12,
@@ -99,15 +97,15 @@ class _LoginContent extends StatelessWidget {
                         fillColor: context.colors.secondaryElement,
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(20)),
+                            borderRadius: BorderRadius.circular(20),),
                         contentPadding:
                             const EdgeInsets.only(left: 15, right: 15),
                         hintText: context.localization.loginField,
                         hintStyle: AppTextStyle.appButton1.copyWith(
-                            color: context.colors.white, fontSize: 15),
+                            color: context.colors.white, fontSize: 15,),
                         enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
-                            borderSide: BorderSide.none),
+                            borderSide: BorderSide.none,),
                       ),
                     ),
                   ),
@@ -146,16 +144,16 @@ class _LoginContent extends StatelessWidget {
                             state.selectedLocale == state.supportedLocale.first
                                 ? context.read<LanguageBloc>().add(
                                     LanguageEvent.selectedLocale(
-                                        AppLocalizations.supportedLocales.last))
+                                        AppLocalizations.supportedLocales.last,),)
                                 : context.read<LanguageBloc>().add(
                                     LanguageEvent.selectedLocale(
                                         AppLocalizations
-                                            .supportedLocales.first));
+                                            .supportedLocales.first,),);
                           },
                           icon: Icon(
                             Icons.language,
                             color: context.colors.mainElement,
-                          ));
+                          ),);
                     },
                   ),
                 ],

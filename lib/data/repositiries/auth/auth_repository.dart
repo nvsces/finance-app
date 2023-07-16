@@ -1,7 +1,6 @@
 import 'package:finance_app/data/api/api_handler.dart';
+import 'package:finance_app/data/repositiries/auth/abstract_auth_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'abstract_auth_repository.dart';
 
 const tokenKey = 'tokenKey';
 

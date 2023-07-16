@@ -1,5 +1,6 @@
 import 'package:finance_app/data/api/api_handler.dart';
 import 'package:finance_app/data/repositiries/auth/abstract_auth_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const tokenKey = 'tokenKey';
@@ -13,7 +14,7 @@ class AuthRepositoryImpl implements AbstractAuthRepository {
   @override
   Future<String> login({required String code}) async {
     final token = await apiHandler.login(code: code);
-    print(token);
+    debugPrint(token);
     await preferences.setString(tokenKey, token);
     return token;
   }

@@ -24,7 +24,7 @@ class TransactionWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 16),
-              Container(width: 100, child: Text(transaction.name, style: AppTextStyle.transactionText)),
+              SizedBox(width: 100, child: Text(transaction.name, style: AppTextStyle.transactionText)),
               const Spacer(),
               Text(
                 '${transaction.value}₽',
@@ -37,4 +37,3 @@ class TransactionWidget extends StatelessWidget {
     );
   }
 }
-

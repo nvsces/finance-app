@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 //Скоро избавлюсь от неё
 class AppButton extends StatelessWidget {
   const AppButton({
-    Key? key,
+    super.key,
     this.backgroundColor = AppColors.mainElement,
     this.height = 40, this.width = double.infinity,
     this.overlayColor = AppColors.secondaryElement,
     this.borderColor,
     required this.onPressed,
     required this.child, 
-  }) : super(key: key);
+  });
 
   final Color backgroundColor;
   final Color overlayColor;
   final Color? borderColor;
-  final Function() onPressed;
+  final void Function() onPressed;
   final Widget child;
   final double height;
   final double width;

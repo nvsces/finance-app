@@ -15,7 +15,7 @@ class UploadFileState with _$UploadFileState {
       result: UploadFileResult.empty(),
       bankList: [],
       currentBank: -1,
-      fileName: '');
+      fileName: '',);
 }
 
 @freezed

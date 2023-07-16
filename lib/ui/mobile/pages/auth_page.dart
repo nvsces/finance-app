@@ -19,7 +19,7 @@ class _AuthPageState extends State<AuthPage> {
         .get<AbstractAuthRepository>()
         .login(code: widget.code)
         .then((value) {
-      context.read<AuthBloc>().add(AuthEvent.init());
+      context.read<AuthBloc>().add(const AuthEvent.init());
     });
     super.initState();
   }
