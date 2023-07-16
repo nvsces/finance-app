@@ -38,6 +38,7 @@ class _UploadFileContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
                 child: SvgPicture.asset(Svgs.iconBack),
@@ -45,16 +46,12 @@ class _UploadFileContent extends StatelessWidget {
                   context.go(MobileRoutes.home.path);
                 },
               ),
-              //
-              SizedBox(
-                width: 300,
-                child: Center(
-                  child: Text(
-                    AppLocalizations.of(context)!.uploadTitle,
-                    style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
-                  ),
-                ),
+        
+              Text(
+                AppLocalizations.of(context)!.uploadTitle,
+                style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
               ),
+              const SizedBox.shrink()
             ],
           ),
           Expanded(
@@ -95,8 +92,9 @@ class _UploadFileContent extends StatelessWidget {
                                   )),
                             ],
                           ),
-                          const SizedBox(
-                              height: 150, child: const SelectBankWidget()),
+                          SizedBox(
+                            height: 200,
+                            child: const SelectBankWidget()),
                           const Divider(
                             color: AppColors.mainElement,
                             thickness: 2,

@@ -1,5 +1,6 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
+import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/mobile/widgets/chart.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 import 'income__page.dart';
 
@@ -92,7 +94,7 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                             style: AppTextStyle.appButton1.copyWith(
                                 color: AppColors.mainText,
                                 fontWeight: FontWeight.w600)),
-                        onPressed: () {},
+                        onPressed: () {context.push(MobileRoutes.calendar.path);},
                       )
                     ],
                   ),
