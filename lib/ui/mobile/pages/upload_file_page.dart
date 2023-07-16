@@ -2,17 +2,15 @@ import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/entity/bank_enum.dart';
 import 'package:finance_app/domain/state/upload_file/upload_file_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
+import 'package:finance_app/resources/jpgs.dart';
 import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
-import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/button/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../../resources/jpgs.dart';
 
 class UploadFilePage extends StatelessWidget {
   const UploadFilePage({super.key});
@@ -146,7 +144,7 @@ class SelectBankWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List title = [
+    final title = [
       context.localization.uploadSber,
       context.localization.uploadTink
     ];

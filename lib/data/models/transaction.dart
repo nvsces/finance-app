@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Transaction {
   final int id;
   final String name;
@@ -52,20 +50,15 @@ class Transaction {
 
   factory Transaction.fromMap(Map<String, dynamic> map) {
     return Transaction(
-      id: map['id'] ?? 0,
-      comment: map['comment'],
-      name: map['name'] ?? '',
-      category: map['category'] ?? '',
-      value: map['value']?.toDouble() ?? 0.0,
-      date: map['date']?.toInt() ?? 0,
-      enabled: map['enabled'] ?? true,
+      id: map['id'] as int? ?? 0,
+      comment: map['comment'] as String?,
+      name: map['name'] as String? ?? '',
+      category: map['category'] as String? ?? '',
+      value: (map['value'] as num?)?.toDouble() ?? 0.0,
+      date: (map['date'] as num?)?.toInt() ?? 0,
+      enabled: map['enabled'] as bool? ?? true,
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory Transaction.fromJson(String source) =>
-      Transaction.fromMap(json.decode(source));
 
   @override
   String toString() {

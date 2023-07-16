@@ -253,30 +253,6 @@ class Category {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'value': value,
-      'color': color.value,
-      'transactions': transactions.map((x) => x.toMap()).toList(),
-    };
-  }
-
-  factory Category.fromMap(Map<String, dynamic> map) {
-    return Category(
-      name: map['name'] ?? '',
-      value: map['value']?.toDouble() ?? 0.0,
-      color: Color(map['color']),
-      transactions: List<Transaction>.from(
-          map['transactions']?.map((x) => Transaction.fromMap(x))),
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Category.fromJson(String source) =>
-      Category.fromMap(json.decode(source));
-
   @override
   String toString() {
     return 'Category(name: $name, value: $value, color: $color, transactions: $transactions)';

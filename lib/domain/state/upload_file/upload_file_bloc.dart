@@ -19,37 +19,45 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
     on<SelectUploadFileEvent>(_select);
   }
   Future<void> _init(
-      InitUploadFileEvent event, Emitter<UploadFileState> emit) async {
+    InitUploadFileEvent event,
+    Emitter<UploadFileState> emit,
+  ) async {
     emit(state.copyWith(bankList: supportedBanks));
   }
 
   Future<void> _select(
-      SelectUploadFileEvent event, Emitter<UploadFileState> emit) async {
+    SelectUploadFileEvent event,
+    Emitter<UploadFileState> emit,
+  ) async {
     emit(state.copyWith(
       currentBank: event.index,
     ));
   }
 
   Future<void> _create(
-      CreateUploadFileEvent event, Emitter<UploadFileState> emit) async {
+    CreateUploadFileEvent event,
+    Emitter<UploadFileState> emit,
+  ) async {
     final bank = state.bankList[state.currentBank];
-    final file = await AppFilePicker.selectFile(bank);
+    final (fileBytes, filename) = await AppFilePicker.selectFile(bank);
 
-    if (file[0] == null) {
+    if (fileBytes == null) {
       emit(state.copyWith(result: const UploadFileResult.failure()));
       return;
     }
     emit(state.copyWith(isLoading: true));
-    final fileBytes = file[0] as Uint8List;
     final result = await apiHandler.uploadFile(
       fileBytes,
       bank,
     );
     if (result == true) {
-      emit(state.copyWith(
+      emit(
+        state.copyWith(
           result: const UploadFileResult.success(),
           isLoading: false,
-          fileName: file[1]));
+          fileName: filename ?? '',
+        ),
+      );
     } else {
       emit(state.copyWith(
           result: const UploadFileResult.failure(), isLoading: false));
