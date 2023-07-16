@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -47,7 +48,7 @@ class ChartWidget extends StatelessWidget {
                               style: AppTextStyle.mainBoldText),
                           Center(
                               child: Text(
-                            '${AppLocalizations.of(context)!.peiChartSources} 2',
+                            '${context.localization.peiChartSources} 2',
                             style: AppTextStyle.secondaryText,
                           ))
                         ],
@@ -94,7 +95,7 @@ class ChartWidget extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     borderRadius:
                                         BorderRadius.circular(heightChartBar),
-                                    color: AppColors.secondaryElement,
+                                    color: context.colors.secondaryElement,
                                   ),
                                   height: heightChartBar,
                                   width: widthChartBar,
@@ -251,30 +252,6 @@ class Category {
       transactions: transactions ?? this.transactions,
     );
   }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'value': value,
-      'color': color.value,
-      'transactions': transactions.map((x) => x.toMap()).toList(),
-    };
-  }
-
-  factory Category.fromMap(Map<String, dynamic> map) {
-    return Category(
-      name: map['name'] ?? '',
-      value: map['value']?.toDouble() ?? 0.0,
-      color: Color(map['color']),
-      transactions: List<Transaction>.from(
-          map['transactions']?.map((x) => Transaction.fromMap(x))),
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Category.fromJson(String source) =>
-      Category.fromMap(json.decode(source));
 
   @override
   String toString() {

@@ -2,6 +2,7 @@ import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
 import 'package:finance_app/domain/state/language/language_bloc.dart';
+import 'package:finance_app/extensions/build_context_ext.dart';
 
 import 'package:finance_app/ui/theme/button/main_button.dart';
 import 'package:finance_app/ui/theme/button/secondary_button.dart';
@@ -10,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../theme/app_colors.dart';
 import '../../theme/app_text_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -58,7 +58,7 @@ class _LoginContent extends StatelessWidget {
                               height: 150,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: AppColors.mainElement,
+                                color: context.colors.mainElement,
                               ),
                             ))),
                     Positioned.fill(
@@ -66,16 +66,17 @@ class _LoginContent extends StatelessWidget {
                             child: Text(
                       'hi',
                       style: AppTextStyle.appButton1
-                          .copyWith(fontSize: 80, color: AppColors.white),
+                          .copyWith(fontSize: 80, color: context.colors.white),
                     ))),
                   ]),
                   const SizedBox(
                     height: 76,
                   ),
                   Text(
-                    AppLocalizations.of(context)!.loginTitle,
+                    context.localization.loginTitle,
                     style: AppTextStyle.appButton1.copyWith(
-                        color: AppColors.mainText, fontWeight: FontWeight.w600),
+                        color: context.colors.mainText,
+                        fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
                     height: 12,
@@ -85,7 +86,7 @@ class _LoginContent extends StatelessWidget {
                     width: 240,
                     child: TextFormField(
                       style: AppTextStyle.appButton1
-                          .copyWith(color: AppColors.white, fontSize: 15),
+                          .copyWith(color: context.colors.white, fontSize: 15),
                       onChanged: (value) {
                         context.read<LoginCubit>().updateCode(value);
                       },
@@ -95,15 +96,15 @@ class _LoginContent extends StatelessWidget {
                       ],
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: AppColors.secondaryElement,
+                        fillColor: context.colors.secondaryElement,
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(20)),
                         contentPadding:
                             const EdgeInsets.only(left: 15, right: 15),
-                        hintText: AppLocalizations.of(context)!.loginField,
-                        hintStyle: AppTextStyle.appButton1
-                            .copyWith(color: AppColors.white, fontSize: 15),
+                        hintText: context.localization.loginField,
+                        hintStyle: AppTextStyle.appButton1.copyWith(
+                            color: context.colors.white, fontSize: 15),
                         enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             borderSide: BorderSide.none),
@@ -117,7 +118,7 @@ class _LoginContent extends StatelessWidget {
                     height: 32,
                     width: 120,
                     child: SecondaryButton.normal(
-                      label: AppLocalizations.of(context)!.loginGetCode,
+                      label: context.localization.loginGetCode,
                       fontSize: 12,
                       onTap: () {
                         UrlUtils.openBot();
@@ -131,7 +132,7 @@ class _LoginContent extends StatelessWidget {
                     height: 40,
                     width: 208,
                     child: MainButton.normal(
-                      label: AppLocalizations.of(context)!.loginButton,
+                      label: context.localization.loginButton,
                       hasProgress: state.isSubmitting,
                       onTap: () {
                         context.read<LoginCubit>().signInWithCredentials();
@@ -148,11 +149,12 @@ class _LoginContent extends StatelessWidget {
                                         AppLocalizations.supportedLocales.last))
                                 : context.read<LanguageBloc>().add(
                                     LanguageEvent.selectedLocale(
-                                        AppLocalizations.supportedLocales.first));
+                                        AppLocalizations
+                                            .supportedLocales.first));
                           },
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.language,
-                            color: AppColors.mainElement,
+                            color: context.colors.mainElement,
                           ));
                     },
                   ),

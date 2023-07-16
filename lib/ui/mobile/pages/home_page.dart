@@ -1,15 +1,13 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
-import 'package:finance_app/router/mobile_routes.dart';
+import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/ui/mobile/widgets/chart.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:go_router/go_router.dart';
 
 import 'income__page.dart';
 
@@ -32,8 +30,8 @@ class _ExpensesContent extends StatefulWidget {
   State<_ExpensesContent> createState() => _ExpensesContentState();
 }
 
-
 bool expenses = true;
+
 class _ExpensesContentState extends State<_ExpensesContent> {
   @override
   Widget build(BuildContext context) {
@@ -44,11 +42,7 @@ class _ExpensesContentState extends State<_ExpensesContent> {
           child: Column(
             children: [
               Container(
-                margin: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  top: 30
-                ),
+                margin: const EdgeInsets.only(left: 20, right: 20, top: 30),
                 child: SizedBox(
                   height: 70,
                   child: Row(
@@ -57,31 +51,39 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                       SizedBox(
                         height: 70,
                         width: 150,
-                        child: Stack(         
+                        child: Stack(
                           children: [
                             TextButton(
                               child: Text(
-                                AppLocalizations.of(context)!.homeTitleExpenses,
-                                style: expenses?  AppTextStyle.appButton1.copyWith(
-                                      color: AppColors.mainText,
-                                      fontWeight: FontWeight.w600): AppTextStyle.secondaryText,
+                                context.localization.homeTitleExpenses,
+                                style: expenses
+                                    ? AppTextStyle.appButton1.copyWith(
+                                        color: context.colors.mainText,
+                                        fontWeight: FontWeight.w600)
+                                    : AppTextStyle.secondaryText,
                               ),
-                              onPressed: () {setState(() {
-                                expenses = true;
-                              });},
+                              onPressed: () {
+                                setState(() {
+                                  expenses = true;
+                                });
+                              },
                             ),
                             Positioned(
-                             top: 25,
+                              top: 25,
                               child: TextButton(
                                 child: Text(
-                                  AppLocalizations.of(context)!.homeTitleIncome,
-                                  style: expenses?  AppTextStyle.secondaryText : AppTextStyle.appButton1.copyWith(
-                                      color: AppColors.mainText,
-                                      fontWeight: FontWeight.w600),
+                                  context.localization.homeTitleIncome,
+                                  style: expenses
+                                      ? AppTextStyle.secondaryText
+                                      : AppTextStyle.appButton1.copyWith(
+                                          color: context.colors.mainText,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                 ),
-                                onPressed: () {setState(() {
+                                onPressed: () {
+                                  setState(() {
                                     expenses = false;
-                                });
+                                  });
                                 },
                               ),
                             )
@@ -90,11 +92,11 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                       ),
                       const Spacer(),
                       TextButton(
-                        child: Text(AppLocalizations.of(context)!.homePeriod,
+                        child: Text(context.localization.homePeriod,
                             style: AppTextStyle.appButton1.copyWith(
-                                color: AppColors.mainText,
+                                color: context.colors.mainText,
                                 fontWeight: FontWeight.w600)),
-                        onPressed: () {context.push(MobileRoutes.calendar.path);},
+                        onPressed: () {},
                       )
                     ],
                   ),
@@ -104,7 +106,9 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                   ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  : expenses ? ChartWidget(transactions: state.transactions) : const IncomeChart(),
+                  : expenses
+                      ? ChartWidget(transactions: state.transactions)
+                      : const IncomeChart(),
             ],
           ),
         )

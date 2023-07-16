@@ -4,6 +4,7 @@ class AppColors {
   AppColors._();
 
   //Common colors
+  static const navigationAndPanels = Color(0xffE9EFFB);
   static const mainElement = Color(0xff536DFB);
   static const mainText = Color(0xff103265);
   static const secondaryElement = Color(0xffCCD5FC);
@@ -20,7 +21,7 @@ class AppColors {
     Color(0xff4D547A),
     Color(0xff4588C8),
     Color(0xff28357A),
-    Color(0xff4256C7), 
+    Color(0xff4256C7),
     Color(0xff536DFB),
     Color(0xff103265)
   ];

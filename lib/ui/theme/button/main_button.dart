@@ -1,8 +1,7 @@
-import 'package:finance_app/ui/theme/app_colors.dart';
+import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:flutter/material.dart';
 
 import 'app_button_base.dart';
-
 
 class MainButton extends StatelessWidget {
   final String label;
@@ -52,17 +51,16 @@ class MainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return AppButton(
-      activeBackground: AppColors.mainElement,
-      activeLabelColor: AppColors.white,
-      disabledBackground: AppColors.secondaryElement,
-      disabledLabelColor: AppColors.white,
+      activeBackground: context.colors.mainElement,
+      activeLabelColor: context.colors.white,
+      disabledBackground: context.colors.secondaryElement,
+      disabledLabelColor: context.colors.white,
       label: label,
       hasIcon: hasIcon,
       onTap: onTap,
       hasProgress: hasProgress,
-      enabled: enabled,     
+      enabled: enabled,
       checkNetwork: checkNetwork,
       key: key,
       icon: icon,

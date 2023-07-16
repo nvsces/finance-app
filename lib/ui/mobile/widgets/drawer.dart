@@ -1,3 +1,4 @@
+import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,15 +18,15 @@ class DrawerWidget extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const UserAccountsDrawerHeader(
-            currentAccountPicture: CircleAvatar(),
-            accountEmail: Text('@An_00000'),
-            accountName: Text(
+          UserAccountsDrawerHeader(
+            currentAccountPicture: const CircleAvatar(),
+            accountEmail: const Text('@An_00000'),
+            accountName: const Text(
               'Anatoliy',
               style: TextStyle(fontSize: 24.0),
             ),
             decoration: BoxDecoration(
-              color: AppColors.black,
+              color: context.colors.black,
             ),
           ),
           ListTile(
@@ -45,7 +46,7 @@ class DrawerWidget extends StatelessWidget {
               style: TextStyle(fontSize: 16.0),
             ),
             onTap: () {
-              context.read<AuthBloc>().add(AuthEvent.logout());
+              context.read<AuthBloc>().add(const AuthEvent.logout());
             },
           ),
         ],

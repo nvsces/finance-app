@@ -1,7 +1,10 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/language/language_bloc.dart';
 import 'package:finance_app/router/mobile_routes.dart';
+import 'package:finance_app/ui/theme/app_dark_theme.dart';
+import 'package:finance_app/ui/theme/app_light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -34,18 +37,24 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       providers: _globalBlocs(),
       child: MultiBlocListener(
         listeners: _globalListeners(),
-        child: BlocBuilder<LanguageBloc, LanguageState>(builder: (context, state){
-          return MaterialApp.router(
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            locale: state.selectedLocale,
-            supportedLocales: AppLocalizations.supportedLocales,
-            key: _appKey,
-            debugShowCheckedModeBanner: false,
-            themeMode: ThemeMode.dark,
-            routerConfig: router,
-          );
-        },
-         
+        child: BlocBuilder<LanguageBloc, LanguageState>(
+          builder: (context, state) {
+            return AdaptiveTheme(
+              light: buildLightTheme(),
+              dark: buildDarkTheme(),
+              initial: AdaptiveThemeMode.light,
+              builder: (light, dark) => MaterialApp.router(
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                locale: state.selectedLocale,
+                supportedLocales: AppLocalizations.supportedLocales,
+                key: _appKey,
+                debugShowCheckedModeBanner: false,
+                theme: light,
+                darkTheme: dark,
+                routerConfig: router,
+              ),
+            );
+          },
         ),
       ),
     );
@@ -63,7 +72,9 @@ List<BlocProvider> _globalBlocs() {
     BlocProvider<SubscriptionBloc>(
       create: (context) => SubscriptionBloc(),
     ),
-     BlocProvider<LanguageBloc>(create: (context) => LanguageBloc(),)
+    BlocProvider<LanguageBloc>(
+      create: (context) => LanguageBloc(),
+    )
   ];
 }
 
