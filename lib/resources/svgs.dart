@@ -19,4 +19,12 @@ class Svgs {
 
       static const SvgAsset iconInfo =
       'assets/svg/icon_info.svg';
+
+  static const SvgAsset icMenuTransactionDefault =
+      'assets/svg/ic_menu_transaction_default.svg';
+  static const SvgAsset icMenuTransactionSolid =
+      'assets/svg/ic_menu_transaction_solid.svg';
+
+  static const SvgAsset iconShopping =
+      'assets/svg/icon_transaction.svg';
 }

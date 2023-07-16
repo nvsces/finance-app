@@ -31,5 +31,10 @@ class AppTextStyle {
         fontWeight: FontWeight.w500,
         fontSize: 12,
         color: AppColors.secondaryText
-      );    
+      );  
+    static TextStyle get transactionText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w400,
+        color: AppColors.mainText,
+        fontSize: 16,
+      );  
 }

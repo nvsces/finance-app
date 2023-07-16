@@ -8,6 +8,7 @@ enum MobileRoutes {
   login,
   home,
   subscription,
+  transaction,
   account,;
 
   static MobileRoutes? fromName(String? name) {
