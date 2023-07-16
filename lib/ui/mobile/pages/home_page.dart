@@ -1,11 +1,13 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
+import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/mobile/pages/income__page.dart';
 import 'package:finance_app/ui/mobile/widgets/chart.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -92,7 +94,7 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                             style: AppTextStyle.appButton1.copyWith(
                                 color: context.colors.mainText,
                                 fontWeight: FontWeight.w600,),),
-                        onPressed: () {},
+                        onPressed: () {context.push(MobileRoutes.calendar.path);},
                       )
                     ],
                   ),
