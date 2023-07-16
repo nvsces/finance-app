@@ -6,6 +6,8 @@ extension ThemeDataExt on ThemeData {
   ThemeData applyConfig(AppColorScheme colors) {
     return copyWith(
       textTheme: GoogleFonts.interTextTheme(textTheme),
+      extensions: [colors],
+      scaffoldBackgroundColor: colors.white,
     );
   }
 }

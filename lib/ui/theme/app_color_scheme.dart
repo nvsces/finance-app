@@ -15,6 +15,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
   final Color purple;
   final Color greenBorder;
   final Color red;
+  final Color navigationAndPanels;
 
   const AppColorScheme({
     required this.white,
@@ -30,6 +31,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
     required this.purple,
     required this.greenBorder,
     required this.red,
+    required this.navigationAndPanels,
   });
 
   @override
@@ -56,6 +58,9 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
           Color.lerp(textunselect, other.textunselect, t) ?? textunselect,
       transparent: Color.lerp(transparent, other.transparent, t) ?? transparent,
       red: Color.lerp(red, other.red, t) ?? red,
+      navigationAndPanels:
+          Color.lerp(navigationAndPanels, other.navigationAndPanels, t) ??
+              navigationAndPanels,
     );
   }
 
@@ -74,6 +79,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
     Color? purple,
     Color? greenBorder,
     Color? red,
+    Color? navigationAndPanels,
   }) {
     return AppColorScheme(
       white: white ?? this.white,
@@ -89,6 +95,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
       purple: purple ?? this.purple,
       greenBorder: greenBorder ?? this.greenBorder,
       red: red ?? this.red,
+      navigationAndPanels: navigationAndPanels ?? this.navigationAndPanels,
     );
   }
 }

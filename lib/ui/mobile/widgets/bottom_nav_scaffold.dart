@@ -4,7 +4,6 @@ import 'package:finance_app/router/mobile_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import '../../theme/app_colors.dart';
 
 class BottomNavScaffold extends StatelessWidget {
   final Widget child;
@@ -22,37 +21,43 @@ class BottomNavScaffold extends StatelessWidget {
         .indexWhere((element) => element.route.path == currentLocation);
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.pushReplacement((MobileRoutes.upload.path));
-        },
-        backgroundColor: context.colors.mainElement,
-        child: Icon(
-          Icons.add,
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
           color: context.colors.white,
-          size: 40,
+          shape: BoxShape.circle,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(5),
+          child: FloatingActionButton(
+            elevation: 0.0,
+            onPressed: () {
+              context.pushReplacement((MobileRoutes.upload.path));
+            },
+            backgroundColor: context.colors.mainElement,
+            child: Icon(
+              Icons.add,
+              color: context.colors.white,
+              size: 40,
+            ),
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: child,
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(), //shape of notch
-        notchMargin: 5,
-        child: BottomNavigationBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          currentIndex: currentIndex < 0 ? 0 : currentIndex,
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: currentTabItems
-              .map((item) => buildTab(context, item))
-              .toList(growable: false),
-          onTap: (index) => _onTabTapped(
-            context: context,
-            item: currentTabItems[index],
-            currentLocation: currentLocation,
-          ),
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
+        backgroundColor: context.colors.navigationAndPanels,
+        currentIndex: currentIndex < 0 ? 0 : currentIndex,
+        type: BottomNavigationBarType.fixed,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: currentTabItems
+            .map((item) => buildTab(context, item))
+            .toList(growable: false),
+        onTap: (index) => _onTabTapped(
+          context: context,
+          item: currentTabItems[index],
+          currentLocation: currentLocation,
         ),
       ),
     );
@@ -82,7 +87,7 @@ class BottomNavScaffold extends StatelessWidget {
             width: 56,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(14.5),
-                color: AppColors.mainElement),
+                color: context.colors.mainElement),
           ),
           SvgPicture.asset(
             item.selectedIcon,

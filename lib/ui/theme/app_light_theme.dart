@@ -19,6 +19,7 @@ ThemeData buildLightTheme() {
     textunselect: AppColors.textunselect,
     transparent: AppColors.transparent,
     red: AppColors.red,
+    navigationAndPanels: AppColors.navigationAndPanels,
   );
   return baseTheme.applyConfig(colors);
 }

@@ -95,7 +95,7 @@ class ChartWidget extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     borderRadius:
                                         BorderRadius.circular(heightChartBar),
-                                    color: AppColors.secondaryElement,
+                                    color: context.colors.secondaryElement,
                                   ),
                                   height: heightChartBar,
                                   width: widthChartBar,
