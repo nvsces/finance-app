@@ -8,6 +8,7 @@ import 'package:finance_app/ui/mobile/pages/edit_sub_page.dart';
 import 'package:finance_app/ui/mobile/pages/home_page.dart';
 import 'package:finance_app/ui/mobile/pages/subscriptions_page.dart';
 import 'package:finance_app/ui/mobile/pages/login_page.dart';
+import 'package:finance_app/ui/mobile/pages/transaction_page.dart';
 import 'package:finance_app/ui/mobile/widgets/bottom_nav_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -82,6 +83,7 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           routes: [
             _addTabRoute(MobileRoutes.account, const AccountPage()),
             _addTabRoute(MobileRoutes.home, const HomePage()),
+            _addTabRoute(MobileRoutes.transaction, const TransactionPage()),
           ],
         ),
       ];
