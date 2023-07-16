@@ -98,8 +98,8 @@ class _UploadFileContent extends StatelessWidget {
                           ),
                           const SizedBox(
                               height: 150, child: const SelectBankWidget()),
-                          const Divider(
-                            color: AppColors.mainElement,
+                          Divider(
+                            color: context.colors.mainElement,
                             thickness: 2,
                           ),
                           BlocBuilder<UploadFileBloc, UploadFileState>(
@@ -195,9 +195,9 @@ class CardBankWidget extends StatelessWidget {
       trailing: IconButton(
           onPressed: onTap,
           icon: isSelected
-              ? const Icon(
+              ? Icon(
                   Icons.radio_button_checked,
-                  color: AppColors.red,
+                  color: context.colors.red,
                 )
               : const Icon(Icons.radio_button_unchecked)),
     );

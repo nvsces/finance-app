@@ -58,7 +58,7 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                                 context.localization.homeTitleExpenses,
                                 style: expenses
                                     ? AppTextStyle.appButton1.copyWith(
-                                        color: AppColors.mainText,
+                                        color: context.colors.mainText,
                                         fontWeight: FontWeight.w600)
                                     : AppTextStyle.secondaryText,
                               ),
@@ -76,8 +76,9 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                                   style: expenses
                                       ? AppTextStyle.secondaryText
                                       : AppTextStyle.appButton1.copyWith(
-                                          color: AppColors.mainText,
-                                          fontWeight: FontWeight.w600),
+                                          color: context.colors.mainText,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -93,7 +94,7 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                       TextButton(
                         child: Text(context.localization.homePeriod,
                             style: AppTextStyle.appButton1.copyWith(
-                                color: AppColors.mainText,
+                                color: context.colors.mainText,
                                 fontWeight: FontWeight.w600)),
                         onPressed: () {},
                       )

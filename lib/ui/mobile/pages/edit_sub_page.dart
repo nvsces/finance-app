@@ -1,8 +1,10 @@
+import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:finance_app/extensions/build_context_ext.dart';
 
 import '../../../data/models/subscription/subscription.dart';
 import '../../../domain/state/subscription/subscription_bloc.dart';
@@ -26,7 +28,7 @@ class EditSubPage extends StatelessWidget {
       return Scaffold(
           appBar: AppBar(
             elevation: 0,
-            backgroundColor: AppColors.grey,
+            backgroundColor: context.colors.grey,
             actions: [
               TextButton(
                 onPressed: () {
@@ -42,10 +44,10 @@ class EditSubPage extends StatelessWidget {
                       SubscriptionEvent.create(subscriptions: subscriptions));
                   context.pop(context);
                 },
-                child: const AppText(
+                child: AppText(
                   text: 'Готово',
                   size: 16,
-                  color: AppColors.white,
+                  color: context.colors.white,
                   weight: 3,
                 ),
               ),
@@ -56,10 +58,10 @@ class EditSubPage extends StatelessWidget {
           bottomNavigationBar: BottomAppBar(
             child: TextButton(
                 onPressed: () {},
-                child: const AppText(
+                child: AppText(
                   text: 'Удалить',
                   size: 16,
-                  color: AppColors.red,
+                  color: context.colors.red,
                   weight: 3,
                 )),
           ),
@@ -67,9 +69,9 @@ class EditSubPage extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Container(
               height: 320,
-              decoration: const BoxDecoration(
-                color: AppColors.grey,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+              decoration: BoxDecoration(
+                color: context.colors.grey,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(
@@ -86,7 +88,7 @@ class EditSubPage extends StatelessWidget {
                               child: TextField(
                             controller: name,
                             decoration: const InputDecoration.collapsed(
-                            hintText: 'Название платежа'),
+                                hintText: 'Название платежа'),
                             textAlign: TextAlign.right,
                           ))
                         ],
@@ -105,7 +107,7 @@ class EditSubPage extends StatelessWidget {
                               child: TextField(
                             controller: cost,
                             decoration: const InputDecoration.collapsed(
-                            hintText: 'Введите стоимость'),
+                                hintText: 'Введите стоимость'),
                             textAlign: TextAlign.right,
                           ))
                         ],
@@ -138,8 +140,8 @@ class EditSubPage extends StatelessWidget {
                           Expanded(
                               child: TextField(
                             controller: date,
-                            decoration:const  InputDecoration.collapsed(
-                            hintText: 'Введите дату'),
+                            decoration: const InputDecoration.collapsed(
+                                hintText: 'Введите дату'),
                             textAlign: TextAlign.right,
                           ))
                         ],
@@ -189,7 +191,7 @@ class EditSubPage extends StatelessWidget {
 }
 
 class DropdownDemo extends StatefulWidget {
- const  DropdownDemo({Key? key, required this.itemsVal}) : super(key: key);
+  const DropdownDemo({Key? key, required this.itemsVal}) : super(key: key);
   final List<String> itemsVal;
   @override
   State<DropdownDemo> createState() => _DropdownDemoState();

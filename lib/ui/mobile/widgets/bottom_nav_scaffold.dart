@@ -1,10 +1,10 @@
+import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_colors.dart';
-
 
 class BottomNavScaffold extends StatelessWidget {
   final Widget child;
@@ -22,15 +22,14 @@ class BottomNavScaffold extends StatelessWidget {
         .indexWhere((element) => element.route.path == currentLocation);
 
     return Scaffold(
-       
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           context.pushReplacement((MobileRoutes.upload.path));
         },
-        backgroundColor: AppColors.mainElement,
-        child: const Icon(
+        backgroundColor: context.colors.mainElement,
+        child: Icon(
           Icons.add,
-          color: AppColors.white,
+          color: context.colors.white,
           size: 40,
         ),
       ),
@@ -75,16 +74,22 @@ class BottomNavScaffold extends StatelessWidget {
       icon: SvgPicture.asset(
         item.defaultIcon,
       ),
-      activeIcon: Stack(alignment: AlignmentDirectional.center,
+      activeIcon: Stack(
+        alignment: AlignmentDirectional.center,
         children: [
-Container(
-  height: 56,
-  width: 56,
-  decoration: BoxDecoration(borderRadius: BorderRadius.circular(14.5), color: AppColors.mainElement),),
-        SvgPicture.asset(
-        item.selectedIcon,
-      ),],),
-      
+          Container(
+            height: 56,
+            width: 56,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(14.5),
+                color: AppColors.mainElement),
+          ),
+          SvgPicture.asset(
+            item.selectedIcon,
+          ),
+        ],
+      ),
+
       label: '', //cannot be null
     );
   }

@@ -59,7 +59,7 @@ class _LoginContent extends StatelessWidget {
                               height: 150,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: AppColors.mainElement,
+                                color: context.colors.mainElement,
                               ),
                             ))),
                     Positioned.fill(
@@ -67,7 +67,7 @@ class _LoginContent extends StatelessWidget {
                             child: Text(
                       'hi',
                       style: AppTextStyle.appButton1
-                          .copyWith(fontSize: 80, color: AppColors.white),
+                          .copyWith(fontSize: 80, color: context.colors.white),
                     ))),
                   ]),
                   const SizedBox(
@@ -76,7 +76,8 @@ class _LoginContent extends StatelessWidget {
                   Text(
                     context.localization.loginTitle,
                     style: AppTextStyle.appButton1.copyWith(
-                        color: AppColors.mainText, fontWeight: FontWeight.w600),
+                        color: context.colors.mainText,
+                        fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
                     height: 12,
@@ -86,7 +87,7 @@ class _LoginContent extends StatelessWidget {
                     width: 240,
                     child: TextFormField(
                       style: AppTextStyle.appButton1
-                          .copyWith(color: AppColors.white, fontSize: 15),
+                          .copyWith(color: context.colors.white, fontSize: 15),
                       onChanged: (value) {
                         context.read<LoginCubit>().updateCode(value);
                       },
@@ -96,15 +97,15 @@ class _LoginContent extends StatelessWidget {
                       ],
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: AppColors.secondaryElement,
+                        fillColor: context.colors.secondaryElement,
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(20)),
                         contentPadding:
                             const EdgeInsets.only(left: 15, right: 15),
                         hintText: context.localization.loginField,
-                        hintStyle: AppTextStyle.appButton1
-                            .copyWith(color: AppColors.white, fontSize: 15),
+                        hintStyle: AppTextStyle.appButton1.copyWith(
+                            color: context.colors.white, fontSize: 15),
                         enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             borderSide: BorderSide.none),
@@ -152,9 +153,9 @@ class _LoginContent extends StatelessWidget {
                                         AppLocalizations
                                             .supportedLocales.first));
                           },
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.language,
-                            color: AppColors.mainElement,
+                            color: context.colors.mainElement,
                           ));
                     },
                   ),

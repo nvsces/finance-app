@@ -1,5 +1,6 @@
 import 'package:finance_app/data/models/subscription/subscription.dart';
 import 'package:finance_app/domain/state/subscription/subscription_bloc.dart';
+import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -25,16 +26,16 @@ class SubscriptionsPage extends StatelessWidget {
                 },
                 icon: Icon(Icons.arrow_back)),
             centerTitle: true,
-            backgroundColor: AppColors.grey,
+            backgroundColor: context.colors.grey,
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               context.push(MobileRoutes.editSub.path);
             },
             backgroundColor: Colors.grey,
-            child: const Icon(
+            child: Icon(
               Icons.add,
-              color: AppColors.white,
+              color: context.colors.white,
               size: 40,
             ),
           ),
@@ -76,9 +77,9 @@ class SubscriptionsList extends StatelessWidget {
                         reminder: subscriptionList[index].reminder)));
               },
               child: Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.grey,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                decoration: BoxDecoration(
+                  color: context.colors.grey,
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
                 height: 100,
                 width: double.infinity,
