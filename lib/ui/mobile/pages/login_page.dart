@@ -2,6 +2,7 @@ import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
 import 'package:finance_app/domain/state/language/language_bloc.dart';
+import 'package:finance_app/extensions/build_context_ext.dart';
 
 import 'package:finance_app/ui/theme/button/main_button.dart';
 import 'package:finance_app/ui/theme/button/secondary_button.dart';
@@ -73,7 +74,7 @@ class _LoginContent extends StatelessWidget {
                     height: 76,
                   ),
                   Text(
-                    AppLocalizations.of(context)!.loginTitle,
+                    context.localization.loginTitle,
                     style: AppTextStyle.appButton1.copyWith(
                         color: AppColors.mainText, fontWeight: FontWeight.w600),
                   ),
@@ -101,7 +102,7 @@ class _LoginContent extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20)),
                         contentPadding:
                             const EdgeInsets.only(left: 15, right: 15),
-                        hintText: AppLocalizations.of(context)!.loginField,
+                        hintText: context.localization.loginField,
                         hintStyle: AppTextStyle.appButton1
                             .copyWith(color: AppColors.white, fontSize: 15),
                         enabledBorder: const OutlineInputBorder(
@@ -117,7 +118,7 @@ class _LoginContent extends StatelessWidget {
                     height: 32,
                     width: 120,
                     child: SecondaryButton.normal(
-                      label: AppLocalizations.of(context)!.loginGetCode,
+                      label: context.localization.loginGetCode,
                       fontSize: 12,
                       onTap: () {
                         UrlUtils.openBot();
@@ -131,7 +132,7 @@ class _LoginContent extends StatelessWidget {
                     height: 40,
                     width: 208,
                     child: MainButton.normal(
-                      label: AppLocalizations.of(context)!.loginButton,
+                      label: context.localization.loginButton,
                       hasProgress: state.isSubmitting,
                       onTap: () {
                         context.read<LoginCubit>().signInWithCredentials();
@@ -148,7 +149,8 @@ class _LoginContent extends StatelessWidget {
                                         AppLocalizations.supportedLocales.last))
                                 : context.read<LanguageBloc>().add(
                                     LanguageEvent.selectedLocale(
-                                        AppLocalizations.supportedLocales.first));
+                                        AppLocalizations
+                                            .supportedLocales.first));
                           },
                           icon: const Icon(
                             Icons.language,

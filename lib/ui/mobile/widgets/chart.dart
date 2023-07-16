@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -47,7 +48,7 @@ class ChartWidget extends StatelessWidget {
                               style: AppTextStyle.mainBoldText),
                           Center(
                               child: Text(
-                            '${AppLocalizations.of(context)!.peiChartSources} 2',
+                            '${context.localization.peiChartSources} 2',
                             style: AppTextStyle.secondaryText,
                           ))
                         ],

@@ -1,6 +1,7 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/entity/bank_enum.dart';
 import 'package:finance_app/domain/state/upload_file/upload_file_bloc.dart';
+import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
@@ -50,7 +51,7 @@ class _UploadFileContent extends StatelessWidget {
                 width: 300,
                 child: Center(
                   child: Text(
-                    AppLocalizations.of(context)!.uploadTitle,
+                    context.localization.uploadTitle,
                     style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
                   ),
                 ),
@@ -62,13 +63,13 @@ class _UploadFileContent extends StatelessWidget {
                 listener: (context, state) {
                   if (state.result is FailureUploadFileState) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(AppLocalizations.of(context)!
-                            .uploadSnackBarFailur)));
+                        content:
+                            Text(context.localization.uploadSnackBarFailur)));
                   }
                   if (state.result is SuccessUploadFileState) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(AppLocalizations.of(context)!
-                            .uploadSnackBarComplit)));
+                        content:
+                            Text(context.localization.uploadSnackBarComplit)));
                     context.pop();
                   }
                 },
@@ -90,7 +91,7 @@ class _UploadFileContent extends StatelessWidget {
                               SizedBox(
                                   width: 300,
                                   child: Text(
-                                    AppLocalizations.of(context)!.uploadInfo,
+                                    context.localization.uploadInfo,
                                     style: AppTextStyle.mainNormalText,
                                   )),
                             ],
@@ -118,8 +119,7 @@ class _UploadFileContent extends StatelessWidget {
                                 height: 40,
                                 width: 200,
                                 child: MainButton.normal(
-                                  label: AppLocalizations.of(context)!
-                                      .uploadButton,
+                                  label: context.localization.uploadButton,
                                   enabled: state.isSelected,
                                   onTap: () {
                                     if (!state.isSelected) {
@@ -147,8 +147,8 @@ class SelectBankWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List title = [
-      AppLocalizations.of(context)!.uploadSber,
-      AppLocalizations.of(context)!.uploadTink
+      context.localization.uploadSber,
+      context.localization.uploadTink
     ];
     return BlocBuilder<UploadFileBloc, UploadFileState>(
         builder: (context, state) {
