@@ -7,13 +7,15 @@ class UploadFileState with _$UploadFileState {
     required UploadFileResult result,
     required List<Bank> bankList,
     required int currentBank,
+    required String fileName,
   }) = _UploadFileState;
 
   factory UploadFileState.initial() => const UploadFileState(
       isLoading: false,
       result: UploadFileResult.empty(),
       bankList: [],
-      currentBank: -1);
+      currentBank: -1,
+      fileName: '');
 }
 
 @freezed

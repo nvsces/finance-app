@@ -1,14 +1,16 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/entity/bank_enum.dart';
 import 'package:finance_app/domain/state/upload_file/upload_file_bloc.dart';
+import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
-import 'package:finance_app/ui/theme/button/app_button.dart';
+import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
-import 'package:finance_app/ui/theme/app_text.dart';
+import 'package:finance_app/ui/theme/button/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../resources/jpgs.dart';
 
 class UploadFilePage extends StatelessWidget {
@@ -30,98 +32,111 @@ class _UploadFileContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
-          child: AppButton(
-              child: const AppText(text: 'Назад', size: 20),
-              onPressed: () {
-                context.go(MobileRoutes.expenses.path);
-              }),
-        ),
-        Expanded(
-          child: BlocListener<UploadFileBloc, UploadFileState>(
-              listener: (context, state) {
-                if (state.result is FailureUploadFileState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Произошла ошибка')));
-                }
-                if (state.result is SuccessUploadFileState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Файл успешно загружен')));
-                  context.pop();
-                }
-              },
-              child: Container(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              InkWell(
+                child: SvgPicture.asset(Svgs.iconBack),
+                onTap: () {
+                  context.go(MobileRoutes.home.path);
+                },
+              ),
+              //
+              SizedBox(
+                width: 300,
+                child: Center(
+                  child: Text(
+                    AppLocalizations.of(context)!.uploadTitle,
+                    style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: BlocListener<UploadFileBloc, UploadFileState>(
+                listener: (context, state) {
+                  if (state.result is FailureUploadFileState) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(AppLocalizations.of(context)!
+                            .uploadSnackBarFailur)));
+                  }
+                  if (state.result is SuccessUploadFileState) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(AppLocalizations.of(context)!
+                            .uploadSnackBarComplit)));
+                    context.pop();
+                  }
+                },
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       child: Column(
                         children: [
                           const SizedBox(
-                            height: 100,
+                            height: 20,
                           ),
-                          Container(
-                            width: 250,
-                            child: const AppText(
-                              text:
-                                  'Для загрузки информации из банка выберите банк из списка:',
-                              size: 24,
-                              weight: 3,
-                              color: Colors.black,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(Svgs.iconInfo),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              SizedBox(
+                                  width: 300,
+                                  child: Text(
+                                    AppLocalizations.of(context)!.uploadInfo,
+                                    style: AppTextStyle.mainNormalText,
+                                  )),
+                            ],
                           ),
                           const SizedBox(
-                            height: 25,
-                          ),
+                              height: 150, child: const SelectBankWidget()),
                           const Divider(
-                            thickness: 1.5,
+                            color: AppColors.mainElement,
+                            thickness: 2,
                           ),
-                          const SizedBox(
-                            height: 25,
-                          ),
-                          Expanded(child: SelectBankWidget()),
+                          BlocBuilder<UploadFileBloc, UploadFileState>(
+                              builder: (context, state) {
+                            if (state.result is FailureUploadFileState) {}
+                            if (state.result is SuccessUploadFileState) {
+                              return Text(state.fileName);
+                            }
+                            return const SizedBox.shrink();
+                          })
                         ],
                       ),
                     ),
                     Center(
                       child: BlocBuilder<UploadFileBloc, UploadFileState>(
-                        builder: (context, state) => AppButton(
-                          child: AppText(
-                            text: 'Готово',
-                            size: 20,
-                            weight: 4,
-                            color: state.isSelected
-                                ? AppColors.black
-                                : AppColors.textunselect,
-                          ),
-                          onPressed: () {
-                            if (!state.isSelected) {
-                              return;
-                            }
-                            context
-                                .read<UploadFileBloc>()
-                                .add(UploadFileEvent.create());
-                          },
-                          backgroundColor: state.isSelected
-                              ? AppColors.green
-                              : AppColors.white,
-                          overlayColor: AppColors.greenBorder,
-                        ),
-                      ),
+                          builder: (context, state) => SizedBox(
+                                height: 40,
+                                width: 200,
+                                child: MainButton.normal(
+                                  label: AppLocalizations.of(context)!
+                                      .uploadButton,
+                                  enabled: state.isSelected,
+                                  onTap: () {
+                                    if (!state.isSelected) {
+                                      return;
+                                    }
+                                    context
+                                        .read<UploadFileBloc>()
+                                        .add(UploadFileEvent.create());
+                                  },
+                                ),
+                              )),
                     ),
-                    SizedBox(
-                      height: 60,
-                    )
                   ],
-                ),
-              )),
-        ),
-      ],
+                )),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -131,6 +146,10 @@ class SelectBankWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List title = [
+      AppLocalizations.of(context)!.uploadSber,
+      AppLocalizations.of(context)!.uploadTink
+    ];
     return BlocBuilder<UploadFileBloc, UploadFileState>(
         builder: (context, state) {
       return ListView.builder(
@@ -138,7 +157,7 @@ class SelectBankWidget extends StatelessWidget {
           itemBuilder: (context, index) {
             final items = state.bankList;
             return CardBankWidget(
-                title: items[index].label,
+                title: title[index],
                 image: items[index].image,
                 isSelected: index == state.currentBank,
                 onTap: () {
@@ -169,7 +188,10 @@ class CardBankWidget extends StatelessWidget {
         backgroundImage: AssetImage(image),
         radius: 20,
       ),
-      title: Text(title),
+      title: Text(
+        title,
+        style: AppTextStyle.mainNormalText,
+      ),
       trailing: IconButton(
           onPressed: onTap,
           icon: isSelected

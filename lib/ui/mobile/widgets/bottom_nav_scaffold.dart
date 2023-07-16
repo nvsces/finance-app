@@ -1,15 +1,10 @@
 import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../domain/state/auth/auth_bloc.dart';
-import '../../theme/button/app_button.dart';
 import '../../theme/app_colors.dart';
-import '../../theme/app_text.dart';
-import 'drawer.dart';
+
 
 class BottomNavScaffold extends StatelessWidget {
   final Widget child;
@@ -27,16 +22,12 @@ class BottomNavScaffold extends StatelessWidget {
         .indexWhere((element) => element.route.path == currentLocation);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.grey,
-        elevation: 0,
-      ),
-      drawer: DrawerWidget(),
+       
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           context.pushReplacement((MobileRoutes.upload.path));
         },
-        backgroundColor: Colors.grey,
+        backgroundColor: AppColors.mainElement,
         child: const Icon(
           Icons.add,
           color: AppColors.white,
@@ -46,7 +37,7 @@ class BottomNavScaffold extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: child,
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(), //shape of notch
+        shape: const CircularNotchedRectangle(), //shape of notch
         notchMargin: 5,
         child: BottomNavigationBar(
           elevation: 0,
@@ -84,23 +75,30 @@ class BottomNavScaffold extends StatelessWidget {
       icon: SvgPicture.asset(
         item.defaultIcon,
       ),
-      activeIcon: SvgPicture.asset(
+      activeIcon: Stack(alignment: AlignmentDirectional.center,
+        children: [
+Container(
+  height: 56,
+  width: 56,
+  decoration: BoxDecoration(borderRadius: BorderRadius.circular(14.5), color: AppColors.mainElement),),
+        SvgPicture.asset(
         item.selectedIcon,
-      ),
+      ),],),
+      
       label: '', //cannot be null
     );
   }
 
   List<_BottomNavBarItem> tabItems() => [
         _BottomNavBarItem(
-          route: MobileRoutes.expenses,
-          defaultIcon: Svgs.icMenuExpensesDefault,
-          selectedIcon: Svgs.icMenuExpensesSolid,
+          route: MobileRoutes.home,
+          defaultIcon: Svgs.icMenuHomeDefault,
+          selectedIcon: Svgs.icMenuHomeSolid,
         ),
         _BottomNavBarItem(
-          route: MobileRoutes.income,
-          defaultIcon: Svgs.icMenuIncomeDefault,
-          selectedIcon: Svgs.icMenuIncomeSolid,
+          route: MobileRoutes.account,
+          defaultIcon: Svgs.icMenuAccountDefault,
+          selectedIcon: Svgs.icMenuAccountSolid,
         ),
       ];
 }

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-class IncomePage extends StatelessWidget {
-  const IncomePage({super.key});
+class IncomeChart extends StatelessWidget {
+  const IncomeChart({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
+    return  const Center(
         child: Text('mobile/income'),
-      ),
-    );
+      );
   }
+  
 }

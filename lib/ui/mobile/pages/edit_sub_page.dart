@@ -82,14 +82,13 @@ class EditSubPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const AppText(text: 'Название', size: 15),
-                          Container(
-                              child: Expanded(
-                                  child: TextField(
+                          Expanded(
+                              child: TextField(
                             controller: name,
-                            decoration: InputDecoration.collapsed(
-                                hintText: 'Название платежа'),
+                            decoration: const InputDecoration.collapsed(
+                            hintText: 'Название платежа'),
                             textAlign: TextAlign.right,
-                          )))
+                          ))
                         ],
                       ),
                     ),
@@ -102,14 +101,13 @@ class EditSubPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const AppText(text: 'Стоимость подписки', size: 15),
-                          Container(
-                              child: Expanded(
-                                  child: TextField(
+                          Expanded(
+                              child: TextField(
                             controller: cost,
-                            decoration: InputDecoration.collapsed(
-                                hintText: 'Введите стоимость'),
+                            decoration: const InputDecoration.collapsed(
+                            hintText: 'Введите стоимость'),
                             textAlign: TextAlign.right,
-                          )))
+                          ))
                         ],
                       ),
                     ),
@@ -137,14 +135,13 @@ class EditSubPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const AppText(text: 'Следующая оплата', size: 15),
-                          Container(
-                              child: Expanded(
-                                  child: TextField(
+                          Expanded(
+                              child: TextField(
                             controller: date,
-                            decoration: InputDecoration.collapsed(
-                                hintText: 'Введите дату'),
+                            decoration:const  InputDecoration.collapsed(
+                            hintText: 'Введите дату'),
                             textAlign: TextAlign.right,
-                          )))
+                          ))
                         ],
                       ),
                     ),
@@ -192,8 +189,8 @@ class EditSubPage extends StatelessWidget {
 }
 
 class DropdownDemo extends StatefulWidget {
-  DropdownDemo({Key? key, required this.itemsVal}) : super(key: key);
-  List<String> itemsVal;
+ const  DropdownDemo({Key? key, required this.itemsVal}) : super(key: key);
+  final List<String> itemsVal;
   @override
   State<DropdownDemo> createState() => _DropdownDemoState();
 }
@@ -212,7 +209,7 @@ class _DropdownDemoState extends State<DropdownDemo> {
               value: value,
               child: Text(
                 value,
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
             );
           }).toList(),

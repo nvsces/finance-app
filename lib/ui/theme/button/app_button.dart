@@ -1,6 +1,7 @@
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
+//Скоро избавлюсь от неё
 class AppButton extends StatelessWidget {
   const AppButton({
     Key? key,

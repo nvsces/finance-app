@@ -1,19 +1,14 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:finance_app/router/mobile_routes.dart';
-import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
-import 'package:finance_app/ui/theme/app_text.dart';
+import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:finance_app/data/models/transaction.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../domain/state/auth/auth_bloc.dart';
-import '../../theme/button/app_button.dart';
+import '../../theme/app_text_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChartWidget extends StatelessWidget {
   ChartWidget({super.key, required this.transactions});
@@ -33,59 +28,119 @@ class ChartWidget extends StatelessWidget {
                 Expanded(
                   child: AspectRatio(
                     aspectRatio: 1,
-                    child: PieChart(
-                      PieChartData(
-                        pieTouchData: PieTouchData(),
-                        borderData: FlBorderData(
-                          show: false,
+                    child: Stack(children: [
+                      PieChart(
+                        PieChartData(
+                          pieTouchData: PieTouchData(),
+                          borderData: FlBorderData(
+                            show: false,
+                          ),
+                          sectionsSpace: 0,
+                          centerSpaceRadius: 120,
+                          sections: showingSections(groupBy(transactions)),
                         ),
-                        sectionsSpace: 0,
-                        centerSpaceRadius: 40,
-                        sections: showingSections(groupBy(transactions)),
                       ),
-                    ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('${categortValue(summValue(transactions))}',
+                              style: AppTextStyle.mainBoldText),
+                          Center(
+                              child: Text(
+                            '${AppLocalizations.of(context)!.peiChartSources} 2',
+                            style: AppTextStyle.secondaryText,
+                          ))
+                        ],
+                      )
+                    ]),
                   ),
                 ),
               ],
             ),
           ),
-          Text(
-            'Всего:  ${summValue(transactions)}',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18.0,
-            ),
-          ),
-          Column(
-              children: List.generate(categort.length, (index) {
-            return InkWell(
-              onTap: () {
-                context.push(
-                  MobileRoutes.detailCategory.path,
-                  extra: categort[index].transactions,
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10, top: 4.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      color: categort[index].color,
-                    ),
-                    const SizedBox(
-                      width: 10.0,
-                    ),
-                    Text(categort[index].name),
-                    const SizedBox(
-                      width: 15.0,
-                    ),
-                    Text(categort[index].value.toString()),
-                  ],
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+                children: List.generate(categort.length, (index) {
+              const double widthChartBar = 95;
+              const double heightChartBar = 10;
+              return InkWell(
+                onTap: () {
+                  context.push(
+                    MobileRoutes.detailCategory.path,
+                    extra: categort[index].transactions,
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 4.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        categort[index].name,
+                        style: AppTextStyle.mainLigthText,
+                      ),
+                      const SizedBox(
+                        width: 15.0,
+                      ),
+                      const Spacer(),
+                      Column(
+                        children: [
+                          Text(categortValue(categort[index].value),
+                              style: AppTextStyle.mainLigthText),
+                          Stack(
+                              alignment: AlignmentDirectional.centerStart,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.circular(heightChartBar),
+                                    color: AppColors.secondaryElement,
+                                  ),
+                                  height: heightChartBar,
+                                  width: widthChartBar,
+                                  // color: AppColors.secondaryElement,
+                                ),
+                                categort[index].value /
+                                            (summValue(transactions) / 100) >
+                                        9
+                                    ? Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                heightChartBar),
+                                            color: categort[index].color),
+                                        height: heightChartBar,
+                                        width: widthChartBar *
+                                            (categort[index].value /
+                                                summValue(transactions)),
+                                      )
+                                    : Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                heightChartBar),
+                                            color: categort[index].color),
+                                        height: heightChartBar,
+                                        width: heightChartBar,
+                                      ),
+                              ]),
+                          const SizedBox(
+                            height: 12,
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      SizedBox(
+                        width: 40,
+                        child: Text(percentValue(categort[index].value),
+                            style: AppTextStyle.mainLigthText),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }))
+              );
+            })),
+          )
         ],
       ),
     );
@@ -110,14 +165,31 @@ class ChartWidget extends StatelessWidget {
     return summ;
   }
 
+  String percentValue(double categort) {
+    final double percent = categort / (summValue(transactions) / 100);
+    if (percent < 1) {
+      return '<1 %';
+    }
+    return '${percent.toStringAsFixed(1)} %';
+  }
+
+  String categortValue(double categort) {
+    final String categortValueStr = categort.ceil().toString();
+    final String categortValueCeil = (categort ~/ 1000).toString();
+    if (categort.ceil() >= 1000) {
+      return '$categortValueCeil ${categortValueStr.substring(categortValueStr.length - 3)} ₽';
+    }
+    return '${categort.ceil()} ₽';
+  }
+
   List<PieChartSectionData> showingSections(
     Map<String, List<Transaction>> groups,
   ) {
     categort.clear();
-    const fontSize = 16.0;
-    const radius = 50.0;
-    final summ = summValue(transactions);
-    const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+    // const fontSize = 16.0;
+    const radius = 17.0;
+    // final summ = summValue(transactions);
+    // const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
     final result = <PieChartSectionData>[];
 
@@ -136,15 +208,7 @@ class ChartWidget extends StatelessWidget {
         showTitle: false,
         color: color,
         value: currentSumm.abs(),
-        // title: '${100 * currentSumm / summ}%',
-        // title: key,
         radius: radius,
-        // titleStyle: const TextStyle(
-        //   fontSize: fontSize,
-        //   fontWeight: FontWeight.bold,
-        //   color: Colors.black,
-        //   shadows: shadows,
-        // ),
       );
       result.add(data);
     });
@@ -156,8 +220,11 @@ class ChartWidget extends StatelessWidget {
 }
 
 Color randomColor() {
-  return Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+  return AppColors.peiColor[Random().nextInt(8)];
 }
+// Color randomColor() {
+//   return Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+// }
 
 class Category {
   final String name;

@@ -18,6 +18,7 @@ class ApiHandler {
     );
 
     final data = response.data['transactions'];
+    print(data);
     return (data as List).map((e) => Transaction.fromMap(e)).toList();
   }
 

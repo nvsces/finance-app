@@ -1,0 +1,123 @@
+import 'package:finance_app/di/injector.dart';
+import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
+import 'package:finance_app/ui/mobile/widgets/chart.dart';
+import 'package:finance_app/ui/theme/app_colors.dart';
+import 'package:finance_app/ui/theme/app_text_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'income__page.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<ExpensesBloc>(
+      create: (context) => injector.get()..add(const LoadExpensesEvent()),
+      child: const _ExpensesContent(),
+    );
+  }
+}
+
+class _ExpensesContent extends StatefulWidget {
+  const _ExpensesContent();
+
+  @override
+  State<_ExpensesContent> createState() => _ExpensesContentState();
+}
+
+
+bool expenses = true;
+class _ExpensesContentState extends State<_ExpensesContent> {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ExpensesBloc, ExpensesState>(
+      builder: (context, state) {
+        return Scaffold(
+            body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                  top: 30
+                ),
+                child: SizedBox(
+                  height: 70,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 70,
+                        width: 150,
+                        child: Stack(         
+                          children: [
+                            TextButton(
+                              child: Text(
+                                AppLocalizations.of(context)!.homeTitleExpenses,
+                                style: expenses?  AppTextStyle.appButton1.copyWith(
+                                      color: AppColors.mainText,
+                                      fontWeight: FontWeight.w600): AppTextStyle.secondaryText,
+                              ),
+                              onPressed: () {setState(() {
+                                expenses = true;
+                              });},
+                            ),
+                            Positioned(
+                             top: 25,
+                              child: TextButton(
+                                child: Text(
+                                  AppLocalizations.of(context)!.homeTitleIncome,
+                                  style: expenses?  AppTextStyle.secondaryText : AppTextStyle.appButton1.copyWith(
+                                      color: AppColors.mainText,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                onPressed: () {setState(() {
+                                    expenses = false;
+                                });
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const Spacer(),
+                      TextButton(
+                        child: Text(AppLocalizations.of(context)!.homePeriod,
+                            style: AppTextStyle.appButton1.copyWith(
+                                color: AppColors.mainText,
+                                fontWeight: FontWeight.w600)),
+                        onPressed: () {},
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              state.isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : expenses ? ChartWidget(transactions: state.transactions) : const IncomeChart(),
+            ],
+          ),
+        )
+            // Column(
+            //     children: [
+            //       Expanded(child: ChartWidget(transactions: state.transactions)),
+            //       // Expanded(
+            //       //   child: ExpensesList(
+            //       //     transactions: state.transactions,
+            //       //   ),
+            //       // ),
+            //     ],
+            //   ),
+            );
+      },
+    );
+  }
+}

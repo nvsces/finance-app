@@ -446,6 +446,7 @@ mixin _$UploadFileState {
   UploadFileResult get result => throw _privateConstructorUsedError;
   List<Bank> get bankList => throw _privateConstructorUsedError;
   int get currentBank => throw _privateConstructorUsedError;
+  String get fileName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UploadFileStateCopyWith<UploadFileState> get copyWith =>
@@ -462,7 +463,8 @@ abstract class $UploadFileStateCopyWith<$Res> {
       {bool isLoading,
       UploadFileResult result,
       List<Bank> bankList,
-      int currentBank});
+      int currentBank,
+      String fileName});
 
   $UploadFileResultCopyWith<$Res> get result;
 }
@@ -484,6 +486,7 @@ class _$UploadFileStateCopyWithImpl<$Res, $Val extends UploadFileState>
     Object? result = null,
     Object? bankList = null,
     Object? currentBank = null,
+    Object? fileName = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -502,6 +505,10 @@ class _$UploadFileStateCopyWithImpl<$Res, $Val extends UploadFileState>
           ? _value.currentBank
           : currentBank // ignore: cast_nullable_to_non_nullable
               as int,
+      fileName: null == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -526,7 +533,8 @@ abstract class _$$_UploadFileStateCopyWith<$Res>
       {bool isLoading,
       UploadFileResult result,
       List<Bank> bankList,
-      int currentBank});
+      int currentBank,
+      String fileName});
 
   @override
   $UploadFileResultCopyWith<$Res> get result;
@@ -547,6 +555,7 @@ class __$$_UploadFileStateCopyWithImpl<$Res>
     Object? result = null,
     Object? bankList = null,
     Object? currentBank = null,
+    Object? fileName = null,
   }) {
     return _then(_$_UploadFileState(
       isLoading: null == isLoading
@@ -565,6 +574,10 @@ class __$$_UploadFileStateCopyWithImpl<$Res>
           ? _value.currentBank
           : currentBank // ignore: cast_nullable_to_non_nullable
               as int,
+      fileName: null == fileName
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -576,7 +589,8 @@ class _$_UploadFileState implements _UploadFileState {
       {required this.isLoading,
       required this.result,
       required final List<Bank> bankList,
-      required this.currentBank})
+      required this.currentBank,
+      required this.fileName})
       : _bankList = bankList;
 
   @override
@@ -593,10 +607,12 @@ class _$_UploadFileState implements _UploadFileState {
 
   @override
   final int currentBank;
+  @override
+  final String fileName;
 
   @override
   String toString() {
-    return 'UploadFileState(isLoading: $isLoading, result: $result, bankList: $bankList, currentBank: $currentBank)';
+    return 'UploadFileState(isLoading: $isLoading, result: $result, bankList: $bankList, currentBank: $currentBank, fileName: $fileName)';
   }
 
   @override
@@ -609,12 +625,14 @@ class _$_UploadFileState implements _UploadFileState {
             (identical(other.result, result) || other.result == result) &&
             const DeepCollectionEquality().equals(other._bankList, _bankList) &&
             (identical(other.currentBank, currentBank) ||
-                other.currentBank == currentBank));
+                other.currentBank == currentBank) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, isLoading, result,
-      const DeepCollectionEquality().hash(_bankList), currentBank);
+      const DeepCollectionEquality().hash(_bankList), currentBank, fileName);
 
   @JsonKey(ignore: true)
   @override
@@ -628,7 +646,8 @@ abstract class _UploadFileState implements UploadFileState {
       {required final bool isLoading,
       required final UploadFileResult result,
       required final List<Bank> bankList,
-      required final int currentBank}) = _$_UploadFileState;
+      required final int currentBank,
+      required final String fileName}) = _$_UploadFileState;
 
   @override
   bool get isLoading;
@@ -638,6 +657,8 @@ abstract class _UploadFileState implements UploadFileState {
   List<Bank> get bankList;
   @override
   int get currentBank;
+  @override
+  String get fileName;
   @override
   @JsonKey(ignore: true)
   _$$_UploadFileStateCopyWith<_$_UploadFileState> get copyWith =>

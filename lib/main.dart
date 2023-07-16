@@ -35,7 +35,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       child: MultiBlocListener(
         listeners: _globalListeners(),
         child: BlocBuilder<LanguageBloc, LanguageState>(builder: (context, state){
-          print(state.selectedLocale);
           return MaterialApp.router(
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             locale: state.selectedLocale,
@@ -74,7 +73,7 @@ List<BlocListener> _globalListeners() {
       listener: (context, state) {
         if (state is AuthAuthedState) {
           AppRouter.rootNavigatorKey.currentContext
-              ?.goNamed(MobileRoutes.expenses.name);
+              ?.goNamed(MobileRoutes.home.name);
         } else {
           AppRouter.rootNavigatorKey.currentContext
               ?.goNamed(MobileRoutes.login.name);
