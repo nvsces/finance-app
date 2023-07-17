@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:finance_app/data/api/abstract_dio_auth_actions.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_pretty_dio_logger/flutter_pretty_dio_logger.dart';
-
-import 'abstract_dio_auth_actions.dart';
 
 class DioHelper {
   final Dio dio;
@@ -28,7 +28,7 @@ class DioHelper {
           handler.next(signedOptions);
         },
         onError: (DioError error, handler) async {
-          print(error);
+          debugPrint(error.toString());
           if (error.response?.statusCode == 401 ||
               error.response?.statusCode == 403) {
             dioAuthActions?.onUnAuthedError();

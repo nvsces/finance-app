@@ -1,8 +1,8 @@
 
+import 'package:finance_app/router/abstract_routes_info.dart';
+import 'package:finance_app/router/mobile_routes_info.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'abstract_routes_info.dart';
-import 'mobile_routes_info.dart';
 
 class AppRouter {
   static final GlobalKey<NavigatorState> rootNavigatorKey =

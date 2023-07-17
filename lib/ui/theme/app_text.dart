@@ -1,6 +1,5 @@
+import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-
-import 'app_colors.dart';
 
 //От этого тоже постепенно избавлюсь!..........
 class AppText extends StatelessWidget {
@@ -9,7 +8,7 @@ class AppText extends StatelessWidget {
       required this.text,
       this.color = AppColors.white,
       this.weight = 6,
-      required this.size});
+      required this.size,});
 
   final String text;
   final Color color;

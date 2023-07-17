@@ -92,7 +92,7 @@ class AppButton extends StatelessWidget {
                       child: Text(
                         label!,
                         style: AppTextStyle.appButton1.copyWith(color:
-                              enabled ? activeLabelColor : disabledLabelColor, fontSize: fontSize),
+                              enabled ? activeLabelColor : disabledLabelColor, fontSize: fontSize,),
                         maxLines: 1,
                         overflow: TextOverflow.fade,
                       ),

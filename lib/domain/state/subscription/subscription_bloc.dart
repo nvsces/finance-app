@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../data/models/subscription/subscription.dart';
+import 'package:finance_app/data/models/subscription/subscription.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'subscription_bloc.freezed.dart';
 part 'subscription_event.dart';
@@ -18,7 +18,7 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
     final state = this.state;
     emit(SubscriptionState(
         subscriptions: List.from(state.subscriptions)
-          ..add(event.subscriptions)));
+          ..add(event.subscriptions),),);
   }
 
   // void updateCode(List subscriptions, String value, int index) {

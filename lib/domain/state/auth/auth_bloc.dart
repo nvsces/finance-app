@@ -29,11 +29,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
     Emitter<AuthState> emit,
   ) async {
     final token = await _authRepository.checkAuth();
-    print('_onAuthInitEvent');
-    print(token);
     if (token.isNotEmpty) {
       emit(AuthState.authed(token: token));
-      print('AuthState.authed');
       return;
     }
     emit(const AuthState.notAuthed());
@@ -43,7 +40,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
     AuthLogoutEvent event,
     Emitter<AuthState> emit,
   ) async {
-    print('logout event');
     emit(
       const AuthState.notAuthed(),
     );
@@ -52,7 +48,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>
 
   @override
   void onUnAuthedError() {
-    print('onUnAuthedError');
     add(const AuthEvent.logout());
   }
 

@@ -1,15 +1,15 @@
-import 'dart:convert';
+
 import 'dart:math';
+
+import 'package:finance_app/data/models/transaction.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
+import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:finance_app/data/models/transaction.dart';
 import 'package:go_router/go_router.dart';
-import '../../theme/app_text_theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChartWidget extends StatelessWidget {
   ChartWidget({super.key, required this.transactions});
@@ -44,16 +44,16 @@ class ChartWidget extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('${categortValue(summValue(transactions))}',
-                              style: AppTextStyle.mainBoldText),
+                          Text(categortValue(summValue(transactions),),
+                              style: AppTextStyle.mainBoldText,),
                           Center(
                               child: Text(
                             '${context.localization.peiChartSources} 2',
                             style: AppTextStyle.secondaryText,
-                          ))
+                          ),),
                         ],
                       )
-                    ]),
+                    ],),
                   ),
                 ),
               ],
@@ -87,7 +87,7 @@ class ChartWidget extends StatelessWidget {
                       Column(
                         children: [
                           Text(categortValue(categort[index].value),
-                              style: AppTextStyle.mainLigthText),
+                              style: AppTextStyle.mainLigthText,),
                           Stack(
                               alignment: AlignmentDirectional.centerStart,
                               children: [
@@ -101,28 +101,28 @@ class ChartWidget extends StatelessWidget {
                                   width: widthChartBar,
                                   // color: AppColors.secondaryElement,
                                 ),
-                                categort[index].value /
+                               if( categort[index].value /
                                             (summValue(transactions) / 100) >
-                                        9
-                                    ? Container(
+                                        9)
+                                     Container(
                                         decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(
-                                                heightChartBar),
-                                            color: categort[index].color),
+                                                heightChartBar,),
+                                            color: categort[index].color,),
                                         height: heightChartBar,
                                         width: widthChartBar *
                                             (categort[index].value /
                                                 summValue(transactions)),
                                       )
-                                    : Container(
+                                    else Container(
                                         decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(
-                                                heightChartBar),
-                                            color: categort[index].color),
+                                                heightChartBar,),
+                                            color: categort[index].color,),
                                         height: heightChartBar,
                                         width: heightChartBar,
                                       ),
-                              ]),
+                              ],),
                           const SizedBox(
                             height: 12,
                           )
@@ -134,13 +134,13 @@ class ChartWidget extends StatelessWidget {
                       SizedBox(
                         width: 40,
                         child: Text(percentValue(categort[index].value),
-                            style: AppTextStyle.mainLigthText),
+                            style: AppTextStyle.mainLigthText,),
                       )
                     ],
                   ),
                 ),
               );
-            })),
+            }),),
           )
         ],
       ),
@@ -149,7 +149,7 @@ class ChartWidget extends StatelessWidget {
 
   Map<String, List<Transaction>> groupBy(List<Transaction> transactions) {
     final result = <String, List<Transaction>>{};
-    for (var tr in transactions) {
+    for (final tr in transactions) {
       if (result[tr.category] == null) {
         result[tr.category] = [];
       }
@@ -160,7 +160,7 @@ class ChartWidget extends StatelessWidget {
 
   double summValue(List<Transaction> transactions) {
     var summ = 0.0;
-    for (var tr in transactions) {
+    for (final tr in transactions) {
       summ = summ + tr.value.abs();
     }
     return summ;

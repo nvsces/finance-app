@@ -19,15 +19,15 @@ class UploadFilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) =>
-            injector.get<UploadFileBloc>()..add(UploadFileEvent.init()),
-        child: Scaffold(
+            injector.get<UploadFileBloc>()..add(const UploadFileEvent.init()),
+        child:  const Scaffold(
           body: _UploadFileContent(),
-        ));
+        ),);
   }
 }
 
 class _UploadFileContent extends StatelessWidget {
-  const _UploadFileContent({super.key});
+  const _UploadFileContent();
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,7 @@ class _UploadFileContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
                 child: SvgPicture.asset(Svgs.iconBack),
@@ -53,8 +54,10 @@ class _UploadFileContent extends StatelessWidget {
                     style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
                   ),
                 ),
-              ),
-            ],
+
+
+
+          )],
           ),
           Expanded(
             child: BlocListener<UploadFileBloc, UploadFileState>(
@@ -62,12 +65,12 @@ class _UploadFileContent extends StatelessWidget {
                   if (state.result is FailureUploadFileState) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content:
-                            Text(context.localization.uploadSnackBarFailur)));
+                            Text(context.localization.uploadSnackBarFailur),),);
                   }
                   if (state.result is SuccessUploadFileState) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content:
-                            Text(context.localization.uploadSnackBarComplit)));
+                            Text(context.localization.uploadSnackBarComplit),),);
                     context.pop();
                   }
                 },
@@ -91,11 +94,11 @@ class _UploadFileContent extends StatelessWidget {
                                   child: Text(
                                     context.localization.uploadInfo,
                                     style: AppTextStyle.mainNormalText,
-                                  )),
+                                  ),),
                             ],
                           ),
                           const SizedBox(
-                              height: 150, child: const SelectBankWidget()),
+                              height: 150, child:  SelectBankWidget(),),
                           Divider(
                             color: context.colors.mainElement,
                             thickness: 2,
@@ -107,7 +110,7 @@ class _UploadFileContent extends StatelessWidget {
                               return Text(state.fileName);
                             }
                             return const SizedBox.shrink();
-                          })
+                          },)
                         ],
                       ),
                     ),
@@ -125,13 +128,13 @@ class _UploadFileContent extends StatelessWidget {
                                     }
                                     context
                                         .read<UploadFileBloc>()
-                                        .add(UploadFileEvent.create());
+                                        .add(const UploadFileEvent.create());
                                   },
                                 ),
-                              )),
+                              ),),
                     ),
                   ],
-                )),
+                ),),
           ),
         ],
       ),
@@ -160,10 +163,10 @@ class SelectBankWidget extends StatelessWidget {
                 isSelected: index == state.currentBank,
                 onTap: () {
                   context.read<UploadFileBloc>().add(UploadFileEvent.select(
-                      index: index == state.currentBank ? -1 : index));
-                });
-          });
-    });
+                      index: index == state.currentBank ? -1 : index,),);
+                },);
+          },);
+    },);
   }
 }
 
@@ -173,7 +176,7 @@ class CardBankWidget extends StatelessWidget {
       required this.title,
       required this.image,
       required this.isSelected,
-      required this.onTap});
+      required this.onTap,});
 
   final String title;
   final JpgAsset image;
@@ -197,7 +200,7 @@ class CardBankWidget extends StatelessWidget {
                   Icons.radio_button_checked,
                   color: context.colors.red,
                 )
-              : const Icon(Icons.radio_button_unchecked)),
+              : const Icon(Icons.radio_button_unchecked),),
     );
   }
 }

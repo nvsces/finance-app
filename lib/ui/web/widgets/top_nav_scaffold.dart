@@ -44,7 +44,6 @@ class TopNavScaffold extends StatelessWidget {
 
 class _TopNavBarItem extends StatelessWidget {
   const _TopNavBarItem({
-    super.key,
     required this.label,
     required this.route,
   });
