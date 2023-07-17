@@ -16,8 +16,8 @@ class ApiHandler {
       '$hostUrl/transaction?start=0&end=16828720730000&enabled=true',
     );
 
-    final data = response.data?['transactions'] as List<Map<String, dynamic>>;
-    return data.map((e) => Transaction.fromMap(e)).toList();
+    final data = response.data?['transactions'] as List;
+    return data.map((e) => Transaction.fromMap(e as Map<String, dynamic>)).toList();
   }
 
   Future<bool> editTransaction(Transaction transaction) async {

@@ -3,8 +3,7 @@ typedef SvgAsset = String;
 class Svgs {
   Svgs._();
 
-  static const SvgAsset icMenuHomeSolid =
-      'assets/svg/ic_menu_home_solid.svg';
+  static const SvgAsset icMenuHomeSolid = 'assets/svg/ic_menu_home_solid.svg';
 
   static const SvgAsset icMenuHomeDefault =
       'assets/svg/ic_menu_home_default.svg';
@@ -14,9 +13,8 @@ class Svgs {
   static const SvgAsset icMenuAccountSolid =
       'assets/svg/ic_menu_account_solid.svg';
 
-  static const SvgAsset iconBack =
-      'assets/svg/icon_back.svg';
+  static const SvgAsset iconBack = 'assets/svg/icon_back.svg';
+  static const SvgAsset iconRuble = 'assets/svg/icon_ruble.svg';
 
-      static const SvgAsset iconInfo =
-      'assets/svg/icon_info.svg';
+  static const SvgAsset iconInfo = 'assets/svg/icon_info.svg';
 }

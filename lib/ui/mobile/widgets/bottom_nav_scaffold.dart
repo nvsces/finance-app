@@ -31,7 +31,7 @@ class BottomNavScaffold extends StatelessWidget {
           child: FloatingActionButton(
             elevation: 0.0,
             onPressed: () {
-              context.pushReplacement((MobileRoutes.upload.path));
+              context.pushReplacement((MobileRoutes.createWalet.path));
             },
             backgroundColor: context.colors.mainElement,
             child: Icon(
