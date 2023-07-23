@@ -62,7 +62,7 @@ class ChartWidget extends StatelessWidget {
             padding: const EdgeInsets.all(15),
             child: Column(
                 children: List.generate(categort.length, (index) {
-              const double widthChartBar = 95;
+              const double widthChartBar = 110;
               const double heightChartBar = 10;
               return InkWell(
                 onTap: () {
@@ -75,9 +75,12 @@ class ChartWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10, right: 10, top: 4.0),
                   child: Row(
                     children: [
-                      Text(
-                        categort[index].name,
-                        style: AppTextStyle.mainLigthText,
+                      Container(
+                        width: 150,
+                        child: Text(
+                          categort[index].name,
+                          style: AppTextStyle.mainLigthText,
+                        ),
                       ),
                       const SizedBox(
                         width: 15.0,

@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 
 enum MobileRoutes {
@@ -8,6 +9,7 @@ enum MobileRoutes {
   login,
   home,
   subscription,
+  transaction,
   account,;
 
   static MobileRoutes? fromName(String? name) {

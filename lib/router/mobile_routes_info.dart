@@ -2,7 +2,6 @@ import 'package:finance_app/data/models/transaction.dart';
 import 'package:finance_app/router/app_router.dart';
 import 'package:finance_app/ui/mobile/pages/account_page.dart';
 import 'package:finance_app/ui/mobile/pages/auth_page.dart';
-import 'package:finance_app/ui/mobile/pages/create_walet_page.dart';
 import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
 import 'package:finance_app/ui/mobile/pages/edit_sub_page.dart';
 import 'package:finance_app/ui/mobile/pages/home_page.dart';
@@ -82,6 +81,7 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           routes: [
             _addTabRoute(MobileRoutes.account, const AccountPage()),
             _addTabRoute(MobileRoutes.home, const HomePage()),
+            _addTabRoute(MobileRoutes.transaction, const TransactionPage()),
           ],
         ),
       ];
