@@ -56,6 +56,7 @@ dependencies:
   calendar_date_picker2: ^0.5.2
   adaptive_theme: ^3.3.0
   scrollable_clean_calendar: ^1.4.1
+  dotted_border: ^2.0.0+3
 
 
 

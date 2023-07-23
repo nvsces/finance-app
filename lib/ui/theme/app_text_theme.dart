@@ -59,9 +59,27 @@ class AppTextStyle {
       fontSize: 12,
       color: AppColors.secondaryText);
 
-    static TextStyle get transactionText => _baseFonts.copyWith(
+  static TextStyle get mainWalletTitleText => _baseFonts.copyWith(
         fontWeight: FontWeight.w400,
-        color: AppColors.mainText,
+        color: AppColors.navigationAndPanels,
         fontSize: 16,
+      );
+
+  static TextStyle get mainWalletBalanceText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w700,
+        color: AppColors.navigationAndPanels,
+        fontSize: 8,
+      );
+
+  static TextStyle get mainWalletDescriptionText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w400,
+        color: AppColors.navigationAndPanels,
+        fontSize: 6,
+      );
+
+  static TextStyle get transactionText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w500,
+        color: AppColors.navigationAndPanels,
+        fontSize: 8,
       );
 }

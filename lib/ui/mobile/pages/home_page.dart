@@ -1,17 +1,13 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
-import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/mobile/pages/income__page.dart';
+import 'package:finance_app/ui/mobile/widgets/calendar/custom_date_range_picker.dart';
 import 'package:finance_app/ui/mobile/widgets/chart.dart';
+import 'package:finance_app/ui/mobile/widgets/create_wallet_start_widget.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-
-import 'income__page.dart';
-
-import '../widgets/calendar/custom_date_range_picker.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -119,6 +115,7 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                   expenses
                       ? ChartWidget(transactions: state.transactions)
                       : const IncomeChart(),
+              CreateWalletStartWidget(),       
               ],
             ),
           ),
