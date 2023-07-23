@@ -1,17 +1,17 @@
+
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/language/language_bloc.dart';
+import 'package:finance_app/domain/state/subscription/subscription_bloc.dart';
+import 'package:finance_app/router/app_router.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_dark_theme.dart';
 import 'package:finance_app/ui/theme/app_light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-
-import 'domain/state/subscription/subscription_bloc.dart';
-import 'router/app_router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -78,6 +78,8 @@ List<BlocProvider> _globalBlocs() {
   ];
 }
 
+
+// ignore: strict_raw_type
 List<BlocListener> _globalListeners() {
   return [
     BlocListener<AuthBloc, AuthState>(

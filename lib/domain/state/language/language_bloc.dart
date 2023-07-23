@@ -1,7 +1,8 @@
-import 'package:bloc/bloc.dart';
+
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'language_bloc.freezed.dart';
 
@@ -14,11 +15,11 @@ class LanguageEvent with _$LanguageEvent {
 class LanguageState with _$LanguageState {
   const factory LanguageState(
       {required Locale selectedLocale,
-      required List<Locale> supportedLocale}) = _LanguageState;
+      required List<Locale> supportedLocale,}) = _LanguageState;
 
   factory LanguageState.initial() => LanguageState(
       selectedLocale: AppLocalizations.supportedLocales.first,
-      supportedLocale: AppLocalizations.supportedLocales);
+      supportedLocale: AppLocalizations.supportedLocales,);
 }
 
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {

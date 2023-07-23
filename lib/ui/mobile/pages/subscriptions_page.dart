@@ -2,12 +2,10 @@ import 'package:finance_app/data/models/subscription/subscription.dart';
 import 'package:finance_app/domain/state/subscription/subscription_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/router/mobile_routes.dart';
-import 'package:finance_app/ui/theme/app_colors.dart';
+import 'package:finance_app/ui/theme/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../theme/app_text.dart';
 
 class SubscriptionsPage extends StatelessWidget {
   const SubscriptionsPage({super.key});
@@ -24,7 +22,7 @@ class SubscriptionsPage extends StatelessWidget {
                 onPressed: () {
                   context.go(MobileRoutes.home.path);
                 },
-                icon: Icon(Icons.arrow_back)),
+                icon: const Icon(Icons.arrow_back),),
             centerTitle: true,
             backgroundColor: context.colors.grey,
           ),
@@ -74,7 +72,7 @@ class SubscriptionsList extends StatelessWidget {
                         currency: subscriptionList[index].currency,
                         date: subscriptionList[index].date,
                         period: subscriptionList[index].period,
-                        reminder: subscriptionList[index].reminder)));
+                        reminder: subscriptionList[index].reminder,),),);
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -90,7 +88,7 @@ class SubscriptionsList extends StatelessWidget {
                   ListTile(
                     title: Text(subscriptionList[index].name),
                     trailing: Text(
-                        '${subscriptionList[index].cost} ${subscriptionList[index].currency}'),
+                        '${subscriptionList[index].cost} ${subscriptionList[index].currency}',),
                     subtitle: Column(
                       children: [
                         const SizedBox(
@@ -98,11 +96,11 @@ class SubscriptionsList extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(
+                           const  Icon(
                               Icons.access_time,
                               size: 18,
                             ),
-                            SizedBox(
+                           const  SizedBox(
                               width: 5,
                             ),
                             Text('Оплата - ${subscriptionList[index].date}'),
@@ -113,24 +111,24 @@ class SubscriptionsList extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.notifications_none,
                               size: 20,
                             ),
-                            SizedBox(
+                           const  SizedBox(
                               width: 5,
                             ),
                             Text(
-                                'Напоминание - ${subscriptionList[index].reminder}'),
+                                'Напоминание - ${subscriptionList[index].reminder}',),
                           ],
                         )
                       ],
                     ),
                   ),
-                ]),
+                ],),
               ),
             ),
           );
-        });
+        },);
   }
 }

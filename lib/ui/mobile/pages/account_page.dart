@@ -1,7 +1,6 @@
 import 'package:finance_app/extensions/build_context_ext.dart';
+import 'package:finance_app/ui/mobile/widgets/drawer.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/drawer.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -13,7 +12,7 @@ class AccountPage extends StatelessWidget {
         backgroundColor: context.colors.mainElement,
         elevation: 0,
       ),
-      drawer: DrawerWidget(),
+      drawer: const DrawerWidget(),
     );
   }
 }

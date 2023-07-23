@@ -2,6 +2,7 @@ import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: avoid_classes_with_only_static_members
 class AppTextStyle {
   static TextStyle get _baseFonts => GoogleFonts.poppins();
 
@@ -52,4 +53,14 @@ class AppTextStyle {
       fontWeight: FontWeight.w500,
       fontSize: 12,
       color: AppColors.secondaryText);
+    static TextStyle get secondaryText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w500,
+        fontSize: 12,
+        color: AppColors.secondaryText,
+      );
+    static TextStyle get transactionText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w400,
+        color: AppColors.mainText,
+        fontSize: 16,
+      );
 }

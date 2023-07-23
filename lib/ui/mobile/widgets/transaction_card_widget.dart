@@ -2,6 +2,7 @@ import 'package:finance_app/data/models/transaction.dart';
 import 'package:finance_app/data/repositiries/transaction/transaction_repository.dart';
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/transaction/transaction_bloc.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,15 +17,16 @@ class TransactionCardWidget extends StatelessWidget {
     return BlocProvider<TransactionBloc>(
       create: (context) =>
           TransactionBloc(transaction, injector.get<TransactionRepository>()),
-      child: _TransactionCardContent(),
+      child: const _TransactionCardContent(),
     );
   }
 }
 
 class _TransactionCardContent extends StatelessWidget {
-  const _TransactionCardContent({super.key});
+  const _TransactionCardContent();
 
   void _showDialog(BuildContext context, TransactionBloc bloc) {
+    // ignore: inference_failure_on_function_invocation
     showDialog(
         context: context,
         builder: (context) {
@@ -55,7 +57,7 @@ class _TransactionCardContent extends StatelessWidget {
               ],
             ),
           );
-        });
+        },);
   }
 
   @override
@@ -77,8 +79,9 @@ class _TransactionCardContent extends StatelessWidget {
 }
 
 class _AddCommentWidget extends StatefulWidget {
-  const _AddCommentWidget({super.key, required this.action});
-  final Function(String) action;
+  const _AddCommentWidget({required this.action});
+
+  final void Function(String) action;
 
   @override
   State<_AddCommentWidget> createState() => __AddCommentWidgetState();
@@ -123,7 +126,7 @@ class __AddCommentWidgetState extends State<_AddCommentWidget> {
                       ),
                     ),
                   ),
-                )),
+                ),),
         ],
       ),
       onPressed: () {

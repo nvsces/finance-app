@@ -1,11 +1,10 @@
+import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../domain/state/auth/auth_bloc.dart';
-import '../../theme/app_colors.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({

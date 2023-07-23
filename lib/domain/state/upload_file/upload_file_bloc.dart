@@ -1,11 +1,10 @@
-import 'dart:typed_data';
+
 
 import 'package:finance_app/data/api/api_handler.dart';
+import 'package:finance_app/domain/entity/bank_enum.dart';
 import 'package:finance_app/utils/app_file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../entity/bank_enum.dart';
 
 part 'upload_file_bloc.freezed.dart';
 part 'upload_file_event.dart';
@@ -31,7 +30,7 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
   ) async {
     emit(state.copyWith(
       currentBank: event.index,
-    ));
+    ),);
   }
 
   Future<void> _create(
@@ -60,7 +59,7 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
       );
     } else {
       emit(state.copyWith(
-          result: const UploadFileResult.failure(), isLoading: false));
+          result: const UploadFileResult.failure(), isLoading: false,),);
     }
   }
 }
