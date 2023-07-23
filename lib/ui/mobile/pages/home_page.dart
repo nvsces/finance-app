@@ -1,13 +1,13 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
-import 'package:finance_app/router/mobile_routes.dart';
-import 'package:finance_app/ui/mobile/pages/income__page.dart';
 import 'package:finance_app/ui/mobile/widgets/chart.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+
+
+import 'income__page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -57,7 +57,7 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                                 style: expenses
                                     ? AppTextStyle.appButton1.copyWith(
                                         color: context.colors.mainText,
-                                        fontWeight: FontWeight.w600,)
+                                        fontWeight: FontWeight.w600)
                                     : AppTextStyle.secondaryText,
                               ),
                               onPressed: () {
@@ -93,18 +93,18 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                         child: Text(context.localization.homePeriod,
                             style: AppTextStyle.appButton1.copyWith(
                                 color: context.colors.mainText,
-                                fontWeight: FontWeight.w600,),),
-                        onPressed: () {context.push(MobileRoutes.calendar.path);},
+                                fontWeight: FontWeight.w600)),
+                        onPressed: () {},
                       )
                     ],
                   ),
                 ),
               ),
-             if(state.isLoading)
-                  const Center(
+              state.isLoading
+                  ? const Center(
                       child: CircularProgressIndicator(),
                     )
-                  else expenses
+                  : expenses
                       ? ChartWidget(transactions: state.transactions)
                       : const IncomeChart(),
             ],
@@ -120,7 +120,7 @@ class _ExpensesContentState extends State<_ExpensesContent> {
             //       // ),
             //     ],
             //   ),
-            ,);
+            );
       },
     );
   }

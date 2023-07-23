@@ -17,4 +17,9 @@ class Svgs {
   static const SvgAsset iconRuble = 'assets/svg/icon_ruble.svg';
 
   static const SvgAsset iconInfo = 'assets/svg/icon_info.svg';
+
+  static const SvgAsset iconUsd = 'assets/svg/icon_usd.svg';
+  static const SvgAsset iconGbr = 'assets/svg/icon_gbr.svg';
+  static const SvgAsset iconEur = 'assets/svg/icon_eur.svg';
+  static const SvgAsset iconJenaYuan = 'assets/svg/icon_jena_yuan.svg';
 }

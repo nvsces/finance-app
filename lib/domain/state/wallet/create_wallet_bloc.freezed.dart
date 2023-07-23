@@ -21,8 +21,9 @@ mixin _$CreateWalletEvent {
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
-    required TResult Function(String value) updateCurrency,
+    required TResult Function(Currency value) updateCurrency,
     required TResult Function() saveWallet,
+    required TResult Function(String value) usdUpdateButton,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,8 +31,9 @@ mixin _$CreateWalletEvent {
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
-    TResult? Function(String value)? updateCurrency,
+    TResult? Function(Currency value)? updateCurrency,
     TResult? Function()? saveWallet,
+    TResult? Function(String value)? usdUpdateButton,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,8 +41,9 @@ mixin _$CreateWalletEvent {
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
-    TResult Function(String value)? updateCurrency,
+    TResult Function(Currency value)? updateCurrency,
     TResult Function()? saveWallet,
+    TResult Function(String value)? usdUpdateButton,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +55,7 @@ mixin _$CreateWalletEvent {
     required TResult Function(UpdateBalanceWalletEvent value) updateBalance,
     required TResult Function(UpdateCurrencyWalletEvent value) updateCurrency,
     required TResult Function(SaveWalletWalletEvent value) saveWallet,
+    required TResult Function(UsdUpdateButtonEvent value) usdUpdateButton,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +65,7 @@ mixin _$CreateWalletEvent {
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult? Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult? Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult? Function(UsdUpdateButtonEvent value)? usdUpdateButton,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +75,7 @@ mixin _$CreateWalletEvent {
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult Function(UsdUpdateButtonEvent value)? usdUpdateButton,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -161,8 +167,9 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
-    required TResult Function(String value) updateCurrency,
+    required TResult Function(Currency value) updateCurrency,
     required TResult Function() saveWallet,
+    required TResult Function(String value) usdUpdateButton,
   }) {
     return updateTitle(value);
   }
@@ -173,8 +180,9 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
-    TResult? Function(String value)? updateCurrency,
+    TResult? Function(Currency value)? updateCurrency,
     TResult? Function()? saveWallet,
+    TResult? Function(String value)? usdUpdateButton,
   }) {
     return updateTitle?.call(value);
   }
@@ -185,8 +193,9 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
-    TResult Function(String value)? updateCurrency,
+    TResult Function(Currency value)? updateCurrency,
     TResult Function()? saveWallet,
+    TResult Function(String value)? usdUpdateButton,
     required TResult orElse(),
   }) {
     if (updateTitle != null) {
@@ -204,6 +213,7 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
     required TResult Function(UpdateBalanceWalletEvent value) updateBalance,
     required TResult Function(UpdateCurrencyWalletEvent value) updateCurrency,
     required TResult Function(SaveWalletWalletEvent value) saveWallet,
+    required TResult Function(UsdUpdateButtonEvent value) usdUpdateButton,
   }) {
     return updateTitle(this);
   }
@@ -216,6 +226,7 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult? Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult? Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult? Function(UsdUpdateButtonEvent value)? usdUpdateButton,
   }) {
     return updateTitle?.call(this);
   }
@@ -228,6 +239,7 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult Function(UsdUpdateButtonEvent value)? usdUpdateButton,
     required TResult orElse(),
   }) {
     if (updateTitle != null) {
@@ -319,8 +331,9 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
-    required TResult Function(String value) updateCurrency,
+    required TResult Function(Currency value) updateCurrency,
     required TResult Function() saveWallet,
+    required TResult Function(String value) usdUpdateButton,
   }) {
     return updateDiscription(value);
   }
@@ -331,8 +344,9 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
-    TResult? Function(String value)? updateCurrency,
+    TResult? Function(Currency value)? updateCurrency,
     TResult? Function()? saveWallet,
+    TResult? Function(String value)? usdUpdateButton,
   }) {
     return updateDiscription?.call(value);
   }
@@ -343,8 +357,9 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
-    TResult Function(String value)? updateCurrency,
+    TResult Function(Currency value)? updateCurrency,
     TResult Function()? saveWallet,
+    TResult Function(String value)? usdUpdateButton,
     required TResult orElse(),
   }) {
     if (updateDiscription != null) {
@@ -362,6 +377,7 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
     required TResult Function(UpdateBalanceWalletEvent value) updateBalance,
     required TResult Function(UpdateCurrencyWalletEvent value) updateCurrency,
     required TResult Function(SaveWalletWalletEvent value) saveWallet,
+    required TResult Function(UsdUpdateButtonEvent value) usdUpdateButton,
   }) {
     return updateDiscription(this);
   }
@@ -374,6 +390,7 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult? Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult? Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult? Function(UsdUpdateButtonEvent value)? usdUpdateButton,
   }) {
     return updateDiscription?.call(this);
   }
@@ -386,6 +403,7 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult Function(UsdUpdateButtonEvent value)? usdUpdateButton,
     required TResult orElse(),
   }) {
     if (updateDiscription != null) {
@@ -475,8 +493,9 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
-    required TResult Function(String value) updateCurrency,
+    required TResult Function(Currency value) updateCurrency,
     required TResult Function() saveWallet,
+    required TResult Function(String value) usdUpdateButton,
   }) {
     return updateBalance(value);
   }
@@ -487,8 +506,9 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
-    TResult? Function(String value)? updateCurrency,
+    TResult? Function(Currency value)? updateCurrency,
     TResult? Function()? saveWallet,
+    TResult? Function(String value)? usdUpdateButton,
   }) {
     return updateBalance?.call(value);
   }
@@ -499,8 +519,9 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
-    TResult Function(String value)? updateCurrency,
+    TResult Function(Currency value)? updateCurrency,
     TResult Function()? saveWallet,
+    TResult Function(String value)? usdUpdateButton,
     required TResult orElse(),
   }) {
     if (updateBalance != null) {
@@ -518,6 +539,7 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
     required TResult Function(UpdateBalanceWalletEvent value) updateBalance,
     required TResult Function(UpdateCurrencyWalletEvent value) updateCurrency,
     required TResult Function(SaveWalletWalletEvent value) saveWallet,
+    required TResult Function(UsdUpdateButtonEvent value) usdUpdateButton,
   }) {
     return updateBalance(this);
   }
@@ -530,6 +552,7 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult? Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult? Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult? Function(UsdUpdateButtonEvent value)? usdUpdateButton,
   }) {
     return updateBalance?.call(this);
   }
@@ -542,6 +565,7 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult Function(UsdUpdateButtonEvent value)? usdUpdateButton,
     required TResult orElse(),
   }) {
     if (updateBalance != null) {
@@ -569,7 +593,7 @@ abstract class _$$UpdateCurrencyWalletEventCopyWith<$Res> {
           $Res Function(_$UpdateCurrencyWalletEvent) then) =
       __$$UpdateCurrencyWalletEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({String value});
+  $Res call({Currency value});
 }
 
 /// @nodoc
@@ -589,7 +613,7 @@ class __$$UpdateCurrencyWalletEventCopyWithImpl<$Res>
       null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Currency,
     ));
   }
 }
@@ -600,7 +624,7 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
   const _$UpdateCurrencyWalletEvent(this.value) : super._();
 
   @override
-  final String value;
+  final Currency value;
 
   @override
   String toString() {
@@ -631,8 +655,9 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
-    required TResult Function(String value) updateCurrency,
+    required TResult Function(Currency value) updateCurrency,
     required TResult Function() saveWallet,
+    required TResult Function(String value) usdUpdateButton,
   }) {
     return updateCurrency(value);
   }
@@ -643,8 +668,9 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
-    TResult? Function(String value)? updateCurrency,
+    TResult? Function(Currency value)? updateCurrency,
     TResult? Function()? saveWallet,
+    TResult? Function(String value)? usdUpdateButton,
   }) {
     return updateCurrency?.call(value);
   }
@@ -655,8 +681,9 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
-    TResult Function(String value)? updateCurrency,
+    TResult Function(Currency value)? updateCurrency,
     TResult Function()? saveWallet,
+    TResult Function(String value)? usdUpdateButton,
     required TResult orElse(),
   }) {
     if (updateCurrency != null) {
@@ -674,6 +701,7 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
     required TResult Function(UpdateBalanceWalletEvent value) updateBalance,
     required TResult Function(UpdateCurrencyWalletEvent value) updateCurrency,
     required TResult Function(SaveWalletWalletEvent value) saveWallet,
+    required TResult Function(UsdUpdateButtonEvent value) usdUpdateButton,
   }) {
     return updateCurrency(this);
   }
@@ -686,6 +714,7 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult? Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult? Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult? Function(UsdUpdateButtonEvent value)? usdUpdateButton,
   }) {
     return updateCurrency?.call(this);
   }
@@ -698,6 +727,7 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult Function(UsdUpdateButtonEvent value)? usdUpdateButton,
     required TResult orElse(),
   }) {
     if (updateCurrency != null) {
@@ -708,11 +738,11 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
 }
 
 abstract class UpdateCurrencyWalletEvent extends CreateWalletEvent {
-  const factory UpdateCurrencyWalletEvent(final String value) =
+  const factory UpdateCurrencyWalletEvent(final Currency value) =
       _$UpdateCurrencyWalletEvent;
   const UpdateCurrencyWalletEvent._() : super._();
 
-  String get value;
+  Currency get value;
   @JsonKey(ignore: true)
   _$$UpdateCurrencyWalletEventCopyWith<_$UpdateCurrencyWalletEvent>
       get copyWith => throw _privateConstructorUsedError;
@@ -759,8 +789,9 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
-    required TResult Function(String value) updateCurrency,
+    required TResult Function(Currency value) updateCurrency,
     required TResult Function() saveWallet,
+    required TResult Function(String value) usdUpdateButton,
   }) {
     return saveWallet();
   }
@@ -771,8 +802,9 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
-    TResult? Function(String value)? updateCurrency,
+    TResult? Function(Currency value)? updateCurrency,
     TResult? Function()? saveWallet,
+    TResult? Function(String value)? usdUpdateButton,
   }) {
     return saveWallet?.call();
   }
@@ -783,8 +815,9 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
-    TResult Function(String value)? updateCurrency,
+    TResult Function(Currency value)? updateCurrency,
     TResult Function()? saveWallet,
+    TResult Function(String value)? usdUpdateButton,
     required TResult orElse(),
   }) {
     if (saveWallet != null) {
@@ -802,6 +835,7 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
     required TResult Function(UpdateBalanceWalletEvent value) updateBalance,
     required TResult Function(UpdateCurrencyWalletEvent value) updateCurrency,
     required TResult Function(SaveWalletWalletEvent value) saveWallet,
+    required TResult Function(UsdUpdateButtonEvent value) usdUpdateButton,
   }) {
     return saveWallet(this);
   }
@@ -814,6 +848,7 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult? Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult? Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult? Function(UsdUpdateButtonEvent value)? usdUpdateButton,
   }) {
     return saveWallet?.call(this);
   }
@@ -826,6 +861,7 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
     TResult Function(UpdateCurrencyWalletEvent value)? updateCurrency,
     TResult Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult Function(UsdUpdateButtonEvent value)? usdUpdateButton,
     required TResult orElse(),
   }) {
     if (saveWallet != null) {
@@ -841,11 +877,174 @@ abstract class SaveWalletWalletEvent extends CreateWalletEvent {
 }
 
 /// @nodoc
+abstract class _$$UsdUpdateButtonEventCopyWith<$Res> {
+  factory _$$UsdUpdateButtonEventCopyWith(_$UsdUpdateButtonEvent value,
+          $Res Function(_$UsdUpdateButtonEvent) then) =
+      __$$UsdUpdateButtonEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$UsdUpdateButtonEventCopyWithImpl<$Res>
+    extends _$CreateWalletEventCopyWithImpl<$Res, _$UsdUpdateButtonEvent>
+    implements _$$UsdUpdateButtonEventCopyWith<$Res> {
+  __$$UsdUpdateButtonEventCopyWithImpl(_$UsdUpdateButtonEvent _value,
+      $Res Function(_$UsdUpdateButtonEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$UsdUpdateButtonEvent(
+      null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UsdUpdateButtonEvent extends UsdUpdateButtonEvent {
+  const _$UsdUpdateButtonEvent(this.value) : super._();
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'CreateWalletEvent.usdUpdateButton(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UsdUpdateButtonEvent &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UsdUpdateButtonEventCopyWith<_$UsdUpdateButtonEvent> get copyWith =>
+      __$$UsdUpdateButtonEventCopyWithImpl<_$UsdUpdateButtonEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String value) updateTitle,
+    required TResult Function(String value) updateDiscription,
+    required TResult Function(String value) updateBalance,
+    required TResult Function(Currency value) updateCurrency,
+    required TResult Function() saveWallet,
+    required TResult Function(String value) usdUpdateButton,
+  }) {
+    return usdUpdateButton(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String value)? updateTitle,
+    TResult? Function(String value)? updateDiscription,
+    TResult? Function(String value)? updateBalance,
+    TResult? Function(Currency value)? updateCurrency,
+    TResult? Function()? saveWallet,
+    TResult? Function(String value)? usdUpdateButton,
+  }) {
+    return usdUpdateButton?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String value)? updateTitle,
+    TResult Function(String value)? updateDiscription,
+    TResult Function(String value)? updateBalance,
+    TResult Function(Currency value)? updateCurrency,
+    TResult Function()? saveWallet,
+    TResult Function(String value)? usdUpdateButton,
+    required TResult orElse(),
+  }) {
+    if (usdUpdateButton != null) {
+      return usdUpdateButton(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UpdateTitleWalletEvent value) updateTitle,
+    required TResult Function(UpdateDiscriptionWalletEvent value)
+        updateDiscription,
+    required TResult Function(UpdateBalanceWalletEvent value) updateBalance,
+    required TResult Function(UpdateCurrencyWalletEvent value) updateCurrency,
+    required TResult Function(SaveWalletWalletEvent value) saveWallet,
+    required TResult Function(UsdUpdateButtonEvent value) usdUpdateButton,
+  }) {
+    return usdUpdateButton(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UpdateTitleWalletEvent value)? updateTitle,
+    TResult? Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
+    TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
+    TResult? Function(UpdateCurrencyWalletEvent value)? updateCurrency,
+    TResult? Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult? Function(UsdUpdateButtonEvent value)? usdUpdateButton,
+  }) {
+    return usdUpdateButton?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UpdateTitleWalletEvent value)? updateTitle,
+    TResult Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
+    TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
+    TResult Function(UpdateCurrencyWalletEvent value)? updateCurrency,
+    TResult Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult Function(UsdUpdateButtonEvent value)? usdUpdateButton,
+    required TResult orElse(),
+  }) {
+    if (usdUpdateButton != null) {
+      return usdUpdateButton(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UsdUpdateButtonEvent extends CreateWalletEvent {
+  const factory UsdUpdateButtonEvent(final String value) =
+      _$UsdUpdateButtonEvent;
+  const UsdUpdateButtonEvent._() : super._();
+
+  String get value;
+  @JsonKey(ignore: true)
+  _$$UsdUpdateButtonEventCopyWith<_$UsdUpdateButtonEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CreateWalletState {
+  String get name => throw _privateConstructorUsedError;
+  String get wallet => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get discription => throw _privateConstructorUsedError;
   String get balance => throw _privateConstructorUsedError;
-  String get currency => throw _privateConstructorUsedError;
+  Currency get currency => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CreateWalletStateCopyWith<CreateWalletState> get copyWith =>
@@ -859,7 +1058,12 @@ abstract class $CreateWalletStateCopyWith<$Res> {
       _$CreateWalletStateCopyWithImpl<$Res, CreateWalletState>;
   @useResult
   $Res call(
-      {String title, String discription, String balance, String currency});
+      {String name,
+      String wallet,
+      String title,
+      String discription,
+      String balance,
+      Currency currency});
 }
 
 /// @nodoc
@@ -875,12 +1079,22 @@ class _$CreateWalletStateCopyWithImpl<$Res, $Val extends CreateWalletState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
+    Object? wallet = null,
     Object? title = null,
     Object? discription = null,
     Object? balance = null,
     Object? currency = null,
   }) {
     return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      wallet: null == wallet
+          ? _value.wallet
+          : wallet // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -896,7 +1110,7 @@ class _$CreateWalletStateCopyWithImpl<$Res, $Val extends CreateWalletState>
       currency: null == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Currency,
     ) as $Val);
   }
 }
@@ -910,7 +1124,12 @@ abstract class _$$_CreateWalletStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title, String discription, String balance, String currency});
+      {String name,
+      String wallet,
+      String title,
+      String discription,
+      String balance,
+      Currency currency});
 }
 
 /// @nodoc
@@ -924,12 +1143,22 @@ class __$$_CreateWalletStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
+    Object? wallet = null,
     Object? title = null,
     Object? discription = null,
     Object? balance = null,
     Object? currency = null,
   }) {
     return _then(_$_CreateWalletState(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      wallet: null == wallet
+          ? _value.wallet
+          : wallet // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -945,7 +1174,7 @@ class __$$_CreateWalletStateCopyWithImpl<$Res>
       currency: null == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Currency,
     ));
   }
 }
@@ -954,11 +1183,17 @@ class __$$_CreateWalletStateCopyWithImpl<$Res>
 
 class _$_CreateWalletState implements _CreateWalletState {
   const _$_CreateWalletState(
-      {required this.title,
+      {required this.name,
+      required this.wallet,
+      required this.title,
       required this.discription,
       required this.balance,
       required this.currency});
 
+  @override
+  final String name;
+  @override
+  final String wallet;
   @override
   final String title;
   @override
@@ -966,11 +1201,11 @@ class _$_CreateWalletState implements _CreateWalletState {
   @override
   final String balance;
   @override
-  final String currency;
+  final Currency currency;
 
   @override
   String toString() {
-    return 'CreateWalletState(title: $title, discription: $discription, balance: $balance, currency: $currency)';
+    return 'CreateWalletState(name: $name, wallet: $wallet, title: $title, discription: $discription, balance: $balance, currency: $currency)';
   }
 
   @override
@@ -978,6 +1213,8 @@ class _$_CreateWalletState implements _CreateWalletState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CreateWalletState &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.wallet, wallet) || other.wallet == wallet) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.discription, discription) ||
                 other.discription == discription) &&
@@ -987,8 +1224,8 @@ class _$_CreateWalletState implements _CreateWalletState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, discription, balance, currency);
+  int get hashCode => Object.hash(
+      runtimeType, name, wallet, title, discription, balance, currency);
 
   @JsonKey(ignore: true)
   @override
@@ -1000,11 +1237,17 @@ class _$_CreateWalletState implements _CreateWalletState {
 
 abstract class _CreateWalletState implements CreateWalletState {
   const factory _CreateWalletState(
-      {required final String title,
+      {required final String name,
+      required final String wallet,
+      required final String title,
       required final String discription,
       required final String balance,
-      required final String currency}) = _$_CreateWalletState;
+      required final Currency currency}) = _$_CreateWalletState;
 
+  @override
+  String get name;
+  @override
+  String get wallet;
   @override
   String get title;
   @override
@@ -1012,7 +1255,7 @@ abstract class _CreateWalletState implements CreateWalletState {
   @override
   String get balance;
   @override
-  String get currency;
+  Currency get currency;
   @override
   @JsonKey(ignore: true)
   _$$_CreateWalletStateCopyWith<_$_CreateWalletState> get copyWith =>

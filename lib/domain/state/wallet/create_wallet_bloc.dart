@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:finance_app/domain/entity/currency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_wallet_bloc.freezed.dart';
@@ -16,23 +17,28 @@ class CreateWalletEvent with _$CreateWalletEvent {
   const factory CreateWalletEvent.updateBalance(String value) =
       UpdateBalanceWalletEvent;
 
-  const factory CreateWalletEvent.updateCurrency(String value) =
+  const factory CreateWalletEvent.updateCurrency(Currency value) =
       UpdateCurrencyWalletEvent;
 
   const factory CreateWalletEvent.saveWallet() = SaveWalletWalletEvent;
+
+  const factory CreateWalletEvent.usdUpdateButton(String value) = UsdUpdateButtonEvent;
+  
 }
 
 @freezed
 class CreateWalletState with _$CreateWalletState {
   const factory CreateWalletState({
+    required String name,
+    required String wallet,
     required String title,
     required String discription,
     required String balance,
-    required String currency,
+    required Currency currency,
   }) = _CreateWalletState;
 
   factory CreateWalletState.initial() => const CreateWalletState(
-      title: '', discription: '', balance: '', currency: 'RUB');
+      title: '', discription: '', balance: '', currency: Currency.rubles, name: '', wallet: '');
 }
 
 class CreateWalletBloc extends Bloc<CreateWalletEvent, CreateWalletState> {
@@ -42,6 +48,7 @@ class CreateWalletBloc extends Bloc<CreateWalletEvent, CreateWalletState> {
     on<UpdateBalanceWalletEvent>(_updateBalance);
     on<UpdateCurrencyWalletEvent>(_updateCurrency);
     on<SaveWalletWalletEvent>(_save);
+    on<UsdUpdateButtonEvent>(_usdUpdateButton);
   }
   Future<void> _upadateTitle(
       UpdateTitleWalletEvent event, Emitter<CreateWalletState> emit) async {
@@ -69,5 +76,10 @@ class CreateWalletBloc extends Bloc<CreateWalletEvent, CreateWalletState> {
     final title = state.title;
     final des = state.discription;
     final balance = state.balance;
+  }
+
+  Future<void> _usdUpdateButton(
+      UsdUpdateButtonEvent event, Emitter<CreateWalletState> emit) async {
+    emit(state.copyWith(name: event.value, wallet: event.value));
   }
 }

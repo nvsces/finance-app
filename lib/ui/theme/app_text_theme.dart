@@ -36,6 +36,11 @@ class AppTextStyle {
         color: Colors.white,
         fontSize: 16,
       );
+  static TextStyle get walletButtonText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w500,
+        color: Colors.white,
+        fontSize: 16,
+      );
 
   static TextStyle get mainBoldText => _baseFonts.copyWith(
         fontWeight: FontWeight.w900,
