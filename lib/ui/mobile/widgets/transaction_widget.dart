@@ -20,7 +20,7 @@ class TransactionWidget extends StatelessWidget {
             children: [
               CircleAvatar(
                 child: SvgPicture.asset(
-                  Svgs.iconShopping,
+                  Svgs.iconShopping, // icon shop
                 ),
               ),
               const SizedBox(width: 16),

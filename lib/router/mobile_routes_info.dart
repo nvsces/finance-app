@@ -10,6 +10,8 @@ import 'package:finance_app/ui/mobile/pages/login_page.dart';
 import 'package:finance_app/ui/mobile/widgets/bottom_nav_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../ui/mobile/pages/create_walet_page.dart';
+import '../ui/mobile/pages/transaction_page.dart';
 import '../ui/mobile/pages/upload_file_page.dart';
 import 'abstract_routes_info.dart';
 import 'mobile_routes.dart';

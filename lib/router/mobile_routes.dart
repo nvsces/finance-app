@@ -10,6 +10,7 @@ enum MobileRoutes {
   home,
   subscription,
   transaction,
+  createWalet,
   account,;
 
   static MobileRoutes? fromName(String? name) {

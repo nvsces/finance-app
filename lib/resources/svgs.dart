@@ -22,4 +22,12 @@ class Svgs {
   static const SvgAsset iconGbr = 'assets/svg/icon_gbr.svg';
   static const SvgAsset iconEur = 'assets/svg/icon_eur.svg';
   static const SvgAsset iconJenaYuan = 'assets/svg/icon_jena_yuan.svg';
+
+  static const SvgAsset icMenuTransactionDefault =
+      'assets/svg/ic_menu_transaction_default.svg';
+  static const SvgAsset icMenuTransactionSolid =
+      'assets/svg/ic_menu_transaction_solid.svg';
+
+  static const SvgAsset iconShopping =
+      'assets/svg/icon_transaction.svg';
 }

@@ -107,8 +107,8 @@ class BottomNavScaffold extends StatelessWidget {
         ),
         _BottomNavBarItem(
           route: MobileRoutes.transaction,
-          defaultIcon: Svgs.icMenuTransactionDefault,
-          selectedIcon: Svgs.icMenuTransactionSolid,
+          defaultIcon: Svgs.icMenuTransactionDefault, // icMenuTransactionDefault
+          selectedIcon: Svgs.icMenuTransactionSolid, // icMenuTransactionSolid
         ),
         _BottomNavBarItem(
           route: MobileRoutes.account,
