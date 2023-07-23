@@ -4,7 +4,6 @@ import 'package:finance_app/router/app_router.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/mobile/pages/account_page.dart';
 import 'package:finance_app/ui/mobile/pages/auth_page.dart';
-import 'package:finance_app/ui/mobile/pages/calendar_page.dart';
 import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
 import 'package:finance_app/ui/mobile/pages/edit_sub_page.dart';
 import 'package:finance_app/ui/mobile/pages/home_page.dart';
@@ -47,12 +46,6 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           path: MobileRoutes.upload.path,
           name: MobileRoutes.upload.name,
           builder: (context, state) => const UploadFilePage(),
-        ),
-         GoRoute(
-          parentNavigatorKey: AppRouter.rootNavigatorKey,
-          path: MobileRoutes.calendar.path,
-          name: MobileRoutes.calendar.name,
-          builder: (context, state) => const CalendarPage(),
         ),
         GoRoute(
           parentNavigatorKey: AppRouter.rootNavigatorKey,

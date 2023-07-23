@@ -9,7 +9,6 @@ enum MobileRoutes {
   login,
   home,
   subscription,
-  calendar,
   transaction,
   account,;
 
