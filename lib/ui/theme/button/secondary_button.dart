@@ -1,6 +1,7 @@
 import 'package:finance_app/extensions/build_context_ext.dart';
-import 'package:finance_app/ui/theme/button/app_button_base.dart';
 import 'package:flutter/material.dart';
+
+import 'app_button_base.dart';
 
 class SecondaryButton extends StatelessWidget {
   final String label;

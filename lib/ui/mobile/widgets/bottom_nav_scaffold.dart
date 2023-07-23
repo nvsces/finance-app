@@ -31,7 +31,7 @@ class BottomNavScaffold extends StatelessWidget {
           child: FloatingActionButton(
             elevation: 0.0,
             onPressed: () {
-              context.pushReplacement(MobileRoutes.upload.path);
+              context.pushReplacement((MobileRoutes.createWalet.path));
             },
             backgroundColor: context.colors.mainElement,
             child: Icon(
@@ -87,7 +87,7 @@ class BottomNavScaffold extends StatelessWidget {
             width: 56,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(14.5),
-                color: context.colors.mainElement,),
+                color: context.colors.mainElement),
           ),
           SvgPicture.asset(
             item.selectedIcon,
@@ -107,8 +107,8 @@ class BottomNavScaffold extends StatelessWidget {
         ),
         _BottomNavBarItem(
           route: MobileRoutes.transaction,
-          defaultIcon: Svgs.icMenuTransactionDefault,
-          selectedIcon: Svgs.icMenuTransactionSolid,
+          defaultIcon: Svgs.icMenuTransactionDefault, // icMenuTransactionDefault
+          selectedIcon: Svgs.icMenuTransactionSolid, // icMenuTransactionSolid
         ),
         _BottomNavBarItem(
           route: MobileRoutes.account,

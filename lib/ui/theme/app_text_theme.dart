@@ -11,10 +11,35 @@ class AppTextStyle {
         fontSize: 20,
       );
 
-    static TextStyle get mainNormalText => _baseFonts.copyWith(
+  static TextStyle get mainNormalText => _baseFonts.copyWith(
         fontWeight: FontWeight.w500,
         color: AppColors.mainText,
         fontSize: 20,
+      );
+  static TextStyle get createWaletText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w600,
+        color: AppColors.mainText,
+        fontSize: 32,
+      );
+  static TextStyle get balanceWaletText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w500,
+        color: Colors.white,
+        fontSize: 20,
+      );
+  static TextStyle get titleWaletText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w700,
+        color: Colors.white,
+        fontSize: 24,
+      );
+  static TextStyle get descriptionWaletText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w400,
+        color: Colors.white,
+        fontSize: 16,
+      );
+  static TextStyle get walletButtonText => _baseFonts.copyWith(
+        fontWeight: FontWeight.w500,
+        color: Colors.white,
+        fontSize: 16,
       );
 
   static TextStyle get mainBoldText => _baseFonts.copyWith(
@@ -22,20 +47,21 @@ class AppTextStyle {
         fontSize: 24,
         color: AppColors.mainText,
       );
+
   static TextStyle get mainLigthText => _baseFonts.copyWith(
         fontWeight: FontWeight.w500,
         fontSize: 12,
         color: AppColors.mainText,
       );
 
-    static TextStyle get secondaryText => _baseFonts.copyWith(
-        fontWeight: FontWeight.w500,
-        fontSize: 12,
-        color: AppColors.secondaryText,
-      );  
+  static TextStyle get secondaryText => _baseFonts.copyWith(
+      fontWeight: FontWeight.w500,
+      fontSize: 12,
+      color: AppColors.secondaryText);
+
     static TextStyle get transactionText => _baseFonts.copyWith(
         fontWeight: FontWeight.w400,
         color: AppColors.mainText,
         fontSize: 16,
-      );  
+      );
 }

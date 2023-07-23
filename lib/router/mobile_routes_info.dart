@@ -1,20 +1,20 @@
 import 'package:finance_app/data/models/transaction.dart';
-import 'package:finance_app/router/abstract_routes_info.dart';
 import 'package:finance_app/router/app_router.dart';
-import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/mobile/pages/account_page.dart';
 import 'package:finance_app/ui/mobile/pages/auth_page.dart';
-import 'package:finance_app/ui/mobile/pages/calendar_page.dart';
 import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
 import 'package:finance_app/ui/mobile/pages/edit_sub_page.dart';
 import 'package:finance_app/ui/mobile/pages/home_page.dart';
-import 'package:finance_app/ui/mobile/pages/login_page.dart';
 import 'package:finance_app/ui/mobile/pages/subscriptions_page.dart';
-import 'package:finance_app/ui/mobile/pages/transaction_page.dart';
-import 'package:finance_app/ui/mobile/pages/upload_file_page.dart';
+import 'package:finance_app/ui/mobile/pages/login_page.dart';
 import 'package:finance_app/ui/mobile/widgets/bottom_nav_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../ui/mobile/pages/create_walet_page.dart';
+import '../ui/mobile/pages/transaction_page.dart';
+import '../ui/mobile/pages/upload_file_page.dart';
+import 'abstract_routes_info.dart';
+import 'mobile_routes.dart';
 
 class MobileRoutesInfo implements AbstractRoutesInfo {
   final GlobalKey<NavigatorState> _shellNavigatorKey =
@@ -48,32 +48,31 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           name: MobileRoutes.upload.name,
           builder: (context, state) => const UploadFilePage(),
         ),
-         GoRoute(
+        GoRoute(
           parentNavigatorKey: AppRouter.rootNavigatorKey,
-          path: MobileRoutes.calendar.path,
-          name: MobileRoutes.calendar.name,
-          builder: (context, state) => const CalendarPage(),
+          path: MobileRoutes.createWalet.path,
+          name: MobileRoutes.createWalet.name,
+          builder: (context, state) => const CreateWaletPage(),
         ),
         GoRoute(
           parentNavigatorKey: AppRouter.rootNavigatorKey,
           path: MobileRoutes.detailCategory.path,
           name: MobileRoutes.detailCategory.name,
           builder: (context, state) => DetailCategoryPage(
-           
-            transactions: state.extra! as List<Transaction>,
+            transactions: state.extra as List<Transaction>,
           ),
         ),
         GoRoute(
             path: '${MobileRoutes.auth.path}/:code',
             name: MobileRoutes.auth.name,
             builder: (context, state) {
-          
-              final String? code = state.pathParameters['code'];
-              debugPrint(code);
+              print('GoRoute AuthPage');
+              final code = state.pathParameters['code'];
+              print(code);
               return AuthPage(
-                code: code!,
+                code: state.pathParameters['code'] as String,
               );
-            },),
+            }),
         ShellRoute(
           navigatorKey: _shellNavigatorKey,
           builder: (context, state, child) {
