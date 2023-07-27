@@ -13,9 +13,15 @@ class ApiHandler {
 
   ApiHandler(this.dio);
 
-  Future<List<Transaction>> getExpenses() async {
+  Future<List<Transaction>> getExpenses(DateTime? start, DateTime? end) async {
+    final queryEnd = end == null
+        ? DateTime.now().millisecondsSinceEpoch
+        : end.millisecondsSinceEpoch;
+
+    final queryStart = start == null ? 0 : start.millisecondsSinceEpoch;
+
     final response = await dio.get<Map<String, dynamic>>(
-      '$hostUrl/transaction?start=0&end=16828720730000&enabled=true',
+      '$hostUrl/transaction?start=$queryStart&end=$queryEnd&enabled=true',
     );
 
     final data = response.data?['transactions'] as List;

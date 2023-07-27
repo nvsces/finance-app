@@ -79,7 +79,11 @@ class AppTextStyle {
 
   static TextStyle get transactionText => _baseFonts.copyWith(
         fontWeight: FontWeight.w500,
-        color: AppColors.navigationAndPanels,
-        fontSize: 8,
+        fontSize: 16,
+      );
+
+  static TextStyle get defaultTypeset => _baseFonts.copyWith(
+        fontWeight: FontWeight.w400,
+        fontSize: 12,
       );
 }

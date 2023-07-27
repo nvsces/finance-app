@@ -19,32 +19,38 @@ mixin _$ExpensesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(TransactionFilter filter) setFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(TransactionFilter filter)? setFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(TransactionFilter filter)? setFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadExpensesEvent value) load,
+    required TResult Function(SetFilterExpensesEvent value) setFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadExpensesEvent value)? load,
+    TResult? Function(SetFilterExpensesEvent value)? setFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadExpensesEvent value)? load,
+    TResult Function(SetFilterExpensesEvent value)? setFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(TransactionFilter filter) setFilter,
   }) {
     return load();
   }
@@ -115,6 +122,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(TransactionFilter filter)? setFilter,
   }) {
     return load?.call();
   }
@@ -123,6 +131,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(TransactionFilter filter)? setFilter,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -135,6 +144,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadExpensesEvent value) load,
+    required TResult Function(SetFilterExpensesEvent value) setFilter,
   }) {
     return load(this);
   }
@@ -143,6 +153,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadExpensesEvent value)? load,
+    TResult? Function(SetFilterExpensesEvent value)? setFilter,
   }) {
     return load?.call(this);
   }
@@ -151,6 +162,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadExpensesEvent value)? load,
+    TResult Function(SetFilterExpensesEvent value)? setFilter,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -166,9 +178,146 @@ abstract class LoadExpensesEvent extends ExpensesEvent {
 }
 
 /// @nodoc
+abstract class _$$SetFilterExpensesEventCopyWith<$Res> {
+  factory _$$SetFilterExpensesEventCopyWith(_$SetFilterExpensesEvent value,
+          $Res Function(_$SetFilterExpensesEvent) then) =
+      __$$SetFilterExpensesEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TransactionFilter filter});
+}
+
+/// @nodoc
+class __$$SetFilterExpensesEventCopyWithImpl<$Res>
+    extends _$ExpensesEventCopyWithImpl<$Res, _$SetFilterExpensesEvent>
+    implements _$$SetFilterExpensesEventCopyWith<$Res> {
+  __$$SetFilterExpensesEventCopyWithImpl(_$SetFilterExpensesEvent _value,
+      $Res Function(_$SetFilterExpensesEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_$SetFilterExpensesEvent(
+      null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as TransactionFilter,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetFilterExpensesEvent extends SetFilterExpensesEvent {
+  const _$SetFilterExpensesEvent(this.filter) : super._();
+
+  @override
+  final TransactionFilter filter;
+
+  @override
+  String toString() {
+    return 'ExpensesEvent.setFilter(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetFilterExpensesEvent &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetFilterExpensesEventCopyWith<_$SetFilterExpensesEvent> get copyWith =>
+      __$$SetFilterExpensesEventCopyWithImpl<_$SetFilterExpensesEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(TransactionFilter filter) setFilter,
+  }) {
+    return setFilter(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(TransactionFilter filter)? setFilter,
+  }) {
+    return setFilter?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(TransactionFilter filter)? setFilter,
+    required TResult orElse(),
+  }) {
+    if (setFilter != null) {
+      return setFilter(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadExpensesEvent value) load,
+    required TResult Function(SetFilterExpensesEvent value) setFilter,
+  }) {
+    return setFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadExpensesEvent value)? load,
+    TResult? Function(SetFilterExpensesEvent value)? setFilter,
+  }) {
+    return setFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadExpensesEvent value)? load,
+    TResult Function(SetFilterExpensesEvent value)? setFilter,
+    required TResult orElse(),
+  }) {
+    if (setFilter != null) {
+      return setFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetFilterExpensesEvent extends ExpensesEvent {
+  const factory SetFilterExpensesEvent(final TransactionFilter filter) =
+      _$SetFilterExpensesEvent;
+  const SetFilterExpensesEvent._() : super._();
+
+  TransactionFilter get filter;
+  @JsonKey(ignore: true)
+  _$$SetFilterExpensesEventCopyWith<_$SetFilterExpensesEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ExpensesState {
   List<Transaction> get transactions => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  TransactionFilter get filter => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ExpensesStateCopyWith<ExpensesState> get copyWith =>
@@ -181,7 +330,10 @@ abstract class $ExpensesStateCopyWith<$Res> {
           ExpensesState value, $Res Function(ExpensesState) then) =
       _$ExpensesStateCopyWithImpl<$Res, ExpensesState>;
   @useResult
-  $Res call({List<Transaction> transactions, bool isLoading});
+  $Res call(
+      {List<Transaction> transactions,
+      bool isLoading,
+      TransactionFilter filter});
 }
 
 /// @nodoc
@@ -199,6 +351,7 @@ class _$ExpensesStateCopyWithImpl<$Res, $Val extends ExpensesState>
   $Res call({
     Object? transactions = null,
     Object? isLoading = null,
+    Object? filter = null,
   }) {
     return _then(_value.copyWith(
       transactions: null == transactions
@@ -209,6 +362,10 @@ class _$ExpensesStateCopyWithImpl<$Res, $Val extends ExpensesState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as TransactionFilter,
     ) as $Val);
   }
 }
@@ -221,7 +378,10 @@ abstract class _$$_ExpensesStateCopyWith<$Res>
       __$$_ExpensesStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Transaction> transactions, bool isLoading});
+  $Res call(
+      {List<Transaction> transactions,
+      bool isLoading,
+      TransactionFilter filter});
 }
 
 /// @nodoc
@@ -237,6 +397,7 @@ class __$$_ExpensesStateCopyWithImpl<$Res>
   $Res call({
     Object? transactions = null,
     Object? isLoading = null,
+    Object? filter = null,
   }) {
     return _then(_$_ExpensesState(
       transactions: null == transactions
@@ -247,6 +408,10 @@ class __$$_ExpensesStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as TransactionFilter,
     ));
   }
 }
@@ -255,7 +420,9 @@ class __$$_ExpensesStateCopyWithImpl<$Res>
 
 class _$_ExpensesState implements _ExpensesState {
   const _$_ExpensesState(
-      {required final List<Transaction> transactions, required this.isLoading})
+      {required final List<Transaction> transactions,
+      required this.isLoading,
+      required this.filter})
       : _transactions = transactions;
 
   final List<Transaction> _transactions;
@@ -268,10 +435,12 @@ class _$_ExpensesState implements _ExpensesState {
 
   @override
   final bool isLoading;
+  @override
+  final TransactionFilter filter;
 
   @override
   String toString() {
-    return 'ExpensesState(transactions: $transactions, isLoading: $isLoading)';
+    return 'ExpensesState(transactions: $transactions, isLoading: $isLoading, filter: $filter)';
   }
 
   @override
@@ -282,12 +451,13 @@ class _$_ExpensesState implements _ExpensesState {
             const DeepCollectionEquality()
                 .equals(other._transactions, _transactions) &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            (identical(other.filter, filter) || other.filter == filter));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_transactions), isLoading);
+      const DeepCollectionEquality().hash(_transactions), isLoading, filter);
 
   @JsonKey(ignore: true)
   @override
@@ -299,12 +469,15 @@ class _$_ExpensesState implements _ExpensesState {
 abstract class _ExpensesState implements ExpensesState {
   const factory _ExpensesState(
       {required final List<Transaction> transactions,
-      required final bool isLoading}) = _$_ExpensesState;
+      required final bool isLoading,
+      required final TransactionFilter filter}) = _$_ExpensesState;
 
   @override
   List<Transaction> get transactions;
   @override
   bool get isLoading;
+  @override
+  TransactionFilter get filter;
   @override
   @JsonKey(ignore: true)
   _$$_ExpensesStateCopyWith<_$_ExpensesState> get copyWith =>

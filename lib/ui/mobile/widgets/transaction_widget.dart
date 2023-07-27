@@ -1,4 +1,5 @@
 import 'package:finance_app/data/models/transaction.dart';
+import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 class TransactionWidget extends StatelessWidget {
   final Transaction transaction;
   const TransactionWidget({
-    super.key, required this.transaction,
+    super.key,
+    required this.transaction,
   });
 
   @override
@@ -24,15 +26,27 @@ class TransactionWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 16),
-              SizedBox(width: 100, child: Text(transaction.name, style: AppTextStyle.transactionText)),
+              Expanded(
+                child: Text(
+                  transaction.name,
+                  style: AppTextStyle.transactionText.copyWith(
+                    color: context.colors.black,
+                  ),
+                ),
+              ),
               const Spacer(),
               Text(
                 '${transaction.value}₽',
-                style: AppTextStyle.transactionText,
+                style: AppTextStyle.transactionText.copyWith(
+                  color: context.colors.black,
+                ),
               )
             ],
           ),
-        const SizedBox(height: 16,)],
+          const SizedBox(
+            height: 16,
+          )
+        ],
       ),
     );
   }

@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:finance_app/data/models/wallet.dart';
+import 'package:finance_app/data/repositiries/finance/finance_repositiry.dart';
 import 'package:finance_app/domain/entity/currency.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -22,8 +24,8 @@ class CreateWalletEvent with _$CreateWalletEvent {
 
   const factory CreateWalletEvent.saveWallet() = SaveWalletWalletEvent;
 
-  const factory CreateWalletEvent.usdUpdateButton(String value) = UsdUpdateButtonEvent;
-  
+  const factory CreateWalletEvent.usdUpdateButton(String value) =
+      UsdUpdateButtonEvent;
 }
 
 @freezed
@@ -35,14 +37,24 @@ class CreateWalletState with _$CreateWalletState {
     required String discription,
     required String balance,
     required Currency currency,
+    required bool finish,
   }) = _CreateWalletState;
 
   factory CreateWalletState.initial() => const CreateWalletState(
-      title: '', discription: '', balance: '', currency: Currency.rubles, name: '', wallet: '');
+        title: '',
+        discription: '',
+        balance: '',
+        currency: Currency.rubles,
+        name: '',
+        wallet: '',
+        finish: false,
+      );
 }
 
 class CreateWalletBloc extends Bloc<CreateWalletEvent, CreateWalletState> {
-  CreateWalletBloc() : super(CreateWalletState.initial()) {
+  final AbstractFinanceRepository financeRepository;
+  CreateWalletBloc(this.financeRepository)
+      : super(CreateWalletState.initial()) {
     on<UpdateTitleWalletEvent>(_upadateTitle);
     on<UpdateDiscriptionWalletEvent>(_updateDescription);
     on<UpdateBalanceWalletEvent>(_updateBalance);
@@ -72,10 +84,22 @@ class CreateWalletBloc extends Bloc<CreateWalletEvent, CreateWalletState> {
   }
 
   Future<void> _save(
-      SaveWalletWalletEvent event, Emitter<CreateWalletState> emit) async {
+    SaveWalletWalletEvent event,
+    Emitter<CreateWalletState> emit,
+  ) async {
     final title = state.title;
     final des = state.discription;
-    final balance = state.balance;
+    final balance = double.parse(state.balance);
+
+    await financeRepository.addWallet(
+      Wallet(
+        title: title,
+        description: des,
+        balance: balance,
+        currency: state.currency.name,
+      ),
+    );
+    emit(state.copyWith(finish: true));
   }
 
   Future<void> _usdUpdateButton(

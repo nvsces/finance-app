@@ -1,8 +1,10 @@
 import 'package:dotted_border/dotted_border.dart';
+import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
@@ -39,9 +41,11 @@ class CreateWalletStartWidget extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             GestureDetector(
-              onTap:()  {
-              context.push((MobileRoutes.createWalet.path));
-            },
+              onTap: () {
+                context.push(MobileRoutes.createWalet.path).then((value) {
+                  context.read<WalletBloc>().add(const WalletEvent.read());
+                });
+              },
               child: SizedBox(
                 height: 168,
                 width: 280,

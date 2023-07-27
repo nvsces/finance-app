@@ -1045,6 +1045,7 @@ mixin _$CreateWalletState {
   String get discription => throw _privateConstructorUsedError;
   String get balance => throw _privateConstructorUsedError;
   Currency get currency => throw _privateConstructorUsedError;
+  bool get finish => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CreateWalletStateCopyWith<CreateWalletState> get copyWith =>
@@ -1063,7 +1064,8 @@ abstract class $CreateWalletStateCopyWith<$Res> {
       String title,
       String discription,
       String balance,
-      Currency currency});
+      Currency currency,
+      bool finish});
 }
 
 /// @nodoc
@@ -1085,6 +1087,7 @@ class _$CreateWalletStateCopyWithImpl<$Res, $Val extends CreateWalletState>
     Object? discription = null,
     Object? balance = null,
     Object? currency = null,
+    Object? finish = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -1111,6 +1114,10 @@ class _$CreateWalletStateCopyWithImpl<$Res, $Val extends CreateWalletState>
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as Currency,
+      finish: null == finish
+          ? _value.finish
+          : finish // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -1129,7 +1136,8 @@ abstract class _$$_CreateWalletStateCopyWith<$Res>
       String title,
       String discription,
       String balance,
-      Currency currency});
+      Currency currency,
+      bool finish});
 }
 
 /// @nodoc
@@ -1149,6 +1157,7 @@ class __$$_CreateWalletStateCopyWithImpl<$Res>
     Object? discription = null,
     Object? balance = null,
     Object? currency = null,
+    Object? finish = null,
   }) {
     return _then(_$_CreateWalletState(
       name: null == name
@@ -1175,6 +1184,10 @@ class __$$_CreateWalletStateCopyWithImpl<$Res>
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as Currency,
+      finish: null == finish
+          ? _value.finish
+          : finish // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1188,7 +1201,8 @@ class _$_CreateWalletState implements _CreateWalletState {
       required this.title,
       required this.discription,
       required this.balance,
-      required this.currency});
+      required this.currency,
+      required this.finish});
 
   @override
   final String name;
@@ -1202,10 +1216,12 @@ class _$_CreateWalletState implements _CreateWalletState {
   final String balance;
   @override
   final Currency currency;
+  @override
+  final bool finish;
 
   @override
   String toString() {
-    return 'CreateWalletState(name: $name, wallet: $wallet, title: $title, discription: $discription, balance: $balance, currency: $currency)';
+    return 'CreateWalletState(name: $name, wallet: $wallet, title: $title, discription: $discription, balance: $balance, currency: $currency, finish: $finish)';
   }
 
   @override
@@ -1220,12 +1236,13 @@ class _$_CreateWalletState implements _CreateWalletState {
                 other.discription == discription) &&
             (identical(other.balance, balance) || other.balance == balance) &&
             (identical(other.currency, currency) ||
-                other.currency == currency));
+                other.currency == currency) &&
+            (identical(other.finish, finish) || other.finish == finish));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, wallet, title, discription, balance, currency);
+      runtimeType, name, wallet, title, discription, balance, currency, finish);
 
   @JsonKey(ignore: true)
   @override
@@ -1242,7 +1259,8 @@ abstract class _CreateWalletState implements CreateWalletState {
       required final String title,
       required final String discription,
       required final String balance,
-      required final Currency currency}) = _$_CreateWalletState;
+      required final Currency currency,
+      required final bool finish}) = _$_CreateWalletState;
 
   @override
   String get name;
@@ -1256,6 +1274,8 @@ abstract class _CreateWalletState implements CreateWalletState {
   String get balance;
   @override
   Currency get currency;
+  @override
+  bool get finish;
   @override
   @JsonKey(ignore: true)
   _$$_CreateWalletStateCopyWith<_$_CreateWalletState> get copyWith =>

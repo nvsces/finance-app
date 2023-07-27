@@ -1,7 +1,10 @@
+import 'package:finance_app/data/models/wallet.dart';
+import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,29 +23,32 @@ class BottomNavScaffold extends StatelessWidget {
     final currentIndex = currentTabItems
         .indexWhere((element) => element.route.path == currentLocation);
 
+    final hasWallet = context.read<WalletBloc>().state.wallets.isNotEmpty;
+
     return Scaffold(
-      floatingActionButton: Container(
-        decoration: BoxDecoration(
-          color: context.colors.white,
-          shape: BoxShape.circle,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(5),
-          child: FloatingActionButton(
-            elevation: 0.0,
-            onPressed: () {
-              context.push((MobileRoutes.upload.path));
-            },
-            backgroundColor: context.colors.mainElement,
-            child: Icon(
-              Icons.add,
-              color: context.colors.white,
-              size: 40,
-            ),
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: hasWallet
+          ? Container(
+              decoration: BoxDecoration(
+                color: context.colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: FloatingActionButton(
+                  elevation: 0.0,
+                  onPressed: () {
+                    context.push(MobileRoutes.upload.path);
+                  },
+                  backgroundColor: context.colors.mainElement,
+                  child: Icon(
+                    Icons.add,
+                    color: context.colors.white,
+                    size: 40,
+                  ),
+                ),
+              ),
+            )
+          : null,
       body: child,
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
@@ -107,7 +113,8 @@ class BottomNavScaffold extends StatelessWidget {
         ),
         _BottomNavBarItem(
           route: MobileRoutes.transaction,
-          defaultIcon: Svgs.icMenuTransactionDefault, // icMenuTransactionDefault
+          defaultIcon:
+              Svgs.icMenuTransactionDefault, // icMenuTransactionDefault
           selectedIcon: Svgs.icMenuTransactionSolid, // icMenuTransactionSolid
         ),
         _BottomNavBarItem(
