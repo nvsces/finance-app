@@ -28,36 +28,37 @@ class _TransactionCardContent extends StatelessWidget {
   void _showDialog(BuildContext context, TransactionBloc bloc) {
     // ignore: inference_failure_on_function_invocation
     showDialog(
-        context: context,
-        builder: (context) {
-          return BlocProvider<TransactionBloc>.value(
-            value: bloc,
-            child: CupertinoAlertDialog(
-              title: const Text('Выберите действие'),
-              actions: [
-                CupertinoDialogAction(
-                  child: const Text('Не учитывать'),
-                  onPressed: () {
-                    bloc.add(const TransactionEvent.disabled());
-                    context.pop();
-                  },
-                ),
-                _AddCommentWidget(
-                  action: (comment) {
-                    bloc.add(TransactionEvent.addComment(comment: comment));
-                    context.pop();
-                  },
-                ),
-                CupertinoDialogAction(
-                  onPressed: () {
-                    context.pop();
-                  },
-                  child: const Text('Отменить'),
-                )
-              ],
-            ),
-          );
-        },);
+      context: context,
+      builder: (context) {
+        return BlocProvider<TransactionBloc>.value(
+          value: bloc,
+          child: CupertinoAlertDialog(
+            title: const Text('Выберите действие'),
+            actions: [
+              CupertinoDialogAction(
+                child: const Text('Не учитывать'),
+                onPressed: () {
+                  bloc.add(const TransactionEvent.disabled());
+                  context.pop();
+                },
+              ),
+              _AddCommentWidget(
+                action: (comment) {
+                  bloc.add(TransactionEvent.addComment(comment: comment));
+                  context.pop();
+                },
+              ),
+              CupertinoDialogAction(
+                onPressed: () {
+                  context.pop();
+                },
+                child: const Text('Отменить'),
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -70,7 +71,7 @@ class _TransactionCardContent extends StatelessWidget {
             _showDialog(context, context.read<TransactionBloc>());
           },
           title: Text(transaction.comment ?? transaction.name),
-          subtitle: Text(transaction.category),
+          subtitle: Text(transaction.category.name),
           trailing: Text(transaction.value.toString()),
         );
       },
@@ -106,27 +107,28 @@ class __AddCommentWidgetState extends State<_AddCommentWidget> {
             ),
           if (showInput)
             Material(
-                color: Colors.transparent,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    height: 50.0,
-                    child: TextField(
-                      controller: controller,
-                      decoration: InputDecoration(
-                        hintText: 'Добавить комментарий',
-                        fillColor: Colors.grey,
-                        hoverColor: Colors.transparent,
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            widget.action.call(controller.text);
-                          },
-                          icon: const Icon(Icons.check),
-                        ),
+              color: Colors.transparent,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  height: 50.0,
+                  child: TextField(
+                    controller: controller,
+                    decoration: InputDecoration(
+                      hintText: 'Добавить комментарий',
+                      fillColor: Colors.grey,
+                      hoverColor: Colors.transparent,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          widget.action.call(controller.text);
+                        },
+                        icon: const Icon(Icons.check),
                       ),
                     ),
                   ),
-                ),),
+                ),
+              ),
+            ),
         ],
       ),
       onPressed: () {

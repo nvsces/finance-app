@@ -1,6 +1,7 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/entity/bank_enum.dart';
 import 'package:finance_app/domain/state/upload_file/upload_file_bloc.dart';
+import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/resources/jpgs.dart';
 import 'package:finance_app/resources/svgs.dart';
@@ -18,11 +19,17 @@ class UploadFilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) =>
-            injector.get<UploadFileBloc>()..add(const UploadFileEvent.init()),
-        child:  const Scaffold(
-          body: _UploadFileContent(),
-        ),);
+      create: (context) {
+        final wallets = context.read<WalletBloc>().state.wallets;
+        final walletId = wallets.isEmpty ? -1 : wallets.first.id!;
+        return injector.get<UploadFileBloc>()
+          ..add(const UploadFileEvent.init())
+          ..add(UploadFileEvent.setWalletId(walletId: walletId));
+      },
+      child: const Scaffold(
+        body: _UploadFileContent(),
+      ),
+    );
   }
 }
 
@@ -54,87 +61,95 @@ class _UploadFileContent extends StatelessWidget {
                     style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
                   ),
                 ),
-
-
-
-          )],
+              )
+            ],
           ),
           Expanded(
             child: BlocListener<UploadFileBloc, UploadFileState>(
-                listener: (context, state) {
-                  if (state.result is FailureUploadFileState) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content:
-                            Text(context.localization.uploadSnackBarFailur),),);
-                  }
-                  if (state.result is SuccessUploadFileState) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content:
-                            Text(context.localization.uploadSnackBarComplit),),);
-                    context.pop();
-                  }
-                },
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(Svgs.iconInfo),
-                              const SizedBox(
-                                width: 20,
+              listener: (context, state) {
+                if (state.result is FailureUploadFileState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(context.localization.uploadSnackBarFailur),
+                    ),
+                  );
+                }
+                if (state.result is SuccessUploadFileState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(context.localization.uploadSnackBarComplit),
+                    ),
+                  );
+                  context.pop();
+                }
+              },
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(Svgs.iconInfo),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            SizedBox(
+                              width: 300,
+                              child: Text(
+                                context.localization.uploadInfo,
+                                style: AppTextStyle.mainNormalText,
                               ),
-                              SizedBox(
-                                  width: 300,
-                                  child: Text(
-                                    context.localization.uploadInfo,
-                                    style: AppTextStyle.mainNormalText,
-                                  ),),
-                            ],
-                          ),
-                          const SizedBox(
-                              height: 150, child:  SelectBankWidget(),),
-                          Divider(
-                            color: context.colors.mainElement,
-                            thickness: 2,
-                          ),
-                          BlocBuilder<UploadFileBloc, UploadFileState>(
-                              builder: (context, state) {
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 150,
+                          child: SelectBankWidget(),
+                        ),
+                        Divider(
+                          color: context.colors.mainElement,
+                          thickness: 2,
+                        ),
+                        BlocBuilder<UploadFileBloc, UploadFileState>(
+                          builder: (context, state) {
                             if (state.result is FailureUploadFileState) {}
                             if (state.result is SuccessUploadFileState) {
                               return Text(state.fileName);
                             }
                             return const SizedBox.shrink();
-                          },)
-                        ],
+                          },
+                        )
+                      ],
+                    ),
+                  ),
+                  Center(
+                    child: BlocBuilder<UploadFileBloc, UploadFileState>(
+                      builder: (context, state) => SizedBox(
+                        height: 40,
+                        width: 200,
+                        child: MainButton.normal(
+                          label: context.localization.uploadButton,
+                          enabled: state.isSelected,
+                          onTap: () {
+                            if (!state.isSelected) {
+                              return;
+                            }
+                            context
+                                .read<UploadFileBloc>()
+                                .add(const UploadFileEvent.create());
+                          },
+                        ),
                       ),
                     ),
-                    Center(
-                      child: BlocBuilder<UploadFileBloc, UploadFileState>(
-                          builder: (context, state) => SizedBox(
-                                height: 40,
-                                width: 200,
-                                child: MainButton.normal(
-                                  label: context.localization.uploadButton,
-                                  enabled: state.isSelected,
-                                  onTap: () {
-                                    if (!state.isSelected) {
-                                      return;
-                                    }
-                                    context
-                                        .read<UploadFileBloc>()
-                                        .add(const UploadFileEvent.create());
-                                  },
-                                ),
-                              ),),
-                    ),
-                  ],
-                ),),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
@@ -152,31 +167,38 @@ class SelectBankWidget extends StatelessWidget {
       context.localization.uploadTink
     ];
     return BlocBuilder<UploadFileBloc, UploadFileState>(
-        builder: (context, state) {
-      return ListView.builder(
+      builder: (context, state) {
+        return ListView.builder(
           itemCount: state.bankList.length,
           itemBuilder: (context, index) {
             final items = state.bankList;
             return CardBankWidget(
-                title: title[index],
-                image: items[index].image,
-                isSelected: index == state.currentBank,
-                onTap: () {
-                  context.read<UploadFileBloc>().add(UploadFileEvent.select(
-                      index: index == state.currentBank ? -1 : index,),);
-                },);
-          },);
-    },);
+              title: title[index],
+              image: items[index].image,
+              isSelected: index == state.currentBank,
+              onTap: () {
+                context.read<UploadFileBloc>().add(
+                      UploadFileEvent.selectBank(
+                        index: index == state.currentBank ? -1 : index,
+                      ),
+                    );
+              },
+            );
+          },
+        );
+      },
+    );
   }
 }
 
 class CardBankWidget extends StatelessWidget {
-  const CardBankWidget(
-      {super.key,
-      required this.title,
-      required this.image,
-      required this.isSelected,
-      required this.onTap,});
+  const CardBankWidget({
+    super.key,
+    required this.title,
+    required this.image,
+    required this.isSelected,
+    required this.onTap,
+  });
 
   final String title;
   final JpgAsset image;
@@ -194,13 +216,14 @@ class CardBankWidget extends StatelessWidget {
         style: AppTextStyle.mainNormalText,
       ),
       trailing: IconButton(
-          onPressed: onTap,
-          icon: isSelected
-              ? Icon(
-                  Icons.radio_button_checked,
-                  color: context.colors.red,
-                )
-              : const Icon(Icons.radio_button_unchecked),),
+        onPressed: onTap,
+        icon: isSelected
+            ? Icon(
+                Icons.radio_button_checked,
+                color: context.colors.red,
+              )
+            : const Icon(Icons.radio_button_unchecked),
+      ),
     );
   }
 }

@@ -1,5 +1,3 @@
-
-
 import 'package:finance_app/data/api/api_handler.dart';
 import 'package:finance_app/domain/entity/bank_enum.dart';
 import 'package:finance_app/utils/app_file_picker.dart';
@@ -16,7 +14,16 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
     on<CreateUploadFileEvent>(_create);
     on<InitUploadFileEvent>(_init);
     on<SelectUploadFileEvent>(_select);
+    on<SetWalletIdUploadFileEvent>(_setWalletId);
   }
+
+  Future<void> _setWalletId(
+    SetWalletIdUploadFileEvent event,
+    Emitter<UploadFileState> emit,
+  ) async {
+    emit(state.copyWith(walletId: event.walletId));
+  }
+
   Future<void> _init(
     InitUploadFileEvent event,
     Emitter<UploadFileState> emit,
@@ -28,9 +35,11 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
     SelectUploadFileEvent event,
     Emitter<UploadFileState> emit,
   ) async {
-    emit(state.copyWith(
-      currentBank: event.index,
-    ),);
+    emit(
+      state.copyWith(
+        currentBank: event.index,
+      ),
+    );
   }
 
   Future<void> _create(
@@ -48,6 +57,7 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
     final result = await apiHandler.uploadFile(
       fileBytes,
       bank,
+      state.walletId,
     );
     if (result == true) {
       emit(
@@ -58,8 +68,12 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
         ),
       );
     } else {
-      emit(state.copyWith(
-          result: const UploadFileResult.failure(), isLoading: false,),);
+      emit(
+        state.copyWith(
+          result: const UploadFileResult.failure(),
+          isLoading: false,
+        ),
+      );
     }
   }
 }

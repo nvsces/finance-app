@@ -1,9 +1,9 @@
-
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/language/language_bloc.dart';
 import 'package:finance_app/domain/state/subscription/subscription_bloc.dart';
+import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/router/app_router.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_dark_theme.dart';
@@ -74,10 +74,13 @@ List<BlocProvider> _globalBlocs() {
     ),
     BlocProvider<LanguageBloc>(
       create: (context) => LanguageBloc(),
+    ),
+    BlocProvider<WalletBloc>(
+      create: (context) =>
+          injector.get<WalletBloc>()..add(const WalletEvent.read()),
     )
   ];
 }
-
 
 // ignore: strict_raw_type
 List<BlocListener> _globalListeners() {

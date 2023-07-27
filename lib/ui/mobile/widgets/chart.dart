@@ -151,11 +151,11 @@ class ChartWidget extends StatelessWidget {
 
   Map<String, List<Transaction>> groupBy(List<Transaction> transactions) {
     final result = <String, List<Transaction>>{};
-    for (var tr in transactions) {
-      if (result[tr.category] == null) {
-        result[tr.category] = [];
+    for (final tr in transactions) {
+      if (result[tr.category.name] == null) {
+        result[tr.category.name] = [];
       }
-      result[tr.category]?.add(tr);
+      result[tr.category.name]?.add(tr);
     }
     return result;
   }

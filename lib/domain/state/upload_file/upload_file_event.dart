@@ -8,5 +8,9 @@ class UploadFileEvent with _$UploadFileEvent {
 
   const factory UploadFileEvent.init() = InitUploadFileEvent;
 
-   const factory UploadFileEvent.select({required int index}) = SelectUploadFileEvent;
+  const factory UploadFileEvent.selectBank({required int index}) =
+      SelectUploadFileEvent;
+
+  const factory UploadFileEvent.setWalletId({required int walletId}) =
+      SetWalletIdUploadFileEvent;
 }

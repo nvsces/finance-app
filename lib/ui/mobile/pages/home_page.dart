@@ -1,5 +1,6 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
+import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/ui/mobile/pages/income__page.dart';
 import 'package:finance_app/ui/mobile/widgets/calendar/custom_date_range_picker.dart';
@@ -16,7 +17,36 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<ExpensesBloc>(
       create: (context) => injector.get()..add(const LoadExpensesEvent()),
-      child: const _ExpensesContent(),
+      child: const SafeArea(bottom: false, child: _HomeContent()),
+    );
+  }
+}
+
+class _HomeContent extends StatelessWidget {
+  const _HomeContent();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WalletBloc, WalletState>(
+      builder: (context, state) {
+        if (state.wallets.isEmpty) {
+          return const CreateWalletStartWidget();
+        }
+        return Column(
+          children: [
+            Row(
+              children: List.generate(
+                state.wallets.length,
+                (i) => Container(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(state.wallets[i].title),
+                ),
+              ),
+            ),
+            const Expanded(child: _ExpensesContent()),
+          ],
+        );
+      },
     );
   }
 }
@@ -115,7 +145,6 @@ class _ExpensesContentState extends State<_ExpensesContent> {
                   expenses
                       ? ChartWidget(transactions: state.transactions)
                       : const IncomeChart(),
-              CreateWalletStartWidget(),       
               ],
             ),
           ),
