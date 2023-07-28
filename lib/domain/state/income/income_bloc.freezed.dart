@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'expenses_bloc.dart';
+part of 'income_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ExpensesEvent {
+mixin _$IncomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
@@ -34,33 +34,33 @@ mixin _$ExpensesEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadExpensesEvent value) load,
+    required TResult Function(LoadIncomeEvent value) load,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadExpensesEvent value)? load,
+    TResult? Function(LoadIncomeEvent value)? load,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadExpensesEvent value)? load,
+    TResult Function(LoadIncomeEvent value)? load,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ExpensesEventCopyWith<$Res> {
-  factory $ExpensesEventCopyWith(
-          ExpensesEvent value, $Res Function(ExpensesEvent) then) =
-      _$ExpensesEventCopyWithImpl<$Res, ExpensesEvent>;
+abstract class $IncomeEventCopyWith<$Res> {
+  factory $IncomeEventCopyWith(
+          IncomeEvent value, $Res Function(IncomeEvent) then) =
+      _$IncomeEventCopyWithImpl<$Res, IncomeEvent>;
 }
 
 /// @nodoc
-class _$ExpensesEventCopyWithImpl<$Res, $Val extends ExpensesEvent>
-    implements $ExpensesEventCopyWith<$Res> {
-  _$ExpensesEventCopyWithImpl(this._value, this._then);
+class _$IncomeEventCopyWithImpl<$Res, $Val extends IncomeEvent>
+    implements $IncomeEventCopyWith<$Res> {
+  _$IncomeEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -69,35 +69,35 @@ class _$ExpensesEventCopyWithImpl<$Res, $Val extends ExpensesEvent>
 }
 
 /// @nodoc
-abstract class _$$LoadExpensesEventCopyWith<$Res> {
-  factory _$$LoadExpensesEventCopyWith(
-          _$LoadExpensesEvent value, $Res Function(_$LoadExpensesEvent) then) =
-      __$$LoadExpensesEventCopyWithImpl<$Res>;
+abstract class _$$LoadIncomeEventCopyWith<$Res> {
+  factory _$$LoadIncomeEventCopyWith(
+          _$LoadIncomeEvent value, $Res Function(_$LoadIncomeEvent) then) =
+      __$$LoadIncomeEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadExpensesEventCopyWithImpl<$Res>
-    extends _$ExpensesEventCopyWithImpl<$Res, _$LoadExpensesEvent>
-    implements _$$LoadExpensesEventCopyWith<$Res> {
-  __$$LoadExpensesEventCopyWithImpl(
-      _$LoadExpensesEvent _value, $Res Function(_$LoadExpensesEvent) _then)
+class __$$LoadIncomeEventCopyWithImpl<$Res>
+    extends _$IncomeEventCopyWithImpl<$Res, _$LoadIncomeEvent>
+    implements _$$LoadIncomeEventCopyWith<$Res> {
+  __$$LoadIncomeEventCopyWithImpl(
+      _$LoadIncomeEvent _value, $Res Function(_$LoadIncomeEvent) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadExpensesEvent extends LoadExpensesEvent {
-  const _$LoadExpensesEvent() : super._();
+class _$LoadIncomeEvent extends LoadIncomeEvent {
+  const _$LoadIncomeEvent() : super._();
 
   @override
   String toString() {
-    return 'ExpensesEvent.load()';
+    return 'IncomeEvent.load()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadExpensesEvent);
+        (other.runtimeType == runtimeType && other is _$LoadIncomeEvent);
   }
 
   @override
@@ -134,7 +134,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(LoadExpensesEvent value) load,
+    required TResult Function(LoadIncomeEvent value) load,
   }) {
     return load(this);
   }
@@ -142,7 +142,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadExpensesEvent value)? load,
+    TResult? Function(LoadIncomeEvent value)? load,
   }) {
     return load?.call(this);
   }
@@ -150,7 +150,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadExpensesEvent value)? load,
+    TResult Function(LoadIncomeEvent value)? load,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -160,34 +160,34 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   }
 }
 
-abstract class LoadExpensesEvent extends ExpensesEvent {
-  const factory LoadExpensesEvent() = _$LoadExpensesEvent;
-  const LoadExpensesEvent._() : super._();
+abstract class LoadIncomeEvent extends IncomeEvent {
+  const factory LoadIncomeEvent() = _$LoadIncomeEvent;
+  const LoadIncomeEvent._() : super._();
 }
 
 /// @nodoc
-mixin _$ExpensesState {
+mixin _$IncomeState {
   List<Transaction> get transactions => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ExpensesStateCopyWith<ExpensesState> get copyWith =>
+  $IncomeStateCopyWith<IncomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ExpensesStateCopyWith<$Res> {
-  factory $ExpensesStateCopyWith(
-          ExpensesState value, $Res Function(ExpensesState) then) =
-      _$ExpensesStateCopyWithImpl<$Res, ExpensesState>;
+abstract class $IncomeStateCopyWith<$Res> {
+  factory $IncomeStateCopyWith(
+          IncomeState value, $Res Function(IncomeState) then) =
+      _$IncomeStateCopyWithImpl<$Res, IncomeState>;
   @useResult
   $Res call({List<Transaction> transactions, bool isLoading});
 }
 
 /// @nodoc
-class _$ExpensesStateCopyWithImpl<$Res, $Val extends ExpensesState>
-    implements $ExpensesStateCopyWith<$Res> {
-  _$ExpensesStateCopyWithImpl(this._value, this._then);
+class _$IncomeStateCopyWithImpl<$Res, $Val extends IncomeState>
+    implements $IncomeStateCopyWith<$Res> {
+  _$IncomeStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -214,22 +214,22 @@ class _$ExpensesStateCopyWithImpl<$Res, $Val extends ExpensesState>
 }
 
 /// @nodoc
-abstract class _$$_ExpensesStateCopyWith<$Res>
-    implements $ExpensesStateCopyWith<$Res> {
-  factory _$$_ExpensesStateCopyWith(
-          _$_ExpensesState value, $Res Function(_$_ExpensesState) then) =
-      __$$_ExpensesStateCopyWithImpl<$Res>;
+abstract class _$$_IncomeStateCopyWith<$Res>
+    implements $IncomeStateCopyWith<$Res> {
+  factory _$$_IncomeStateCopyWith(
+          _$_IncomeState value, $Res Function(_$_IncomeState) then) =
+      __$$_IncomeStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Transaction> transactions, bool isLoading});
 }
 
 /// @nodoc
-class __$$_ExpensesStateCopyWithImpl<$Res>
-    extends _$ExpensesStateCopyWithImpl<$Res, _$_ExpensesState>
-    implements _$$_ExpensesStateCopyWith<$Res> {
-  __$$_ExpensesStateCopyWithImpl(
-      _$_ExpensesState _value, $Res Function(_$_ExpensesState) _then)
+class __$$_IncomeStateCopyWithImpl<$Res>
+    extends _$IncomeStateCopyWithImpl<$Res, _$_IncomeState>
+    implements _$$_IncomeStateCopyWith<$Res> {
+  __$$_IncomeStateCopyWithImpl(
+      _$_IncomeState _value, $Res Function(_$_IncomeState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -238,7 +238,7 @@ class __$$_ExpensesStateCopyWithImpl<$Res>
     Object? transactions = null,
     Object? isLoading = null,
   }) {
-    return _then(_$_ExpensesState(
+    return _then(_$_IncomeState(
       transactions: null == transactions
           ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
@@ -253,8 +253,8 @@ class __$$_ExpensesStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ExpensesState implements _ExpensesState {
-  const _$_ExpensesState(
+class _$_IncomeState implements _IncomeState {
+  const _$_IncomeState(
       {required final List<Transaction> transactions, required this.isLoading})
       : _transactions = transactions;
 
@@ -271,14 +271,14 @@ class _$_ExpensesState implements _ExpensesState {
 
   @override
   String toString() {
-    return 'ExpensesState(transactions: $transactions, isLoading: $isLoading)';
+    return 'IncomeState(transactions: $transactions, isLoading: $isLoading)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ExpensesState &&
+            other is _$_IncomeState &&
             const DeepCollectionEquality()
                 .equals(other._transactions, _transactions) &&
             (identical(other.isLoading, isLoading) ||
@@ -292,14 +292,14 @@ class _$_ExpensesState implements _ExpensesState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ExpensesStateCopyWith<_$_ExpensesState> get copyWith =>
-      __$$_ExpensesStateCopyWithImpl<_$_ExpensesState>(this, _$identity);
+  _$$_IncomeStateCopyWith<_$_IncomeState> get copyWith =>
+      __$$_IncomeStateCopyWithImpl<_$_IncomeState>(this, _$identity);
 }
 
-abstract class _ExpensesState implements ExpensesState {
-  const factory _ExpensesState(
+abstract class _IncomeState implements IncomeState {
+  const factory _IncomeState(
       {required final List<Transaction> transactions,
-      required final bool isLoading}) = _$_ExpensesState;
+      required final bool isLoading}) = _$_IncomeState;
 
   @override
   List<Transaction> get transactions;
@@ -307,6 +307,6 @@ abstract class _ExpensesState implements ExpensesState {
   bool get isLoading;
   @override
   @JsonKey(ignore: true)
-  _$$_ExpensesStateCopyWith<_$_ExpensesState> get copyWith =>
+  _$$_IncomeStateCopyWith<_$_IncomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }

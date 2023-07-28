@@ -5,7 +5,11 @@ import 'package:finance_app/domain/entity/transaction_filter.dart';
 abstract class AbstractFinanceRepository {
   static TransactionFilter transactionFilter = const TransactionFilter();
 
-  Future<List<Transaction>> getExpenses(DateTime? start, DateTime? end);
+  Future<List<Transaction>> getTransactions(
+    DateTime? start,
+    DateTime? end, {
+    String? type,
+  });
 
   Future<void> addWallet(Wallet wallet);
 }

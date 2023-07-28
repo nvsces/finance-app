@@ -11,6 +11,7 @@ import 'package:finance_app/data/repositiries/wallet/wallet_repository_impl.dart
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
+import 'package:finance_app/domain/state/income/income_bloc.dart';
 import 'package:finance_app/domain/state/upload_file/upload_file_bloc.dart';
 import 'package:finance_app/domain/state/wallet/create_wallet_bloc.dart';
 import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
@@ -67,6 +68,8 @@ Future<void> registerBloc() async {
   );
 
   injector.registerFactory(() => ExpensesBloc(injector.get()));
+
+  injector.registerFactory(() => IncomeBloc(injector.get()));
 
   injector.registerFactory(() => LoginCubit(injector.get()));
 

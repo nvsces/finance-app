@@ -5,7 +5,4 @@ class ExpensesEvent with _$ExpensesEvent {
   const ExpensesEvent._();
 
   const factory ExpensesEvent.load() = LoadExpensesEvent;
-
-  const factory ExpensesEvent.setFilter(TransactionFilter filter) =
-      SetFilterExpensesEvent;
 }

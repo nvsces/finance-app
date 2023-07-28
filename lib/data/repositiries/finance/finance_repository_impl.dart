@@ -11,8 +11,12 @@ class FinanceRepository implements AbstractFinanceRepository {
   FinanceRepository(this.apiHandler);
 
   @override
-  Future<List<Transaction>> getExpenses(DateTime? start, DateTime? end) async {
-    return apiHandler.getExpenses(start, end);
+  Future<List<Transaction>> getTransactions(
+    DateTime? start,
+    DateTime? end, {
+    String? type,
+  }) async {
+    return apiHandler.getTransactions(start, end, type);
   }
 
   @override

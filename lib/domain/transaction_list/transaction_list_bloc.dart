@@ -33,7 +33,7 @@ class TransactionListBloc
     Emitter<TransactionListState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));
-    final transactions = await financeRepository.getExpenses(null, null);
+    final transactions = await financeRepository.getTransactions(null, null);
     emit(state.copyWith(transactions: transactions, isLoading: false));
   }
 }
