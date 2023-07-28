@@ -70,7 +70,7 @@ class _TransactionCardContent extends StatelessWidget {
           onTap: () {
             _showDialog(context, context.read<TransactionBloc>());
           },
-          title: Text(transaction.comment ?? transaction.name),
+          title: Text(transaction.name),
           subtitle: Text(transaction.category.name),
           trailing: Text(transaction.value.toString()),
         );
