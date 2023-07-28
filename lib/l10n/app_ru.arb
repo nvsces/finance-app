@@ -13,5 +13,6 @@
     "uploadTink":"Тинькофф Банк",
     "uploadSnackBarComplit":"Файл успешно загружен",
     "uploadSnackBarFailur":"Произошла ошибка",
-    "uploadButton":"Готово"
+    "uploadButton":"Готово",
+    "selectPeriod":"Выбрать период"
 }

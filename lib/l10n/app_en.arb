@@ -13,6 +13,7 @@
     "uploadTink":"Tinkoff Bank",
     "uploadSnackBarComplit":"File successfully uploaded",
     "uploadSnackBarFailur":"An error occurred",
-    "uploadButton":"Done"
+    "uploadButton":"Done",
+    "selectPeriod":"Select period"
 }
 

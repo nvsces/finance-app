@@ -5,9 +5,8 @@ import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
 import 'package:finance_app/domain/state/income/income_bloc.dart';
 import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
-import 'package:finance_app/ui/mobile/pages/income__page.dart';
+import 'package:finance_app/ui/date_formatters.dart';
 import 'package:finance_app/ui/mobile/widgets/calendar/custom_calendar.dart';
-import 'package:finance_app/ui/mobile/widgets/chart.dart';
 import 'package:finance_app/ui/mobile/widgets/create_wallet_start_widget.dart';
 import 'package:finance_app/ui/mobile/widgets/home/expenses_content.dart';
 import 'package:finance_app/ui/mobile/widgets/home/income_content.dart';
@@ -28,7 +27,8 @@ class HomePage extends StatelessWidget {
               injector.get<ExpensesBloc>()..add(const LoadExpensesEvent()),
         ),
         BlocProvider<IncomeBloc>(
-          create: (context) => injector.get<IncomeBloc>(),
+          create: (context) =>
+              injector.get<IncomeBloc>()..add(const LoadIncomeEvent()),
         ),
       ],
       child: const SafeArea(bottom: false, child: _HomeContent()),
@@ -84,12 +84,7 @@ class _HomeTabsWidget extends StatefulWidget {
 }
 
 class _HomeTabsWidgetState extends State<_HomeTabsWidget>
-    with
-        // AutomaticKeepAliveClientMixin<_HomeTabsWidget>,
-        SingleTickerProviderStateMixin<_HomeTabsWidget> {
-  // @override
-  // bool get wantKeepAlive => true;
-
+    with SingleTickerProviderStateMixin<_HomeTabsWidget> {
   int initialTabIndex = 0;
 
   late TabController tabController;
@@ -101,11 +96,6 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
       length: 2,
       vsync: this,
     );
-    tabController.addListener(() {
-      if (tabController.indexIsChanging) {
-        // onTabSelected(tabs[tabController.index]);
-      }
-    });
     super.initState();
   }
 
@@ -116,6 +106,19 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
   }
 
   bool get expenses => tabController.index == 0;
+
+  String getPeriodTitle(BuildContext context) {
+    final filter = AbstractFinanceRepository.transactionFilter;
+    final formater = DateFormatters.calendar;
+    if (filter.start == null && filter.end == null) {
+      return context.localization.homePeriod;
+    }
+    final startDate =
+        filter.start == null ? '' : formater.format(filter.start!);
+    final endDate = filter.end == null ? '' : formater.format(filter.end!);
+
+    return '$startDate-$endDate';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,17 +177,23 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
                 const Spacer(),
                 TextButton(
                   child: Text(
-                    context.localization.homePeriod,
+                    getPeriodTitle(context),
                     style: AppTextStyle.appButton1.copyWith(
                       color: context.colors.mainText,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   onPressed: () async {
-                    await customRangePicker(
-                      context,
-                      context.read<ExpensesBloc>(),
-                    );
+                    await customRangePicker(context, () {
+                      setState(() {
+                        context
+                            .read<ExpensesBloc>()
+                            .add(const ExpensesEvent.load());
+                        context
+                            .read<IncomeBloc>()
+                            .add(const IncomeEvent.load());
+                      });
+                    });
                   },
                 )
               ],
@@ -206,7 +215,7 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
 
   Future<void> customRangePicker(
     BuildContext context,
-    ExpensesBloc expensesBloc,
+    void Function() onChangeFilter,
   ) {
     return showModalBottomSheet(
       context: context,
@@ -215,11 +224,14 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
       useSafeArea: true,
       builder: (context) => Material(
         child: CustomCalendar(
+          initialStartDate: AbstractFinanceRepository.transactionFilter.start,
+          initialEndDate: AbstractFinanceRepository.transactionFilter.end,
           onDateTimeChanged: (start, end) {
             AbstractFinanceRepository.transactionFilter = TransactionFilter(
               start: start,
               end: end,
             );
+            onChangeFilter.call();
           },
         ),
       ),

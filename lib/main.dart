@@ -1,5 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:finance_app/data/repositiries/finance/finance_repositiry.dart';
 import 'package:finance_app/di/injector.dart';
+import 'package:finance_app/domain/entity/transaction_filter.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/language/language_bloc.dart';
 import 'package:finance_app/domain/state/subscription/subscription_bloc.dart';
@@ -15,8 +17,18 @@ import 'package:go_router/go_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  initFilter();
   await initInjector();
   runApp(const MyApp());
+}
+
+void initFilter() {
+  final current = DateTime.now();
+  final filter = TransactionFilter(
+    start: DateTime(current.year, current.month),
+    end: current,
+  );
+  AbstractFinanceRepository.transactionFilter = filter;
 }
 
 class MyApp extends StatefulWidget {

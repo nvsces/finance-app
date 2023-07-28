@@ -1,18 +1,24 @@
 import 'package:finance_app/extensions/build_context_ext.dart';
+import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/ui/date_formatters.dart';
 import 'package:finance_app/ui/mobile/widgets/calendar/calendar_date_range_picker.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:finance_app/ui/theme/button/main_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomCalendar extends StatefulWidget {
   const CustomCalendar({
     super.key,
     required this.onDateTimeChanged,
+    required this.initialStartDate,
+    required this.initialEndDate,
   });
 
   final void Function(DateTime? start, DateTime? end) onDateTimeChanged;
+  final DateTime? initialStartDate;
+  final DateTime? initialEndDate;
 
   @override
   State<CustomCalendar> createState() => _CustomCalendarState();
@@ -25,17 +31,37 @@ class _CustomCalendarState extends State<CustomCalendar> {
   int selectedDate = 0;
 
   @override
+  void initState() {
+    startDate = widget.initialStartDate;
+    endDate = widget.initialEndDate;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Column(
           children: [
             const SizedBox(height: 7.0),
-            TextButton(
-              onPressed: () {
-                context.pop();
-              },
-              child: const Text('Back'),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () => context.pop(),
+                    child: SvgPicture.asset(Svgs.iconBack),
+                  ),
+                  Text(
+                    context.localization.selectPeriod,
+                    style: AppTextStyle.createWaletText.copyWith(
+                      color: context.colors.mainText,
+                    ),
+                  ),
+                  const SizedBox.shrink(),
+                ],
+              ),
             ),
             const SizedBox(height: 7.0),
             Padding(
@@ -60,16 +86,14 @@ class _CustomCalendarState extends State<CustomCalendar> {
               child: CalendarDateRangePicker(
                 firstDate: DateTime(2023),
                 lastDate: DateTime.now(),
-                initialEndDate: DateTime(2023, 7, 26),
-                initialStartDate: DateTime(2023, 7, 23),
+                initialEndDate: widget.initialEndDate,
+                initialStartDate: widget.initialStartDate,
                 onEndDateChanged: (DateTime? value) {
-                  print('end:$value');
                   setState(() {
                     endDate = value;
                   });
                 },
                 onStartDateChanged: (DateTime value) {
-                  print('start:$value');
                   setState(() {
                     startDate = value;
                   });
