@@ -14,5 +14,9 @@
     "uploadSnackBarComplit":"Файл успешно загружен",
     "uploadSnackBarFailur":"Произошла ошибка",
     "uploadButton":"Готово",
-    "selectPeriod":"Выбрать период"
+    "selectPeriod":"Выбрать период",
+    "menuHome":"Домашняя",
+    "menuTransaction":"Транзакции",
+    "menuGoals":"Цели",
+    "menuAccount":"Аккаунт"
 }

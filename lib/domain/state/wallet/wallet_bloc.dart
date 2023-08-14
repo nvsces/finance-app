@@ -31,9 +31,8 @@ class WalletBloc extends Bloc<WalletEvent, WalletState> {
   }
 
   Future<void> _read(ReadWalletEvent event, Emitter<WalletState> emit) async {
-    emit(state.copyWith(isLoading: true));
-
     final wallets = await walletRepository.getWallets();
+
     emit(state.copyWith(wallets: wallets, isLoading: false));
   }
 }

@@ -30,9 +30,10 @@ class CreateWalletStartWidget extends StatelessWidget {
                     width: 20,
                   ),
                   SizedBox(
-                    width: 300,
+                    // width: 350,
                     child: Text(
                       'You don’t have any wallets. Click on “+” to create =)',
+                      overflow: TextOverflow.ellipsis,
                       style: AppTextStyle.mainNormalText,
                     ),
                   ),

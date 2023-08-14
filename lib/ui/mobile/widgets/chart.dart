@@ -8,52 +8,63 @@ import 'package:flutter/material.dart';
 import 'package:finance_app/data/models/transaction.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_text_theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class ChartWidget extends StatelessWidget {
+class ChartWidget extends StatefulWidget {
   ChartWidget({super.key, required this.transactions});
   final List<Transaction> transactions;
 
+  @override
+  State<ChartWidget> createState() => _ChartWidgetState();
+}
+
+class _ChartWidgetState extends State<ChartWidget> {
   final categort = <Category>[];
+  double widgetHeight = 130;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+    return NotificationListener<ScrollNotification>(
+      onNotification: (ScrollNotification notification) {
+        double newHeight = 130.0 - notification.metrics.pixels / 1;
+
+        setState(() {
+          widgetHeight = newHeight;
+        });
+        return true;
+      },
+      child: SingleChildScrollView(
+          child: Column(
         children: [
           AspectRatio(
             aspectRatio: 1.3,
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Stack(children: [
-                      PieChart(
-                        PieChartData(
-                          pieTouchData: PieTouchData(),
-                          borderData: FlBorderData(
-                            show: false,
-                          ),
-                          sectionsSpace: 0,
-                          centerSpaceRadius: 120,
-                          sections: showingSections(groupBy(transactions)),
+                  child: Stack(children: [
+                    PieChart(
+                      PieChartData(
+                        pieTouchData: PieTouchData(),
+                        borderData: FlBorderData(
+                          show: false,
                         ),
+                        sectionsSpace: 0,
+                        centerSpaceRadius: widgetHeight,
+                        sections: showingSections(groupBy(widget.transactions)),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('${categortValue(summValue(transactions))}',
-                              style: AppTextStyle.mainBoldText),
-                          Center(
-                              child: Text(
-                            '${context.localization.peiChartSources} 2',
-                            style: AppTextStyle.secondaryText,
-                          ))
-                        ],
-                      )
-                    ]),
-                  ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(categortValue(summValue(widget.transactions)),
+                            style: AppTextStyle.mainBoldText),
+                        Center(
+                            child: Text(
+                          '${context.localization.peiChartSources} 2',
+                          style: AppTextStyle.secondaryText,
+                        ))
+                      ],
+                    )
+                  ]),
                 ),
               ],
             ),
@@ -104,7 +115,8 @@ class ChartWidget extends StatelessWidget {
                                   // color: AppColors.secondaryElement,
                                 ),
                                 categort[index].value /
-                                            (summValue(transactions) / 100) >
+                                            (summValue(widget.transactions) /
+                                                100) >
                                         9
                                     ? Container(
                                         decoration: BoxDecoration(
@@ -114,7 +126,7 @@ class ChartWidget extends StatelessWidget {
                                         height: heightChartBar,
                                         width: widthChartBar *
                                             (categort[index].value /
-                                                summValue(transactions)),
+                                                summValue(widget.transactions)),
                                       )
                                     : Container(
                                         decoration: BoxDecoration(
@@ -145,7 +157,7 @@ class ChartWidget extends StatelessWidget {
             })),
           )
         ],
-      ),
+      )),
     );
   }
 
@@ -169,7 +181,7 @@ class ChartWidget extends StatelessWidget {
   }
 
   String percentValue(double categort) {
-    final double percent = categort / (summValue(transactions) / 100);
+    final double percent = categort / (summValue(widget.transactions) / 100);
     if (percent < 1) {
       return '<1 %';
     }

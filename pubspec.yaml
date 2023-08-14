@@ -58,6 +58,7 @@ dependencies:
   scrollable_clean_calendar: ^1.4.1
   dotted_border: ^2.0.0+3
   json_serializable: ^6.7.1
+  animated_size_and_fade: ^3.0.1
 
 
 

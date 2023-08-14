@@ -79,9 +79,6 @@ List<BlocProvider> _globalBlocs() {
     BlocProvider<AuthBloc>(
       create: (context) => injector.get()..add(const AuthEvent.init()),
     ),
-    // BlocProvider<SubscriptionBloc>(
-    //   create: (context) => injector.get(),
-    // ),
     BlocProvider<SubscriptionBloc>(
       create: (context) => SubscriptionBloc(),
     ),
@@ -89,8 +86,8 @@ List<BlocProvider> _globalBlocs() {
       create: (context) => LanguageBloc(),
     ),
     BlocProvider<WalletBloc>(
-      create: (context) =>
-          injector.get<WalletBloc>()..add(const WalletEvent.read()),
+      create: (context) => injector.get<WalletBloc>()
+        ..add(const WalletEvent.read()), // <------------ убрать add
     )
   ];
 }
