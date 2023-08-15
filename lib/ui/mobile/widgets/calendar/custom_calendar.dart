@@ -132,7 +132,6 @@ class _CustomCalendarState extends State<CustomCalendar> {
 
 class _DateItem extends StatelessWidget {
   const _DateItem({
-    super.key,
     required this.dateTime,
     required this.isSelected,
     required this.hint,

@@ -55,9 +55,10 @@ class AppTextStyle {
       );
 
   static TextStyle get secondaryText => _baseFonts.copyWith(
-      fontWeight: FontWeight.w500,
-      fontSize: 12,
-      color: AppColors.secondaryText);
+        fontWeight: FontWeight.w500,
+        fontSize: 12,
+        color: AppColors.secondaryText,
+      );
 
   static TextStyle get mainWalletTitleText => _baseFonts.copyWith(
         fontWeight: FontWeight.w400,

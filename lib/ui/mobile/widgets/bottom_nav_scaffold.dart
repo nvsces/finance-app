@@ -35,20 +35,18 @@ class BottomNavScaffold extends StatelessWidget {
                     color: context.colors.white,
                     shape: BoxShape.circle,
                   ),
-                  child: Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: FloatingActionButton(
-                        elevation: 0.0,
-                        onPressed: () {
-                          context.push(MobileRoutes.upload.path);
-                        },
-                        backgroundColor: context.colors.mainElement,
-                        child: Icon(
-                          Icons.add,
-                          color: context.colors.white,
-                          size: 40,
-                        ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: FloatingActionButton(
+                      elevation: 0.0,
+                      onPressed: () {
+                        context.push(MobileRoutes.upload.path);
+                      },
+                      backgroundColor: context.colors.mainElement,
+                      child: Icon(
+                        Icons.add,
+                        color: context.colors.white,
+                        size: 40,
                       ),
                     ),
                   ),
@@ -140,25 +138,29 @@ class BottomNavScaffold extends StatelessWidget {
 
   List<_BottomNavBarItem> tabItems(BuildContext context) => [
         _BottomNavBarItem(
-            route: MobileRoutes.home,
-            defaultIcon: Svgs.icMenuHomeDefault,
-            selectedIcon: Svgs.icMenuHomeSolid,
-            name: context.localization.menuHome),
+          route: MobileRoutes.home,
+          defaultIcon: Svgs.icMenuHomeDefault,
+          selectedIcon: Svgs.icMenuHomeSolid,
+          name: context.localization.menuHome,
+        ),
         _BottomNavBarItem(
-            route: MobileRoutes.transaction,
-            defaultIcon: Svgs.icMenuTransactionDefault,
-            selectedIcon: Svgs.icMenuTransactionSolid,
-            name: context.localization.menuTransaction),
+          route: MobileRoutes.transaction,
+          defaultIcon: Svgs.icMenuTransactionDefault,
+          selectedIcon: Svgs.icMenuTransactionSolid,
+          name: context.localization.menuTransaction,
+        ),
         _BottomNavBarItem(
-            route: MobileRoutes.home,
-            defaultIcon: Svgs.icMenuGoalsDefault,
-            selectedIcon: Svgs.icMenuGoalsSolid,
-            name: context.localization.menuGoals),
+          route: MobileRoutes.home,
+          defaultIcon: Svgs.icMenuGoalsDefault,
+          selectedIcon: Svgs.icMenuGoalsSolid,
+          name: context.localization.menuGoals,
+        ),
         _BottomNavBarItem(
-            route: MobileRoutes.account,
-            defaultIcon: Svgs.icMenuAccountDefault,
-            selectedIcon: Svgs.icMenuAccountSolid,
-            name: context.localization.menuAccount),
+          route: MobileRoutes.account,
+          defaultIcon: Svgs.icMenuAccountDefault,
+          selectedIcon: Svgs.icMenuAccountSolid,
+          name: context.localization.menuAccount,
+        ),
       ];
 }
 

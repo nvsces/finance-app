@@ -1,6 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
-
 import 'package:finance_app/data/models/category.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'transaction.g.dart';
 

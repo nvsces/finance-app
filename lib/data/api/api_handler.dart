@@ -2,11 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:finance_app/app/config.dart';
 import 'package:finance_app/data/models/auth/auth_invalid_credentials_exception.dart';
 import 'package:finance_app/data/models/transaction.dart';
-
+import 'package:finance_app/data/models/wallet.dart';
 import 'package:finance_app/domain/entity/bank_enum.dart';
 import 'package:flutter/foundation.dart';
-
-import '../models/wallet.dart';
 
 class ApiHandler {
   final Dio dio;

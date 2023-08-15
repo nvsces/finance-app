@@ -147,7 +147,10 @@ class _CalendarDateRangePickerState extends State<CalendarDateRangePicker> {
   }
 
   Widget _buildMonthItem(
-      BuildContext context, int index, bool beforeInitialMonth) {
+    BuildContext context,
+    int index,
+    bool beforeInitialMonth,
+  ) {
     final int monthIndex = beforeInitialMonth
         ? _initialMonthIndex - index - 1
         : _initialMonthIndex + index;
@@ -206,6 +209,7 @@ class _CalendarDateRangePickerState extends State<CalendarDateRangePicker> {
   }
 }
 
+// ignore: unused_element
 const Duration _monthScrollDuration = Duration(milliseconds: 200);
 
 const double _monthItemHeaderHeight = 58.0;

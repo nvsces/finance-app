@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:finance_app/data/models/wallet.dart';
 import 'package:finance_app/data/repositiries/finance/finance_repositiry.dart';
 import 'package:finance_app/domain/entity/currency.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_wallet_bloc.freezed.dart';
@@ -63,23 +63,31 @@ class CreateWalletBloc extends Bloc<CreateWalletEvent, CreateWalletState> {
     on<UsdUpdateButtonEvent>(_usdUpdateButton);
   }
   Future<void> _upadateTitle(
-      UpdateTitleWalletEvent event, Emitter<CreateWalletState> emit) async {
+    UpdateTitleWalletEvent event,
+    Emitter<CreateWalletState> emit,
+  ) async {
     final newState = state.copyWith(title: event.value);
     emit(newState);
   }
 
-  Future<void> _updateDescription(UpdateDiscriptionWalletEvent event,
-      Emitter<CreateWalletState> emit) async {
+  Future<void> _updateDescription(
+    UpdateDiscriptionWalletEvent event,
+    Emitter<CreateWalletState> emit,
+  ) async {
     emit(state.copyWith(discription: event.value));
   }
 
   Future<void> _updateBalance(
-      UpdateBalanceWalletEvent event, Emitter<CreateWalletState> emit) async {
+    UpdateBalanceWalletEvent event,
+    Emitter<CreateWalletState> emit,
+  ) async {
     emit(state.copyWith(balance: event.value));
   }
 
   Future<void> _updateCurrency(
-      UpdateCurrencyWalletEvent event, Emitter<CreateWalletState> emit) async {
+    UpdateCurrencyWalletEvent event,
+    Emitter<CreateWalletState> emit,
+  ) async {
     emit(state.copyWith(currency: event.value));
   }
 
@@ -103,7 +111,9 @@ class CreateWalletBloc extends Bloc<CreateWalletEvent, CreateWalletState> {
   }
 
   Future<void> _usdUpdateButton(
-      UsdUpdateButtonEvent event, Emitter<CreateWalletState> emit) async {
+    UsdUpdateButtonEvent event,
+    Emitter<CreateWalletState> emit,
+  ) async {
     emit(state.copyWith(name: event.value, wallet: event.value));
   }
 }

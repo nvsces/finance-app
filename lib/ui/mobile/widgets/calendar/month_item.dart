@@ -34,9 +34,14 @@ class _MonthItem extends StatelessWidget {
         DatePickerTheme.defaults(context).rangeSelectionBackgroundColor!;
   }
 
-  Widget _buildDayItem(BuildContext context, DateTime dayToBuild,
-      int firstDayOffset, int daysInMonth) {
+  Widget _buildDayItem(
+    BuildContext context,
+    DateTime dayToBuild,
+    int firstDayOffset,
+    int daysInMonth,
+  ) {
     final ThemeData theme = Theme.of(context);
+    // ignore: unused_local_variable
     final ColorScheme colorScheme = theme.colorScheme;
     final MaterialLocalizations localizations =
         MaterialLocalizations.of(context);

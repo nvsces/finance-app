@@ -1,20 +1,20 @@
 import 'package:finance_app/data/models/transaction.dart';
+import 'package:finance_app/router/abstract_routes_info.dart';
 import 'package:finance_app/router/app_router.dart';
+import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/mobile/pages/account_page.dart';
 import 'package:finance_app/ui/mobile/pages/auth_page.dart';
+import 'package:finance_app/ui/mobile/pages/create_walet_page.dart';
 import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
 import 'package:finance_app/ui/mobile/pages/edit_sub_page.dart';
 import 'package:finance_app/ui/mobile/pages/home_page.dart';
-import 'package:finance_app/ui/mobile/pages/subscriptions_page.dart';
 import 'package:finance_app/ui/mobile/pages/login_page.dart';
+import 'package:finance_app/ui/mobile/pages/subscriptions_page.dart';
+import 'package:finance_app/ui/mobile/pages/transaction_page.dart';
+import 'package:finance_app/ui/mobile/pages/upload_file_page.dart';
 import 'package:finance_app/ui/mobile/widgets/bottom_nav_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../ui/mobile/pages/create_walet_page.dart';
-import '../ui/mobile/pages/transaction_page.dart';
-import '../ui/mobile/pages/upload_file_page.dart';
-import 'abstract_routes_info.dart';
-import 'mobile_routes.dart';
 
 class MobileRoutesInfo implements AbstractRoutesInfo {
   final GlobalKey<NavigatorState> _shellNavigatorKey =
@@ -35,7 +35,6 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           name: MobileRoutes.subscription.name,
           builder: (context, state) => const SubscriptionsPage(),
         ),
-         
         GoRoute(
           parentNavigatorKey: AppRouter.rootNavigatorKey,
           path: MobileRoutes.editSub.path,
@@ -59,20 +58,21 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           path: MobileRoutes.detailCategory.path,
           name: MobileRoutes.detailCategory.name,
           builder: (context, state) => DetailCategoryPage(
-            transactions: state.extra as List<Transaction>,
+            transactions: state.extra! as List<Transaction>,
           ),
         ),
         GoRoute(
-            path: '${MobileRoutes.auth.path}/:code',
-            name: MobileRoutes.auth.name,
-            builder: (context, state) {
-              print('GoRoute AuthPage');
-              final code = state.pathParameters['code'];
-              print(code);
-              return AuthPage(
-                code: state.pathParameters['code'] as String,
-              );
-            }),
+          path: '${MobileRoutes.auth.path}/:code',
+          name: MobileRoutes.auth.name,
+          builder: (context, state) {
+            debugPrint('GoRoute AuthPage');
+            final String? code = state.pathParameters['code'];
+            debugPrint(code);
+            return AuthPage(
+              code: state.pathParameters['code']!,
+            );
+          },
+        ),
         ShellRoute(
           navigatorKey: _shellNavigatorKey,
           builder: (context, state, child) {

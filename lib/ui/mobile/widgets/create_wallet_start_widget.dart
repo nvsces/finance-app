@@ -1,14 +1,13 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/resources/svgs.dart';
+import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../router/mobile_routes.dart';
 
 class CreateWalletStartWidget extends StatelessWidget {
   const CreateWalletStartWidget({super.key});

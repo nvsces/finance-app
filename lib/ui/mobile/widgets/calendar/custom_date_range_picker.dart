@@ -5,14 +5,12 @@
 import 'dart:math' as math;
 
 import 'package:finance_app/extensions/build_context_ext.dart';
+import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../../resources/svgs.dart';
 
 // The M3 sizes are coming from the tokens, but are hand coded,
 // as the current token DB does not contain landscape versions.
@@ -120,30 +118,31 @@ const double _inputFormLandscapeHeight = 108.0;
 ///    [DisplayFeature]s can split the screen into sub-screens.
 ///  * [showTimePicker], which shows a dialog that contains a Material Design time picker.
 ///
-Future<DateTime?> showDatePicker(
-    {required BuildContext context,
-    required DateTime initialDate,
-    required DateTime firstDate,
-    required DateTime lastDate,
-    DateTime? currentDate,
-    DatePickerEntryMode initialEntryMode = DatePickerEntryMode.calendar,
-    SelectableDayPredicate? selectableDayPredicate,
-    String? helpText,
-    String? cancelText,
-    String? confirmText,
-    Locale? locale,
-    bool useRootNavigator = true,
-    RouteSettings? routeSettings,
-    TextDirection? textDirection,
-    TransitionBuilder? builder,
-    DatePickerMode initialDatePickerMode = DatePickerMode.day,
-    String? errorFormatText,
-    String? errorInvalidText,
-    String? fieldHintText,
-    String? fieldLabelText,
-    TextInputType? keyboardType,
-    Offset? anchorPoint,
-    final ValueChanged<DatePickerEntryMode>? onDatePickerModeChange}) async {
+Future<DateTime?> showDatePicker({
+  required BuildContext context,
+  required DateTime initialDate,
+  required DateTime firstDate,
+  required DateTime lastDate,
+  DateTime? currentDate,
+  DatePickerEntryMode initialEntryMode = DatePickerEntryMode.calendar,
+  SelectableDayPredicate? selectableDayPredicate,
+  String? helpText,
+  String? cancelText,
+  String? confirmText,
+  Locale? locale,
+  bool useRootNavigator = true,
+  RouteSettings? routeSettings,
+  TextDirection? textDirection,
+  TransitionBuilder? builder,
+  DatePickerMode initialDatePickerMode = DatePickerMode.day,
+  String? errorFormatText,
+  String? errorInvalidText,
+  String? fieldHintText,
+  String? fieldLabelText,
+  TextInputType? keyboardType,
+  Offset? anchorPoint,
+  ValueChanged<DatePickerEntryMode>? onDatePickerModeChange,
+}) async {
   initialDate = DateUtils.dateOnly(initialDate);
   firstDate = DateUtils.dateOnly(firstDate);
   lastDate = DateUtils.dateOnly(lastDate);
@@ -221,26 +220,26 @@ Future<DateTime?> showDatePicker(
 ///  * [showDatePicker], which is a way to display the date picker.
 class DatePickerDialog extends StatefulWidget {
   /// A Material-style date picker dialog.
-  DatePickerDialog(
-      {super.key,
-      required DateTime initialDate,
-      required DateTime firstDate,
-      required DateTime lastDate,
-      DateTime? currentDate,
-      this.initialEntryMode = DatePickerEntryMode.calendar,
-      this.selectableDayPredicate,
-      this.cancelText,
-      this.confirmText,
-      this.helpText,
-      this.initialCalendarMode = DatePickerMode.day,
-      this.errorFormatText,
-      this.errorInvalidText,
-      this.fieldHintText,
-      this.fieldLabelText,
-      this.keyboardType,
-      this.restorationId,
-      this.onDatePickerModeChange})
-      : initialDate = DateUtils.dateOnly(initialDate),
+  DatePickerDialog({
+    super.key,
+    required DateTime initialDate,
+    required DateTime firstDate,
+    required DateTime lastDate,
+    DateTime? currentDate,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
+    this.selectableDayPredicate,
+    this.cancelText,
+    this.confirmText,
+    this.helpText,
+    this.initialCalendarMode = DatePickerMode.day,
+    this.errorFormatText,
+    this.errorInvalidText,
+    this.fieldHintText,
+    this.fieldLabelText,
+    this.keyboardType,
+    this.restorationId,
+    this.onDatePickerModeChange,
+  })  : initialDate = DateUtils.dateOnly(initialDate),
         firstDate = DateUtils.dateOnly(firstDate),
         lastDate = DateUtils.dateOnly(lastDate),
         currentDate = DateUtils.dateOnly(currentDate ?? DateTime.now()) {
@@ -393,6 +392,7 @@ class _DatePickerDialogState extends State<DatePickerDialog>
 
   void _handleOnDatePickerModeChange() {
     if (widget.onDatePickerModeChange != null) {
+      // ignore: prefer_null_aware_method_calls
       widget.onDatePickerModeChange!(_entryMode.value);
     }
   }
@@ -502,10 +502,12 @@ class _DatePickerDialogState extends State<DatePickerDialog>
         children: <Widget>[
           TextButton(
             onPressed: _handleCancel,
-            child: Text(widget.cancelText ??
-                (useMaterial3
-                    ? localizations.cancelButtonLabel
-                    : localizations.cancelButtonLabel.toUpperCase())),
+            child: Text(
+              widget.cancelText ??
+                  (useMaterial3
+                      ? localizations.cancelButtonLabel
+                      : localizations.cancelButtonLabel.toUpperCase()),
+            ),
           ),
           TextButton(
             onPressed: _handleOk,
@@ -636,40 +638,42 @@ class _DatePickerDialogState extends State<DatePickerDialog>
           data: MediaQuery.of(context).copyWith(
             textScaleFactor: textScaleFactor,
           ),
-          child: Builder(builder: (BuildContext context) {
-            switch (orientation) {
-              case Orientation.portrait:
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    header,
-                    if (useMaterial3) const Divider(),
-                    Expanded(child: picker),
-                    actions,
-                  ],
-                );
-              case Orientation.landscape:
-                return Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    header,
-                    if (useMaterial3) const VerticalDivider(),
-                    Flexible(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          Expanded(child: picker),
-                          actions,
-                        ],
+          child: Builder(
+            builder: (BuildContext context) {
+              switch (orientation) {
+                case Orientation.portrait:
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      header,
+                      if (useMaterial3) const Divider(),
+                      Expanded(child: picker),
+                      actions,
+                    ],
+                  );
+                case Orientation.landscape:
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      header,
+                      if (useMaterial3) const VerticalDivider(),
+                      Flexible(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            Expanded(child: picker),
+                            actions,
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                );
-            }
-          }),
+                    ],
+                  );
+              }
+            },
+          ),
         ),
       ),
     );
@@ -958,8 +962,11 @@ Future<DateTimeRange?> customShowDateRangePicker({
 /// is in the same year as the `endDate` then it will use the short month
 /// day format (i.e. 'Jan 21'). Otherwise it will return the short date format
 /// (i.e. 'Jan 21, 2020').
-String _formatRangeStartDate(MaterialLocalizations localizations,
-    DateTime? startDate, DateTime? endDate) {
+String _formatRangeStartDate(
+  MaterialLocalizations localizations,
+  DateTime? startDate,
+  DateTime? endDate,
+) {
   return startDate == null
       ? localizations.dateRangeStartLabel
       : (endDate == null || startDate.year == endDate.year)
@@ -967,8 +974,12 @@ String _formatRangeStartDate(MaterialLocalizations localizations,
           : localizations.formatShortDate(startDate);
 }
 
-String _formatRangeEndDate(MaterialLocalizations localizations,
-    DateTime? startDate, DateTime? endDate, DateTime currentDate) {
+String _formatRangeEndDate(
+  MaterialLocalizations localizations,
+  DateTime? startDate,
+  DateTime? endDate,
+  DateTime currentDate,
+) {
   return endDate == null
       ? localizations.dateRangeEndLabel
       : (startDate != null &&
@@ -1309,9 +1320,11 @@ class _DateRangePickerDialogState extends State<DateRangePickerDialog>
           data: MediaQuery.of(context).copyWith(
             textScaleFactor: textScaleFactor,
           ),
-          child: Builder(builder: (BuildContext context) {
-            return contents;
-          }),
+          child: Builder(
+            builder: (BuildContext context) {
+              return contents;
+            },
+          ),
         ),
       ),
     );
@@ -1365,14 +1378,17 @@ class _CalendarRangePickerDialog extends StatelessWidget {
     final Color? headerDisabledForeground = headerForeground?.withOpacity(0.38);
     final TextStyle? headlineStyle = themeData.rangePickerHeaderHeadlineStyle ??
         defaults.rangePickerHeaderHeadlineStyle;
-    final TextStyle? headlineHelpStyle =
-        (themeData.rangePickerHeaderHelpStyle ??
-                defaults.rangePickerHeaderHelpStyle)
-            ?.apply(color: headerForeground);
     final String startDateText = _formatRangeStartDate(
-        localizations, selectedStartDate, selectedEndDate);
+      localizations,
+      selectedStartDate,
+      selectedEndDate,
+    );
     final String endDateText = _formatRangeEndDate(
-        localizations, selectedStartDate, selectedEndDate, DateTime.now());
+      localizations,
+      selectedStartDate,
+      selectedEndDate,
+      DateTime.now(),
+    );
     final TextStyle? startDateStyle = headlineStyle?.apply(
       color: selectedStartDate != null
           ? headerForeground
@@ -1383,8 +1399,9 @@ class _CalendarRangePickerDialog extends StatelessWidget {
           selectedEndDate != null ? headerForeground : headerDisabledForeground,
     );
     final ButtonStyle buttonStyle = TextButton.styleFrom(
-        foregroundColor: headerForeground,
-        disabledForegroundColor: headerDisabledForeground);
+      foregroundColor: headerForeground,
+      disabledForegroundColor: headerDisabledForeground,
+    );
     final IconThemeData iconTheme = IconThemeData(color: headerForeground);
 
     return SafeArea(
@@ -1416,56 +1433,60 @@ class _CalendarRangePickerDialog extends StatelessWidget {
           ],
           bottom: PreferredSize(
             preferredSize: const Size(double.infinity, 64),
-            child: Row(children: <Widget>[
-              SizedBox(width: MediaQuery.sizeOf(context).width < 360 ? 42 : 72),
-              Expanded(
-                child: Semantics(
-                  label: '$helpText $startDateText to $endDateText',
-                  excludeSemantics: true,
-                  child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Center(
+            child: Row(
+              children: <Widget>[
+                SizedBox(
+                    width: MediaQuery.sizeOf(context).width < 360 ? 42 : 72),
+                Expanded(
+                  child: Semantics(
+                    label: '$helpText $startDateText to $endDateText',
+                    excludeSemantics: true,
+                    child: Column(
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Center(
                           child:
-                              Text(helpText, style: AppTextStyle.mainBoldText)),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: <Widget>[
-                          Text(
-                            startDateText,
-                            style: startDateStyle,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Text(
-                            ' – ',
-                            style: startDateStyle,
-                          ),
-                          Flexible(
-                            child: Text(
-                              endDateText,
-                              style: endDateStyle,
+                              Text(helpText, style: AppTextStyle.mainBoldText),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              startDateText,
+                              style: startDateStyle,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                    ],
+                            Text(
+                              ' – ',
+                              style: startDateStyle,
+                            ),
+                            Flexible(
+                              child: Text(
+                                endDateText,
+                                style: endDateStyle,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              if (orientation == Orientation.portrait &&
-                  entryModeButton != null)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: IconTheme(
-                    data: iconTheme,
-                    child: entryModeButton!,
+                if (orientation == Orientation.portrait &&
+                    entryModeButton != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: IconTheme(
+                      data: iconTheme,
+                      child: entryModeButton!,
+                    ),
                   ),
-                ),
-            ]),
+              ],
+            ),
           ),
         ),
         backgroundColor: dialogBackground,
@@ -1642,7 +1663,10 @@ class _CalendarDateRangePickerState extends State<_CalendarDateRangePicker> {
   }
 
   Widget _buildMonthItem(
-      BuildContext context, int index, bool beforeInitialMonth) {
+    BuildContext context,
+    int index,
+    bool beforeInitialMonth,
+  ) {
     final int monthIndex = beforeInitialMonth
         ? _initialMonthIndex - index - 1
         : _initialMonthIndex + index;
@@ -1750,9 +1774,11 @@ class _CalendarKeyboardNavigatorState
       NextFocusIntent:
           CallbackAction<NextFocusIntent>(onInvoke: _handleGridNextFocus),
       PreviousFocusIntent: CallbackAction<PreviousFocusIntent>(
-          onInvoke: _handleGridPreviousFocus),
+        onInvoke: _handleGridPreviousFocus,
+      ),
       DirectionalFocusIntent: CallbackAction<DirectionalFocusIntent>(
-          onInvoke: _handleDirectionFocus),
+        onInvoke: _handleDirectionFocus,
+      ),
     };
     _dayGridFocus = FocusNode(debugLabel: 'Day Grid');
   }
@@ -1813,12 +1839,16 @@ class _CalendarKeyboardNavigatorState
   };
 
   int _dayDirectionOffset(
-      TraversalDirection traversalDirection, TextDirection textDirection) {
+    TraversalDirection traversalDirection,
+    TextDirection textDirection,
+  ) {
     // Swap left and right if the text direction if RTL
     if (textDirection == TextDirection.rtl) {
       if (traversalDirection == TraversalDirection.left) {
+        // ignore: parameter_assignments
         traversalDirection = TraversalDirection.right;
       } else if (traversalDirection == TraversalDirection.right) {
+        // ignore: parameter_assignments
         traversalDirection = TraversalDirection.left;
       }
     }
@@ -1828,7 +1858,9 @@ class _CalendarKeyboardNavigatorState
   DateTime? _nextDateInDirection(DateTime date, TraversalDirection direction) {
     final TextDirection textDirection = Directionality.of(context);
     final DateTime nextDate = DateUtils.addDaysToDate(
-        date, _dayDirectionOffset(direction, textDirection));
+      date,
+      _dayDirectionOffset(direction, textDirection),
+    );
     if (!nextDate.isBefore(widget.firstDate) &&
         !nextDate.isAfter(widget.lastDate)) {
       return nextDate;
@@ -1898,13 +1930,17 @@ class _DayHeaders extends StatelessWidget {
   ///     4 5 6 7 8 9 10
   ///
   List<Widget> _getDayHeaders(
-      TextStyle headerStyle, MaterialLocalizations localizations) {
+    TextStyle headerStyle,
+    MaterialLocalizations localizations,
+  ) {
     final List<Widget> result = <Widget>[];
     for (int i = localizations.firstDayOfWeekIndex; true; i = (i + 1) % 7) {
       final String weekday = localizations.narrowWeekdays[i];
-      result.add(ExcludeSemantics(
-        child: Center(child: Text(weekday, style: headerStyle)),
-      ));
+      result.add(
+        ExcludeSemantics(
+          child: Center(child: Text(weekday, style: headerStyle)),
+        ),
+      );
       if (i == (localizations.firstDayOfWeekIndex - 1) % 7) {
         break;
       }
@@ -2074,15 +2110,19 @@ class _MonthItem extends StatefulWidget {
     required this.lastDate,
     required this.displayedMonth,
   })  : assert(!firstDate.isAfter(lastDate)),
-        assert(selectedDateStart == null ||
-            !selectedDateStart.isBefore(firstDate)),
+        assert(
+          selectedDateStart == null || !selectedDateStart.isBefore(firstDate),
+        ),
         assert(selectedDateEnd == null || !selectedDateEnd.isBefore(firstDate)),
         assert(
-            selectedDateStart == null || !selectedDateStart.isAfter(lastDate)),
+          selectedDateStart == null || !selectedDateStart.isAfter(lastDate),
+        ),
         assert(selectedDateEnd == null || !selectedDateEnd.isAfter(lastDate)),
-        assert(selectedDateStart == null ||
-            selectedDateEnd == null ||
-            !selectedDateStart.isAfter(selectedDateEnd));
+        assert(
+          selectedDateStart == null ||
+              selectedDateEnd == null ||
+              !selectedDateStart.isAfter(selectedDateEnd),
+        );
 
   /// The currently selected start date.
   ///
@@ -2121,7 +2161,9 @@ class _MonthItemState extends State<_MonthItem> {
   void initState() {
     super.initState();
     final int daysInMonth = DateUtils.getDaysInMonth(
-        widget.displayedMonth.year, widget.displayedMonth.month);
+      widget.displayedMonth.year,
+      widget.displayedMonth.month,
+    );
     _dayFocusNodes = List<FocusNode>.generate(
       daysInMonth,
       (int index) =>
@@ -2177,8 +2219,12 @@ class _MonthItemState extends State<_MonthItem> {
     }
   }
 
-  Widget _buildDayItem(BuildContext context, DateTime dayToBuild,
-      int firstDayOffset, int daysInMonth) {
+  Widget _buildDayItem(
+    BuildContext context,
+    DateTime dayToBuild,
+    int firstDayOffset,
+    int daysInMonth,
+  ) {
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
     final TextTheme textTheme = theme.textTheme;
@@ -2211,9 +2257,10 @@ class _MonthItemState extends State<_MonthItem> {
     }
 
     T? resolve<T>(
-        MaterialStateProperty<T>? Function(DatePickerThemeData? theme)
-            getProperty,
-        Set<MaterialState> states) {
+      MaterialStateProperty<T>? Function(DatePickerThemeData? theme)
+          getProperty,
+      Set<MaterialState> states,
+    ) {
       return effectiveValue(
         (DatePickerThemeData? theme) {
           return getProperty(theme)?.resolve(states);
@@ -2227,16 +2274,21 @@ class _MonthItemState extends State<_MonthItem> {
     };
 
     final Color? dayForegroundColor = resolve<Color?>(
-        (DatePickerThemeData? theme) => theme?.dayForegroundColor, states);
+      (DatePickerThemeData? theme) => theme?.dayForegroundColor,
+      states,
+    );
     final Color? dayBackgroundColor = resolve<Color?>(
-        (DatePickerThemeData? theme) => theme?.dayBackgroundColor, states);
+      (DatePickerThemeData? theme) => theme?.dayBackgroundColor,
+      states,
+    );
     final MaterialStateProperty<Color?> dayOverlayColor =
         MaterialStateProperty.resolveWith<Color?>(
-            (Set<MaterialState> states) => effectiveValue(
-                  (DatePickerThemeData? theme) => isInRange
-                      ? theme?.rangeSelectionOverlayColor?.resolve(states)
-                      : theme?.dayOverlayColor?.resolve(states),
-                ));
+      (Set<MaterialState> states) => effectiveValue(
+        (DatePickerThemeData? theme) => isInRange
+            ? theme?.rangeSelectionOverlayColor?.resolve(states)
+            : theme?.dayOverlayColor?.resolve(states),
+      ),
+    );
 
     _HighlightPainter? highlightPainter;
 
@@ -2552,7 +2604,11 @@ class _InputDateRangePickerDialog extends StatelessWidget {
   final Widget? entryModeButton;
 
   String _formatDateRange(
-      BuildContext context, DateTime? start, DateTime? end, DateTime now) {
+    BuildContext context,
+    DateTime? start,
+    DateTime? end,
+    DateTime now,
+  ) {
     final MaterialLocalizations localizations =
         MaterialLocalizations.of(context);
     final String startText = _formatRangeStartDate(localizations, start, end);
@@ -2589,7 +2645,11 @@ class _InputDateRangePickerDialog extends StatelessWidget {
     headlineStyle = headlineStyle?.copyWith(color: headerForegroundColor);
 
     final String dateText = _formatDateRange(
-        context, selectedStartDate, selectedEndDate, currentDate!);
+      context,
+      selectedStartDate,
+      selectedEndDate,
+      currentDate!,
+    );
     final String semanticDateText = selectedStartDate != null &&
             selectedEndDate != null
         ? '${localizations.formatMediumDate(selectedStartDate!)} – ${localizations.formatMediumDate(selectedEndDate!)}'
@@ -2842,14 +2902,18 @@ class _InputDateRangePickerState extends State<_InputDateRangePicker> {
   }
 
   void _updateController(
-      TextEditingController controller, String text, bool selectText) {
+    TextEditingController controller,
+    String text,
+    bool selectText,
+  ) {
     TextEditingValue textEditingValue = controller.value.copyWith(text: text);
     if (selectText) {
       textEditingValue = textEditingValue.copyWith(
-          selection: TextSelection(
-        baseOffset: 0,
-        extentOffset: text.length,
-      ));
+        selection: TextSelection(
+          baseOffset: 0,
+          extentOffset: text.length,
+        ),
+      );
     }
     controller.value = textEditingValue;
   }

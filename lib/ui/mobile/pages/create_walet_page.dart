@@ -11,8 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../domain/state/wallet/wallet_bloc.dart';
-
 class _CreateWalletContent extends StatelessWidget {
   const _CreateWalletContent();
 
@@ -56,7 +54,6 @@ class _CreateWalletContent extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(horizontal: 55),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const SizedBox(height: 20),
                           Stack(
@@ -68,13 +65,17 @@ class _CreateWalletContent extends StatelessWidget {
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 30, vertical: 10),
+                                    horizontal: 30,
+                                    vertical: 10,
+                                  ),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(title,
-                                          style: AppTextStyle.titleWaletText),
+                                      Text(
+                                        title,
+                                        style: AppTextStyle.titleWaletText,
+                                      ),
                                       const SizedBox(height: 30),
                                       Text(
                                         description,
@@ -85,9 +86,11 @@ class _CreateWalletContent extends StatelessWidget {
                                       const SizedBox(height: 20),
                                       Row(
                                         children: [
-                                          Text(balance,
-                                              style: AppTextStyle
-                                                  .balanceWaletText),
+                                          Text(
+                                            balance,
+                                            style:
+                                                AppTextStyle.balanceWaletText,
+                                          ),
                                           const Spacer(),
                                           SvgPicture.asset(state.currency.icon),
                                         ],
@@ -115,7 +118,8 @@ class _CreateWalletContent extends StatelessWidget {
                                 hint: 'Description',
                                 onChanged: (v) {
                                   context.read<CreateWalletBloc>().add(
-                                      CreateWalletEvent.updateDiscription(v));
+                                        CreateWalletEvent.updateDiscription(v),
+                                      );
                                 },
                                 keyboardType: TextInputType.text,
                               ),
@@ -124,7 +128,8 @@ class _CreateWalletContent extends StatelessWidget {
                                 hint: 'Enter balance',
                                 onChanged: (String value) {
                                   context.read<CreateWalletBloc>().add(
-                                      CreateWalletEvent.updateBalance(value));
+                                        CreateWalletEvent.updateBalance(value),
+                                      );
                                 },
                                 keyboardType: TextInputType.number,
                               ),
@@ -152,9 +157,11 @@ class _CreateWalletContent extends StatelessWidget {
                                       ),
                                     ),
                                     minimumSize: MaterialStateProperty.all(
-                                        const Size(280, 54)),
+                                      const Size(280, 54),
+                                    ),
                                     backgroundColor: MaterialStateProperty.all(
-                                        AppColors.mainElement),
+                                      AppColors.mainElement,
+                                    ),
                                   ),
                                   onPressed: () {
                                     _bottomWidgetWallet(context);
@@ -238,8 +245,9 @@ class WaletFieldWidget extends StatelessWidget {
         filled: true,
         fillColor: context.colors.secondaryElement,
         border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(20)),
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(20),
+        ),
         contentPadding: const EdgeInsets.only(left: 15, right: 15),
         hintText: hint,
         hintStyle: AppTextStyle.appButton1
@@ -268,14 +276,11 @@ void _bottomWidgetWallet(BuildContext context) {
         ),
         height: MediaQuery.of(context).size.height * .30,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 8),
-            Container(
-              child: Text(
-                'Select currency',
-                style: AppTextStyle.mainNormalText,
-              ),
+            Text(
+              'Select currency',
+              style: AppTextStyle.mainNormalText,
             ),
             const SizedBox(height: 8),
             Wrap(
@@ -309,8 +314,11 @@ void _bottomWidgetWallet(BuildContext context) {
 class WalletButtonWidget extends StatelessWidget {
   final Currency currency;
   final void Function() onPressed;
-  const WalletButtonWidget(
-      {super.key, required this.currency, required this.onPressed});
+  const WalletButtonWidget({
+    super.key,
+    required this.currency,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {

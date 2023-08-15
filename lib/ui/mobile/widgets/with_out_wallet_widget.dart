@@ -1,7 +1,7 @@
 import 'package:finance_app/data/models/wallet.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
+import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
-import '../../theme/app_text_theme.dart';
 
 class WithOutWalletWidget extends StatelessWidget {
   final Wallet wallet;
