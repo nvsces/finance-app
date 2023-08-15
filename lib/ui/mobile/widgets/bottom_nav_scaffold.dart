@@ -43,11 +43,7 @@ class BottomNavScaffold extends StatelessWidget {
                         context.push(MobileRoutes.upload.path);
                       },
                       backgroundColor: context.colors.mainElement,
-                      child: Icon(
-                        Icons.add,
-                        color: context.colors.white,
-                        size: 40,
-                      ),
+                      child: SvgPicture.asset(Svgs.iconPluse),
                     ),
                   ),
                 )
@@ -57,7 +53,6 @@ class BottomNavScaffold extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             notchMargin: 2.0,
             shape: const CircularNotchedRectangle(),
-            // color: Theme.of(context).primaryColor.withAlpha(255),
             elevation: 0,
             child: BottomNavigationBar(
               elevation: 0,

@@ -3,6 +3,7 @@ import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/entity/transaction_filter.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
 import 'package:finance_app/domain/state/income/income_bloc.dart';
+import 'package:finance_app/domain/state/wallet/create_wallet_bloc.dart';
 import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/ui/date_formatters.dart';
@@ -14,6 +15,9 @@ import 'package:finance_app/ui/mobile/widgets/with_out_wallet_widget.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../router/mobile_routes.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -60,8 +64,20 @@ class _HomeContent extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: state.wallets.length,
                 itemBuilder: (context, i) {
-                  return WithOutWalletWidget(
-                    wallet: state.wallets[i],
+                  return InkWell(
+                    onLongPress: () {
+                      context.read<CreateWalletBloc>().add(
+                            CreateWalletEvent.editCard(
+                              state.wallets[i].title,
+                              state.wallets[i].description,
+                              state.wallets[i].currency,
+                            ),
+                          );
+                      context.push(MobileRoutes.createWalet.path);
+                    },
+                    child: WithOutWalletWidget(
+                      wallet: state.wallets[i],
+                    ),
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) =>

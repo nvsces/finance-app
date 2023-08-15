@@ -17,10 +17,9 @@ class CreateWalletStartWidget extends StatelessWidget {
     return Stack(
       children: [
         Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -29,9 +28,8 @@ class CreateWalletStartWidget extends StatelessWidget {
                     width: 20,
                   ),
                   SizedBox(
-                    // width: 350,
                     child: Text(
-                      'You don’t have any wallets. Click on “+” to create =)',
+                      'You don’t have any wallets.\nClick on “+” to create =)',
                       overflow: TextOverflow.ellipsis,
                       style: AppTextStyle.mainNormalText,
                     ),

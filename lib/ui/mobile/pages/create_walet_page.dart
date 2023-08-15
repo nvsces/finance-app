@@ -26,7 +26,7 @@ class _CreateWalletContent extends StatelessWidget {
       builder: (context, state) {
         final title = state.title.isEmpty ? 'Enter the title' : state.title;
         final description =
-            state.discription.isEmpty ? 'Description' : state.discription;
+            state.description.isEmpty ? 'Description' : state.description;
         final balance = state.balance.isEmpty ? 'Enter balance' : state.balance;
         return Scaffold(
           appBar: AppBar(
@@ -75,6 +75,7 @@ class _CreateWalletContent extends StatelessWidget {
                                       Text(
                                         title,
                                         style: AppTextStyle.titleWaletText,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                       const SizedBox(height: 30),
                                       Text(
@@ -106,19 +107,21 @@ class _CreateWalletContent extends StatelessWidget {
                             children: [
                               WaletFieldWidget(
                                 hint: 'Enter the title',
-                                onChanged: (v) {
-                                  context
-                                      .read<CreateWalletBloc>()
-                                      .add(CreateWalletEvent.updateTitle(v));
+                                onChanged: (title) {
+                                  context.read<CreateWalletBloc>().add(
+                                        CreateWalletEvent.updateTitle(title),
+                                      );
                                 },
                                 keyboardType: TextInputType.text,
                               ),
                               const SizedBox(height: 15),
                               WaletFieldWidget(
                                 hint: 'Description',
-                                onChanged: (v) {
+                                onChanged: (description) {
                                   context.read<CreateWalletBloc>().add(
-                                        CreateWalletEvent.updateDiscription(v),
+                                        CreateWalletEvent.updateDiscription(
+                                          description,
+                                        ),
                                       );
                                 },
                                 keyboardType: TextInputType.text,
@@ -126,9 +129,11 @@ class _CreateWalletContent extends StatelessWidget {
                               const SizedBox(height: 15),
                               WaletFieldWidget(
                                 hint: 'Enter balance',
-                                onChanged: (String value) {
+                                onChanged: (balance) {
                                   context.read<CreateWalletBloc>().add(
-                                        CreateWalletEvent.updateBalance(value),
+                                        CreateWalletEvent.updateBalance(
+                                          balance,
+                                        ),
                                       );
                                 },
                                 keyboardType: TextInputType.number,

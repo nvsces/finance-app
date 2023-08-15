@@ -35,4 +35,5 @@ class Svgs {
   static const SvgAsset iconShopping = 'assets/svg/icon_transaction.svg';
 
   static const SvgAsset iconAdd = 'assets/svg/icon_add.svg';
+  static const SvgAsset iconPluse = 'assets/svg/icon_pluse.svg';
 }

@@ -10,6 +10,12 @@ part 'create_wallet_bloc.freezed.dart';
 class CreateWalletEvent with _$CreateWalletEvent {
   const CreateWalletEvent._();
 
+  const factory CreateWalletEvent.editCard(
+    String title,
+    String description,
+    String balance,
+  ) = EditCardeWalletEvent;
+
   const factory CreateWalletEvent.updateTitle(String value) =
       UpdateTitleWalletEvent;
 
@@ -34,7 +40,7 @@ class CreateWalletState with _$CreateWalletState {
     required String name,
     required String wallet,
     required String title,
-    required String discription,
+    required String description,
     required String balance,
     required Currency currency,
     required bool finish,
@@ -42,7 +48,7 @@ class CreateWalletState with _$CreateWalletState {
 
   factory CreateWalletState.initial() => const CreateWalletState(
         title: '',
-        discription: '',
+        description: '',
         balance: '',
         currency: Currency.rubles,
         name: '',
@@ -61,12 +67,31 @@ class CreateWalletBloc extends Bloc<CreateWalletEvent, CreateWalletState> {
     on<UpdateCurrencyWalletEvent>(_updateCurrency);
     on<SaveWalletWalletEvent>(_save);
     on<UsdUpdateButtonEvent>(_usdUpdateButton);
+    on<EditCardeWalletEvent>(_editCard);
   }
+
+  Future<void> _editCard(
+    EditCardeWalletEvent event,
+    Emitter<CreateWalletState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        title: event.title,
+        description: event.description,
+        balance: event.balance,
+      ),
+    );
+
+    return;
+  }
+
   Future<void> _upadateTitle(
     UpdateTitleWalletEvent event,
     Emitter<CreateWalletState> emit,
   ) async {
-    final newState = state.copyWith(title: event.value);
+    final newState = state.copyWith(
+      title: event.value,
+    );
     emit(newState);
   }
 
@@ -74,7 +99,9 @@ class CreateWalletBloc extends Bloc<CreateWalletEvent, CreateWalletState> {
     UpdateDiscriptionWalletEvent event,
     Emitter<CreateWalletState> emit,
   ) async {
-    emit(state.copyWith(discription: event.value));
+    emit(state.copyWith(
+      description: event.value,
+    ));
   }
 
   Future<void> _updateBalance(
@@ -96,7 +123,7 @@ class CreateWalletBloc extends Bloc<CreateWalletEvent, CreateWalletState> {
     Emitter<CreateWalletState> emit,
   ) async {
     final title = state.title;
-    final des = state.discription;
+    final des = state.description;
     final balance = double.parse(state.balance);
 
     await financeRepository.addWallet(

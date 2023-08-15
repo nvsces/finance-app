@@ -15,6 +15,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 
+import 'domain/state/wallet/create_wallet_bloc.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initFilter();
@@ -88,6 +90,9 @@ List<BlocProvider> _globalBlocs() {
     BlocProvider<WalletBloc>(
       create: (context) => injector.get<WalletBloc>()
         ..add(const WalletEvent.read()), // <------------ убрать add
+    ),
+    BlocProvider<CreateWalletBloc>(
+      create: (context) => injector.get<CreateWalletBloc>(),
     )
   ];
 }
