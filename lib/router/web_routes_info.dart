@@ -1,12 +1,10 @@
+import 'package:finance_app/router/abstract_routes_info.dart';
 import 'package:finance_app/router/web_routes.dart';
-import 'package:finance_app/ui/mobile/pages/home_page.dart';
+import 'package:finance_app/ui/web/pages/expenses_web_page.dart';
+import 'package:finance_app/ui/web/pages/income_web_page.dart';
 import 'package:finance_app/ui/web/widgets/top_nav_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import '../ui/web/pages/expenses_web_page.dart';
-import '../ui/web/pages/income_web_page.dart';
-import 'abstract_routes_info.dart';
 
 class WebRoutesInfo implements AbstractRoutesInfo {
   final GlobalKey<NavigatorState> _shellNavigatorKey =

@@ -1,9 +1,17 @@
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 
 enum MobileRoutes {
-  expenses,
-  income,
-  home;
+  editSub,
+  detailCategory,
+  auth,
+  upload,
+  login,
+  home,
+  subscription,
+  transaction,
+  createWalet,
+  account,;
 
   static MobileRoutes? fromName(String? name) {
     return MobileRoutes.values.firstWhereOrNull(

@@ -1,0 +1,22 @@
+{
+    "loginTitle": "Введите код для регистрации",
+    "loginField": "код",
+    "loginGetCode": "Получить код",
+    "loginButton": "Войти",
+    "peiChartSources":"Источников:",
+    "homeTitleExpenses":"Расходы",
+    "homeTitleIncome":"Доходы",
+    "homePeriod":"Период",
+    "uploadTitle":"Загрузить",
+    "uploadInfo":"Выберите свой банк для\nзагрузки выписки по счету",
+    "uploadSber":"Сбер Банк",
+    "uploadTink":"Тинькофф Банк",
+    "uploadSnackBarComplit":"Файл успешно загружен",
+    "uploadSnackBarFailur":"Произошла ошибка",
+    "uploadButton":"Готово",
+    "selectPeriod":"Выбрать период",
+    "menuHome":"Домашняя",
+    "menuTransaction":"Транзакции",
+    "menuGoals":"Цели",
+    "menuAccount":"Аккаунт"
+}

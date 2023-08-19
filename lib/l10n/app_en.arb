@@ -1,0 +1,23 @@
+{
+    "loginTitle": "Enter the code to log in",
+    "loginField": "code",
+    "loginGetCode": "Get the code",
+    "loginButton": "Log in",
+    "peiChartSources":"Sources:",
+    "homeTitleExpenses":"Expenses",
+    "homeTitleIncome":"Income",
+    "homePeriod":"Period",
+    "uploadTitle":"Upload",
+    "uploadInfo":"Select your bank to\nupload a bank statement",
+    "uploadSber":"Sber Bank",
+    "uploadTink":"Tinkoff Bank",
+    "uploadSnackBarComplit":"File successfully uploaded",
+    "uploadSnackBarFailur":"An error occurred",
+    "uploadButton":"Done",
+    "selectPeriod":"Select period",
+    "menuHome":"Home",
+    "menuTransaction":"Transaction",
+    "menuGoals":"Goals",
+    "menuAccount":"Account"
+}
+
