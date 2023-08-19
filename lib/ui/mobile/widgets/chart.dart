@@ -28,8 +28,8 @@ class _ChartWidgetState extends State<ChartWidget> {
   Widget build(BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: (ScrollNotification notification) {
-        final double newHeight = 130.0 - notification.metrics.pixels / 1;
-
+        double newHeight = 130.0 - notification.metrics.pixels / 0.5;
+        newHeight = newHeight.clamp(50.0, 100.0);
         setState(() {
           widgetHeight = newHeight;
         });
@@ -38,49 +38,48 @@ class _ChartWidgetState extends State<ChartWidget> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            AspectRatio(
-              aspectRatio: 1.3,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        PieChart(
-                          PieChartData(
-                            pieTouchData: PieTouchData(),
-                            borderData: FlBorderData(
-                              show: false,
-                            ),
-                            sectionsSpace: 0,
-                            centerSpaceRadius: widgetHeight,
-                            sections:
-                                showingSections(groupBy(widget.transactions)),
-                          ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              categortValue(summValue(widget.transactions)),
-                              style: AppTextStyle.mainBoldText,
-                            ),
-                            Center(
-                              child: BlocBuilder<WalletBloc, WalletState>(
-                                builder: (context, stateWallet) {
-                                  return Text(
-                                    '${context.localization.peiChartSources} ${stateWallet.wallets.length}',
-                                    style: AppTextStyle.secondaryText,
-                                  );
-                                },
-                              ),
-                            )
-                          ],
-                        )
-                      ],
+
+            Stack(
+              children: [
+                SizedBox(
+                  height: 300,
+                  child: PieChart(
+                    PieChartData(
+                      pieTouchData: PieTouchData(),
+                      borderData: FlBorderData(
+                        show: false,
+                      ),
+                      sectionsSpace: 0,
+                      centerSpaceRadius: widgetHeight,
+                      sections:
+                          showingSections(groupBy(widget.transactions)),
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 300,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                   
+                    children: [
+                      Text(
+                        categortValue(summValue(widget.transactions)),
+                        style: AppTextStyle.mainBoldText,
+                      ),
+                      Center(
+                        child: BlocBuilder<WalletBloc, WalletState>(
+                          builder: (context, stateWallet) {
+                            return Text(
+                              '${context.localization.peiChartSources} ${stateWallet.wallets.length}',
+                              style: AppTextStyle.secondaryText,
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
             ),
             Padding(
               padding: const EdgeInsets.all(15),

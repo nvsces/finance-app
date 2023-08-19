@@ -21,8 +21,11 @@ class TransactionWidget extends StatelessWidget {
           Row(
             children: [
               CircleAvatar(
+                radius: 14,
+                backgroundColor: context.colors.mainElement,
                 child: SvgPicture.asset(
-                  Svgs.iconShopping, // icon shop
+                  Svgs.iconShopping, 
+                
                 ),
               ),
               const SizedBox(width: 16),

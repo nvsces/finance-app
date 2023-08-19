@@ -50,11 +50,13 @@ class BottomNavScaffold extends StatelessWidget {
               : null,
           body: SafeArea(child: child),
           bottomNavigationBar: BottomAppBar(
+            
             clipBehavior: Clip.antiAlias,
             notchMargin: 2.0,
             shape: const CircularNotchedRectangle(),
             elevation: 0,
             child: BottomNavigationBar(
+            
               elevation: 0,
               backgroundColor: context.colors.navigationAndPanels,
               currentIndex: currentIndex < 0 ? 0 : currentIndex,
@@ -143,6 +145,12 @@ class BottomNavScaffold extends StatelessWidget {
           defaultIcon: Svgs.icMenuTransactionDefault,
           selectedIcon: Svgs.icMenuTransactionSolid,
           name: context.localization.menuTransaction,
+        ),
+              _BottomNavBarItem(
+          route: MobileRoutes.transaction,
+          defaultIcon: '',
+          selectedIcon:'',
+          name: '',
         ),
         _BottomNavBarItem(
           route: MobileRoutes.home,

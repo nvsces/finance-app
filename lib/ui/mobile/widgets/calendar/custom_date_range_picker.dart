@@ -1436,7 +1436,7 @@ class _CalendarRangePickerDialog extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 SizedBox(
-                    width: MediaQuery.sizeOf(context).width < 360 ? 42 : 72),
+                    width: MediaQuery.sizeOf(context).width < 360 ? 42 : 72,),
                 Expanded(
                   child: Semantics(
                     label: '$helpText $startDateText to $endDateText',
