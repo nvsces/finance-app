@@ -6,6 +6,7 @@ import 'package:finance_app/domain/state/income/income_bloc.dart';
 import 'package:finance_app/domain/state/wallet/create_wallet_bloc.dart';
 import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
+import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/date_formatters.dart';
 import 'package:finance_app/ui/mobile/widgets/calendar/custom_calendar.dart';
 import 'package:finance_app/ui/mobile/widgets/create_wallet_start_widget.dart';
@@ -16,8 +17,6 @@ import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../router/mobile_routes.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -115,13 +114,18 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
     super.initState();
   }
 
+  bool get expenses => tabController.index == 0; 
+
+
   @override
   void dispose() {
     tabController.dispose();
     super.dispose();
   }
 
-  bool get expenses => tabController.index == 0;
+
+  
+
 
   String getPeriodTitle(BuildContext context) {
     final filter = AbstractFinanceRepository.transactionFilter;
@@ -165,6 +169,7 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
                         onPressed: () {
                           setState(() {
                             tabController.animateTo(0);
+                             
                           });
                         },
                       ),
@@ -183,6 +188,7 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
                           onPressed: () {
                             setState(() {
                               tabController.animateTo(1);
+                              
                             });
                           },
                         ),

@@ -27,7 +27,7 @@ class UploadFilePage extends StatelessWidget {
           ..add(UploadFileEvent.setWalletId(walletId: walletId));
       },
       child: Scaffold(
-        body: _UploadFileContent(),
+        body: const _UploadFileContent(),
         appBar: AppBar(
             elevation: 0,
             backgroundColor: context.colors.white,
@@ -41,7 +41,7 @@ class UploadFilePage extends StatelessWidget {
               onPressed: () {
                 context.go(MobileRoutes.home.path);
               },
-            )),
+            ),),
       ),
     );
   }
@@ -71,7 +71,7 @@ class _UploadFileContent extends StatelessWidget {
                     content: Text(context.localization.uploadSnackBarComplit),
                   ),
                 );
-                context.pop();
+                // context.pop();
               }
             },
             child: Padding(

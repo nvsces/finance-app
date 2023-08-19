@@ -101,7 +101,7 @@ class CreateWalletBloc extends Bloc<CreateWalletEvent, CreateWalletState> {
   ) async {
     emit(state.copyWith(
       description: event.value,
-    ));
+    ),);
   }
 
   Future<void> _updateBalance(

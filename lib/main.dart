@@ -5,6 +5,7 @@ import 'package:finance_app/domain/entity/transaction_filter.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/language/language_bloc.dart';
 import 'package:finance_app/domain/state/subscription/subscription_bloc.dart';
+import 'package:finance_app/domain/state/wallet/create_wallet_bloc.dart';
 import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/router/app_router.dart';
 import 'package:finance_app/router/mobile_routes.dart';
@@ -14,8 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
-
-import 'domain/state/wallet/create_wallet_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
