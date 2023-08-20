@@ -7,6 +7,7 @@
     "homeTitleExpenses":"Expenses",
     "homeTitleIncome":"Income",
     "homePeriod":"Period",
+    "homeDateNow":"Today",
     "uploadTitle":"Upload",
     "uploadInfo":"Select your bank to\nupload a bank statement",
     "uploadSber":"Sber Bank",
@@ -19,5 +20,6 @@
     "menuTransaction":"Transaction",
     "menuGoals":"Goals",
     "menuAccount":"Account"
+    
 }
 
