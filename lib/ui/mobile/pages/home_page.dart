@@ -114,18 +114,13 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
     super.initState();
   }
 
-  bool get expenses => tabController.index == 0; 
-
+  bool get expenses => tabController.index == 0;
 
   @override
   void dispose() {
     tabController.dispose();
     super.dispose();
   }
-
-
-  
-
 
   String getPeriodTitle(BuildContext context) {
     final filter = AbstractFinanceRepository.transactionFilter;
@@ -136,8 +131,14 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
     final startDate =
         filter.start == null ? '' : formater.format(filter.start!);
     final endDate = filter.end == null ? '' : formater.format(filter.end!);
-
-    return '$startDate-$endDate';
+    if (filter.start!.difference(DateTime.now()).inDays ==
+        DateTime.now().difference(DateTime.now()).inDays) {
+      return context.localization.homeDateNow;
+    } else if (endDate == '' && startDate != '') {
+      return startDate;
+    } else {
+      return '$startDate-$endDate';
+    }
   }
 
   @override
@@ -169,7 +170,6 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
                         onPressed: () {
                           setState(() {
                             tabController.animateTo(0);
-                             
                           });
                         },
                       ),
@@ -188,7 +188,6 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
                           onPressed: () {
                             setState(() {
                               tabController.animateTo(1);
-                              
                             });
                           },
                         ),
