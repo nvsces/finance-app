@@ -13,6 +13,7 @@ import 'package:finance_app/ui/mobile/widgets/create_wallet_start_widget.dart';
 import 'package:finance_app/ui/mobile/widgets/home/expenses_content.dart';
 import 'package:finance_app/ui/mobile/widgets/home/income_content.dart';
 import 'package:finance_app/ui/mobile/widgets/with_out_wallet_widget.dart';
+import 'package:finance_app/ui/theme/app_light_theme.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,42 +50,61 @@ class _HomeContent extends StatelessWidget {
         if (state.wallets.isEmpty) {
           return const CreateWalletStartWidget();
         }
-        return Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20.0,
-                top: 8.0,
-                bottom: 16.0,
-              ),
-              height: 84,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: state.wallets.length,
-                itemBuilder: (context, i) {
-                  return InkWell(
-                    onLongPress: () {
-                      context.read<CreateWalletBloc>().add(
-                            CreateWalletEvent.editCard(
-                              state.wallets[i].title,
-                              state.wallets[i].description,
-                              state.wallets[i].currency,
-                            ),
-                          );
-                      context.push(MobileRoutes.createWalet.path);
+        return BlocBuilder<ExpensesBloc, ExpensesState>(
+          buildWhen: (previous, current) =>
+              previous.walletId != current.walletId,
+          builder: (context, expState) {
+            return Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                    left: 20.0,
+                    right: 20.0,
+                    top: 8.0,
+                    bottom: 16.0,
+                  ),
+                  height: 84,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.wallets.length,
+                    itemBuilder: (context, i) {
+                      final wallet = state.wallets[i];
+                      return InkWell(
+                        onTap: () {
+                          if (wallet.id != null) {
+                            context.read<ExpensesBloc>().add(
+                                  ExpensesEvent.setWalletId(
+                                    expState.walletId == wallet.id.toString()
+                                        ? null
+                                        : state.wallets[i].id.toString(),
+                                  ),
+                                );
+                          }
+                        },
+                        onLongPress: () {
+                          context.read<CreateWalletBloc>().add(
+                                CreateWalletEvent.editCard(
+                                  wallet.title,
+                                  wallet.description,
+                                  wallet.currency,
+                                ),
+                              );
+                          context.push(MobileRoutes.createWalet.path);
+                        },
+                        child: WithOutWalletWidget(
+                          wallet: wallet,
+                          isSelected: expState.walletId == wallet.id.toString(),
+                        ),
+                      );
                     },
-                    child: WithOutWalletWidget(
-                      wallet: state.wallets[i],
-                    ),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) =>
-                    const SizedBox(width: 10.0),
-              ),
-            ),
-            const Expanded(child: _HomeTabsWidget()),
-          ],
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const SizedBox(width: 10.0),
+                  ),
+                ),
+                const Expanded(child: _HomeTabsWidget()),
+              ],
+            );
+          },
         );
       },
     );
@@ -111,6 +131,9 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
       length: 2,
       vsync: this,
     );
+    tabController.addListener(() {
+      setState(() {});
+    });
     super.initState();
   }
 
@@ -243,17 +266,20 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
       useRootNavigator: true,
       isScrollControlled: true,
       useSafeArea: true,
-      builder: (context) => Material(
-        child: CustomCalendar(
-          initialStartDate: AbstractFinanceRepository.transactionFilter.start,
-          initialEndDate: AbstractFinanceRepository.transactionFilter.end,
-          onDateTimeChanged: (start, end) {
-            AbstractFinanceRepository.transactionFilter = TransactionFilter(
-              start: start,
-              end: end,
-            );
-            onChangeFilter.call();
-          },
+      builder: (context) => Theme(
+        data: buildLightTheme(),
+        child: Material(
+          child: CustomCalendar(
+            initialStartDate: AbstractFinanceRepository.transactionFilter.start,
+            initialEndDate: AbstractFinanceRepository.transactionFilter.end,
+            onDateTimeChanged: (start, end) {
+              AbstractFinanceRepository.transactionFilter = TransactionFilter(
+                start: start,
+                end: end,
+              );
+              onChangeFilter.call();
+            },
+          ),
         ),
       ),
     );

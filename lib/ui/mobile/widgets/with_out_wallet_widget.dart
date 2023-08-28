@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 
 class WithOutWalletWidget extends StatelessWidget {
   final Wallet wallet;
-  const WithOutWalletWidget({super.key, required this.wallet});
+  final bool isSelected;
+  const WithOutWalletWidget({
+    super.key,
+    required this.wallet,
+    required this.isSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class WithOutWalletWidget extends StatelessWidget {
           height: 60,
           width: 100,
           decoration: BoxDecoration(
-            color: context.colors.mainElement,
+            color: isSelected ? Colors.red : context.colors.mainElement,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Padding(

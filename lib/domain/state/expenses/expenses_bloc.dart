@@ -12,6 +12,14 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
 
   ExpensesBloc(this.financeRepository) : super(ExpensesState.initial()) {
     on<LoadExpensesEvent>(_load);
+    on<SetWalletIdExpensesEvent>(_setWalletId);
+  }
+  Future<void> _setWalletId(
+    SetWalletIdExpensesEvent event,
+    Emitter<ExpensesState> emit,
+  ) async {
+    emit(state.copyWith(walletId: event.walletId));
+    add(const LoadExpensesEvent());
   }
 
   Future<void> _load(
@@ -24,6 +32,7 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
       filter.start,
       filter.end,
       type: 'expenses',
+      walletId: state.walletId,
     );
     emit(state.copyWith(transactions: transactions, isLoading: false));
   }
