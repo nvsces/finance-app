@@ -18,6 +18,7 @@ class ApiHandler {
     String? walletId,
   ) async {
     final typeQuery = type == null ? '' : '&type=$type';
+    final walletIdQuery = walletId == null ? '' : '&walletId=$walletId';
     final queryEnd = end == null
         ? DateTime.now().millisecondsSinceEpoch
         : end.millisecondsSinceEpoch;
@@ -25,7 +26,7 @@ class ApiHandler {
     final queryStart = start == null ? 0 : start.millisecondsSinceEpoch;
 
     final response = await dio.get<Map<String, dynamic>>(
-      '$hostUrl/transaction?start=$queryStart&end=$queryEnd&enabled=true$typeQuery',
+      '$hostUrl/transaction?start=$queryStart&end=$queryEnd&enabled=true$typeQuery$walletIdQuery',
     );
 
     final data = response.data?['transactions'] as List;

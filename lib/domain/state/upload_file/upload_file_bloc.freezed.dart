@@ -622,7 +622,7 @@ mixin _$UploadFileState {
   List<Bank> get bankList => throw _privateConstructorUsedError;
   int get currentBank => throw _privateConstructorUsedError;
   String get fileName => throw _privateConstructorUsedError;
-  int get walletId => throw _privateConstructorUsedError;
+  int? get walletId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UploadFileStateCopyWith<UploadFileState> get copyWith =>
@@ -641,7 +641,7 @@ abstract class $UploadFileStateCopyWith<$Res> {
       List<Bank> bankList,
       int currentBank,
       String fileName,
-      int walletId});
+      int? walletId});
 
   $UploadFileResultCopyWith<$Res> get result;
 }
@@ -664,7 +664,7 @@ class _$UploadFileStateCopyWithImpl<$Res, $Val extends UploadFileState>
     Object? bankList = null,
     Object? currentBank = null,
     Object? fileName = null,
-    Object? walletId = null,
+    Object? walletId = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -687,10 +687,10 @@ class _$UploadFileStateCopyWithImpl<$Res, $Val extends UploadFileState>
           ? _value.fileName
           : fileName // ignore: cast_nullable_to_non_nullable
               as String,
-      walletId: null == walletId
+      walletId: freezed == walletId
           ? _value.walletId
           : walletId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 
@@ -717,7 +717,7 @@ abstract class _$$_UploadFileStateCopyWith<$Res>
       List<Bank> bankList,
       int currentBank,
       String fileName,
-      int walletId});
+      int? walletId});
 
   @override
   $UploadFileResultCopyWith<$Res> get result;
@@ -739,7 +739,7 @@ class __$$_UploadFileStateCopyWithImpl<$Res>
     Object? bankList = null,
     Object? currentBank = null,
     Object? fileName = null,
-    Object? walletId = null,
+    Object? walletId = freezed,
   }) {
     return _then(_$_UploadFileState(
       isLoading: null == isLoading
@@ -762,10 +762,10 @@ class __$$_UploadFileStateCopyWithImpl<$Res>
           ? _value.fileName
           : fileName // ignore: cast_nullable_to_non_nullable
               as String,
-      walletId: null == walletId
+      walletId: freezed == walletId
           ? _value.walletId
           : walletId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -799,7 +799,7 @@ class _$_UploadFileState implements _UploadFileState {
   @override
   final String fileName;
   @override
-  final int walletId;
+  final int? walletId;
 
   @override
   String toString() {
@@ -847,7 +847,7 @@ abstract class _UploadFileState implements UploadFileState {
       required final List<Bank> bankList,
       required final int currentBank,
       required final String fileName,
-      required final int walletId}) = _$_UploadFileState;
+      required final int? walletId}) = _$_UploadFileState;
 
   @override
   bool get isLoading;
@@ -860,7 +860,7 @@ abstract class _UploadFileState implements UploadFileState {
   @override
   String get fileName;
   @override
-  int get walletId;
+  int? get walletId;
   @override
   @JsonKey(ignore: true)
   _$$_UploadFileStateCopyWith<_$_UploadFileState> get copyWith =>

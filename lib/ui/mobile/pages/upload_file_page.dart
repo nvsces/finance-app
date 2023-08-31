@@ -13,6 +13,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../domain/state/expenses/expenses_bloc.dart';
+import '../widgets/with_out_wallet_widget.dart';
+
 class UploadFilePage extends StatelessWidget {
   const UploadFilePage({super.key});
 
@@ -20,28 +23,26 @@ class UploadFilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        final wallets = context.read<WalletBloc>().state.wallets;
-        final walletId = wallets.isEmpty ? -1 : wallets.first.id!;
         return injector.get<UploadFileBloc>()
-          ..add(const UploadFileEvent.init())
-          ..add(UploadFileEvent.setWalletId(walletId: walletId));
+          ..add(const UploadFileEvent.init());
       },
       child: Scaffold(
         body: const _UploadFileContent(),
         appBar: AppBar(
-            elevation: 0,
-            backgroundColor: context.colors.white,
-            title: Text(
-              context.localization.uploadTitle,
-              style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
-            ),
-            centerTitle: true,
-            leading: IconButton(
-              icon: SvgPicture.asset(Svgs.iconBack),
-              onPressed: () {
-                context.go(MobileRoutes.home.path);
-              },
-            ),),
+          elevation: 0,
+          backgroundColor: context.colors.white,
+          title: Text(
+            context.localization.uploadTitle,
+            style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            icon: SvgPicture.asset(Svgs.iconBack),
+            onPressed: () {
+              context.go(MobileRoutes.home.path);
+            },
+          ),
+        ),
       ),
     );
   }
@@ -99,6 +100,7 @@ class _UploadFileContent extends StatelessWidget {
                     height: 40,
                   ),
                   const SelectBankWidget(),
+                  _SelectCardWidget(),
                   Divider(
                     color: context.colors.mainElement,
                     thickness: 2,
@@ -227,6 +229,64 @@ class CardBankWidget extends StatelessWidget {
           height: 20,
         )
       ],
+    );
+  }
+}
+
+class _SelectCardWidget extends StatelessWidget {
+  const _SelectCardWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<UploadFileBloc, UploadFileState>(
+      /// перерисовывает только тогда когда walletId поменяется
+      buildWhen: (previous, current) => previous.walletId != current.walletId,
+      builder: (context, upState) {
+        return BlocBuilder<WalletBloc, WalletState>(
+          builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Select wallet',
+                  style: AppTextStyle.mainNormalText,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Container(
+                  height: 60,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.wallets.length,
+                    itemBuilder: (context, i) {
+                      final wallet = state.wallets[i];
+                      final opacity = upState.walletId == wallet.id ? 1.0 : 0.3;
+                      return InkWell(
+                        onTap: () {
+                          if (wallet.id == null) return;
+                          context.read<UploadFileBloc>().add(
+                              UploadFileEvent.setWalletId(
+                                  walletId: wallet.id!));
+                        },
+                        child: Opacity(
+                          opacity: opacity, //
+                          child: WithOutWalletWidget(
+                            wallet: wallet,
+                            isSelected: false,
+                          ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const SizedBox(width: 10.0),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 }

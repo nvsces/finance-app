@@ -4,10 +4,8 @@ import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
-import 'package:finance_app/ui/mobile/widgets/create_wallet_start_widget.dart';
 import 'package:finance_app/ui/mobile/widgets/drawer.dart';
 import 'package:finance_app/ui/mobile/widgets/wallet_item_card.dart';
-import 'package:finance_app/ui/mobile/widgets/with_out_wallet_widget.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,12 +26,9 @@ class AccountPage extends StatelessWidget {
         children: [
           BlocBuilder<WalletBloc, WalletState>(
             builder: (context, state) {
-              return _WalletList(wallets: [
-                ...state.wallets,
-                ...state.wallets,
-                ...state.wallets,
-                ...state.wallets
-              ]);
+              return _WalletList(
+                wallets: state.wallets,
+              );
             },
           ),
         ],

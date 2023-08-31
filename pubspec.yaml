@@ -59,7 +59,6 @@ dependencies:
   dotted_border: ^2.0.0+3
   json_serializable: ^6.7.1
   animated_size_and_fade: ^3.0.1
-  transformable_list_view: ^0.4.0
 
 
 

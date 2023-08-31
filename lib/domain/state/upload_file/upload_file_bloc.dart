@@ -46,6 +46,7 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
     CreateUploadFileEvent event,
     Emitter<UploadFileState> emit,
   ) async {
+    if (state.walletId == null) return;
     final bank = state.bankList[state.currentBank];
     final (fileBytes, filename) = await AppFilePicker.selectFile(bank);
 
@@ -54,10 +55,11 @@ class UploadFileBloc extends Bloc<UploadFileEvent, UploadFileState> {
       return;
     }
     emit(state.copyWith(isLoading: true));
+
     final result = await apiHandler.uploadFile(
       fileBytes,
       bank,
-      state.walletId,
+      state.walletId!,
     );
     if (result == true) {
       emit(
