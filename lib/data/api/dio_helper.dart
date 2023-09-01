@@ -52,7 +52,7 @@ class DioHelper {
     error: true,
     showProcessingTime: false,
     //set to true to see https requests logs
-    canShowLog: true,
+    canShowLog: false,
   );
 
   RequestOptions _requestInterceptor(RequestOptions options) {

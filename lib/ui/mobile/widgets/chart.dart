@@ -4,11 +4,13 @@ import 'package:finance_app/data/models/transaction.dart';
 import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/extensions/build_context_ext.dart';
 import 'package:finance_app/router/mobile_routes.dart';
+import 'package:finance_app/ui/mobile/widgets/animation_chart.dart';
 import 'package:finance_app/ui/theme/app_colors.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,168 +23,139 @@ class ChartWidget extends StatefulWidget {
 }
 
 class _ChartWidgetState extends State<ChartWidget> {
+  final ScrollController _scrollController = ScrollController();
   final categort = <Category>[];
   double widgetHeight = 130;
 
   @override
-  Widget build(BuildContext context) {
-    return NotificationListener<ScrollNotification>(
-      onNotification: (ScrollNotification notification) {
-        double newHeight = 130.0 - notification.metrics.pixels / 0.5;
-        newHeight = newHeight.clamp(50.0, 100.0);
-        setState(() {
-          widgetHeight = newHeight;
-        });
-        return true;
-      },
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
-            Stack(
-              children: [
-                SizedBox(
-                  height: 300,
-                  child: PieChart(
-                    PieChartData(
-                      pieTouchData: PieTouchData(),
-                      borderData: FlBorderData(
-                        show: false,
-                      ),
-                      sectionsSpace: 0,
-                      centerSpaceRadius: widgetHeight,
-                      sections:
-                          showingSections(groupBy(widget.transactions)),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 300,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                   
-                    children: [
-                      Text(
-                        categortValue(summValue(widget.transactions)),
-                        style: AppTextStyle.mainBoldText,
-                      ),
-                      Center(
-                        child: BlocBuilder<WalletBloc, WalletState>(
-                          builder: (context, stateWallet) {
-                            return Text(
-                              '${context.localization.peiChartSources} ${stateWallet.wallets.length}',
-                              style: AppTextStyle.secondaryText,
-                            );
-                          },
+  @override
+  Widget build(BuildContext context) {
+    return
+        // NotificationListener<ScrollNotification>(
+        //   onNotification: (ScrollNotification notification) {
+        //     double newHeight = 130.0 - notification.metrics.pixels / 0.5;
+        //     newHeight = newHeight.clamp(50.0, 100.0);
+        //     setState(() {
+        //       widgetHeight = newHeight;
+        //     });
+        //     return true;
+        //   },
+        //   child:
+        SingleChildScrollView(
+      controller: _scrollController,
+      child: Column(
+        children: [
+          AnimationChartWidget(
+            sections: showingSections(groupBy(widget.transactions)),
+            sumValue: categortValue(summValue(widget.transactions)),
+            scrollController: _scrollController,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: List.generate(categort.length, (index) {
+                const double widthChartBar = 110;
+                const double heightChartBar = 10;
+                return InkWell(
+                  onTap: () {
+                    context.push(
+                      MobileRoutes.detailCategory.path,
+                      extra: categort[index].transactions,
+                    );
+                  },
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, top: 4.0),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 150,
+                          child: Text(
+                            categort[index].name,
+                            style: AppTextStyle.mainLigthText,
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Column(
-                children: List.generate(categort.length, (index) {
-                  const double widthChartBar = 110;
-                  const double heightChartBar = 10;
-                  return InkWell(
-                    onTap: () {
-                      context.push(
-                        MobileRoutes.detailCategory.path,
-                        extra: categort[index].transactions,
-                      );
-                    },
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10, right: 10, top: 4.0),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 150,
-                            child: Text(
-                              categort[index].name,
+                        const SizedBox(
+                          width: 15.0,
+                        ),
+                        const Spacer(),
+                        Column(
+                          children: [
+                            Text(
+                              categortValue(categort[index].value),
                               style: AppTextStyle.mainLigthText,
                             ),
-                          ),
-                          const SizedBox(
-                            width: 15.0,
-                          ),
-                          const Spacer(),
-                          Column(
-                            children: [
-                              Text(
-                                categortValue(categort[index].value),
-                                style: AppTextStyle.mainLigthText,
-                              ),
-                              Stack(
-                                alignment: AlignmentDirectional.centerStart,
-                                children: [
+                            Stack(
+                              alignment: AlignmentDirectional.centerStart,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.circular(heightChartBar),
+                                    color: context.colors.secondaryElement,
+                                  ),
+                                  height: heightChartBar,
+                                  width: widthChartBar,
+                                  // color: AppColors.secondaryElement,
+                                ),
+                                if (categort[index].value /
+                                        (summValue(widget.transactions) / 100) >
+                                    9)
                                   Container(
                                     decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(heightChartBar),
-                                      color: context.colors.secondaryElement,
+                                      borderRadius: BorderRadius.circular(
+                                        heightChartBar,
+                                      ),
+                                      color: categort[index].color,
                                     ),
                                     height: heightChartBar,
-                                    width: widthChartBar,
-                                    // color: AppColors.secondaryElement,
-                                  ),
-                                  if (categort[index].value /
-                                          (summValue(widget.transactions) /
-                                              100) >
-                                      9)
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                          heightChartBar,
-                                        ),
-                                        color: categort[index].color,
+                                    width: widthChartBar *
+                                        (categort[index].value /
+                                            summValue(widget.transactions)),
+                                  )
+                                else
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                        heightChartBar,
                                       ),
-                                      height: heightChartBar,
-                                      width: widthChartBar *
-                                          (categort[index].value /
-                                              summValue(widget.transactions)),
-                                    )
-                                  else
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                          heightChartBar,
-                                        ),
-                                        color: categort[index].color,
-                                      ),
-                                      height: heightChartBar,
-                                      width: heightChartBar,
+                                      color: categort[index].color,
                                     ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 12,
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          SizedBox(
-                            width: 40,
-                            child: Text(
-                              percentValue(categort[index].value),
-                              style: AppTextStyle.mainLigthText,
+                                    height: heightChartBar,
+                                    width: heightChartBar,
+                                  ),
+                              ],
                             ),
-                          )
-                        ],
-                      ),
+                            const SizedBox(
+                              height: 12,
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SizedBox(
+                          width: 40,
+                          child: Text(
+                            percentValue(categort[index].value),
+                            style: AppTextStyle.mainLigthText,
+                          ),
+                        )
+                      ],
                     ),
-                  );
-                }),
-              ),
-            )
-          ],
-        ),
+                  ),
+                );
+              }),
+            ),
+          )
+        ],
       ),
+      // ),
     );
   }
 
@@ -226,6 +199,7 @@ class _ChartWidgetState extends State<ChartWidget> {
     Map<String, List<Transaction>> groups,
   ) {
     categort.clear();
+    usedColorsIndex.clear();
     // const fontSize = 16.0;
     const radius = 17.0;
     // final summ = summValue(transactions);
@@ -234,7 +208,7 @@ class _ChartWidgetState extends State<ChartWidget> {
     final result = <PieChartSectionData>[];
 
     groups.forEach((key, value) {
-      final color = randomColor();
+      final color = getColorFromKey(key);
       final currentSumm = summValue(value);
       categort.add(
         Category(
@@ -259,9 +233,21 @@ class _ChartWidgetState extends State<ChartWidget> {
   }
 }
 
-Color randomColor() {
-  return AppColors.peiColor[Random().nextInt(8)];
+Color getColorFromKey(String key) {
+  var colorIndex = key.hashCode % AppColors.contrastColors.length;
+  while (usedColorsIndex.contains(colorIndex) && usedColorsIndex.length < 20) {
+    colorIndex = (key.hashCode + colorIndex) % AppColors.contrastColors.length;
+  }
+  usedColorsIndex.add(colorIndex);
+  return AppColors.contrastColors[colorIndex];
 }
+
+final usedColorsIndex = <int>[];
+
+// Color randomColor() {
+//   return AppColors.peiColors[Random().nextInt(8)];
+// }
+
 // Color randomColor() {
 //   return Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
 // }
