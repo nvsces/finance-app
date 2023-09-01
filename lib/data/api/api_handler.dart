@@ -15,7 +15,7 @@ class ApiHandler {
     DateTime? start,
     DateTime? end,
     String? type,
-    String? walletId,
+    int? walletId,
   ) async {
     final typeQuery = type == null ? '' : '&type=$type';
     final walletIdQuery = walletId == null ? '' : '&walletId=$walletId';

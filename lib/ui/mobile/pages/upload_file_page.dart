@@ -254,27 +254,25 @@ class _SelectCardWidget extends StatelessWidget {
                 const SizedBox(
                   height: 4,
                 ),
-                Container(
+                SizedBox(
                   height: 60,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemCount: state.wallets.length,
                     itemBuilder: (context, i) {
                       final wallet = state.wallets[i];
-                      final opacity = upState.walletId == wallet.id ? 1.0 : 0.3;
                       return InkWell(
                         onTap: () {
                           if (wallet.id == null) return;
                           context.read<UploadFileBloc>().add(
-                              UploadFileEvent.setWalletId(
-                                  walletId: wallet.id!));
+                                UploadFileEvent.setWalletId(
+                                  walletId: wallet.id!,
+                                ),
+                              );
                         },
-                        child: Opacity(
-                          opacity: opacity, //
-                          child: WithOutWalletWidget(
-                            wallet: wallet,
-                            isSelected: false,
-                          ),
+                        child: WithOutWalletWidget(
+                          wallet: wallet,
+                          isSelected: upState.walletId == wallet.id,
                         ),
                       );
                     },

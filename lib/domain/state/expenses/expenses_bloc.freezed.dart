@@ -19,19 +19,19 @@ mixin _$ExpensesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String? walletId) setWalletId,
+    required TResult Function(int? walletId) setWalletId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String? walletId)? setWalletId,
+    TResult? Function(int? walletId)? setWalletId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String? walletId)? setWalletId,
+    TResult Function(int? walletId)? setWalletId,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +113,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String? walletId) setWalletId,
+    required TResult Function(int? walletId) setWalletId,
   }) {
     return load();
   }
@@ -122,7 +122,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String? walletId)? setWalletId,
+    TResult? Function(int? walletId)? setWalletId,
   }) {
     return load?.call();
   }
@@ -131,7 +131,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String? walletId)? setWalletId,
+    TResult Function(int? walletId)? setWalletId,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -183,7 +183,7 @@ abstract class _$$SetWalletIdExpensesEventCopyWith<$Res> {
           $Res Function(_$SetWalletIdExpensesEvent) then) =
       __$$SetWalletIdExpensesEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? walletId});
+  $Res call({int? walletId});
 }
 
 /// @nodoc
@@ -203,7 +203,7 @@ class __$$SetWalletIdExpensesEventCopyWithImpl<$Res>
       freezed == walletId
           ? _value.walletId
           : walletId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ));
   }
 }
@@ -214,7 +214,7 @@ class _$SetWalletIdExpensesEvent extends SetWalletIdExpensesEvent {
   const _$SetWalletIdExpensesEvent(this.walletId) : super._();
 
   @override
-  final String? walletId;
+  final int? walletId;
 
   @override
   String toString() {
@@ -245,7 +245,7 @@ class _$SetWalletIdExpensesEvent extends SetWalletIdExpensesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
-    required TResult Function(String? walletId) setWalletId,
+    required TResult Function(int? walletId) setWalletId,
   }) {
     return setWalletId(walletId);
   }
@@ -254,7 +254,7 @@ class _$SetWalletIdExpensesEvent extends SetWalletIdExpensesEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
-    TResult? Function(String? walletId)? setWalletId,
+    TResult? Function(int? walletId)? setWalletId,
   }) {
     return setWalletId?.call(walletId);
   }
@@ -263,7 +263,7 @@ class _$SetWalletIdExpensesEvent extends SetWalletIdExpensesEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
-    TResult Function(String? walletId)? setWalletId,
+    TResult Function(int? walletId)? setWalletId,
     required TResult orElse(),
   }) {
     if (setWalletId != null) {
@@ -305,11 +305,11 @@ class _$SetWalletIdExpensesEvent extends SetWalletIdExpensesEvent {
 }
 
 abstract class SetWalletIdExpensesEvent extends ExpensesEvent {
-  const factory SetWalletIdExpensesEvent(final String? walletId) =
+  const factory SetWalletIdExpensesEvent(final int? walletId) =
       _$SetWalletIdExpensesEvent;
   const SetWalletIdExpensesEvent._() : super._();
 
-  String? get walletId;
+  int? get walletId;
   @JsonKey(ignore: true)
   _$$SetWalletIdExpensesEventCopyWith<_$SetWalletIdExpensesEvent>
       get copyWith => throw _privateConstructorUsedError;
@@ -319,7 +319,7 @@ abstract class SetWalletIdExpensesEvent extends ExpensesEvent {
 mixin _$ExpensesState {
   List<Transaction> get transactions => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
-  String? get walletId => throw _privateConstructorUsedError;
+  int? get walletId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ExpensesStateCopyWith<ExpensesState> get copyWith =>
@@ -332,7 +332,7 @@ abstract class $ExpensesStateCopyWith<$Res> {
           ExpensesState value, $Res Function(ExpensesState) then) =
       _$ExpensesStateCopyWithImpl<$Res, ExpensesState>;
   @useResult
-  $Res call({List<Transaction> transactions, bool isLoading, String? walletId});
+  $Res call({List<Transaction> transactions, bool isLoading, int? walletId});
 }
 
 /// @nodoc
@@ -364,7 +364,7 @@ class _$ExpensesStateCopyWithImpl<$Res, $Val extends ExpensesState>
       walletId: freezed == walletId
           ? _value.walletId
           : walletId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ) as $Val);
   }
 }
@@ -377,7 +377,7 @@ abstract class _$$_ExpensesStateCopyWith<$Res>
       __$$_ExpensesStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Transaction> transactions, bool isLoading, String? walletId});
+  $Res call({List<Transaction> transactions, bool isLoading, int? walletId});
 }
 
 /// @nodoc
@@ -407,7 +407,7 @@ class __$$_ExpensesStateCopyWithImpl<$Res>
       walletId: freezed == walletId
           ? _value.walletId
           : walletId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ));
   }
 }
@@ -432,7 +432,7 @@ class _$_ExpensesState implements _ExpensesState {
   @override
   final bool isLoading;
   @override
-  final String? walletId;
+  final int? walletId;
 
   @override
   String toString() {
@@ -467,14 +467,14 @@ abstract class _ExpensesState implements ExpensesState {
   const factory _ExpensesState(
       {required final List<Transaction> transactions,
       required final bool isLoading,
-      final String? walletId}) = _$_ExpensesState;
+      final int? walletId}) = _$_ExpensesState;
 
   @override
   List<Transaction> get transactions;
   @override
   bool get isLoading;
   @override
-  String? get walletId;
+  int? get walletId;
   @override
   @JsonKey(ignore: true)
   _$$_ExpensesStateCopyWith<_$_ExpensesState> get copyWith =>

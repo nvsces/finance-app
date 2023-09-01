@@ -5,7 +5,7 @@ class ExpensesState with _$ExpensesState {
   const factory ExpensesState({
     required List<Transaction> transactions,
     required bool isLoading,
-    String? walletId,
+    int? walletId,
   }) = _ExpensesState;
 
   factory ExpensesState.initial() => const ExpensesState(

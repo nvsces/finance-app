@@ -2,6 +2,7 @@ import 'package:finance_app/data/repositiries/finance/finance_repositiry.dart';
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/entity/transaction_filter.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
+import 'package:finance_app/domain/state/home/filter_wallet_bloc.dart';
 import 'package:finance_app/domain/state/income/income_bloc.dart';
 import 'package:finance_app/domain/state/wallet/create_wallet_bloc.dart';
 import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
@@ -50,10 +51,20 @@ class _HomeContent extends StatelessWidget {
         if (state.wallets.isEmpty) {
           return const CreateWalletStartWidget();
         }
-        return BlocBuilder<ExpensesBloc, ExpensesState>(
+        return BlocConsumer<FilterWalletBloc, FilterWalletState>(
+          listenWhen: (previous, current) =>
+              previous.walletId != current.walletId,
+          listener: (context, filterState) {
+            context.read<ExpensesBloc>().add(
+                  ExpensesEvent.setWalletId(filterState.walletId),
+                );
+            context.read<IncomeBloc>().add(
+                  IncomeEvent.setWalletId(filterState.walletId),
+                );
+          },
           buildWhen: (previous, current) =>
               previous.walletId != current.walletId,
-          builder: (context, expState) {
+          builder: (context, filterState) {
             return Column(
               children: [
                 Container(
@@ -72,11 +83,11 @@ class _HomeContent extends StatelessWidget {
                       return InkWell(
                         onTap: () {
                           if (wallet.id != null) {
-                            context.read<ExpensesBloc>().add(
-                                  ExpensesEvent.setWalletId(
-                                    expState.walletId == wallet.id.toString()
+                            context.read<FilterWalletBloc>().add(
+                                  FilterWalletEvent.setWalletId(
+                                    filterState.walletId == wallet.id
                                         ? null
-                                        : state.wallets[i].id.toString(),
+                                        : state.wallets[i].id,
                                   ),
                                 );
                           }
@@ -93,7 +104,7 @@ class _HomeContent extends StatelessWidget {
                         },
                         child: WithOutWalletWidget(
                           wallet: wallet,
-                          isSelected: expState.walletId == wallet.id.toString(),
+                          isSelected: filterState.walletId == wallet.id,
                         ),
                       );
                     },

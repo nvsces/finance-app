@@ -6,6 +6,6 @@ class ExpensesEvent with _$ExpensesEvent {
 
   const factory ExpensesEvent.load() = LoadExpensesEvent;
 
-  const factory ExpensesEvent.setWalletId(String? walletId) =
+  const factory ExpensesEvent.setWalletId(int? walletId) =
       SetWalletIdExpensesEvent;
 }
