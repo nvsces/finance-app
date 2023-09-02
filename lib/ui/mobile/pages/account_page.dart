@@ -77,6 +77,19 @@ class __WalletListState extends State<_WalletList> {
             widget.wallets.length,
             (index) => WalletItemCard(
               wallet: widget.wallets[index],
+              size: const [
+                10,
+                168,
+                260,
+                12,
+                10,
+                2,
+                24,
+                26,
+                16,
+                4,
+                20
+              ], // такого говна ты ещё не видел)
             ),
           ),
           const SizedBox(width: 15.0),

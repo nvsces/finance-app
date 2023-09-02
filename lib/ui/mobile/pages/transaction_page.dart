@@ -1,7 +1,6 @@
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/transaction_list/transaction_list_bloc.dart';
 import 'package:finance_app/ui/mobile/widgets/transaction_days_widget.dart';
-import 'package:finance_app/ui/mobile/widgets/transaction_widget.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
