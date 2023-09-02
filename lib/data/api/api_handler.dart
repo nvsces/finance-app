@@ -16,8 +16,10 @@ class ApiHandler {
     DateTime? end,
     String? type,
     int? walletId,
+    int? page,
   ) async {
     final typeQuery = type == null ? '' : '&type=$type';
+    final pageQuery = '&page=${page ?? 0}';
     final walletIdQuery = walletId == null ? '' : '&walletId=$walletId';
     final queryEnd = end == null
         ? DateTime.now().millisecondsSinceEpoch
@@ -26,10 +28,11 @@ class ApiHandler {
     final queryStart = start == null ? 0 : start.millisecondsSinceEpoch;
 
     final response = await dio.get<Map<String, dynamic>>(
-      '$hostUrl/transaction?start=$queryStart&end=$queryEnd&enabled=true$typeQuery$walletIdQuery',
+      '$hostUrl/transaction?start=$queryStart&end=$queryEnd&enabled=true$typeQuery$walletIdQuery$pageQuery',
     );
 
     final data = response.data?['transactions'] as List;
+
     return data
         .map((e) => Transaction.fromJson(e as Map<String, dynamic>))
         .toList();

@@ -27,13 +27,31 @@ class ExpensesBloc extends Bloc<ExpensesEvent, ExpensesState> {
     Emitter<ExpensesState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));
+    int page = 0;
     final filter = AbstractFinanceRepository.transactionFilter;
+    final allTransactions = <Transaction>[];
     final transactions = await financeRepository.getTransactions(
       filter.start,
       filter.end,
       type: 'expenses',
       walletId: state.walletId,
+      page: page,
     );
-    emit(state.copyWith(transactions: transactions, isLoading: false));
+    var count = transactions.length;
+    allTransactions.addAll(transactions);
+    page++;
+    while (count == 200) {
+      final tempTransactions = await financeRepository.getTransactions(
+        filter.start,
+        filter.end,
+        type: 'expenses',
+        walletId: state.walletId,
+        page: page,
+      );
+      allTransactions.addAll(tempTransactions);
+      count = tempTransactions.length;
+      page++;
+    }
+    emit(state.copyWith(transactions: allTransactions, isLoading: false));
   }
 }

@@ -10,6 +10,7 @@ abstract class AbstractFinanceRepository {
     DateTime? end, {
     String? type,
     int? walletId,
+    int? page,
   });
 
   Future<void> addWallet(Wallet wallet);

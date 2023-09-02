@@ -47,13 +47,31 @@ class IncomeBloc extends Bloc<IncomeEvent, IncomeState> {
     Emitter<IncomeState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));
+    int page = 0;
     final filter = AbstractFinanceRepository.transactionFilter;
+    final allTransactions = <Transaction>[];
     final transactions = await financeRepository.getTransactions(
       filter.start,
       filter.end,
       type: 'income',
       walletId: state.walletId,
+      page: page,
     );
+    var count = transactions.length;
+    allTransactions.addAll(transactions);
+    page++;
+    while (count == 200) {
+      final tempTransactions = await financeRepository.getTransactions(
+        filter.start,
+        filter.end,
+        type: 'income',
+        walletId: state.walletId,
+        page: page,
+      );
+      allTransactions.addAll(tempTransactions);
+      count = tempTransactions.length;
+      page++;
+    }
     emit(state.copyWith(transactions: transactions, isLoading: false));
   }
 }

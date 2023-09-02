@@ -234,23 +234,15 @@ class _ChartWidgetState extends State<ChartWidget> {
 }
 
 Color getColorFromKey(String key) {
-  var colorIndex = key.hashCode % AppColors.contrastColors.length;
-  while (usedColorsIndex.contains(colorIndex) && usedColorsIndex.length < 20) {
-    colorIndex = (key.hashCode + colorIndex) % AppColors.contrastColors.length;
-  }
-  usedColorsIndex.add(colorIndex);
+  final colorIndex = key.hashCode % AppColors.contrastColors.length;
   return AppColors.contrastColors[colorIndex];
 }
 
 final usedColorsIndex = <int>[];
 
-// Color randomColor() {
-//   return AppColors.peiColors[Random().nextInt(8)];
-// }
-
-// Color randomColor() {
-//   return Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
-// }
+Color randomColor() {
+  return AppColors.peiColors[Random().nextInt(8)];
+}
 
 class Category {
   final String name;
