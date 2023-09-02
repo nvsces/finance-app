@@ -18,51 +18,57 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UploadFileEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
+    required TResult Function() request,
     required TResult Function() init,
     required TResult Function(int index) selectBank,
     required TResult Function(int walletId) setWalletId,
+    required TResult Function() selectFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
+    TResult? Function()? request,
     TResult? Function()? init,
     TResult? Function(int index)? selectBank,
     TResult? Function(int walletId)? setWalletId,
+    TResult? Function()? selectFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
+    TResult Function()? request,
     TResult Function()? init,
     TResult Function(int index)? selectBank,
     TResult Function(int walletId)? setWalletId,
+    TResult Function()? selectFile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateUploadFileEvent value) create,
+    required TResult Function(RequestUploadFileEvent value) request,
     required TResult Function(InitUploadFileEvent value) init,
-    required TResult Function(SelectUploadFileEvent value) selectBank,
+    required TResult Function(SelectBankUploadFileEvent value) selectBank,
     required TResult Function(SetWalletIdUploadFileEvent value) setWalletId,
+    required TResult Function(SelectFileUploadFileEvent value) selectFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CreateUploadFileEvent value)? create,
+    TResult? Function(RequestUploadFileEvent value)? request,
     TResult? Function(InitUploadFileEvent value)? init,
-    TResult? Function(SelectUploadFileEvent value)? selectBank,
+    TResult? Function(SelectBankUploadFileEvent value)? selectBank,
     TResult? Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult? Function(SelectFileUploadFileEvent value)? selectFile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateUploadFileEvent value)? create,
+    TResult Function(RequestUploadFileEvent value)? request,
     TResult Function(InitUploadFileEvent value)? init,
-    TResult Function(SelectUploadFileEvent value)? selectBank,
+    TResult Function(SelectBankUploadFileEvent value)? selectBank,
     TResult Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult Function(SelectFileUploadFileEvent value)? selectFile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -87,35 +93,35 @@ class _$UploadFileEventCopyWithImpl<$Res, $Val extends UploadFileEvent>
 }
 
 /// @nodoc
-abstract class _$$CreateUploadFileEventCopyWith<$Res> {
-  factory _$$CreateUploadFileEventCopyWith(_$CreateUploadFileEvent value,
-          $Res Function(_$CreateUploadFileEvent) then) =
-      __$$CreateUploadFileEventCopyWithImpl<$Res>;
+abstract class _$$RequestUploadFileEventCopyWith<$Res> {
+  factory _$$RequestUploadFileEventCopyWith(_$RequestUploadFileEvent value,
+          $Res Function(_$RequestUploadFileEvent) then) =
+      __$$RequestUploadFileEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CreateUploadFileEventCopyWithImpl<$Res>
-    extends _$UploadFileEventCopyWithImpl<$Res, _$CreateUploadFileEvent>
-    implements _$$CreateUploadFileEventCopyWith<$Res> {
-  __$$CreateUploadFileEventCopyWithImpl(_$CreateUploadFileEvent _value,
-      $Res Function(_$CreateUploadFileEvent) _then)
+class __$$RequestUploadFileEventCopyWithImpl<$Res>
+    extends _$UploadFileEventCopyWithImpl<$Res, _$RequestUploadFileEvent>
+    implements _$$RequestUploadFileEventCopyWith<$Res> {
+  __$$RequestUploadFileEventCopyWithImpl(_$RequestUploadFileEvent _value,
+      $Res Function(_$RequestUploadFileEvent) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$CreateUploadFileEvent extends CreateUploadFileEvent {
-  const _$CreateUploadFileEvent() : super._();
+class _$RequestUploadFileEvent extends RequestUploadFileEvent {
+  const _$RequestUploadFileEvent() : super._();
 
   @override
   String toString() {
-    return 'UploadFileEvent.create()';
+    return 'UploadFileEvent.request()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CreateUploadFileEvent);
+        (other.runtimeType == runtimeType && other is _$RequestUploadFileEvent);
   }
 
   @override
@@ -124,36 +130,39 @@ class _$CreateUploadFileEvent extends CreateUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
+    required TResult Function() request,
     required TResult Function() init,
     required TResult Function(int index) selectBank,
     required TResult Function(int walletId) setWalletId,
+    required TResult Function() selectFile,
   }) {
-    return create();
+    return request();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
+    TResult? Function()? request,
     TResult? Function()? init,
     TResult? Function(int index)? selectBank,
     TResult? Function(int walletId)? setWalletId,
+    TResult? Function()? selectFile,
   }) {
-    return create?.call();
+    return request?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
+    TResult Function()? request,
     TResult Function()? init,
     TResult Function(int index)? selectBank,
     TResult Function(int walletId)? setWalletId,
+    TResult Function()? selectFile,
     required TResult orElse(),
   }) {
-    if (create != null) {
-      return create();
+    if (request != null) {
+      return request();
     }
     return orElse();
   }
@@ -161,44 +170,47 @@ class _$CreateUploadFileEvent extends CreateUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateUploadFileEvent value) create,
+    required TResult Function(RequestUploadFileEvent value) request,
     required TResult Function(InitUploadFileEvent value) init,
-    required TResult Function(SelectUploadFileEvent value) selectBank,
+    required TResult Function(SelectBankUploadFileEvent value) selectBank,
     required TResult Function(SetWalletIdUploadFileEvent value) setWalletId,
+    required TResult Function(SelectFileUploadFileEvent value) selectFile,
   }) {
-    return create(this);
+    return request(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CreateUploadFileEvent value)? create,
+    TResult? Function(RequestUploadFileEvent value)? request,
     TResult? Function(InitUploadFileEvent value)? init,
-    TResult? Function(SelectUploadFileEvent value)? selectBank,
+    TResult? Function(SelectBankUploadFileEvent value)? selectBank,
     TResult? Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult? Function(SelectFileUploadFileEvent value)? selectFile,
   }) {
-    return create?.call(this);
+    return request?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateUploadFileEvent value)? create,
+    TResult Function(RequestUploadFileEvent value)? request,
     TResult Function(InitUploadFileEvent value)? init,
-    TResult Function(SelectUploadFileEvent value)? selectBank,
+    TResult Function(SelectBankUploadFileEvent value)? selectBank,
     TResult Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult Function(SelectFileUploadFileEvent value)? selectFile,
     required TResult orElse(),
   }) {
-    if (create != null) {
-      return create(this);
+    if (request != null) {
+      return request(this);
     }
     return orElse();
   }
 }
 
-abstract class CreateUploadFileEvent extends UploadFileEvent {
-  const factory CreateUploadFileEvent() = _$CreateUploadFileEvent;
-  const CreateUploadFileEvent._() : super._();
+abstract class RequestUploadFileEvent extends UploadFileEvent {
+  const factory RequestUploadFileEvent() = _$RequestUploadFileEvent;
+  const RequestUploadFileEvent._() : super._();
 }
 
 /// @nodoc
@@ -239,10 +251,11 @@ class _$InitUploadFileEvent extends InitUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
+    required TResult Function() request,
     required TResult Function() init,
     required TResult Function(int index) selectBank,
     required TResult Function(int walletId) setWalletId,
+    required TResult Function() selectFile,
   }) {
     return init();
   }
@@ -250,10 +263,11 @@ class _$InitUploadFileEvent extends InitUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
+    TResult? Function()? request,
     TResult? Function()? init,
     TResult? Function(int index)? selectBank,
     TResult? Function(int walletId)? setWalletId,
+    TResult? Function()? selectFile,
   }) {
     return init?.call();
   }
@@ -261,10 +275,11 @@ class _$InitUploadFileEvent extends InitUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
+    TResult Function()? request,
     TResult Function()? init,
     TResult Function(int index)? selectBank,
     TResult Function(int walletId)? setWalletId,
+    TResult Function()? selectFile,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -276,10 +291,11 @@ class _$InitUploadFileEvent extends InitUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateUploadFileEvent value) create,
+    required TResult Function(RequestUploadFileEvent value) request,
     required TResult Function(InitUploadFileEvent value) init,
-    required TResult Function(SelectUploadFileEvent value) selectBank,
+    required TResult Function(SelectBankUploadFileEvent value) selectBank,
     required TResult Function(SetWalletIdUploadFileEvent value) setWalletId,
+    required TResult Function(SelectFileUploadFileEvent value) selectFile,
   }) {
     return init(this);
   }
@@ -287,10 +303,11 @@ class _$InitUploadFileEvent extends InitUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CreateUploadFileEvent value)? create,
+    TResult? Function(RequestUploadFileEvent value)? request,
     TResult? Function(InitUploadFileEvent value)? init,
-    TResult? Function(SelectUploadFileEvent value)? selectBank,
+    TResult? Function(SelectBankUploadFileEvent value)? selectBank,
     TResult? Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult? Function(SelectFileUploadFileEvent value)? selectFile,
   }) {
     return init?.call(this);
   }
@@ -298,10 +315,11 @@ class _$InitUploadFileEvent extends InitUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateUploadFileEvent value)? create,
+    TResult Function(RequestUploadFileEvent value)? request,
     TResult Function(InitUploadFileEvent value)? init,
-    TResult Function(SelectUploadFileEvent value)? selectBank,
+    TResult Function(SelectBankUploadFileEvent value)? selectBank,
     TResult Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult Function(SelectFileUploadFileEvent value)? selectFile,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -317,20 +335,21 @@ abstract class InitUploadFileEvent extends UploadFileEvent {
 }
 
 /// @nodoc
-abstract class _$$SelectUploadFileEventCopyWith<$Res> {
-  factory _$$SelectUploadFileEventCopyWith(_$SelectUploadFileEvent value,
-          $Res Function(_$SelectUploadFileEvent) then) =
-      __$$SelectUploadFileEventCopyWithImpl<$Res>;
+abstract class _$$SelectBankUploadFileEventCopyWith<$Res> {
+  factory _$$SelectBankUploadFileEventCopyWith(
+          _$SelectBankUploadFileEvent value,
+          $Res Function(_$SelectBankUploadFileEvent) then) =
+      __$$SelectBankUploadFileEventCopyWithImpl<$Res>;
   @useResult
   $Res call({int index});
 }
 
 /// @nodoc
-class __$$SelectUploadFileEventCopyWithImpl<$Res>
-    extends _$UploadFileEventCopyWithImpl<$Res, _$SelectUploadFileEvent>
-    implements _$$SelectUploadFileEventCopyWith<$Res> {
-  __$$SelectUploadFileEventCopyWithImpl(_$SelectUploadFileEvent _value,
-      $Res Function(_$SelectUploadFileEvent) _then)
+class __$$SelectBankUploadFileEventCopyWithImpl<$Res>
+    extends _$UploadFileEventCopyWithImpl<$Res, _$SelectBankUploadFileEvent>
+    implements _$$SelectBankUploadFileEventCopyWith<$Res> {
+  __$$SelectBankUploadFileEventCopyWithImpl(_$SelectBankUploadFileEvent _value,
+      $Res Function(_$SelectBankUploadFileEvent) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -338,7 +357,7 @@ class __$$SelectUploadFileEventCopyWithImpl<$Res>
   $Res call({
     Object? index = null,
   }) {
-    return _then(_$SelectUploadFileEvent(
+    return _then(_$SelectBankUploadFileEvent(
       index: null == index
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -349,8 +368,8 @@ class __$$SelectUploadFileEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SelectUploadFileEvent extends SelectUploadFileEvent {
-  const _$SelectUploadFileEvent({required this.index}) : super._();
+class _$SelectBankUploadFileEvent extends SelectBankUploadFileEvent {
+  const _$SelectBankUploadFileEvent({required this.index}) : super._();
 
   @override
   final int index;
@@ -364,7 +383,7 @@ class _$SelectUploadFileEvent extends SelectUploadFileEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectUploadFileEvent &&
+            other is _$SelectBankUploadFileEvent &&
             (identical(other.index, index) || other.index == index));
   }
 
@@ -374,17 +393,18 @@ class _$SelectUploadFileEvent extends SelectUploadFileEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectUploadFileEventCopyWith<_$SelectUploadFileEvent> get copyWith =>
-      __$$SelectUploadFileEventCopyWithImpl<_$SelectUploadFileEvent>(
-          this, _$identity);
+  _$$SelectBankUploadFileEventCopyWith<_$SelectBankUploadFileEvent>
+      get copyWith => __$$SelectBankUploadFileEventCopyWithImpl<
+          _$SelectBankUploadFileEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
+    required TResult Function() request,
     required TResult Function() init,
     required TResult Function(int index) selectBank,
     required TResult Function(int walletId) setWalletId,
+    required TResult Function() selectFile,
   }) {
     return selectBank(index);
   }
@@ -392,10 +412,11 @@ class _$SelectUploadFileEvent extends SelectUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
+    TResult? Function()? request,
     TResult? Function()? init,
     TResult? Function(int index)? selectBank,
     TResult? Function(int walletId)? setWalletId,
+    TResult? Function()? selectFile,
   }) {
     return selectBank?.call(index);
   }
@@ -403,10 +424,11 @@ class _$SelectUploadFileEvent extends SelectUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
+    TResult Function()? request,
     TResult Function()? init,
     TResult Function(int index)? selectBank,
     TResult Function(int walletId)? setWalletId,
+    TResult Function()? selectFile,
     required TResult orElse(),
   }) {
     if (selectBank != null) {
@@ -418,10 +440,11 @@ class _$SelectUploadFileEvent extends SelectUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateUploadFileEvent value) create,
+    required TResult Function(RequestUploadFileEvent value) request,
     required TResult Function(InitUploadFileEvent value) init,
-    required TResult Function(SelectUploadFileEvent value) selectBank,
+    required TResult Function(SelectBankUploadFileEvent value) selectBank,
     required TResult Function(SetWalletIdUploadFileEvent value) setWalletId,
+    required TResult Function(SelectFileUploadFileEvent value) selectFile,
   }) {
     return selectBank(this);
   }
@@ -429,10 +452,11 @@ class _$SelectUploadFileEvent extends SelectUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CreateUploadFileEvent value)? create,
+    TResult? Function(RequestUploadFileEvent value)? request,
     TResult? Function(InitUploadFileEvent value)? init,
-    TResult? Function(SelectUploadFileEvent value)? selectBank,
+    TResult? Function(SelectBankUploadFileEvent value)? selectBank,
     TResult? Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult? Function(SelectFileUploadFileEvent value)? selectFile,
   }) {
     return selectBank?.call(this);
   }
@@ -440,10 +464,11 @@ class _$SelectUploadFileEvent extends SelectUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateUploadFileEvent value)? create,
+    TResult Function(RequestUploadFileEvent value)? request,
     TResult Function(InitUploadFileEvent value)? init,
-    TResult Function(SelectUploadFileEvent value)? selectBank,
+    TResult Function(SelectBankUploadFileEvent value)? selectBank,
     TResult Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult Function(SelectFileUploadFileEvent value)? selectFile,
     required TResult orElse(),
   }) {
     if (selectBank != null) {
@@ -453,15 +478,15 @@ class _$SelectUploadFileEvent extends SelectUploadFileEvent {
   }
 }
 
-abstract class SelectUploadFileEvent extends UploadFileEvent {
-  const factory SelectUploadFileEvent({required final int index}) =
-      _$SelectUploadFileEvent;
-  const SelectUploadFileEvent._() : super._();
+abstract class SelectBankUploadFileEvent extends UploadFileEvent {
+  const factory SelectBankUploadFileEvent({required final int index}) =
+      _$SelectBankUploadFileEvent;
+  const SelectBankUploadFileEvent._() : super._();
 
   int get index;
   @JsonKey(ignore: true)
-  _$$SelectUploadFileEventCopyWith<_$SelectUploadFileEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SelectBankUploadFileEventCopyWith<_$SelectBankUploadFileEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -532,10 +557,11 @@ class _$SetWalletIdUploadFileEvent extends SetWalletIdUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() create,
+    required TResult Function() request,
     required TResult Function() init,
     required TResult Function(int index) selectBank,
     required TResult Function(int walletId) setWalletId,
+    required TResult Function() selectFile,
   }) {
     return setWalletId(walletId);
   }
@@ -543,10 +569,11 @@ class _$SetWalletIdUploadFileEvent extends SetWalletIdUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? create,
+    TResult? Function()? request,
     TResult? Function()? init,
     TResult? Function(int index)? selectBank,
     TResult? Function(int walletId)? setWalletId,
+    TResult? Function()? selectFile,
   }) {
     return setWalletId?.call(walletId);
   }
@@ -554,10 +581,11 @@ class _$SetWalletIdUploadFileEvent extends SetWalletIdUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? create,
+    TResult Function()? request,
     TResult Function()? init,
     TResult Function(int index)? selectBank,
     TResult Function(int walletId)? setWalletId,
+    TResult Function()? selectFile,
     required TResult orElse(),
   }) {
     if (setWalletId != null) {
@@ -569,10 +597,11 @@ class _$SetWalletIdUploadFileEvent extends SetWalletIdUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(CreateUploadFileEvent value) create,
+    required TResult Function(RequestUploadFileEvent value) request,
     required TResult Function(InitUploadFileEvent value) init,
-    required TResult Function(SelectUploadFileEvent value) selectBank,
+    required TResult Function(SelectBankUploadFileEvent value) selectBank,
     required TResult Function(SetWalletIdUploadFileEvent value) setWalletId,
+    required TResult Function(SelectFileUploadFileEvent value) selectFile,
   }) {
     return setWalletId(this);
   }
@@ -580,10 +609,11 @@ class _$SetWalletIdUploadFileEvent extends SetWalletIdUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CreateUploadFileEvent value)? create,
+    TResult? Function(RequestUploadFileEvent value)? request,
     TResult? Function(InitUploadFileEvent value)? init,
-    TResult? Function(SelectUploadFileEvent value)? selectBank,
+    TResult? Function(SelectBankUploadFileEvent value)? selectBank,
     TResult? Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult? Function(SelectFileUploadFileEvent value)? selectFile,
   }) {
     return setWalletId?.call(this);
   }
@@ -591,10 +621,11 @@ class _$SetWalletIdUploadFileEvent extends SetWalletIdUploadFileEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(CreateUploadFileEvent value)? create,
+    TResult Function(RequestUploadFileEvent value)? request,
     TResult Function(InitUploadFileEvent value)? init,
-    TResult Function(SelectUploadFileEvent value)? selectBank,
+    TResult Function(SelectBankUploadFileEvent value)? selectBank,
     TResult Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult Function(SelectFileUploadFileEvent value)? selectFile,
     required TResult orElse(),
   }) {
     if (setWalletId != null) {
@@ -616,6 +647,129 @@ abstract class SetWalletIdUploadFileEvent extends UploadFileEvent {
 }
 
 /// @nodoc
+abstract class _$$SelectFileUploadFileEventCopyWith<$Res> {
+  factory _$$SelectFileUploadFileEventCopyWith(
+          _$SelectFileUploadFileEvent value,
+          $Res Function(_$SelectFileUploadFileEvent) then) =
+      __$$SelectFileUploadFileEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SelectFileUploadFileEventCopyWithImpl<$Res>
+    extends _$UploadFileEventCopyWithImpl<$Res, _$SelectFileUploadFileEvent>
+    implements _$$SelectFileUploadFileEventCopyWith<$Res> {
+  __$$SelectFileUploadFileEventCopyWithImpl(_$SelectFileUploadFileEvent _value,
+      $Res Function(_$SelectFileUploadFileEvent) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SelectFileUploadFileEvent extends SelectFileUploadFileEvent {
+  const _$SelectFileUploadFileEvent() : super._();
+
+  @override
+  String toString() {
+    return 'UploadFileEvent.selectFile()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectFileUploadFileEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() request,
+    required TResult Function() init,
+    required TResult Function(int index) selectBank,
+    required TResult Function(int walletId) setWalletId,
+    required TResult Function() selectFile,
+  }) {
+    return selectFile();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? request,
+    TResult? Function()? init,
+    TResult? Function(int index)? selectBank,
+    TResult? Function(int walletId)? setWalletId,
+    TResult? Function()? selectFile,
+  }) {
+    return selectFile?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? request,
+    TResult Function()? init,
+    TResult Function(int index)? selectBank,
+    TResult Function(int walletId)? setWalletId,
+    TResult Function()? selectFile,
+    required TResult orElse(),
+  }) {
+    if (selectFile != null) {
+      return selectFile();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RequestUploadFileEvent value) request,
+    required TResult Function(InitUploadFileEvent value) init,
+    required TResult Function(SelectBankUploadFileEvent value) selectBank,
+    required TResult Function(SetWalletIdUploadFileEvent value) setWalletId,
+    required TResult Function(SelectFileUploadFileEvent value) selectFile,
+  }) {
+    return selectFile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RequestUploadFileEvent value)? request,
+    TResult? Function(InitUploadFileEvent value)? init,
+    TResult? Function(SelectBankUploadFileEvent value)? selectBank,
+    TResult? Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult? Function(SelectFileUploadFileEvent value)? selectFile,
+  }) {
+    return selectFile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RequestUploadFileEvent value)? request,
+    TResult Function(InitUploadFileEvent value)? init,
+    TResult Function(SelectBankUploadFileEvent value)? selectBank,
+    TResult Function(SetWalletIdUploadFileEvent value)? setWalletId,
+    TResult Function(SelectFileUploadFileEvent value)? selectFile,
+    required TResult orElse(),
+  }) {
+    if (selectFile != null) {
+      return selectFile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SelectFileUploadFileEvent extends UploadFileEvent {
+  const factory SelectFileUploadFileEvent() = _$SelectFileUploadFileEvent;
+  const SelectFileUploadFileEvent._() : super._();
+}
+
+/// @nodoc
 mixin _$UploadFileState {
   bool get isLoading => throw _privateConstructorUsedError;
   UploadFileResult get result => throw _privateConstructorUsedError;
@@ -623,6 +777,7 @@ mixin _$UploadFileState {
   int get currentBank => throw _privateConstructorUsedError;
   String get fileName => throw _privateConstructorUsedError;
   int? get walletId => throw _privateConstructorUsedError;
+  Uint8List? get fileBytes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UploadFileStateCopyWith<UploadFileState> get copyWith =>
@@ -641,7 +796,8 @@ abstract class $UploadFileStateCopyWith<$Res> {
       List<Bank> bankList,
       int currentBank,
       String fileName,
-      int? walletId});
+      int? walletId,
+      Uint8List? fileBytes});
 
   $UploadFileResultCopyWith<$Res> get result;
 }
@@ -665,6 +821,7 @@ class _$UploadFileStateCopyWithImpl<$Res, $Val extends UploadFileState>
     Object? currentBank = null,
     Object? fileName = null,
     Object? walletId = freezed,
+    Object? fileBytes = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -691,6 +848,10 @@ class _$UploadFileStateCopyWithImpl<$Res, $Val extends UploadFileState>
           ? _value.walletId
           : walletId // ignore: cast_nullable_to_non_nullable
               as int?,
+      fileBytes: freezed == fileBytes
+          ? _value.fileBytes
+          : fileBytes // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
     ) as $Val);
   }
 
@@ -717,7 +878,8 @@ abstract class _$$_UploadFileStateCopyWith<$Res>
       List<Bank> bankList,
       int currentBank,
       String fileName,
-      int? walletId});
+      int? walletId,
+      Uint8List? fileBytes});
 
   @override
   $UploadFileResultCopyWith<$Res> get result;
@@ -740,6 +902,7 @@ class __$$_UploadFileStateCopyWithImpl<$Res>
     Object? currentBank = null,
     Object? fileName = null,
     Object? walletId = freezed,
+    Object? fileBytes = freezed,
   }) {
     return _then(_$_UploadFileState(
       isLoading: null == isLoading
@@ -766,6 +929,10 @@ class __$$_UploadFileStateCopyWithImpl<$Res>
           ? _value.walletId
           : walletId // ignore: cast_nullable_to_non_nullable
               as int?,
+      fileBytes: freezed == fileBytes
+          ? _value.fileBytes
+          : fileBytes // ignore: cast_nullable_to_non_nullable
+              as Uint8List?,
     ));
   }
 }
@@ -779,7 +946,8 @@ class _$_UploadFileState implements _UploadFileState {
       required final List<Bank> bankList,
       required this.currentBank,
       required this.fileName,
-      required this.walletId})
+      required this.walletId,
+      this.fileBytes})
       : _bankList = bankList;
 
   @override
@@ -800,10 +968,12 @@ class _$_UploadFileState implements _UploadFileState {
   final String fileName;
   @override
   final int? walletId;
+  @override
+  final Uint8List? fileBytes;
 
   @override
   String toString() {
-    return 'UploadFileState(isLoading: $isLoading, result: $result, bankList: $bankList, currentBank: $currentBank, fileName: $fileName, walletId: $walletId)';
+    return 'UploadFileState(isLoading: $isLoading, result: $result, bankList: $bankList, currentBank: $currentBank, fileName: $fileName, walletId: $walletId, fileBytes: $fileBytes)';
   }
 
   @override
@@ -820,7 +990,8 @@ class _$_UploadFileState implements _UploadFileState {
             (identical(other.fileName, fileName) ||
                 other.fileName == fileName) &&
             (identical(other.walletId, walletId) ||
-                other.walletId == walletId));
+                other.walletId == walletId) &&
+            const DeepCollectionEquality().equals(other.fileBytes, fileBytes));
   }
 
   @override
@@ -831,7 +1002,8 @@ class _$_UploadFileState implements _UploadFileState {
       const DeepCollectionEquality().hash(_bankList),
       currentBank,
       fileName,
-      walletId);
+      walletId,
+      const DeepCollectionEquality().hash(fileBytes));
 
   @JsonKey(ignore: true)
   @override
@@ -847,7 +1019,8 @@ abstract class _UploadFileState implements UploadFileState {
       required final List<Bank> bankList,
       required final int currentBank,
       required final String fileName,
-      required final int? walletId}) = _$_UploadFileState;
+      required final int? walletId,
+      final Uint8List? fileBytes}) = _$_UploadFileState;
 
   @override
   bool get isLoading;
@@ -861,6 +1034,8 @@ abstract class _UploadFileState implements UploadFileState {
   String get fileName;
   @override
   int? get walletId;
+  @override
+  Uint8List? get fileBytes;
   @override
   @JsonKey(ignore: true)
   _$$_UploadFileStateCopyWith<_$_UploadFileState> get copyWith =>

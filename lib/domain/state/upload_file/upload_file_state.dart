@@ -9,6 +9,7 @@ class UploadFileState with _$UploadFileState {
     required int currentBank,
     required String fileName,
     required int? walletId,
+    Uint8List? fileBytes,
   }) = _UploadFileState;
 
   factory UploadFileState.initial() => const UploadFileState(

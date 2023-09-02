@@ -8,6 +8,7 @@ import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:finance_app/ui/theme/button/main_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -51,6 +52,42 @@ class UploadFilePage extends StatelessWidget {
 class _UploadFileContent extends StatelessWidget {
   const _UploadFileContent();
 
+  void _showErrorDialog(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        content: Text(context.localization.uploadSnackBarFailur),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Ok'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showSuccessDialog(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        content: Text(context.localization.uploadSnackBarComplit),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              context.pop();
+            },
+            child: const Text('Ok'),
+          ),
+        ],
+      ),
+    ).whenComplete(() => context.pop());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -60,24 +97,16 @@ class _UploadFileContent extends StatelessWidget {
           child: BlocListener<UploadFileBloc, UploadFileState>(
             listener: (context, state) {
               if (state.result is FailureUploadFileState) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(context.localization.uploadSnackBarFailur),
-                  ),
-                );
+                _showErrorDialog(context);
               }
               if (state.result is SuccessUploadFileState) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(context.localization.uploadSnackBarComplit),
-                  ),
-                );
-                // context.pop();
+                _showSuccessDialog(context);
               }
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
                     height: 20,
@@ -105,15 +134,7 @@ class _UploadFileContent extends StatelessWidget {
                     color: context.colors.mainElement,
                     thickness: 2,
                   ),
-                  BlocBuilder<UploadFileBloc, UploadFileState>(
-                    builder: (context, state) {
-                      if (state.result is FailureUploadFileState) {}
-                      if (state.result is SuccessUploadFileState) {
-                        return Text(state.fileName);
-                      }
-                      return const SizedBox.shrink();
-                    },
-                  ),
+                  _SelectFileSection(),
                   const Spacer(),
                   Center(
                     child: BlocBuilder<UploadFileBloc, UploadFileState>(
@@ -122,14 +143,16 @@ class _UploadFileContent extends StatelessWidget {
                         width: 200,
                         child: MainButton.normal(
                           label: context.localization.uploadButton,
-                          enabled: state.isSelected,
+                          hasProgress: state.isLoading,
+                          enabled:
+                              state.fileBytes != null && state.walletId != null,
                           onTap: () {
                             if (!state.isSelected) {
                               return;
                             }
                             context
                                 .read<UploadFileBloc>()
-                                .add(const UploadFileEvent.create());
+                                .add(const UploadFileEvent.request());
                           },
                         ),
                       ),
@@ -283,6 +306,52 @@ class _SelectCardWidget extends StatelessWidget {
               ],
             );
           },
+        );
+      },
+    );
+  }
+}
+
+class _SelectFileSection extends StatelessWidget {
+  const _SelectFileSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<UploadFileBloc, UploadFileState>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Select bank statement file',
+                  style: AppTextStyle.mainNormalText,
+                ),
+                InkWell(
+                  onTap: () {
+                    if (!state.isSelected) return;
+                    context
+                        .read<UploadFileBloc>()
+                        .add(const UploadFileEvent.selectFile());
+                  },
+                  child: Opacity(
+                    opacity: state.isSelected ? 1 : 0.3,
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.0),
+                        color: context.colors.mainElement,
+                      ),
+                      child: SvgPicture.asset(Svgs.iconPluse),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            if (state.fileName.isNotEmpty) Text(state.fileName),
+          ],
         );
       },
     );
