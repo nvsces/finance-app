@@ -4,13 +4,15 @@ part of 'upload_file_bloc.dart';
 class UploadFileEvent with _$UploadFileEvent {
   const UploadFileEvent._();
 
-  const factory UploadFileEvent.create() = CreateUploadFileEvent;
+  const factory UploadFileEvent.request() = RequestUploadFileEvent;
 
   const factory UploadFileEvent.init() = InitUploadFileEvent;
 
   const factory UploadFileEvent.selectBank({required int index}) =
-      SelectUploadFileEvent;
+      SelectBankUploadFileEvent;
 
   const factory UploadFileEvent.setWalletId({required int walletId}) =
       SetWalletIdUploadFileEvent;
+
+  const factory UploadFileEvent.selectFile() = SelectFileUploadFileEvent;
 }

@@ -8,10 +8,14 @@ import 'package:finance_app/resources/svgs.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:finance_app/ui/theme/button/main_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../domain/state/expenses/expenses_bloc.dart';
+import '../widgets/with_out_wallet_widget.dart';
 
 class UploadFilePage extends StatelessWidget {
   const UploadFilePage({super.key});
@@ -20,28 +24,26 @@ class UploadFilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        final wallets = context.read<WalletBloc>().state.wallets;
-        final walletId = wallets.isEmpty ? -1 : wallets.first.id!;
         return injector.get<UploadFileBloc>()
-          ..add(const UploadFileEvent.init())
-          ..add(UploadFileEvent.setWalletId(walletId: walletId));
+          ..add(const UploadFileEvent.init());
       },
       child: Scaffold(
         body: const _UploadFileContent(),
         appBar: AppBar(
-            elevation: 0,
-            backgroundColor: context.colors.white,
-            title: Text(
-              context.localization.uploadTitle,
-              style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
-            ),
-            centerTitle: true,
-            leading: IconButton(
-              icon: SvgPicture.asset(Svgs.iconBack),
-              onPressed: () {
-                context.go(MobileRoutes.home.path);
-              },
-            ),),
+          elevation: 0,
+          backgroundColor: context.colors.white,
+          title: Text(
+            context.localization.uploadTitle,
+            style: AppTextStyle.mainBoldText.copyWith(fontSize: 32),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+            icon: SvgPicture.asset(Svgs.iconBack),
+            onPressed: () {
+              context.go(MobileRoutes.home.path);
+            },
+          ),
+        ),
       ),
     );
   }
@@ -49,6 +51,42 @@ class UploadFilePage extends StatelessWidget {
 
 class _UploadFileContent extends StatelessWidget {
   const _UploadFileContent();
+
+  void _showErrorDialog(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        content: Text(context.localization.uploadSnackBarFailur),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Ok'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showSuccessDialog(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        content: Text(context.localization.uploadSnackBarComplit),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              context.pop();
+            },
+            child: const Text('Ok'),
+          ),
+        ],
+      ),
+    ).whenComplete(() => context.pop());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,24 +97,16 @@ class _UploadFileContent extends StatelessWidget {
           child: BlocListener<UploadFileBloc, UploadFileState>(
             listener: (context, state) {
               if (state.result is FailureUploadFileState) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(context.localization.uploadSnackBarFailur),
-                  ),
-                );
+                _showErrorDialog(context);
               }
               if (state.result is SuccessUploadFileState) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(context.localization.uploadSnackBarComplit),
-                  ),
-                );
-                // context.pop();
+                _showSuccessDialog(context);
               }
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
                     height: 20,
@@ -99,19 +129,12 @@ class _UploadFileContent extends StatelessWidget {
                     height: 40,
                   ),
                   const SelectBankWidget(),
+                  _SelectCardWidget(),
                   Divider(
                     color: context.colors.mainElement,
                     thickness: 2,
                   ),
-                  BlocBuilder<UploadFileBloc, UploadFileState>(
-                    builder: (context, state) {
-                      if (state.result is FailureUploadFileState) {}
-                      if (state.result is SuccessUploadFileState) {
-                        return Text(state.fileName);
-                      }
-                      return const SizedBox.shrink();
-                    },
-                  ),
+                  _SelectFileSection(),
                   const Spacer(),
                   Center(
                     child: BlocBuilder<UploadFileBloc, UploadFileState>(
@@ -120,14 +143,16 @@ class _UploadFileContent extends StatelessWidget {
                         width: 200,
                         child: MainButton.normal(
                           label: context.localization.uploadButton,
-                          enabled: state.isSelected,
+                          hasProgress: state.isLoading,
+                          enabled:
+                              state.fileBytes != null && state.walletId != null,
                           onTap: () {
                             if (!state.isSelected) {
                               return;
                             }
                             context
                                 .read<UploadFileBloc>()
-                                .add(const UploadFileEvent.create());
+                                .add(const UploadFileEvent.request());
                           },
                         ),
                       ),
@@ -227,6 +252,108 @@ class CardBankWidget extends StatelessWidget {
           height: 20,
         )
       ],
+    );
+  }
+}
+
+class _SelectCardWidget extends StatelessWidget {
+  const _SelectCardWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<UploadFileBloc, UploadFileState>(
+      /// перерисовывает только тогда когда walletId поменяется
+      buildWhen: (previous, current) => previous.walletId != current.walletId,
+      builder: (context, upState) {
+        return BlocBuilder<WalletBloc, WalletState>(
+          builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Select wallet',
+                  style: AppTextStyle.mainNormalText,
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                SizedBox(
+                  height: 60,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.wallets.length,
+                    itemBuilder: (context, i) {
+                      final wallet = state.wallets[i];
+                      return InkWell(
+                        onTap: () {
+                          if (wallet.id == null) return;
+                          context.read<UploadFileBloc>().add(
+                                UploadFileEvent.setWalletId(
+                                  walletId: wallet.id!,
+                                ),
+                              );
+                        },
+                        child: WithOutWalletWidget(
+                          wallet: wallet,
+                          isSelected: upState.walletId == wallet.id,
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const SizedBox(width: 10.0),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+class _SelectFileSection extends StatelessWidget {
+  const _SelectFileSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<UploadFileBloc, UploadFileState>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Select bank statement file',
+                  style: AppTextStyle.mainNormalText,
+                ),
+                InkWell(
+                  onTap: () {
+                    if (!state.isSelected) return;
+                    context
+                        .read<UploadFileBloc>()
+                        .add(const UploadFileEvent.selectFile());
+                  },
+                  child: Opacity(
+                    opacity: state.isSelected ? 1 : 0.3,
+                    child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.0),
+                        color: context.colors.mainElement,
+                      ),
+                      child: SvgPicture.asset(Svgs.iconPluse),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            if (state.fileName.isNotEmpty) Text(state.fileName),
+          ],
+        );
+      },
     );
   }
 }

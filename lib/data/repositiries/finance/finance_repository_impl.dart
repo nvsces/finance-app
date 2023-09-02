@@ -13,8 +13,10 @@ class FinanceRepository implements AbstractFinanceRepository {
     DateTime? start,
     DateTime? end, {
     String? type,
+    int? walletId,
+    int? page,
   }) async {
-    return apiHandler.getTransactions(start, end, type);
+    return apiHandler.getTransactions(start, end, type, walletId, page);
   }
 
   @override

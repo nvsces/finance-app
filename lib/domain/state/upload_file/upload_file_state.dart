@@ -8,7 +8,8 @@ class UploadFileState with _$UploadFileState {
     required List<Bank> bankList,
     required int currentBank,
     required String fileName,
-    required int walletId,
+    required int? walletId,
+    Uint8List? fileBytes,
   }) = _UploadFileState;
 
   factory UploadFileState.initial() => const UploadFileState(
@@ -17,7 +18,7 @@ class UploadFileState with _$UploadFileState {
         bankList: [],
         currentBank: -1,
         fileName: '',
-        walletId: -1,
+        walletId: null,
       );
 }
 

@@ -87,4 +87,7 @@ class AppTextStyle {
         fontWeight: FontWeight.w400,
         fontSize: 12,
       );
+
+  static TextStyle get dateText => _baseFonts.copyWith(
+      fontWeight: FontWeight.w400, fontSize: 16, color: AppColors.mainText);
 }

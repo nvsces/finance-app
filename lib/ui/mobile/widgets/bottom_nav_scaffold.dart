@@ -25,51 +25,55 @@ class BottomNavScaffold extends StatelessWidget {
 
     return BlocBuilder<WalletBloc, WalletState>(
       builder: (context, state) {
-        return Scaffold(
-          extendBody: true,
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: state.wallets.isNotEmpty
-              ? Container(
-                  decoration: BoxDecoration(
-                    color: context.colors.white,
-                    shape: BoxShape.circle,
+        return ColoredBox(
+          color: context.colors.navigationAndPanels,
+          child: SafeArea(
+            top: false,
+            child: Scaffold(
+              extendBody: true,
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              floatingActionButton: state.wallets.isNotEmpty
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: context.colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: FloatingActionButton(
+                          elevation: 0.0,
+                          onPressed: () {
+                            context.push(MobileRoutes.upload.path);
+                          },
+                          backgroundColor: context.colors.mainElement,
+                          child: SvgPicture.asset(Svgs.iconPluse),
+                        ),
+                      ),
+                    )
+                  : null,
+              body: SafeArea(child: child),
+              bottomNavigationBar: BottomAppBar(
+                clipBehavior: Clip.antiAlias,
+                notchMargin: 2.0,
+                shape: const CircularNotchedRectangle(),
+                elevation: 0,
+                child: BottomNavigationBar(
+                  elevation: 0,
+                  backgroundColor: context.colors.navigationAndPanels,
+                  currentIndex: currentIndex < 0 ? 0 : currentIndex,
+                  type: BottomNavigationBarType.fixed,
+                  showSelectedLabels: false,
+                  showUnselectedLabels: false,
+                  items: currentTabItems
+                      .map((item) => buildTab(context, item))
+                      .toList(growable: false),
+                  onTap: (index) => _onTabTapped(
+                    context: context,
+                    item: currentTabItems[index],
+                    currentLocation: currentLocation,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: FloatingActionButton(
-                      elevation: 0.0,
-                      onPressed: () {
-                        context.push(MobileRoutes.upload.path);
-                      },
-                      backgroundColor: context.colors.mainElement,
-                      child: SvgPicture.asset(Svgs.iconPluse),
-                    ),
-                  ),
-                )
-              : null,
-          body: SafeArea(child: child),
-          bottomNavigationBar: BottomAppBar(
-            
-            clipBehavior: Clip.antiAlias,
-            notchMargin: 2.0,
-            shape: const CircularNotchedRectangle(),
-            elevation: 0,
-            child: BottomNavigationBar(
-            
-              elevation: 0,
-              backgroundColor: context.colors.navigationAndPanels,
-              currentIndex: currentIndex < 0 ? 0 : currentIndex,
-              type: BottomNavigationBarType.fixed,
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              items: currentTabItems
-                  .map((item) => buildTab(context, item))
-                  .toList(growable: false),
-              onTap: (index) => _onTabTapped(
-                context: context,
-                item: currentTabItems[index],
-                currentLocation: currentLocation,
+                ),
               ),
             ),
           ),
@@ -146,10 +150,10 @@ class BottomNavScaffold extends StatelessWidget {
           selectedIcon: Svgs.icMenuTransactionSolid,
           name: context.localization.menuTransaction,
         ),
-              _BottomNavBarItem(
+        _BottomNavBarItem(
           route: MobileRoutes.transaction,
           defaultIcon: '',
-          selectedIcon:'',
+          selectedIcon: '',
           name: '',
         ),
         _BottomNavBarItem(

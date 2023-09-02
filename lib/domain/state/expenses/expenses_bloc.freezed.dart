@@ -19,32 +19,38 @@ mixin _$ExpensesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(int? walletId) setWalletId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(int? walletId)? setWalletId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(int? walletId)? setWalletId,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadExpensesEvent value) load,
+    required TResult Function(SetWalletIdExpensesEvent value) setWalletId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadExpensesEvent value)? load,
+    TResult? Function(SetWalletIdExpensesEvent value)? setWalletId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadExpensesEvent value)? load,
+    TResult Function(SetWalletIdExpensesEvent value)? setWalletId,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -107,6 +113,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function(int? walletId) setWalletId,
   }) {
     return load();
   }
@@ -115,6 +122,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? load,
+    TResult? Function(int? walletId)? setWalletId,
   }) {
     return load?.call();
   }
@@ -123,6 +131,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function(int? walletId)? setWalletId,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -135,6 +144,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(LoadExpensesEvent value) load,
+    required TResult Function(SetWalletIdExpensesEvent value) setWalletId,
   }) {
     return load(this);
   }
@@ -143,6 +153,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LoadExpensesEvent value)? load,
+    TResult? Function(SetWalletIdExpensesEvent value)? setWalletId,
   }) {
     return load?.call(this);
   }
@@ -151,6 +162,7 @@ class _$LoadExpensesEvent extends LoadExpensesEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoadExpensesEvent value)? load,
+    TResult Function(SetWalletIdExpensesEvent value)? setWalletId,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -166,9 +178,148 @@ abstract class LoadExpensesEvent extends ExpensesEvent {
 }
 
 /// @nodoc
+abstract class _$$SetWalletIdExpensesEventCopyWith<$Res> {
+  factory _$$SetWalletIdExpensesEventCopyWith(_$SetWalletIdExpensesEvent value,
+          $Res Function(_$SetWalletIdExpensesEvent) then) =
+      __$$SetWalletIdExpensesEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? walletId});
+}
+
+/// @nodoc
+class __$$SetWalletIdExpensesEventCopyWithImpl<$Res>
+    extends _$ExpensesEventCopyWithImpl<$Res, _$SetWalletIdExpensesEvent>
+    implements _$$SetWalletIdExpensesEventCopyWith<$Res> {
+  __$$SetWalletIdExpensesEventCopyWithImpl(_$SetWalletIdExpensesEvent _value,
+      $Res Function(_$SetWalletIdExpensesEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? walletId = freezed,
+  }) {
+    return _then(_$SetWalletIdExpensesEvent(
+      freezed == walletId
+          ? _value.walletId
+          : walletId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetWalletIdExpensesEvent extends SetWalletIdExpensesEvent {
+  const _$SetWalletIdExpensesEvent(this.walletId) : super._();
+
+  @override
+  final int? walletId;
+
+  @override
+  String toString() {
+    return 'ExpensesEvent.setWalletId(walletId: $walletId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetWalletIdExpensesEvent &&
+            (identical(other.walletId, walletId) ||
+                other.walletId == walletId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, walletId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetWalletIdExpensesEventCopyWith<_$SetWalletIdExpensesEvent>
+      get copyWith =>
+          __$$SetWalletIdExpensesEventCopyWithImpl<_$SetWalletIdExpensesEvent>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(int? walletId) setWalletId,
+  }) {
+    return setWalletId(walletId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(int? walletId)? setWalletId,
+  }) {
+    return setWalletId?.call(walletId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(int? walletId)? setWalletId,
+    required TResult orElse(),
+  }) {
+    if (setWalletId != null) {
+      return setWalletId(walletId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadExpensesEvent value) load,
+    required TResult Function(SetWalletIdExpensesEvent value) setWalletId,
+  }) {
+    return setWalletId(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadExpensesEvent value)? load,
+    TResult? Function(SetWalletIdExpensesEvent value)? setWalletId,
+  }) {
+    return setWalletId?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadExpensesEvent value)? load,
+    TResult Function(SetWalletIdExpensesEvent value)? setWalletId,
+    required TResult orElse(),
+  }) {
+    if (setWalletId != null) {
+      return setWalletId(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetWalletIdExpensesEvent extends ExpensesEvent {
+  const factory SetWalletIdExpensesEvent(final int? walletId) =
+      _$SetWalletIdExpensesEvent;
+  const SetWalletIdExpensesEvent._() : super._();
+
+  int? get walletId;
+  @JsonKey(ignore: true)
+  _$$SetWalletIdExpensesEventCopyWith<_$SetWalletIdExpensesEvent>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ExpensesState {
   List<Transaction> get transactions => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  int? get walletId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ExpensesStateCopyWith<ExpensesState> get copyWith =>
@@ -181,7 +332,7 @@ abstract class $ExpensesStateCopyWith<$Res> {
           ExpensesState value, $Res Function(ExpensesState) then) =
       _$ExpensesStateCopyWithImpl<$Res, ExpensesState>;
   @useResult
-  $Res call({List<Transaction> transactions, bool isLoading});
+  $Res call({List<Transaction> transactions, bool isLoading, int? walletId});
 }
 
 /// @nodoc
@@ -199,6 +350,7 @@ class _$ExpensesStateCopyWithImpl<$Res, $Val extends ExpensesState>
   $Res call({
     Object? transactions = null,
     Object? isLoading = null,
+    Object? walletId = freezed,
   }) {
     return _then(_value.copyWith(
       transactions: null == transactions
@@ -209,6 +361,10 @@ class _$ExpensesStateCopyWithImpl<$Res, $Val extends ExpensesState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      walletId: freezed == walletId
+          ? _value.walletId
+          : walletId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -221,7 +377,7 @@ abstract class _$$_ExpensesStateCopyWith<$Res>
       __$$_ExpensesStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Transaction> transactions, bool isLoading});
+  $Res call({List<Transaction> transactions, bool isLoading, int? walletId});
 }
 
 /// @nodoc
@@ -237,6 +393,7 @@ class __$$_ExpensesStateCopyWithImpl<$Res>
   $Res call({
     Object? transactions = null,
     Object? isLoading = null,
+    Object? walletId = freezed,
   }) {
     return _then(_$_ExpensesState(
       transactions: null == transactions
@@ -247,6 +404,10 @@ class __$$_ExpensesStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      walletId: freezed == walletId
+          ? _value.walletId
+          : walletId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -255,7 +416,9 @@ class __$$_ExpensesStateCopyWithImpl<$Res>
 
 class _$_ExpensesState implements _ExpensesState {
   const _$_ExpensesState(
-      {required final List<Transaction> transactions, required this.isLoading})
+      {required final List<Transaction> transactions,
+      required this.isLoading,
+      this.walletId})
       : _transactions = transactions;
 
   final List<Transaction> _transactions;
@@ -268,10 +431,12 @@ class _$_ExpensesState implements _ExpensesState {
 
   @override
   final bool isLoading;
+  @override
+  final int? walletId;
 
   @override
   String toString() {
-    return 'ExpensesState(transactions: $transactions, isLoading: $isLoading)';
+    return 'ExpensesState(transactions: $transactions, isLoading: $isLoading, walletId: $walletId)';
   }
 
   @override
@@ -282,12 +447,14 @@ class _$_ExpensesState implements _ExpensesState {
             const DeepCollectionEquality()
                 .equals(other._transactions, _transactions) &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            (identical(other.walletId, walletId) ||
+                other.walletId == walletId));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_transactions), isLoading);
+      const DeepCollectionEquality().hash(_transactions), isLoading, walletId);
 
   @JsonKey(ignore: true)
   @override
@@ -299,12 +466,15 @@ class _$_ExpensesState implements _ExpensesState {
 abstract class _ExpensesState implements ExpensesState {
   const factory _ExpensesState(
       {required final List<Transaction> transactions,
-      required final bool isLoading}) = _$_ExpensesState;
+      required final bool isLoading,
+      final int? walletId}) = _$_ExpensesState;
 
   @override
   List<Transaction> get transactions;
   @override
   bool get isLoading;
+  @override
+  int? get walletId;
   @override
   @JsonKey(ignore: true)
   _$$_ExpensesStateCopyWith<_$_ExpensesState> get copyWith =>

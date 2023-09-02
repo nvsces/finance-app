@@ -2,6 +2,7 @@ import 'package:finance_app/data/repositiries/finance/finance_repositiry.dart';
 import 'package:finance_app/di/injector.dart';
 import 'package:finance_app/domain/entity/transaction_filter.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
+import 'package:finance_app/domain/state/home/filter_wallet_bloc.dart';
 import 'package:finance_app/domain/state/income/income_bloc.dart';
 import 'package:finance_app/domain/state/wallet/create_wallet_bloc.dart';
 import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:finance_app/ui/mobile/widgets/create_wallet_start_widget.dart';
 import 'package:finance_app/ui/mobile/widgets/home/expenses_content.dart';
 import 'package:finance_app/ui/mobile/widgets/home/income_content.dart';
 import 'package:finance_app/ui/mobile/widgets/with_out_wallet_widget.dart';
+import 'package:finance_app/ui/theme/app_light_theme.dart';
 import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,42 +51,71 @@ class _HomeContent extends StatelessWidget {
         if (state.wallets.isEmpty) {
           return const CreateWalletStartWidget();
         }
-        return Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20.0,
-                top: 8.0,
-                bottom: 16.0,
-              ),
-              height: 84,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: state.wallets.length,
-                itemBuilder: (context, i) {
-                  return InkWell(
-                    onLongPress: () {
-                      context.read<CreateWalletBloc>().add(
-                            CreateWalletEvent.editCard(
-                              state.wallets[i].title,
-                              state.wallets[i].description,
-                              state.wallets[i].currency,
-                            ),
-                          );
-                      context.push(MobileRoutes.createWalet.path);
+        return BlocConsumer<FilterWalletBloc, FilterWalletState>(
+          listenWhen: (previous, current) =>
+              previous.walletId != current.walletId,
+          listener: (context, filterState) {
+            context.read<ExpensesBloc>().add(
+                  ExpensesEvent.setWalletId(filterState.walletId),
+                );
+            context.read<IncomeBloc>().add(
+                  IncomeEvent.setWalletId(filterState.walletId),
+                );
+          },
+          buildWhen: (previous, current) =>
+              previous.walletId != current.walletId,
+          builder: (context, filterState) {
+            return Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                    left: 20.0,
+                    right: 20.0,
+                    top: 8.0,
+                    bottom: 16.0,
+                  ),
+                  height: 84,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.wallets.length,
+                    itemBuilder: (context, i) {
+                      final wallet = state.wallets[i];
+                      return InkWell(
+                        onTap: () {
+                          if (wallet.id != null) {
+                            context.read<FilterWalletBloc>().add(
+                                  FilterWalletEvent.setWalletId(
+                                    filterState.walletId == wallet.id
+                                        ? null
+                                        : state.wallets[i].id,
+                                  ),
+                                );
+                          }
+                        },
+                        onLongPress: () {
+                          context.read<CreateWalletBloc>().add(
+                                CreateWalletEvent.editCard(
+                                  wallet.title,
+                                  wallet.description,
+                                  wallet.currency,
+                                ),
+                              );
+                          context.push(MobileRoutes.createWalet.path);
+                        },
+                        child: WithOutWalletWidget(
+                          wallet: wallet,
+                          isSelected: filterState.walletId == wallet.id,
+                        ),
+                      );
                     },
-                    child: WithOutWalletWidget(
-                      wallet: state.wallets[i],
-                    ),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) =>
-                    const SizedBox(width: 10.0),
-              ),
-            ),
-            const Expanded(child: _HomeTabsWidget()),
-          ],
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const SizedBox(width: 10.0),
+                  ),
+                ),
+                const Expanded(child: _HomeTabsWidget()),
+              ],
+            );
+          },
         );
       },
     );
@@ -111,21 +142,19 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
       length: 2,
       vsync: this,
     );
+    tabController.addListener(() {
+      setState(() {});
+    });
     super.initState();
   }
 
-  bool get expenses => tabController.index == 0; 
-
+  bool get expenses => tabController.index == 0;
 
   @override
   void dispose() {
     tabController.dispose();
     super.dispose();
   }
-
-
-  
-
 
   String getPeriodTitle(BuildContext context) {
     final filter = AbstractFinanceRepository.transactionFilter;
@@ -136,8 +165,14 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
     final startDate =
         filter.start == null ? '' : formater.format(filter.start!);
     final endDate = filter.end == null ? '' : formater.format(filter.end!);
-
-    return '$startDate-$endDate';
+    if (filter.start!.difference(DateTime.now()).inDays ==
+        DateTime.now().difference(DateTime.now()).inDays) {
+      return context.localization.homeDateNow;
+    } else if (endDate == '' && startDate != '') {
+      return startDate;
+    } else {
+      return '$startDate-$endDate';
+    }
   }
 
   @override
@@ -169,7 +204,6 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
                         onPressed: () {
                           setState(() {
                             tabController.animateTo(0);
-                             
                           });
                         },
                       ),
@@ -188,7 +222,6 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
                           onPressed: () {
                             setState(() {
                               tabController.animateTo(1);
-                              
                             });
                           },
                         ),
@@ -244,17 +277,20 @@ class _HomeTabsWidgetState extends State<_HomeTabsWidget>
       useRootNavigator: true,
       isScrollControlled: true,
       useSafeArea: true,
-      builder: (context) => Material(
-        child: CustomCalendar(
-          initialStartDate: AbstractFinanceRepository.transactionFilter.start,
-          initialEndDate: AbstractFinanceRepository.transactionFilter.end,
-          onDateTimeChanged: (start, end) {
-            AbstractFinanceRepository.transactionFilter = TransactionFilter(
-              start: start,
-              end: end,
-            );
-            onChangeFilter.call();
-          },
+      builder: (context) => Theme(
+        data: buildLightTheme(),
+        child: Material(
+          child: CustomCalendar(
+            initialStartDate: AbstractFinanceRepository.transactionFilter.start,
+            initialEndDate: AbstractFinanceRepository.transactionFilter.end,
+            onDateTimeChanged: (start, end) {
+              AbstractFinanceRepository.transactionFilter = TransactionFilter(
+                start: start,
+                end: end,
+              );
+              onChangeFilter.call();
+            },
+          ),
         ),
       ),
     );
