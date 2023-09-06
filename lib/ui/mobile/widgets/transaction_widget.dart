@@ -35,7 +35,7 @@ class TransactionWidget extends StatelessWidget {
                 transaction.name,
                 style: AppTextStyle.transactionText.copyWith(
                   color: context.colors.mainText,
-                  overflow: TextOverflow.ellipsis,
+                  // overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),

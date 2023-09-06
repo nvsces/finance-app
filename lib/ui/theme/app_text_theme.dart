@@ -80,7 +80,7 @@ class AppTextStyle {
 
   static TextStyle get transactionText => _baseFonts.copyWith(
         fontWeight: FontWeight.w500,
-        fontSize: 16,
+        fontSize: 12,
       );
 
   static TextStyle get defaultTypeset => _baseFonts.copyWith(

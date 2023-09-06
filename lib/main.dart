@@ -59,8 +59,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               initial: AdaptiveThemeMode.light,
               builder: (light, dark) => MaterialApp.router(
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
-                // locale: state.selectedLocale,
-                locale: const Locale('ru'),
+                locale: state.selectedLocale,
+                // locale: const Locale('ru'),
                 supportedLocales: AppLocalizations.supportedLocales,
                 key: _appKey,
                 debugShowCheckedModeBanner: false,

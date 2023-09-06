@@ -7,7 +7,6 @@
     "homeTitleExpenses":"Расходы",
     "homeTitleIncome":"Доходы",
     "homePeriod":"Период",
-    "homeDateNow":"Сегодня",
     "uploadTitle":"Загрузить",
     "uploadInfo":"Выберите свой банк для\nзагрузки выписки по счету",
     "uploadSber":"Сбер Банк",
@@ -19,5 +18,16 @@
     "menuHome":"Домашняя",
     "menuTransaction":"Транзакции",
     "menuGoals":"Цели",
-    "menuAccount":"Аккаунт"
+    "menuAccount":"Аккаунт",
+    "homeDateNow":"Сегодня",
+    "accountTitle":"Ваш e-mail",
+    "accountField":"email@email.com",
+    "accountGeneral":"Главная",
+    "accountLanguage":"Язык",
+    "accountTheme":"Тема",
+    "accountOther":"Другое",
+    "accountLicenses":"Лицензии и условия",
+    "accountVersion":"Версия",
+    "accountExit":"Выйти",
+    "accountSubscriptions":"Подписки"
 }

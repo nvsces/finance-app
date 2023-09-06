@@ -36,4 +36,7 @@ class Svgs {
 
   static const SvgAsset iconAdd = 'assets/svg/icon_add.svg';
   static const SvgAsset iconPluse = 'assets/svg/icon_pluse.svg';
+
+  static const SvgAsset iconEdit =
+      'assets/svg/icon_edit.svg';
 }

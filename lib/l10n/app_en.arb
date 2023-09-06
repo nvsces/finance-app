@@ -7,7 +7,6 @@
     "homeTitleExpenses":"Expenses",
     "homeTitleIncome":"Income",
     "homePeriod":"Period",
-    "homeDateNow":"Today",
     "uploadTitle":"Upload",
     "uploadInfo":"Select your bank to\nupload a bank statement",
     "uploadSber":"Sber Bank",
@@ -19,7 +18,19 @@
     "menuHome":"Home",
     "menuTransaction":"Transaction",
     "menuGoals":"Goals",
-    "menuAccount":"Account"
+    "menuAccount":"Account",
+    "homeDateNow":"Today",
+    "accountTitle":"Youre e-mail",
+    "accountField":"email@email.com",
+    "accountGeneral":"General",
+    "accountLanguage":"Language",
+    "accountTheme":"Theme",
+    "accountOther":"Other",
+    "accountLicenses":"Licenses and Terms",
+    "accountVersion":"Version",
+    "accountExit":"Exit",
+    "accountSubscriptions":"Subscriptions"
+    
     
 }
 
