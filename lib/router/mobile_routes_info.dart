@@ -7,6 +7,7 @@ import 'package:finance_app/ui/mobile/pages/auth_page.dart';
 import 'package:finance_app/ui/mobile/pages/create_walet_page.dart';
 import 'package:finance_app/ui/mobile/pages/detail_category_page.dart';
 import 'package:finance_app/ui/mobile/pages/edit_sub_page.dart';
+import 'package:finance_app/ui/mobile/pages/goal_page.dart';
 import 'package:finance_app/ui/mobile/pages/home_page.dart';
 import 'package:finance_app/ui/mobile/pages/login_page.dart';
 import 'package:finance_app/ui/mobile/pages/subscriptions_page.dart';
@@ -35,6 +36,7 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           name: MobileRoutes.subscription.name,
           builder: (context, state) => const SubscriptionsPage(),
         ),
+      
         GoRoute(
           parentNavigatorKey: AppRouter.rootNavigatorKey,
           path: MobileRoutes.editSub.path,
@@ -84,6 +86,7 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
             _addTabRoute(MobileRoutes.account, const AccountPage()),
             _addTabRoute(MobileRoutes.home, const HomePage()),
             _addTabRoute(MobileRoutes.transaction, const TransactionPage()),
+            _addTabRoute(MobileRoutes.goal, const GoalPage()),
           ],
         ),
       ];

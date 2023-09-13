@@ -157,7 +157,7 @@ class BottomNavScaffold extends StatelessWidget {
           name: '',
         ),
         _BottomNavBarItem(
-          route: MobileRoutes.home,
+          route: MobileRoutes.goal,
           defaultIcon: Svgs.icMenuGoalsDefault,
           selectedIcon: Svgs.icMenuGoalsSolid,
           name: context.localization.menuGoals,

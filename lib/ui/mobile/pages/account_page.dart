@@ -13,9 +13,9 @@ import 'package:finance_app/ui/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -27,83 +27,83 @@ class AccountPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: ListView(
           children: [
-            const CircleAvatar(
-              radius: 50,
-              backgroundColor: AppColors.mainElement,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'User Userovich',
-                  style: AppTextStyle.mainNormalText.copyWith(fontSize: 24),
-                ),
-                const SizedBox(
-                  width: 9,
-                ),
-                SvgPicture.asset(Svgs.iconEdit),
-              ],
-            ),
+            // const CircleAvatar(
+            //   radius: 50,
+            //   backgroundColor: AppColors.mainElement,
+            // ),
+            // const SizedBox(
+            //   height: 8,
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Text(
+            //       'User Userovich',
+            //       style: AppTextStyle.mainNormalText.copyWith(fontSize: 24),
+            //     ),
+            //     const SizedBox(
+            //       width: 9,
+            //     ),
+            //     SvgPicture.asset(Svgs.iconEdit),
+            //   ],
+            // ),
             const SizedBox(
               height: 28,
             ),
-            Column(
-              // crossAxisAlignment: CrossAxisAlignment.start,
+            // Column(
+            //   // crossAxisAlignment: CrossAxisAlignment.start,
 
-              children: [
-                Text(
-                  context.localization.accountTitle,
-                  style: AppTextStyle.mainNormalText.copyWith(fontSize: 16),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 40,
-                      width: 310,
-                      child: TextFormField(
-                        style: AppTextStyle.appButton1.copyWith(
-                            color: context.colors.white, fontSize: 15),
-                        onChanged: (value) {},
-                        keyboardType: TextInputType.text,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.singleLineFormatter
-                        ],
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: context.colors.secondaryElement,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          contentPadding:
-                              const EdgeInsets.only(left: 15, right: 15),
-                          hintText: context.localization.accountField,
-                          hintStyle: AppTextStyle.appButton1.copyWith(
-                            color: context.colors.white,
-                            fontSize: 15,
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    SvgPicture.asset(Svgs.iconEdit)
-                  ],
-                ),
-              ],
-            ),
+            //   children: [
+            //     Text(
+            //       context.localization.accountTitle,
+            //       style: AppTextStyle.mainNormalText.copyWith(fontSize: 16),
+            //     ),
+            //     const SizedBox(
+            //       height: 12,
+            //     ),
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: [
+            //         SizedBox(
+            //           height: 40,
+            //           width: 310,
+            //           child: TextFormField(
+            //             style: AppTextStyle.appButton1.copyWith(
+            //                 color: context.colors.white, fontSize: 15),
+            //             onChanged: (value) {},
+            //             keyboardType: TextInputType.text,
+            //             inputFormatters: [
+            //               FilteringTextInputFormatter.singleLineFormatter
+            //             ],
+            //             decoration: InputDecoration(
+            //               filled: true,
+            //               fillColor: context.colors.secondaryElement,
+            //               border: OutlineInputBorder(
+            //                 borderSide: BorderSide.none,
+            //                 borderRadius: BorderRadius.circular(20),
+            //               ),
+            //               contentPadding:
+            //                   const EdgeInsets.only(left: 15, right: 15),
+            //               hintText: context.localization.accountField,
+            //               hintStyle: AppTextStyle.appButton1.copyWith(
+            //                 color: context.colors.white,
+            //                 fontSize: 15,
+            //               ),
+            //               enabledBorder: const OutlineInputBorder(
+            //                 borderRadius: BorderRadius.all(Radius.circular(20)),
+            //                 borderSide: BorderSide.none,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //         const SizedBox(
+            //           width: 8,
+            //         ),
+            //         SvgPicture.asset(Svgs.iconEdit)
+            //       ],
+            //     ),
+            //   ],
+            // ),
             const SizedBox(
               height: 28,
             ),
@@ -192,7 +192,7 @@ class AccountPage extends StatelessWidget {
                           InkWell(
                             onTap: () {},
                             child: Text(
-                              'Light mode',
+                              'only light',
                               style: AppTextStyle.mainNormalText.copyWith(
                                 color: AppColors.mainElement,
                                 fontSize: 16,
@@ -225,17 +225,17 @@ class AccountPage extends StatelessWidget {
                         style:
                             AppTextStyle.mainNormalText.copyWith(fontSize: 20),
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Text(
-                          context.localization.accountLicenses,
-                          style: AppTextStyle.mainNormalText
-                              .copyWith(fontSize: 16),
-                        ),
-                      ),
+                      // const SizedBox(
+                      //   height: 16,
+                      // ),
+                      // InkWell(
+                      //   onTap: () {},
+                      //   child: Text(
+                      //     context.localization.accountLicenses,
+                      //     style: AppTextStyle.mainNormalText
+                      //         .copyWith(fontSize: 16),
+                      //   ),
+                      // ),
                       const SizedBox(
                         height: 16,
                       ),
