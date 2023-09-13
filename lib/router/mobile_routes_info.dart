@@ -54,14 +54,6 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           builder: (context, state) => const CreateWaletPage(),
         ),
         GoRoute(
-          parentNavigatorKey: AppRouter.rootNavigatorKey,
-          path: MobileRoutes.detailCategory.path,
-          name: MobileRoutes.detailCategory.name,
-          builder: (context, state) => DetailCategoryPage(
-            transactions: state.extra! as List<Transaction>,
-          ),
-        ),
-        GoRoute(
           path: '${MobileRoutes.auth.path}/:code',
           name: MobileRoutes.auth.name,
           builder: (context, state) {
@@ -82,7 +74,16 @@ class MobileRoutesInfo implements AbstractRoutesInfo {
           },
           routes: [
             _addTabRoute(MobileRoutes.account, const AccountPage()),
-            _addTabRoute(MobileRoutes.home, const HomePage()),
+            _addTabRoute(MobileRoutes.home, const HomePage(), routes: [
+              GoRoute(
+                parentNavigatorKey: _shellNavigatorKey,
+                path: MobileRoutes.detailCategory.name,
+                name: MobileRoutes.detailCategory.name,
+                builder: (context, state) => DetailCategoryPage(
+                  transactions: state.extra! as List<Transaction>,
+                ),
+              ),
+            ]),
             _addTabRoute(MobileRoutes.transaction, const TransactionPage()),
           ],
         ),

@@ -1,8 +1,5 @@
 import 'package:finance_app/data/models/transaction.dart';
-import 'package:finance_app/data/repositiries/transaction/transaction_repository.dart';
-import 'package:finance_app/di/injector.dart';
-import 'package:finance_app/domain/state/transaction/transaction_bloc.dart';
-
+import 'package:finance_app/domain/state/transaction/category_transaction_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,25 +9,13 @@ class TransactionCardWidget extends StatelessWidget {
   const TransactionCardWidget({super.key, required this.transaction});
   final Transaction transaction;
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<TransactionBloc>(
-      create: (context) =>
-          TransactionBloc(transaction, injector.get<TransactionRepository>()),
-      child: const _TransactionCardContent(),
-    );
-  }
-}
-
-class _TransactionCardContent extends StatelessWidget {
-  const _TransactionCardContent();
-
-  void _showDialog(BuildContext context, TransactionBloc bloc) {
+  void _showDialog(BuildContext context, CategoryTransactionBloc bloc,
+      Transaction transaction) {
     // ignore: inference_failure_on_function_invocation
     showDialog(
       context: context,
       builder: (context) {
-        return BlocProvider<TransactionBloc>.value(
+        return BlocProvider<CategoryTransactionBloc>.value(
           value: bloc,
           child: CupertinoAlertDialog(
             title: const Text('Выберите действие'),
@@ -38,13 +23,18 @@ class _TransactionCardContent extends StatelessWidget {
               CupertinoDialogAction(
                 child: const Text('Не учитывать'),
                 onPressed: () {
-                  bloc.add(const TransactionEvent.disabled());
+                  bloc.add(CategoryTransactionEvent.disabled(transaction));
                   context.pop();
                 },
               ),
               _AddCommentWidget(
                 action: (comment) {
-                  bloc.add(TransactionEvent.addComment(comment: comment));
+                  bloc.add(
+                    CategoryTransactionEvent.addComment(
+                      comment: comment,
+                      tr: transaction,
+                    ),
+                  );
                   context.pop();
                 },
               ),
@@ -63,18 +53,14 @@ class _TransactionCardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TransactionBloc, TransactionState>(
-      builder: (context, state) {
-        final transaction = state.transaction;
-        return ListTile(
-          onTap: () {
-            _showDialog(context, context.read<TransactionBloc>());
-          },
-          title: Text(transaction.name),
-          subtitle: Text(transaction.category.name),
-          trailing: Text(transaction.value.toString()),
-        );
+    return ListTile(
+      onTap: () {
+        _showDialog(
+            context, context.read<CategoryTransactionBloc>(), transaction);
       },
+      title: Text(transaction.name),
+      subtitle: Text(transaction.category.name),
+      trailing: Text(transaction.value.toString()),
     );
   }
 }

@@ -63,8 +63,8 @@ class _ChartWidgetState extends State<ChartWidget> {
                 const double heightChartBar = 10;
                 return InkWell(
                   onTap: () {
-                    context.push(
-                      MobileRoutes.detailCategory.path,
+                    context.goNamed(
+                      MobileRoutes.detailCategory.name,
                       extra: categort[index].transactions,
                     );
                   },

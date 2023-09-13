@@ -11,9 +11,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class TransactionWidget extends StatelessWidget {
   final Transaction transaction;
+  final bool showIcon;
   const TransactionWidget({
     super.key,
     required this.transaction,
+    this.showIcon = true,
   });
 
   @override
@@ -22,14 +24,16 @@ class TransactionWidget extends StatelessWidget {
       children: [
         Row(
           children: [
-            CircleAvatar(
-              radius: 14,
-              backgroundColor: context.colors.mainElement,
-              child: SvgPicture.asset(
-                Svgs.iconShopping,
+            if (showIcon) ...[
+              CircleAvatar(
+                radius: 14,
+                backgroundColor: context.colors.mainElement,
+                child: SvgPicture.asset(
+                  Svgs.iconShopping,
+                ),
               ),
-            ),
-            const SizedBox(width: 16),
+              const SizedBox(width: 16),
+            ],
             Expanded(
               child: Text(
                 transaction.name,
