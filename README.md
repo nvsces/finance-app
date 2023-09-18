@@ -1,23 +1,25 @@
 <h1><img src="https://media.tenor.com/nJDAgh_80UMAAAAi/nabung-investasi.gif" width="60" /> Financeflow</h1>
 
-Financeflow - это удобное приложение для учета финансов, которое поможет вам легко и эффективно управлять вашим капиталом. С его помощью вы сможете следить за доходами, расходами и инвестициями(скоро), а также планировать ваше финансовое будущее.
+Financeflow is a convenient financial management application designed to help you easily and efficiently manage your capital. With its assistance, you can track your income, expenses, and investments (coming soon), as well as plan your financial future.
 
-## Основные возможности Financeflow
+## Key Features of Financeflow
 
-- **Удобный учет расходов и доходов**: Вносите все ваши финансовые операции в одном месте, чтобы всегда быть в курсе, куда уходят ваши деньги и откуда они приходят.
+- **Convenient Expense and Income Tracking**: Record all your financial transactions in one place to always stay informed about where your money is going and where it's coming from.
 
-- **Персональные бюджеты**: Распределяйте бюджеты по банковским картам. Financeflow поможет вам следить за выполнением ваших финансовых планов.
+- **Personal Budgets**: Allocate budgets to different bank cards. Financeflow will assist you in monitoring the execution of your financial plans.
 
-- **Отчеты и аналитика**: Получайте аналитику о вашей финансовой активности, чтобы лучше понимать, как вы распоряжаетесь своими деньгами.
+- **Reports and Analytics**: Receive analytics about your financial activity to gain a better understanding of how you're managing your finances.
 
-- **Безопасность и конфиденциальность**: Мы обеспечиваем надежную защиту ваших финансовых данных, чтобы вы могли чувствовать себя в безопасности.
+- **Security and Privacy**: We ensure the reliable protection of your financial data, allowing you to feel secure.
 
-Financeflow - ваш надежный спутник в мире финансов, который поможет вам достичь финансовой стабильности и уверенности в будущем. Начните управлять своими финансами проще и эффективнее сегодня!
+Financeflow is your reliable companion in the world of finances, helping you achieve financial stability and confidence in the future. Start managing your finances more easily and efficiently today!
+
 
 
 <p align="center">
   <img src="https://github.com/nvsces/finance-app/assets/91376345/c0f51dd4-8d02-4b12-a7c7-d751295c6cd3.gif" alt="animated" width="270" height="560" />
   <img src="https://github.com/nvsces/finance-app/assets/91376345/9fa53f06-d241-4c9f-a3ee-8ccaedafc3c9.gif" alt="animated" width="270" height="560" />
+  <img src="https://github.com/nvsces/finance-app/assets/91376345/9e7fa492-4304-4c3e-a5d7-c4920cf434d4.gif" alt="animated" width="270" height="560" />
 </p>
 
 
