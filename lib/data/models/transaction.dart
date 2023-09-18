@@ -1,68 +1,36 @@
+import 'package:finance_app/data/models/category.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'transaction.g.dart';
+
+@JsonSerializable()
 class Transaction {
   final int id;
   final String name;
-  final String category;
+  final CategoryModel category;
   final String? comment;
   final double value;
   final int date;
   final bool enabled;
-  Transaction({
-    required this.name,
-    required this.category,
-    required this.value,
-    required this.date,
+  final int walletId;
+  Transaction(
+    this.id,
+    this.name,
+    this.category,
     this.comment,
-    required this.id,
-    required this.enabled,
-  });
+    this.value,
+    this.date,
+    this.enabled,
+    this.walletId,
+  );
 
-  Transaction copyWith({
-    String? name,
-    String? category,
-    double? value,
-    int? date,
-    int? id,
-    String? comment,
-    bool? enabled,
-  }) {
-    return Transaction(
-      id: id ?? this.id,
-      comment: comment ?? this.comment,
-      name: name ?? this.name,
-      category: category ?? this.category,
-      value: value ?? this.value,
-      date: date ?? this.date,
-      enabled: enabled ?? this.enabled,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'comment': comment,
-      'id': id,
-      'name': name,
-      'category': category,
-      'value': value,
-      'date': date,
-      'enabled': enabled,
-    };
-  }
-
-  factory Transaction.fromMap(Map<String, dynamic> map) {
-    return Transaction(
-      id: map['id'] as int? ?? 0,
-      comment: map['comment'] as String?,
-      name: map['name'] as String? ?? '',
-      category: map['category'] as String? ?? '',
-      value: (map['value'] as num?)?.toDouble() ?? 0.0,
-      date: (map['date'] as num?)?.toInt() ?? 0,
-      enabled: map['enabled'] as bool? ?? true,
-    );
-  }
+  factory Transaction.fromJson(Map<String, dynamic> json) =>
+      _$TransactionFromJson(json);
+  Map<String, dynamic> toJson() => _$TransactionToJson(this);
 
   @override
   String toString() {
-    return 'Transaction(name: $name, category: $category, value: $value, date: $date)';
+    return 'Transaction(id: $id, name: $name, category: $category, comment: $comment, value: $value, date: $date, enabled: $enabled, walletId: $walletId)';
   }
 
   @override
@@ -70,23 +38,47 @@ class Transaction {
     if (identical(this, other)) return true;
 
     return other is Transaction &&
+        other.id == id &&
         other.name == name &&
         other.category == category &&
-        other.value == value &&
         other.comment == comment &&
-        other.id == id &&
+        other.value == value &&
+        other.date == date &&
         other.enabled == enabled &&
-        other.date == date;
+        other.walletId == walletId;
   }
 
   @override
   int get hashCode {
-    return name.hashCode ^
+    return id.hashCode ^
+        name.hashCode ^
         category.hashCode ^
+        comment.hashCode ^
         value.hashCode ^
         date.hashCode ^
-        id.hashCode ^
         enabled.hashCode ^
-        comment.hashCode;
+        walletId.hashCode;
+  }
+
+  Transaction copyWith({
+    int? id,
+    String? name,
+    CategoryModel? category,
+    String? comment,
+    double? value,
+    int? date,
+    bool? enabled,
+    int? walletId,
+  }) {
+    return Transaction(
+      id ?? this.id,
+      name ?? this.name,
+      category ?? this.category,
+      comment ?? this.comment,
+      value ?? this.value,
+      date ?? this.date,
+      enabled ?? this.enabled,
+      walletId ?? this.walletId,
+    );
   }
 }

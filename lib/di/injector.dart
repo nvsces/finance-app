@@ -6,10 +6,16 @@ import 'package:finance_app/data/repositiries/finance/finance_repositiry.dart';
 import 'package:finance_app/data/repositiries/finance/finance_repository_impl.dart';
 import 'package:finance_app/data/repositiries/transaction/transaction_repository.dart';
 import 'package:finance_app/data/repositiries/transaction/transaction_repository_impl.dart';
+import 'package:finance_app/data/repositiries/wallet/wallet_repository.dart';
+import 'package:finance_app/data/repositiries/wallet/wallet_repository_impl.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
 import 'package:finance_app/domain/state/auth/login_cubit.dart';
 import 'package:finance_app/domain/state/expenses/expenses_bloc.dart';
+import 'package:finance_app/domain/state/home/filter_wallet_bloc.dart';
+import 'package:finance_app/domain/state/income/income_bloc.dart';
 import 'package:finance_app/domain/state/upload_file/upload_file_bloc.dart';
+import 'package:finance_app/domain/state/wallet/create_wallet_bloc.dart';
+import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/domain/transaction_list/transaction_list_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -47,6 +53,9 @@ Future<void> _registerRepositories() async {
   injector.registerSingleton<TransactionRepository>(
     TransactionRepositoryImpl(injector.get()),
   );
+  injector.registerSingleton<WalletRepository>(
+    WalletRepositoryImpl(injector.get()),
+  );
 }
 
 Future<void> registerBloc() async {
@@ -55,13 +64,23 @@ Future<void> registerBloc() async {
     AuthBloc(injector.get(), dioHelper: injector.get<DioHelper>()),
   );
 
+  injector.registerSingleton(
+    WalletBloc(injector.get()),
+  );
+
   injector.registerFactory(() => ExpensesBloc(injector.get()));
+
+  injector.registerFactory(() => IncomeBloc(injector.get()));
 
   injector.registerFactory(() => LoginCubit(injector.get()));
 
   injector.registerFactory(() => UploadFileBloc(injector.get()));
 
   injector.registerFactory(() => TransactionListBloc(injector.get()));
+
+  injector.registerFactory(() => CreateWalletBloc(injector.get()));
+
+  injector.registerFactory(() => FilterWalletBloc());
 
   // injector.registerFactory(() => SubscriptionBloc(injector.get()));
 }

@@ -169,7 +169,8 @@ abstract class ReadTransactionListEvent extends TransactionListEvent {
 
 /// @nodoc
 mixin _$TransactionListState {
-  List<Transaction> get transactions => throw _privateConstructorUsedError;
+  Map<DateTime, List<Transaction>> get transactions =>
+      throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -183,7 +184,7 @@ abstract class $TransactionListStateCopyWith<$Res> {
           $Res Function(TransactionListState) then) =
       _$TransactionListStateCopyWithImpl<$Res, TransactionListState>;
   @useResult
-  $Res call({List<Transaction> transactions, bool isLoading});
+  $Res call({Map<DateTime, List<Transaction>> transactions, bool isLoading});
 }
 
 /// @nodoc
@@ -207,7 +208,7 @@ class _$TransactionListStateCopyWithImpl<$Res,
       transactions: null == transactions
           ? _value.transactions
           : transactions // ignore: cast_nullable_to_non_nullable
-              as List<Transaction>,
+              as Map<DateTime, List<Transaction>>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -224,7 +225,7 @@ abstract class _$$_TransactionListStateCopyWith<$Res>
       __$$_TransactionListStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Transaction> transactions, bool isLoading});
+  $Res call({Map<DateTime, List<Transaction>> transactions, bool isLoading});
 }
 
 /// @nodoc
@@ -245,7 +246,7 @@ class __$$_TransactionListStateCopyWithImpl<$Res>
       transactions: null == transactions
           ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
-              as List<Transaction>,
+              as Map<DateTime, List<Transaction>>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -258,15 +259,16 @@ class __$$_TransactionListStateCopyWithImpl<$Res>
 
 class _$_TransactionListState implements _TransactionListState {
   const _$_TransactionListState(
-      {required final List<Transaction> transactions, required this.isLoading})
+      {required final Map<DateTime, List<Transaction>> transactions,
+      required this.isLoading})
       : _transactions = transactions;
 
-  final List<Transaction> _transactions;
+  final Map<DateTime, List<Transaction>> _transactions;
   @override
-  List<Transaction> get transactions {
-    if (_transactions is EqualUnmodifiableListView) return _transactions;
+  Map<DateTime, List<Transaction>> get transactions {
+    if (_transactions is EqualUnmodifiableMapView) return _transactions;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_transactions);
+    return EqualUnmodifiableMapView(_transactions);
   }
 
   @override
@@ -302,11 +304,11 @@ class _$_TransactionListState implements _TransactionListState {
 
 abstract class _TransactionListState implements TransactionListState {
   const factory _TransactionListState(
-      {required final List<Transaction> transactions,
+      {required final Map<DateTime, List<Transaction>> transactions,
       required final bool isLoading}) = _$_TransactionListState;
 
   @override
-  List<Transaction> get transactions;
+  Map<DateTime, List<Transaction>> get transactions;
   @override
   bool get isLoading;
   @override

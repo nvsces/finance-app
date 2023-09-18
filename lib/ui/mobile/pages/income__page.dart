@@ -5,9 +5,8 @@ class IncomeChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Center(
-        child: Text('mobile/income'),
-      );
+    return const Center(
+      child: Text('mobile/income'),
+    );
   }
-  
 }

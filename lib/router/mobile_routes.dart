@@ -11,7 +11,8 @@ enum MobileRoutes {
   subscription,
   transaction,
   createWalet,
-  account,;
+  account,
+  goal,;
 
   static MobileRoutes? fromName(String? name) {
     return MobileRoutes.values.firstWhereOrNull(

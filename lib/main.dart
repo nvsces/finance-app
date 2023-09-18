@@ -1,9 +1,13 @@
-
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:finance_app/data/repositiries/finance/finance_repositiry.dart';
 import 'package:finance_app/di/injector.dart';
+import 'package:finance_app/domain/entity/transaction_filter.dart';
 import 'package:finance_app/domain/state/auth/auth_bloc.dart';
+import 'package:finance_app/domain/state/home/filter_wallet_bloc.dart';
 import 'package:finance_app/domain/state/language/language_bloc.dart';
 import 'package:finance_app/domain/state/subscription/subscription_bloc.dart';
+import 'package:finance_app/domain/state/wallet/create_wallet_bloc.dart';
+import 'package:finance_app/domain/state/wallet/wallet_bloc.dart';
 import 'package:finance_app/router/app_router.dart';
 import 'package:finance_app/router/mobile_routes.dart';
 import 'package:finance_app/ui/theme/app_dark_theme.dart';
@@ -15,8 +19,18 @@ import 'package:go_router/go_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  initFilter();
   await initInjector();
   runApp(const MyApp());
+}
+
+void initFilter() {
+  final current = DateTime.now();
+  final filter = TransactionFilter(
+    start: DateTime(current.year, current.month),
+    end: current,
+  );
+  AbstractFinanceRepository.transactionFilter = filter;
 }
 
 class MyApp extends StatefulWidget {
@@ -46,6 +60,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               builder: (light, dark) => MaterialApp.router(
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 locale: state.selectedLocale,
+                // locale: const Locale('ru'),
                 supportedLocales: AppLocalizations.supportedLocales,
                 key: _appKey,
                 debugShowCheckedModeBanner: false,
@@ -66,18 +81,24 @@ List<BlocProvider> _globalBlocs() {
     BlocProvider<AuthBloc>(
       create: (context) => injector.get()..add(const AuthEvent.init()),
     ),
-    // BlocProvider<SubscriptionBloc>(
-    //   create: (context) => injector.get(),
-    // ),
     BlocProvider<SubscriptionBloc>(
       create: (context) => SubscriptionBloc(),
     ),
     BlocProvider<LanguageBloc>(
       create: (context) => LanguageBloc(),
+    ),
+    BlocProvider<WalletBloc>(
+      create: (context) => injector.get<WalletBloc>()
+        ..add(const WalletEvent.read()), // <------------ убрать add
+    ),
+    BlocProvider<CreateWalletBloc>(
+      create: (context) => injector.get<CreateWalletBloc>(),
+    ),
+    BlocProvider<FilterWalletBloc>(
+      create: (context) => injector.get<FilterWalletBloc>(),
     )
   ];
 }
-
 
 // ignore: strict_raw_type
 List<BlocListener> _globalListeners() {

@@ -8,11 +8,29 @@
     "homeTitleIncome":"Income",
     "homePeriod":"Period",
     "uploadTitle":"Upload",
-    "uploadInfo":"Select your bank to upload a bank statement",
+    "uploadInfo":"Select your bank to\nupload a bank statement",
     "uploadSber":"Sber Bank",
     "uploadTink":"Tinkoff Bank",
     "uploadSnackBarComplit":"File successfully uploaded",
     "uploadSnackBarFailur":"An error occurred",
-    "uploadButton":"Done"
+    "uploadButton":"Done",
+    "selectPeriod":"Select period",
+    "menuHome":"Home",
+    "menuTransaction":"Transaction",
+    "menuGoals":"Goals",
+    "menuAccount":"Account",
+    "homeDateNow":"Today",
+    "accountTitle":"Youre e-mail",
+    "accountField":"email@email.com",
+    "accountGeneral":"General",
+    "accountLanguage":"Language",
+    "accountTheme":"Theme",
+    "accountOther":"Other",
+    "accountLicenses":"Licenses and Terms",
+    "accountVersion":"Version",
+    "accountExit":"Exit",
+    "accountSubscriptions":"Subscriptions"
+    
+    
 }
 

@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CreateWalletEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String title, String description, String balance)
+        editCard,
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
@@ -28,6 +30,8 @@ mixin _$CreateWalletEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String title, String description, String balance)?
+        editCard,
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
@@ -38,6 +42,8 @@ mixin _$CreateWalletEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title, String description, String balance)?
+        editCard,
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
@@ -49,6 +55,7 @@ mixin _$CreateWalletEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EditCardeWalletEvent value) editCard,
     required TResult Function(UpdateTitleWalletEvent value) updateTitle,
     required TResult Function(UpdateDiscriptionWalletEvent value)
         updateDiscription,
@@ -60,6 +67,7 @@ mixin _$CreateWalletEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EditCardeWalletEvent value)? editCard,
     TResult? Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult? Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -70,6 +78,7 @@ mixin _$CreateWalletEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditCardeWalletEvent value)? editCard,
     TResult Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -97,6 +106,197 @@ class _$CreateWalletEventCopyWithImpl<$Res, $Val extends CreateWalletEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$EditCardeWalletEventCopyWith<$Res> {
+  factory _$$EditCardeWalletEventCopyWith(_$EditCardeWalletEvent value,
+          $Res Function(_$EditCardeWalletEvent) then) =
+      __$$EditCardeWalletEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String title, String description, String balance});
+}
+
+/// @nodoc
+class __$$EditCardeWalletEventCopyWithImpl<$Res>
+    extends _$CreateWalletEventCopyWithImpl<$Res, _$EditCardeWalletEvent>
+    implements _$$EditCardeWalletEventCopyWith<$Res> {
+  __$$EditCardeWalletEventCopyWithImpl(_$EditCardeWalletEvent _value,
+      $Res Function(_$EditCardeWalletEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? description = null,
+    Object? balance = null,
+  }) {
+    return _then(_$EditCardeWalletEvent(
+      null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == balance
+          ? _value.balance
+          : balance // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditCardeWalletEvent extends EditCardeWalletEvent {
+  const _$EditCardeWalletEvent(this.title, this.description, this.balance)
+      : super._();
+
+  @override
+  final String title;
+  @override
+  final String description;
+  @override
+  final String balance;
+
+  @override
+  String toString() {
+    return 'CreateWalletEvent.editCard(title: $title, description: $description, balance: $balance)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditCardeWalletEvent &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.balance, balance) || other.balance == balance));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, title, description, balance);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditCardeWalletEventCopyWith<_$EditCardeWalletEvent> get copyWith =>
+      __$$EditCardeWalletEventCopyWithImpl<_$EditCardeWalletEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String title, String description, String balance)
+        editCard,
+    required TResult Function(String value) updateTitle,
+    required TResult Function(String value) updateDiscription,
+    required TResult Function(String value) updateBalance,
+    required TResult Function(Currency value) updateCurrency,
+    required TResult Function() saveWallet,
+    required TResult Function(String value) usdUpdateButton,
+  }) {
+    return editCard(title, description, balance);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String title, String description, String balance)?
+        editCard,
+    TResult? Function(String value)? updateTitle,
+    TResult? Function(String value)? updateDiscription,
+    TResult? Function(String value)? updateBalance,
+    TResult? Function(Currency value)? updateCurrency,
+    TResult? Function()? saveWallet,
+    TResult? Function(String value)? usdUpdateButton,
+  }) {
+    return editCard?.call(title, description, balance);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title, String description, String balance)?
+        editCard,
+    TResult Function(String value)? updateTitle,
+    TResult Function(String value)? updateDiscription,
+    TResult Function(String value)? updateBalance,
+    TResult Function(Currency value)? updateCurrency,
+    TResult Function()? saveWallet,
+    TResult Function(String value)? usdUpdateButton,
+    required TResult orElse(),
+  }) {
+    if (editCard != null) {
+      return editCard(title, description, balance);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EditCardeWalletEvent value) editCard,
+    required TResult Function(UpdateTitleWalletEvent value) updateTitle,
+    required TResult Function(UpdateDiscriptionWalletEvent value)
+        updateDiscription,
+    required TResult Function(UpdateBalanceWalletEvent value) updateBalance,
+    required TResult Function(UpdateCurrencyWalletEvent value) updateCurrency,
+    required TResult Function(SaveWalletWalletEvent value) saveWallet,
+    required TResult Function(UsdUpdateButtonEvent value) usdUpdateButton,
+  }) {
+    return editCard(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EditCardeWalletEvent value)? editCard,
+    TResult? Function(UpdateTitleWalletEvent value)? updateTitle,
+    TResult? Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
+    TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
+    TResult? Function(UpdateCurrencyWalletEvent value)? updateCurrency,
+    TResult? Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult? Function(UsdUpdateButtonEvent value)? usdUpdateButton,
+  }) {
+    return editCard?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditCardeWalletEvent value)? editCard,
+    TResult Function(UpdateTitleWalletEvent value)? updateTitle,
+    TResult Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
+    TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
+    TResult Function(UpdateCurrencyWalletEvent value)? updateCurrency,
+    TResult Function(SaveWalletWalletEvent value)? saveWallet,
+    TResult Function(UsdUpdateButtonEvent value)? usdUpdateButton,
+    required TResult orElse(),
+  }) {
+    if (editCard != null) {
+      return editCard(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EditCardeWalletEvent extends CreateWalletEvent {
+  const factory EditCardeWalletEvent(
+          final String title, final String description, final String balance) =
+      _$EditCardeWalletEvent;
+  const EditCardeWalletEvent._() : super._();
+
+  String get title;
+  String get description;
+  String get balance;
+  @JsonKey(ignore: true)
+  _$$EditCardeWalletEventCopyWith<_$EditCardeWalletEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -164,6 +364,8 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String title, String description, String balance)
+        editCard,
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
@@ -177,6 +379,8 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String title, String description, String balance)?
+        editCard,
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
@@ -190,6 +394,8 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title, String description, String balance)?
+        editCard,
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
@@ -207,6 +413,7 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EditCardeWalletEvent value) editCard,
     required TResult Function(UpdateTitleWalletEvent value) updateTitle,
     required TResult Function(UpdateDiscriptionWalletEvent value)
         updateDiscription,
@@ -221,6 +428,7 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EditCardeWalletEvent value)? editCard,
     TResult? Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult? Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -234,6 +442,7 @@ class _$UpdateTitleWalletEvent extends UpdateTitleWalletEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditCardeWalletEvent value)? editCard,
     TResult Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -328,6 +537,8 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String title, String description, String balance)
+        editCard,
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
@@ -341,6 +552,8 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String title, String description, String balance)?
+        editCard,
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
@@ -354,6 +567,8 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title, String description, String balance)?
+        editCard,
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
@@ -371,6 +586,7 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EditCardeWalletEvent value) editCard,
     required TResult Function(UpdateTitleWalletEvent value) updateTitle,
     required TResult Function(UpdateDiscriptionWalletEvent value)
         updateDiscription,
@@ -385,6 +601,7 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EditCardeWalletEvent value)? editCard,
     TResult? Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult? Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -398,6 +615,7 @@ class _$UpdateDiscriptionWalletEvent extends UpdateDiscriptionWalletEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditCardeWalletEvent value)? editCard,
     TResult Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -490,6 +708,8 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String title, String description, String balance)
+        editCard,
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
@@ -503,6 +723,8 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String title, String description, String balance)?
+        editCard,
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
@@ -516,6 +738,8 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title, String description, String balance)?
+        editCard,
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
@@ -533,6 +757,7 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EditCardeWalletEvent value) editCard,
     required TResult Function(UpdateTitleWalletEvent value) updateTitle,
     required TResult Function(UpdateDiscriptionWalletEvent value)
         updateDiscription,
@@ -547,6 +772,7 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EditCardeWalletEvent value)? editCard,
     TResult? Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult? Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -560,6 +786,7 @@ class _$UpdateBalanceWalletEvent extends UpdateBalanceWalletEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditCardeWalletEvent value)? editCard,
     TResult Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -652,6 +879,8 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String title, String description, String balance)
+        editCard,
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
@@ -665,6 +894,8 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String title, String description, String balance)?
+        editCard,
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
@@ -678,6 +909,8 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title, String description, String balance)?
+        editCard,
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
@@ -695,6 +928,7 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EditCardeWalletEvent value) editCard,
     required TResult Function(UpdateTitleWalletEvent value) updateTitle,
     required TResult Function(UpdateDiscriptionWalletEvent value)
         updateDiscription,
@@ -709,6 +943,7 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EditCardeWalletEvent value)? editCard,
     TResult? Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult? Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -722,6 +957,7 @@ class _$UpdateCurrencyWalletEvent extends UpdateCurrencyWalletEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditCardeWalletEvent value)? editCard,
     TResult Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -786,6 +1022,8 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String title, String description, String balance)
+        editCard,
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
@@ -799,6 +1037,8 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String title, String description, String balance)?
+        editCard,
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
@@ -812,6 +1052,8 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title, String description, String balance)?
+        editCard,
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
@@ -829,6 +1071,7 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EditCardeWalletEvent value) editCard,
     required TResult Function(UpdateTitleWalletEvent value) updateTitle,
     required TResult Function(UpdateDiscriptionWalletEvent value)
         updateDiscription,
@@ -843,6 +1086,7 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EditCardeWalletEvent value)? editCard,
     TResult? Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult? Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -856,6 +1100,7 @@ class _$SaveWalletWalletEvent extends SaveWalletWalletEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditCardeWalletEvent value)? editCard,
     TResult Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -941,6 +1186,8 @@ class _$UsdUpdateButtonEvent extends UsdUpdateButtonEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String title, String description, String balance)
+        editCard,
     required TResult Function(String value) updateTitle,
     required TResult Function(String value) updateDiscription,
     required TResult Function(String value) updateBalance,
@@ -954,6 +1201,8 @@ class _$UsdUpdateButtonEvent extends UsdUpdateButtonEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String title, String description, String balance)?
+        editCard,
     TResult? Function(String value)? updateTitle,
     TResult? Function(String value)? updateDiscription,
     TResult? Function(String value)? updateBalance,
@@ -967,6 +1216,8 @@ class _$UsdUpdateButtonEvent extends UsdUpdateButtonEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title, String description, String balance)?
+        editCard,
     TResult Function(String value)? updateTitle,
     TResult Function(String value)? updateDiscription,
     TResult Function(String value)? updateBalance,
@@ -984,6 +1235,7 @@ class _$UsdUpdateButtonEvent extends UsdUpdateButtonEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(EditCardeWalletEvent value) editCard,
     required TResult Function(UpdateTitleWalletEvent value) updateTitle,
     required TResult Function(UpdateDiscriptionWalletEvent value)
         updateDiscription,
@@ -998,6 +1250,7 @@ class _$UsdUpdateButtonEvent extends UsdUpdateButtonEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EditCardeWalletEvent value)? editCard,
     TResult? Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult? Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult? Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -1011,6 +1264,7 @@ class _$UsdUpdateButtonEvent extends UsdUpdateButtonEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditCardeWalletEvent value)? editCard,
     TResult Function(UpdateTitleWalletEvent value)? updateTitle,
     TResult Function(UpdateDiscriptionWalletEvent value)? updateDiscription,
     TResult Function(UpdateBalanceWalletEvent value)? updateBalance,
@@ -1042,9 +1296,10 @@ mixin _$CreateWalletState {
   String get name => throw _privateConstructorUsedError;
   String get wallet => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get discription => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   String get balance => throw _privateConstructorUsedError;
   Currency get currency => throw _privateConstructorUsedError;
+  bool get finish => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CreateWalletStateCopyWith<CreateWalletState> get copyWith =>
@@ -1061,9 +1316,10 @@ abstract class $CreateWalletStateCopyWith<$Res> {
       {String name,
       String wallet,
       String title,
-      String discription,
+      String description,
       String balance,
-      Currency currency});
+      Currency currency,
+      bool finish});
 }
 
 /// @nodoc
@@ -1082,9 +1338,10 @@ class _$CreateWalletStateCopyWithImpl<$Res, $Val extends CreateWalletState>
     Object? name = null,
     Object? wallet = null,
     Object? title = null,
-    Object? discription = null,
+    Object? description = null,
     Object? balance = null,
     Object? currency = null,
+    Object? finish = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -1099,9 +1356,9 @@ class _$CreateWalletStateCopyWithImpl<$Res, $Val extends CreateWalletState>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      discription: null == discription
-          ? _value.discription
-          : discription // ignore: cast_nullable_to_non_nullable
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       balance: null == balance
           ? _value.balance
@@ -1111,6 +1368,10 @@ class _$CreateWalletStateCopyWithImpl<$Res, $Val extends CreateWalletState>
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as Currency,
+      finish: null == finish
+          ? _value.finish
+          : finish // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -1127,9 +1388,10 @@ abstract class _$$_CreateWalletStateCopyWith<$Res>
       {String name,
       String wallet,
       String title,
-      String discription,
+      String description,
       String balance,
-      Currency currency});
+      Currency currency,
+      bool finish});
 }
 
 /// @nodoc
@@ -1146,9 +1408,10 @@ class __$$_CreateWalletStateCopyWithImpl<$Res>
     Object? name = null,
     Object? wallet = null,
     Object? title = null,
-    Object? discription = null,
+    Object? description = null,
     Object? balance = null,
     Object? currency = null,
+    Object? finish = null,
   }) {
     return _then(_$_CreateWalletState(
       name: null == name
@@ -1163,9 +1426,9 @@ class __$$_CreateWalletStateCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      discription: null == discription
-          ? _value.discription
-          : discription // ignore: cast_nullable_to_non_nullable
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       balance: null == balance
           ? _value.balance
@@ -1175,6 +1438,10 @@ class __$$_CreateWalletStateCopyWithImpl<$Res>
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as Currency,
+      finish: null == finish
+          ? _value.finish
+          : finish // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1186,9 +1453,10 @@ class _$_CreateWalletState implements _CreateWalletState {
       {required this.name,
       required this.wallet,
       required this.title,
-      required this.discription,
+      required this.description,
       required this.balance,
-      required this.currency});
+      required this.currency,
+      required this.finish});
 
   @override
   final String name;
@@ -1197,15 +1465,17 @@ class _$_CreateWalletState implements _CreateWalletState {
   @override
   final String title;
   @override
-  final String discription;
+  final String description;
   @override
   final String balance;
   @override
   final Currency currency;
+  @override
+  final bool finish;
 
   @override
   String toString() {
-    return 'CreateWalletState(name: $name, wallet: $wallet, title: $title, discription: $discription, balance: $balance, currency: $currency)';
+    return 'CreateWalletState(name: $name, wallet: $wallet, title: $title, description: $description, balance: $balance, currency: $currency, finish: $finish)';
   }
 
   @override
@@ -1216,16 +1486,17 @@ class _$_CreateWalletState implements _CreateWalletState {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.wallet, wallet) || other.wallet == wallet) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.discription, discription) ||
-                other.discription == discription) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             (identical(other.balance, balance) || other.balance == balance) &&
             (identical(other.currency, currency) ||
-                other.currency == currency));
+                other.currency == currency) &&
+            (identical(other.finish, finish) || other.finish == finish));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, wallet, title, discription, balance, currency);
+      runtimeType, name, wallet, title, description, balance, currency, finish);
 
   @JsonKey(ignore: true)
   @override
@@ -1240,9 +1511,10 @@ abstract class _CreateWalletState implements CreateWalletState {
       {required final String name,
       required final String wallet,
       required final String title,
-      required final String discription,
+      required final String description,
       required final String balance,
-      required final Currency currency}) = _$_CreateWalletState;
+      required final Currency currency,
+      required final bool finish}) = _$_CreateWalletState;
 
   @override
   String get name;
@@ -1251,11 +1523,13 @@ abstract class _CreateWalletState implements CreateWalletState {
   @override
   String get title;
   @override
-  String get discription;
+  String get description;
   @override
   String get balance;
   @override
   Currency get currency;
+  @override
+  bool get finish;
   @override
   @JsonKey(ignore: true)
   _$$_CreateWalletStateCopyWith<_$_CreateWalletState> get copyWith =>
